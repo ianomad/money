@@ -3,34 +3,382 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Notes on fintech, payments, and money — by Iliiaz Akhmedov">
+<meta name="description" content="Notes on crypto, fintech, and how money works — by Iliiaz Akhmedov">
 <link rel="canonical" href="https://money.ilyusha.xyz/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="money.ilyusha.xyz">
-<meta property="og:description" content="Notes on fintech, payments, and money — by Iliiaz Akhmedov">
+<meta property="og:description" content="Notes on crypto, fintech, and how money works — by Iliiaz Akhmedov">
 <meta property="og:url" content="https://money.ilyusha.xyz/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="money.ilyusha.xyz">
-<meta name="twitter:description" content="Notes on fintech, payments, and money — by Iliiaz Akhmedov">
+<meta name="twitter:description" content="Notes on crypto, fintech, and how money works — by Iliiaz Akhmedov">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>money.ilyusha.xyz</title>
 <style>
-  :root { --bg: #0a0a1a; --fg: #e2e8f0; --dim: #94a3b8; --accent: #5eead4; }
+  :root {
+    --bg: #0a0a0f;
+    --fg: #e2e8f0;
+    --dim: #94a3b8;
+    --orange: #f59e0b;
+    --gold: #fbbf24;
+    --amber: #f97316;
+    --surface: rgba(245, 158, 11, 0.04);
+    --border: rgba(245, 158, 11, 0.1);
+    --nav-w: 200px;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif; line-height: 1.6; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-  .container { text-align: center; padding: 20px; }
-  h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-  .wip { color: var(--dim); font-size: 1.1rem; }
-  a { color: var(--accent); text-decoration: none; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: var(--gold); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  .back { margin-top: 2rem; font-size: 0.9rem; color: var(--dim); }
+
+  /* ---- Animated background ---- */
+  #bg-canvas {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; pointer-events: none; opacity: 0.07;
+  }
+  body > *:not(#bg-canvas):not(.sidenav) { position: relative; z-index: 1; }
+
+  /* ---- Sidenav ---- */
+  .sidenav {
+    position: fixed; top: 0; left: 0; width: var(--nav-w); height: 100vh;
+    background: rgba(10, 10, 15, 0.92);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-right: 1px solid var(--border);
+    padding: 28px 20px; display: flex; flex-direction: column; gap: 4px;
+    z-index: 100;
+  }
+
+  .sidenav .brand {
+    font-size: 1.25rem; font-weight: 800; letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--amber), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 24px; display: block; flex-shrink: 0;
+  }
+
+  .sidenav .section-label {
+    font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: #475569; margin-top: 12px; margin-bottom: 6px;
+  }
+
+  .sidenav .nav-link {
+    display: block; padding: 6px 10px; border-radius: 6px;
+    font-size: 0.85rem; color: var(--dim); transition: color 0.15s, background 0.15s;
+    text-decoration: none;
+  }
+  .sidenav .nav-link:hover {
+    color: var(--gold); background: rgba(245, 158, 11, 0.08); text-decoration: none;
+  }
+  .sidenav .divider { height: 1px; background: var(--border); margin: 14px 0; }
+  .sidenav .ext::after { content: " \2197"; font-size: 0.7rem; }
+
+  /* ---- Main content ---- */
+  .main {
+    margin-left: var(--nav-w); min-height: 100vh;
+    padding: 60px 48px 80px; max-width: 900px;
+  }
+
+  /* Hero */
+  .hero { margin-bottom: 56px; text-align: center; }
+
+  .hero .btc-icon {
+    font-size: 4rem; margin-bottom: 16px; display: block;
+    filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.4));
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .hero h1 {
+    font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px;
+  }
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--amber), var(--gold), #fde68a);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .hero .tagline {
+    color: var(--dim); font-size: 1.1rem; margin-bottom: 20px;
+    max-width: 500px; margin-left: auto; margin-right: auto;
+  }
+  .hero .sub {
+    font-size: 0.85rem; color: #475569;
+    font-family: "SF Mono", "Fira Code", monospace; letter-spacing: 0.05em;
+  }
+
+  .badge {
+    display: inline-block; padding: 5px 14px; font-size: 0.7rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold);
+    border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 20px;
+    background: rgba(245, 158, 11, 0.06); margin-top: 16px;
+  }
+
+  .divider-line {
+    height: 1px; max-width: 200px; margin: 48px auto;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  }
+
+  /* Sections */
+  .section { margin-bottom: 56px; }
+  .section h2 {
+    font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px;
+  }
+  .section h2 span {
+    background: linear-gradient(135deg, var(--amber), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .section p { color: var(--dim); line-height: 1.8; margin-bottom: 12px; }
+
+  /* Cards grid */
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px; transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    border-color: rgba(245, 158, 11, 0.25);
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.06);
+  }
+  .card .card-icon { font-size: 1.5rem; margin-bottom: 10px; display: block; }
+  .card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+  .card p { font-size: 0.82rem; color: var(--dim); line-height: 1.5; margin: 0; }
+
+  /* Ticker tape */
+  .ticker {
+    overflow: hidden; white-space: nowrap; padding: 12px 0;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    margin-bottom: 48px; font-family: "SF Mono", monospace; font-size: 0.8rem;
+    color: #475569;
+  }
+  .ticker-inner {
+    display: inline-block; animation: scroll 30s linear infinite;
+  }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker .up { color: #22c55e; }
+  .ticker .down { color: #ef4444; }
+  .ticker .sep { color: #334155; margin: 0 16px; }
+
+  /* Quote */
+  .quote {
+    border-left: 3px solid var(--orange); padding: 16px 24px;
+    margin: 32px 0; background: rgba(245, 158, 11, 0.04); border-radius: 0 10px 10px 0;
+  }
+  .quote p { color: var(--dim); font-style: italic; font-size: 0.95rem; margin: 0; }
+  .quote .attr { color: #475569; font-style: normal; font-size: 0.8rem; margin-top: 8px; }
+
+  /* Todo list */
+  .todo-list { list-style: none; }
+  .todo-list li {
+    padding: 12px 16px; border-bottom: 1px solid var(--border);
+    color: var(--dim); font-size: 0.95rem; cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+  }
+  .todo-list li:last-child { border-bottom: none; }
+  .todo-list li::before {
+    content: "\25CB"; margin-right: 12px; color: #475569; font-size: 1.1rem;
+  }
+  .todo-list li:hover {
+    color: var(--fg); background: rgba(245, 158, 11, 0.04);
+  }
+  .todo-list li.done { text-decoration: line-through; opacity: 0.4; }
+  .todo-list li.done::before { content: "\25CF"; color: var(--gold); }
+
+  /* Placeholder */
+  .placeholder {
+    color: var(--dim); font-size: 0.95rem; padding: 24px;
+    border: 1px dashed var(--border); border-radius: 10px; text-align: center;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--border);
+    font-size: 0.78rem; color: var(--dim);
+  }
+
+  /* ---- Mobile ---- */
+  @media (max-width: 768px) {
+    .sidenav {
+      position: fixed; top: auto; bottom: 0; left: 0; width: 100%; height: auto;
+      flex-direction: row; align-items: center; gap: 6px; padding: 10px 16px;
+      border-right: none; border-top: 1px solid var(--border); overflow-x: auto;
+    }
+    .sidenav .brand { margin-bottom: 0; margin-right: 12px; font-size: 1rem; white-space: nowrap; }
+    .sidenav .section-label, .sidenav .divider { display: none; }
+    .sidenav .nav-link { white-space: nowrap; padding: 6px 10px; font-size: 0.8rem; }
+    .main { margin-left: 0; padding: 36px 20px 100px; }
+    .hero h1 { font-size: 1.8rem; }
+    .cards { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>money.ilyusha.xyz</h1>
-  <p class="wip">Work in progress</p>
-  <p class="back"><a href="https://ilyusha.xyz">ilyusha.xyz</a></p>
-</div>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav class="sidenav">
+  <span class="brand">money</span>
+  <span class="section-label">Navigate</span>
+  <a class="nav-link" href="#top">Home</a>
+  <a class="nav-link" href="#topics">TODO</a>
+  <a class="nav-link" href="#reading">Reading</a>
+  <a class="nav-link" href="#notes">Notes</a>
+  <div class="divider"></div>
+  <span class="section-label">Links</span>
+  <a class="nav-link ext" href="https://ilyusha.xyz" target="_blank" rel="noopener">ilyusha.xyz</a>
+</nav>
+
+<main class="main" id="top">
+  <section class="hero">
+    <span class="btc-icon">&#x20BF;</span>
+    <h1><span>money.ilyusha.xyz</span></h1>
+    <p class="tagline">How money works. Crypto, fintech, payments, and the systems that move value.</p>
+    <p class="sub">// verify. don't trust.</p>
+    <span class="badge">Work in Progress</span>
+  </section>
+
+  <div class="divider-line"></div>
+
+  <section class="section" id="topics">
+    <h2><span>TODO</span></h2>
+    <ul class="todo-list">
+      <li>Set up a cold wallet (Ledger or Trezor)</li>
+      <li>Run a Bitcoin full node</li>
+      <li>Deploy a smart contract on a testnet</li>
+      <li>Try a DEX swap (Uniswap, Jupiter)</li>
+      <li>Set up DCA into BTC + ETH</li>
+      <li>Read the Bitcoin whitepaper front to back</li>
+      <li>Explore Lightning Network — open a channel</li>
+      <li>Build something with Stripe or Plaid API</li>
+      <li>Understand how MEV extraction works</li>
+      <li>Try multisig with Gnosis Safe</li>
+      <li>Research restaking (EigenLayer)</li>
+      <li>Set up a self-hosted block explorer</li>
+    </ul>
+  </section>
+
+  <div class="divider-line"></div>
+
+  <section class="section" id="reading">
+    <h2><span>Reading List</span></h2>
+    <div class="quote">
+      <p>The root problem with conventional currency is all the trust that's required to make it work.</p>
+      <div class="attr">— Satoshi Nakamoto, 2009</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>The Bitcoin Standard</h3>
+        <p>Saifedean Ammous — hard money economics and why Bitcoin matters.</p>
+      </div>
+      <div class="card">
+        <h3>Mastering Bitcoin</h3>
+        <p>Andreas Antonopoulos — deep technical dive into how Bitcoin actually works.</p>
+      </div>
+      <div class="card">
+        <h3>The Infinite Machine</h3>
+        <p>Camila Russo — the story of Ethereum and the people behind it.</p>
+      </div>
+      <div class="card">
+        <h3>Broken Money</h3>
+        <p>Lyn Alden — why our financial system is failing and what comes next.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-line"></div>
+
+  <section class="section" id="notes">
+    <h2><span>Notes</span></h2>
+    <div class="placeholder">Coming soon — deep dives into protocols, market mechanics, and building with crypto.</div>
+  </section>
+
+  <footer class="footer">Built by <a href="https://ilyusha.xyz">Iliiaz Akhmedov</a> · <a href="mailto:dev@ilyusha.xyz">dev@ilyusha.xyz</a></footer>
+</main>
+
+<script>
+// Toggle todo items
+document.querySelectorAll('.todo-list li').forEach(function(li) {
+  li.addEventListener('click', function() { this.classList.toggle('done'); });
+});
+
+// Subtle animated grid background
+(function() {
+  const c = document.getElementById('bg-canvas');
+  const ctx = c.getContext('2d');
+  let w, h;
+
+  function resize() {
+    w = c.width = window.innerWidth;
+    h = c.height = window.innerHeight * 3;
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const spacing = 40;
+    const cols = Math.ceil(w / spacing);
+    const rows = Math.ceil(h / spacing);
+    const t = Date.now() * 0.0005;
+
+    // Horizontal lines
+    ctx.strokeStyle = 'rgba(245, 158, 11, 0.04)';
+    ctx.lineWidth = 0.5;
+    for (let r = 0; r < rows; r++) {
+      ctx.beginPath();
+      ctx.moveTo(0, r * spacing);
+      ctx.lineTo(w, r * spacing);
+      ctx.stroke();
+    }
+
+    // Vertical lines
+    for (let c2 = 0; c2 < cols; c2++) {
+      ctx.beginPath();
+      ctx.moveTo(c2 * spacing, 0);
+      ctx.lineTo(c2 * spacing, h);
+      ctx.stroke();
+    }
+
+    // Pulsing dots at intersections
+    for (let r = 0; r < rows; r++) {
+      for (let c2 = 0; c2 < cols; c2++) {
+        if (Math.sin(r * 0.7 + c2 * 0.5 + t) > 0.7) {
+          const alpha = 0.1 + 0.15 * Math.sin(r * 0.3 + c2 * 0.4 + t * 2);
+          ctx.beginPath();
+          ctx.arc(c2 * spacing, r * spacing, 2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(245, 158, 11, ${alpha})`;
+          ctx.fill();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    draw();
+  }
+})();
+</script>
+
 </body>
 </html>
