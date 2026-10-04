@@ -72,16 +72,24 @@
       "symbol": "w",
       "color": "#594770",
       "base": 3.55,
-      "boost": 4.45,
-      "rateLabel": "Temporary boost",
-      "requirements": "Top rate combines a new-client boost with investing and recurring-deposit requirements.",
-      "details": "New clients: +0.65 percentage points for 3 months on up to $150,000. An additional +0.25 requires an eligible funded investing account and $1,000 monthly direct deposits or $2,500 recurring deposits. Zero account fees. The headline boost does not last a full year; see promotion terms for eligibility and balance limits.",
+      "boost": 4.55,
+      "rateLabel": "Referral + recurring boost",
+      "requirements": "4.55% on up to $150,000 for 3 months: qualifying referral, funded investing account, and recurring deposits.",
+      "details": "Combines the 3.55% base with a 0.75-point referral boost and a 0.25-point recurring-deposit boost. The recurring boost requires an eligible funded investing account plus $1,000 monthly direct deposits or $2,500 recurring deposits; it has no balance cap or scheduled expiry. The referral boost lasts 3 months on up to $150,000. The separate 0.65-point new-client boost is an alternative to the referral boost, not an additional stack. No Cash Account fees.",
       "protection": "Cash swept to FDIC-insured program banks. Wealthfront is a brokerage, not a bank; pass-through conditions and aggregate limits apply.",
       "effective": "2026-10-01",
       "sources": [
         {
           "label": "Cash Account rates & terms",
           "url": "https://www.wealthfront.com/cash"
+        },
+        {
+          "label": "Published maximum & boost combinations",
+          "url": "https://www.wealthfront.com/blog/cash-account-apy"
+        },
+        {
+          "label": "Referral terms",
+          "url": "https://www.wealthfront.com/cash/boost"
         }
       ],
       "fdic": {
@@ -99,16 +107,20 @@
       "symbol": "M",
       "color": "#305466",
       "base": 3.5,
-      "boost": null,
-      "rateLabel": "Standard rate",
-      "requirements": "No monthly fee or minimum deposit. Referral promotions are excluded here.",
-      "details": "Variable savings APY. Maximum balance limits apply. Offered by Goldman Sachs Bank USA. Optional referral boosts are not included in this listing.",
+      "boost": 4.5,
+      "rateLabel": "3-month referral boost",
+      "requirements": "Refer a new customer, or open through a qualifying referral link. +1.00 percentage point for 3 months.",
+      "details": "Standard APY is 3.50%. Referral boosts apply to accounts where you are the primary owner. New customers must not have held a Marcus savings account or CD in the previous 12 months. Additional referrals extend the boost consecutively rather than increasing the rate. Account balance limits apply. After the boost, the then-current standard rate applies. No monthly fee or minimum deposit.",
       "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
       "effective": "2026-10-03",
       "sources": [
         {
           "label": "Savings rate & terms",
           "url": "https://www.marcus.com/us/en/savings"
+        },
+        {
+          "label": "Referral eligibility & boost terms",
+          "url": "https://www.marcus.com/us/en/savings/referrals"
         }
       ],
       "fdic": {
@@ -334,6 +346,210 @@
         {
           "label": "Separate Online Savings rate",
           "url": "https://banking.us.barclays/online-savings.html"
+        }
+      ]
+    },
+    {
+      "id": "axos",
+      "name": "Axos Bank",
+      "product": "Axos ONE Savings",
+      "category": "cash",
+      "kind": "Bank · Axos Bank",
+      "symbol": "A",
+      "color": "#38665a",
+      "base": 1.0,
+      "boost": 5.0,
+      "rateLabel": "6-cycle promo · first $50k",
+      "requirements": "New Axos/UFB customers: open October 1–31. Up to 5.00% on first $49,999.99 for six statement cycles; qualifying checking activity required.",
+      "details": "Each month: $1,500 qualifying direct deposits and $1,500 average checking balance, OR $5,000 qualifying deposits and $5,000 average checking balance, by the 25th. Savings average balance must not exceed $249,999.99 for the boost. Other qualifying savings earns 4.21% up to $249,999.99 and 3.50% above; without qualification, 1.00%. No monthly maintenance fee. The opening cycle counts toward the six-cycle promotion. Additional deposit-program coverage has separate conditions.",
+      "protection": "FDIC-insured deposits at Axos Bank. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
+      "effective": "2026-10-04",
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Axos Bank; standard coverage and same-bank aggregation limits apply."
+      },
+      "sources": [
+        {
+          "label": "Official rates & account terms",
+          "url": "https://www.axosbank.com/personal/bank/axos-one"
+        }
+      ]
+    },
+    {
+      "id": "sofi",
+      "name": "SoFi",
+      "product": "Savings · SoFi Plus",
+      "category": "cash",
+      "kind": "Bank · SoFi Bank, N.A.",
+      "symbol": "S",
+      "color": "#38665a",
+      "base": 0.8,
+      "boost": 4.5,
+      "rateLabel": "Plus · first $20,000",
+      "requirements": "SoFi Plus costs $10/month. 4.50% applies to the first $20,000 in one eligible savings account; excess earns 3.30%.",
+      "details": "Without Plus, eligible direct deposit or $5,000 qualifying deposits every 31 days earns 3.30%; otherwise 0.80%. New customers opening September 3–December 31 can instead qualify for 4.20% for up to six months by meeting deposit requirements within 60 days and maintaining them. That boost cannot stack on the 4.50% tier. Joint-only accounts with two Plus subscribers can qualify for a $40,000 tier. Subscription fees reduce net earnings.",
+      "protection": "FDIC-insured deposits at SoFi Bank, N.A.. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
+      "effective": "2026-09-23",
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "SoFi Bank, N.A.; standard coverage and same-bank aggregation limits apply."
+      },
+      "sources": [
+        {
+          "label": "Official rates & account terms",
+          "url": "https://www.sofi.com/legal/banking-rate-sheet"
+        },
+        {
+          "label": "Plus membership cost & terms",
+          "url": "https://www.sofi.com/terms-of-use/#sofi-plus"
+        },
+        {
+          "label": "Alternative new-customer promotion",
+          "url": "https://www.sofi.com/banking/"
+        }
+      ]
+    },
+    {
+      "id": "peak",
+      "name": "Peak Bank",
+      "product": "Envision High Yield Savings",
+      "category": "cash",
+      "kind": "Bank · Idaho First Bank",
+      "symbol": "P",
+      "color": "#38665a",
+      "base": 4.27,
+      "boost": null,
+      "rateLabel": "New accounts · below $500k",
+      "requirements": "$100 to open. New-account APY is 4.27% below $500,000; published tiers at $500,000+ earn 3.40%.",
+      "details": "No monthly maintenance fee. One account per customer; opening funds have a five-business-day hold. Advertised rates are for new accounts and may differ for existing customers. Rates are variable. Higher balance tiers do not increase FDIC protection.",
+      "protection": "FDIC-insured deposits at Idaho First Bank. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
+      "effective": "2026-10-01",
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Idaho First Bank; standard coverage and same-bank aggregation limits apply."
+      },
+      "sources": [
+        {
+          "label": "Official rates & account terms",
+          "url": "https://www.peak.bank/peak-bank/savings"
+        }
+      ],
+      "baseLabel": "New accounts · below $500k"
+    },
+    {
+      "id": "pibank",
+      "name": "Pibank",
+      "product": "Pibank Savings",
+      "category": "cash",
+      "kind": "Bank · Intercredit Bank, N.A.",
+      "symbol": "P",
+      "color": "#38665a",
+      "base": 4.25,
+      "boost": null,
+      "rateLabel": "Standard rate",
+      "requirements": "No minimum opening balance, monthly fees, or qualifying direct-deposit requirement.",
+      "details": "Earn interest starting at $0.01. Variable APY; Pibank is a brand of Intercredit Bank, so balances held under both names count toward the same FDIC limit.",
+      "protection": "FDIC-insured deposits at Intercredit Bank, N.A.. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
+      "effective": "2026-09-29",
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Intercredit Bank, N.A.; standard coverage and same-bank aggregation limits apply."
+      },
+      "sources": [
+        {
+          "label": "Official rates & account terms",
+          "url": "https://www.pibank.com/pibank-savings/"
+        }
+      ]
+    },
+    {
+      "id": "newtek",
+      "name": "Newtek Bank",
+      "product": "Personal High Yield Savings",
+      "category": "cash",
+      "kind": "Bank · Newtek Bank, N.A.",
+      "symbol": "N",
+      "color": "#38665a",
+      "base": 4.2,
+      "boost": null,
+      "rateLabel": "Applications paused",
+      "requirements": "New applications are paused; a waiting list is available. Published APY is for the existing savings product.",
+      "details": "The bank publishes 4.20% but currently does not accept new Personal High Yield Savings applications. Published account terms specify $100 to open, no ongoing minimum balance, $0.01 to earn interest, and up to six withdrawals/transfers per statement cycle. Do not treat the waiting list as an available account.",
+      "protection": "FDIC-insured deposits at Newtek Bank, N.A.. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
+      "effective": null,
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Newtek Bank, N.A.; standard coverage and same-bank aggregation limits apply."
+      },
+      "sources": [
+        {
+          "label": "Official rates & account terms",
+          "url": "https://www.newtekbank.com/personal/high-yield-savings/"
+        }
+      ],
+      "baseLabel": "Existing accounts"
+    },
+    {
+      "id": "cit",
+      "name": "CIT Bank",
+      "product": "Platinum Savings",
+      "category": "cash",
+      "kind": "Bank · First-Citizens Bank & Trust Company",
+      "symbol": "C",
+      "color": "#38665a",
+      "base": 3.75,
+      "boost": 4.1,
+      "rateLabel": "6-month CITBOOST promo",
+      "requirements": "Maintain $5,000+ and enroll with CITBOOST by October 31. 4.10% for six months; $100 to open, no monthly fee.",
+      "details": "Base APY is 3.75% at $5,000+, or 0.25% below $5,000. The 0.35-point boost follows the variable base rate and applies on balances up to $9,999,999. Eligible new and existing primary owners must enroll with the code. One offer per account/customer; exclusions include other above-standard rates, recent cash-bonus participation, trusts and custodial accounts. Returns to the then-current base after six months.",
+      "protection": "FDIC-insured deposits at First-Citizens Bank & Trust Company. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
+      "effective": "2026-07-01",
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "First-Citizens Bank & Trust Company; standard coverage and same-bank aggregation limits apply."
+      },
+      "sources": [
+        {
+          "label": "Official rates & account terms",
+          "url": "https://www.cit.com/cit-bank/platinum-savings/boost"
+        },
+        {
+          "label": "Standard balance tiers",
+          "url": "https://www.cit.com/cit-bank/platinum-savings"
+        }
+      ],
+      "baseLabel": "$5,000+ balance"
+    },
+    {
+      "id": "varo",
+      "name": "Varo Bank",
+      "product": "Varo Savings",
+      "category": "cash",
+      "kind": "Bank · Varo Bank, N.A.",
+      "symbol": "V",
+      "color": "#38665a",
+      "base": 1.0,
+      "boost": 3.75,
+      "rateLabel": "Qualifying · first $5,000",
+      "requirements": "Receive $1,000+ qualifying direct deposits and end the month with positive balances in all Varo accounts.",
+      "details": "Qualify this month to earn 3.75% on up to $5,000 next month; other savings earns 1.00%. Requires a Varo Bank Account. No monthly savings fee or minimum balance. US adult eligibility applies.",
+      "protection": "FDIC-insured deposits at Varo Bank, N.A.. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
+      "effective": "2026-07-01",
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Varo Bank, N.A.; standard coverage and same-bank aggregation limits apply."
+      },
+      "sources": [
+        {
+          "label": "Official rates & account terms",
+          "url": "https://www.varomoney.com/savings-account/"
         }
       ]
     }
