@@ -59,13 +59,11 @@
     const filterCount = Number(coverage.value !== 'all') + Number(minimum.value !== '0');
     document.getElementById('filter-count').textContent = filterCount;
     document.getElementById('filter-count').hidden = filterCount === 0;
-    document.getElementById('active-filter-line').hidden = reset.disabled;
+    document.getElementById('active-filter-line').hidden = !search.value && filterCount === 0;
     document.getElementById('active-filters').textContent = [
-      category !== 'all' ? (category === 'cash' ? 'Cash & savings' : 'Crypto & stablecoins') : '',
       search.value ? `“${search.value}”` : '',
       coverage.value !== 'all' ? coverage.selectedOptions[0].textContent : '',
-      minimum.value !== '0' ? `${minimum.value}%+ APY` : '',
-      sort.value !== 'top' ? sort.selectedOptions[0].textContent : ''
+      minimum.value !== '0' ? `${minimum.value}%+ APY` : ''
     ].filter(Boolean).join(' · ');
     const url = new URL(location.href);
     for (const [key, value, fallback] of [['q', search.value, ''], ['category', category, 'all'], ['coverage', coverage.value, 'all'], ['min', minimum.value, '0'], ['sort', sort.value, 'top']]) {
