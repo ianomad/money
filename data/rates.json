@@ -267,6 +267,43 @@
         "label": "FDIC · Mixed coverage",
         "summary": "Swept bank cash is eligible. Brokerage-held cash and options collateral are not FDIC insured."
       }
+    },
+    {
+      "id": "aave",
+      "name": "Aave",
+      "product": "USDC · Ethereum Core / Main",
+      "category": "crypto",
+      "kind": "DeFi lending · Aave V4",
+      "symbol": "A",
+      "color": "#7365b7",
+      "base": 4.18,
+      "boost": null,
+      "baseLabel": "Market snapshot",
+      "rateLabel": "Variable deposit APY",
+      "observedAt": "2026-10-04 05:17 UTC",
+      "requirements": "Supply USDC to the Ethereum Core / Main market. Requires a compatible wallet and ETH for network fees.",
+      "details": "Displayed deposit APY observed on Aave Pro at 2026-10-04 05:17 UTC. This is one USDC market, not a protocol-wide rate. Rates change with market utilisation and governance parameters; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity and, if borrowing, collateral requirements.",
+      "protection": "No FDIC deposit insurance. Smart-contract, oracle, liquidity, and stablecoin depegging risks apply. Borrowing against supplied assets also introduces liquidation risk.",
+      "effective": null,
+      "fdic": {
+        "status": "none",
+        "label": "Not FDIC insured",
+        "summary": "Onchain lending, not a bank deposit; smart-contract and liquidity risks apply."
+      },
+      "sources": [
+        {
+          "label": "USDC market & current deposit APY",
+          "url": "https://pro.aave.com/explore/reserve/ethereum/core/main/USDC"
+        },
+        {
+          "label": "How supplying works",
+          "url": "https://www.aave.com/help/supplying/supply-tokens"
+        },
+        {
+          "label": "Protocol risks",
+          "url": "https://www.aave.com/docs/resources/risks"
+        }
+      ]
     }
   ]
 }
