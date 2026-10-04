@@ -15,6 +15,15 @@
   function render() {
     const normalize = value => value.toLowerCase().replace(/[^a-z0-9]/g, '');
     const query = normalize(search.value);
+    const ascending = sort.value.endsWith('-asc');
+    const field = sort.value.replace('-asc', '');
+    for (const button of document.querySelectorAll('[data-sort]')) {
+      const active = button.dataset.sort === field;
+      const label = button.dataset.sort === 'base' ? 'Base APY' : 'Top APY';
+      button.textContent = `${label.toUpperCase()} ${active ? (ascending ? '↑' : '↓') : '↕'}`;
+      button.setAttribute('aria-pressed', String(active));
+      button.setAttribute('aria-label', `${label}: ${active ? (ascending ? 'sorted low to high; sort high to low' : 'sorted high to low; sort low to high') : 'sort high to low'}`);
+    }
     let count = 0;
     for (const button of buttons) {
       const active = button.dataset.category === category;
@@ -23,9 +32,14 @@
     }
     for (const group of groups) {
       const rows = [...group.querySelectorAll('.provider-row')];
-      rows.sort((a, b) => sort.value === 'name'
-        ? a.dataset.name.localeCompare(b.dataset.name)
-        : Number(b.dataset[sort.value]) - Number(a.dataset[sort.value]) || a.dataset.name.localeCompare(b.dataset.name));
+      rows.sort((a, b) => {
+        const byName = a.dataset.name.localeCompare(b.dataset.name);
+        if (field === 'name') return byName;
+        const av = Number(a.dataset[field]), bv = Number(b.dataset[field]);
+        // Missing APYs stay last in either direction.
+        if (av < 0 || bv < 0) return av < 0 && bv < 0 ? byName : av < 0 ? 1 : -1;
+        return (ascending ? av - bv : bv - av) || byName;
+      });
       let matches = 0;
       for (const row of rows) {
         row.hidden = !(normalize(row.dataset.search).includes(query)
@@ -50,6 +64,10 @@
     history.replaceState(null, '', url);
   }
   for (const button of buttons) button.addEventListener('click', () => { category = button.dataset.category; render(); });
+  for (const button of document.querySelectorAll('[data-sort]')) button.addEventListener('click', () => {
+    sort.value = sort.value === button.dataset.sort ? `${button.dataset.sort}-asc` : button.dataset.sort;
+    render();
+  });
   search.addEventListener('input', render);
   for (const control of [sort, coverage, minimum]) control.addEventListener('change', render);
   reset.addEventListener('click', () => {
