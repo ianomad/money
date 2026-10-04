@@ -7,14 +7,20 @@ from datetime import date
 ROOT = Path(__file__).resolve().parents[1]
 data = json.loads((ROOT / 'data/rates.json').read_text())
 providers = data['providers']
+icons = json.loads((ROOT / 'data/provider-icons.json').read_text())
+for provider in providers:
+    assert provider['id'] in icons, f"Missing provider icon: {provider['id']}"
+    assert (ROOT / 'docs' / icons[provider['id']]['path']).is_file()
 def rate(n): return '—' if n is None else f'{n:.2f}%'
 def rows(category):
     out = []
     for p in sorted((p for p in providers if p['category']==category), key=lambda p: p['boost'] if p['boost'] is not None else p['base'], reverse=True):
+        icon = icons[p['id']]['path']
+        icon_version = hashlib.sha256((ROOT/'docs'/icon).read_bytes()).hexdigest()[:10]
         top = p['boost'] if p['boost'] is not None else p['base']
         links=' · '.join(f'<a href="{e(s["url"])}" target="_blank" rel="noopener">{e(s["label"])} ↗</a>' for s in p['sources'])
         out.append(f'''<article id="provider-{e(p['id'])}" class="provider-row" data-name="{e(p['name'].lower())}" data-search="{e((p['name']+' '+p['product']+' '+p['kind']).lower())}" data-base="{p['base'] if p['base'] is not None else -1}" data-top="{top}" data-fdic="{e(p['fdic']['status'])}">
-<div class="provider"><span class="provider-icon" style="--provider:{p['color']}" aria-hidden="true">{e(p['symbol'])}</span><div><h3>{e(p['name'])}</h3><p>{e(p['product'])}</p><span class="fdic-badge fdic-{e(p['fdic']['status'])}">{e(p['fdic']['label'])}</span></div></div>
+<div class="provider"><img class="provider-icon" src="{e(icon)}?v={icon_version}" width="34" height="34" alt="" decoding="async"><div><h3>{e(p['name'])}</h3><p>{e(p['product'])}</p><span class="fdic-badge fdic-{e(p['fdic']['status'])}">{e(p['fdic']['label'])}</span></div></div>
 <div class="rate base"><span class="mobile-label">Base APY</span><strong>{rate(p['base'])}</strong><small>{e(p.get('baseLabel', 'Membership required' if p['base'] is None else 'Up to' if p['id']=='kraken' else 'Standard'))}</small></div>
 <div class="rate top"><span class="mobile-label">Top APY</span><strong>{rate(top)}</strong><small>{e(p['rateLabel'])}</small></div>
 <div class="terms"><p>{e(p['requirements'])}</p><details><summary>Details & sources <span aria-hidden="true">↗</span></summary><div class="detail-body"><p>{e(p['details'])}</p><p>{e(p['fdic']['summary'])}</p><p><b>Protection:</b> {e(p['protection'])}</p><p class="source-links">{links}</p><p class="checked">Checked {data['checkedAt']} · {'Observed: '+p['observedAt'] if p.get('observedAt') else 'Provider rate date: '+p['effective'] if p['effective'] else 'No effective date published on rate page.'}</p></div></details></div></article>''')

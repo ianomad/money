@@ -1,0 +1,75 @@
+{
+  "x-money": {
+    "path": "icons/x-money.png",
+    "source": "https://x.com/apple-touch-icon.png"
+  },
+  "wealthfront": {
+    "path": "icons/wealthfront.ico",
+    "source": "https://www.wealthfront.com/next/contenthash/next/favicon.contenthash.c394f02b0401b924e3c401a7c58c15985a137a02.ico"
+  },
+  "ally": {
+    "path": "icons/ally.png",
+    "source": "https://www.ally.com/images/icons/apple-touch-icon.png"
+  },
+  "coinbase": {
+    "path": "icons/coinbase.png",
+    "source": "https://www.coinbase.com/assets/sw-cache/a_CDW_BqV2.png"
+  },
+  "kraken": {
+    "path": "icons/kraken.png",
+    "source": "https://www.kraken.com/_assets/icons/apple-touch-icon.png"
+  },
+  "etrade": {
+    "path": "icons/etrade.png",
+    "source": "https://cdn2.etrade.net/1/21123117210.0/aempros/content/dam/etrade/global/pagemeta/images/apple-touch-icon.png"
+  },
+  "robinhood": {
+    "path": "icons/robinhood.png",
+    "source": "https://robinhood.com/us/en/rh_favicon_152.png?v=2024"
+  },
+  "aave": {
+    "path": "icons/aave.png",
+    "source": "https://aave.com/favicon.png"
+  },
+  "barclays": {
+    "path": "icons/barclays.png",
+    "source": "https://delivery-p122002-e1224637.adobeaemcloud.com/adobe/dynamicmedia/deliver/urn:aaid:aem:928db733-9ee5-466e-ad03-1ed7e7bbfbfe/logo_barclays_eagle.png?width=640&preferwebp=true"
+  },
+  "axos": {
+    "path": "icons/axos.png",
+    "source": "https://www.axosbank.com/apple-touch-icon.png"
+  },
+  "sofi": {
+    "path": "icons/sofi.ico",
+    "source": "https://www.sofi.com/favicon.ico"
+  },
+  "peak": {
+    "path": "icons/peak.png",
+    "source": "https://www.peak.bank/resource/crblob/84542/a9dfc418eb6e60efdfd13a9d2c37f5b3/peak-favicon-data.png"
+  },
+  "pibank": {
+    "path": "icons/pibank.png",
+    "source": "https://www.pibank.com/wp-content/themes/pibank/_/img/icons/apple-touch-icon.png"
+  },
+  "newtek": {
+    "path": "icons/newtek.png",
+    "source": "https://www.newtekbank.com/wp-content/uploads/2022/09/Newtek-Favicon.png"
+  },
+  "cit": {
+    "path": "icons/cit.svg",
+    "source": "https://cms-images.cit.com/9j7wv5nnfw5f/14G5rYQIyqZFvGDdGOjY4p/4e12f1d6c2b6099989ff8a34c90fac96/CIT-Bank-Logo--navigation-header.svg"
+  },
+  "varo": {
+    "path": "icons/varo.png",
+    "source": "https://www.varomoney.com/apple-touch-icon.png"
+  },
+  "marcus": {
+    "path": "icons/marcus.png",
+    "source": "https://www.marcus.com/content/dam/marcus/us/en/logo/favicon.ico"
+  },
+  "cash-app": {
+    "path": "icons/cash-app.svg",
+    "source": "https://cash.app/savings",
+    "note": "Official inline Cash App Logo SVG from the page header; geometry and colors preserved."
+  }
+}
