@@ -4,3 +4,5 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .category-hint{font-size:11px;color:var(--muted);margin:15px 0 0}.category-hint a{color:var(--orange);text-decoration:underline;text-underline-offset:3px}
+
+.fdic-badge{display:table;margin-top:9px;padding:3px 6px;border-radius:3px;font:8px/1.5 var(--mono);background:#e4e9df;color:#35503c}.fdic-conditional{background:#ebe7d8;color:#6c5422}.fdic-mixed{background:#f0e1d7;color:#883d22}.fdic-none{background:#eae8ef;color:#53475f}.terms>p.coverage-summary{margin-top:10px;font-size:10px;color:var(--muted);line-height:1.6}.method-grid a{text-decoration:underline;text-underline-offset:3px}@media(max-width:760px){.fdic-badge{font-size:9px}.terms>p.coverage-summary{font-size:11px}}

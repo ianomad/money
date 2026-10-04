@@ -25,7 +25,12 @@
           "label": "Availability & coverage",
           "url": "https://money.x.com/en"
         }
-      ]
+      ],
+      "fdic": {
+        "status": "conditional",
+        "label": "FDIC · Conditional",
+        "summary": "Pass-through coverage through partner banks; sweep program conditions apply."
+      }
     },
     {
       "id": "cash-app",
@@ -51,7 +56,12 @@
           "label": "Savings terms",
           "url": "https://cash.app/us/en/legal/savings"
         }
-      ]
+      ],
+      "fdic": {
+        "status": "conditional",
+        "label": "FDIC · Conditional",
+        "summary": "Eligible balances at program banks; card and pass-through requirements apply."
+      }
     },
     {
       "id": "wealthfront",
@@ -73,7 +83,12 @@
           "label": "Cash Account rates & terms",
           "url": "https://www.wealthfront.com/cash"
         }
-      ]
+      ],
+      "fdic": {
+        "status": "conditional",
+        "label": "FDIC · Conditional",
+        "summary": "Applies to cash swept to program banks, subject to program conditions."
+      }
     },
     {
       "id": "marcus",
@@ -95,7 +110,12 @@
           "label": "Savings rate & terms",
           "url": "https://www.marcus.com/us/en/savings"
         }
-      ]
+      ],
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Goldman Sachs Bank USA; standard coverage limits apply."
+      }
     },
     {
       "id": "ally",
@@ -117,7 +137,12 @@
           "label": "Savings rate & terms",
           "url": "https://www.ally.com/bank/online-savings-account/"
         }
-      ]
+      ],
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Ally Bank; standard coverage limits apply."
+      }
     },
     {
       "id": "coinbase",
@@ -143,7 +168,12 @@
           "label": "Reward eligibility",
           "url": "https://help.coinbase.com/en/coinbase/coinbase-staking/rewards/usd-coin-rewards-faq"
         }
-      ]
+      ],
+      "fdic": {
+        "status": "none",
+        "label": "Not FDIC insured",
+        "summary": "USDC is a crypto asset, not an insured bank deposit."
+      }
     },
     {
       "id": "kraken",
@@ -165,7 +195,12 @@
           "label": "Stablecoin reward rates & terms",
           "url": "https://support.kraken.com/articles/stablecoin-rewards"
         }
-      ]
+      ],
+      "fdic": {
+        "status": "none",
+        "label": "Not FDIC insured",
+        "summary": "Stablecoin rewards are not covered by deposit insurance."
+      }
     },
     {
       "id": "etrade",
@@ -191,7 +226,12 @@
           "label": "Bank rate sheet",
           "url": "https://us.etrade.com/bank/bank-rates"
         }
-      ]
+      ],
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Morgan Stanley Private Bank; enhanced coverage program conditions apply."
+      }
     },
     {
       "id": "robinhood",
@@ -212,8 +252,21 @@
         {
           "label": "High-Yield Cash rate & eligibility",
           "url": "https://robinhood.com/us/en/support/articles/cash-sweep-program-interest-rate/"
+        },
+        {
+          "label": "Cash sweep coverage",
+          "url": "https://robinhood.com/us/en/support/articles/deposit-sweep-program/"
+        },
+        {
+          "label": "Program agreement & coverage distinctions",
+          "url": "https://cdn.robinhood.com/assets/robinhood/legal/IntraFi%20Network%20Deposit%20Sweep%20Program%20Agreement.pdf"
         }
-      ]
+      ],
+      "fdic": {
+        "status": "mixed",
+        "label": "FDIC · Mixed coverage",
+        "summary": "Swept bank cash is eligible. Brokerage-held cash and options collateral are not FDIC insured."
+      }
     }
   ]
 }
