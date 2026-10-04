@@ -1,0 +1,171 @@
+{
+  "checkedAt": "2026-10-03",
+  "providers": [
+    {
+      "id": "x-money",
+      "name": "X Money",
+      "product": "Stored Value Account",
+      "category": "cash",
+      "kind": "Fintech",
+      "symbol": "𝕏",
+      "color": "#262923",
+      "base": 4.0,
+      "boost": 6.0,
+      "rateLabel": "Conditional",
+      "requirements": "Premium+ subscription, or $1,000 in qualifying deposits within 34 days for 6.00% APY.",
+      "details": "Rolling out to select US users aged 18+. No interest for New York residents. Qualifying deposits include eligible ACH direct deposits and X creator payouts. Subscription fees may reduce earnings.",
+      "protection": "Pass-through FDIC eligibility through Cross River Bank and sweep program banks; conditions and aggregate limits apply.",
+      "effective": "2026-07-27",
+      "sources": [
+        {
+          "label": "Rate schedule",
+          "url": "https://money.x.com/en/i/interest-faq"
+        },
+        {
+          "label": "Availability & coverage",
+          "url": "https://money.x.com/en"
+        }
+      ]
+    },
+    {
+      "id": "cash-app",
+      "name": "Cash App",
+      "product": "Savings",
+      "category": "cash",
+      "kind": "Fintech",
+      "symbol": "$",
+      "color": "#147940",
+      "base": 1.5,
+      "boost": 3.5,
+      "rateLabel": "Cash App Green",
+      "requirements": "Green status: $300 in qualifying deposits or $500 in qualifying purchases per month.",
+      "details": "Savings yield enrollment and eligibility required. Have a Cash App Card or sponsor a sponsored account, and qualify for Green. Sponsored accounts may earn the higher rate with sponsor approval. No monthly savings fee or minimum balance. Business accounts are ineligible. The current savings page displays 3.50%; an older learning article still displays 3.25%.",
+      "protection": "Conditional FDIC pass-through eligibility through program banks; limits aggregate with your other deposits at each bank.",
+      "effective": null,
+      "sources": [
+        {
+          "label": "Savings rates & requirements",
+          "url": "https://cash.app/savings"
+        },
+        {
+          "label": "Savings terms",
+          "url": "https://cash.app/us/en/legal/savings"
+        }
+      ]
+    },
+    {
+      "id": "wealthfront",
+      "name": "Wealthfront",
+      "product": "Cash Account",
+      "category": "cash",
+      "kind": "Cash management",
+      "symbol": "w",
+      "color": "#594770",
+      "base": 3.55,
+      "boost": 4.45,
+      "rateLabel": "Temporary boost",
+      "requirements": "Top rate combines a new-client boost with investing and recurring-deposit requirements.",
+      "details": "New clients: +0.65 percentage points for 3 months on up to $150,000. An additional +0.25 requires an eligible funded investing account and $1,000 monthly direct deposits or $2,500 recurring deposits. Zero account fees. The headline boost does not last a full year; see promotion terms for eligibility and balance limits.",
+      "protection": "Cash swept to FDIC-insured program banks. Wealthfront is a brokerage, not a bank; pass-through conditions and aggregate limits apply.",
+      "effective": "2026-10-01",
+      "sources": [
+        {
+          "label": "Cash Account rates & terms",
+          "url": "https://www.wealthfront.com/cash"
+        }
+      ]
+    },
+    {
+      "id": "marcus",
+      "name": "Marcus",
+      "product": "Online Savings Account",
+      "category": "cash",
+      "kind": "Bank",
+      "symbol": "M",
+      "color": "#305466",
+      "base": 3.5,
+      "boost": null,
+      "rateLabel": "Standard rate",
+      "requirements": "No monthly fee or minimum deposit. Referral promotions are excluded here.",
+      "details": "Variable savings APY. Maximum balance limits apply. Offered by Goldman Sachs Bank USA. Optional referral boosts are not included in this listing.",
+      "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
+      "effective": "2026-10-03",
+      "sources": [
+        {
+          "label": "Savings rate & terms",
+          "url": "https://www.marcus.com/us/en/savings"
+        }
+      ]
+    },
+    {
+      "id": "ally",
+      "name": "Ally",
+      "product": "Savings Account",
+      "category": "cash",
+      "kind": "Bank",
+      "symbol": "a",
+      "color": "#683b65",
+      "base": 3.1,
+      "boost": null,
+      "rateLabel": "Standard rate",
+      "requirements": "No minimum opening deposit or monthly maintenance fee.",
+      "details": "Variable APY, currently the same across all balance tiers. Certain withdrawals and transfers are limited to 10 per statement cycle; consult account terms.",
+      "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
+      "effective": "2026-10-01",
+      "sources": [
+        {
+          "label": "Savings rate & terms",
+          "url": "https://www.ally.com/bank/online-savings-account/"
+        }
+      ]
+    },
+    {
+      "id": "coinbase",
+      "name": "Coinbase",
+      "product": "USDC Rewards",
+      "category": "crypto",
+      "kind": "Stablecoin · USDC",
+      "symbol": "C",
+      "color": "#2453bb",
+      "base": null,
+      "boost": 3.75,
+      "rateLabel": "Membership rate",
+      "requirements": "Coinbase One membership, starting at $4.99/month. Account and region eligibility apply.",
+      "details": "Publicly advertised USDC reward APY. Hold at least $1 USDC and meet trading and region eligibility. Coinbase One is required in the US; no non-member US base rate is offered. Your account shows the applicable rate, which can vary. Membership cost reduces net earnings.",
+      "protection": "Crypto rewards, not an insured bank deposit. Stablecoin depegging and platform custody risks apply.",
+      "effective": null,
+      "sources": [
+        {
+          "label": "USDC advertised APY",
+          "url": "https://www.coinbase.com/usdc"
+        },
+        {
+          "label": "Reward eligibility",
+          "url": "https://help.coinbase.com/en/coinbase/coinbase-staking/rewards/usd-coin-rewards-faq"
+        }
+      ]
+    },
+    {
+      "id": "kraken",
+      "name": "Kraken",
+      "product": "USDC Rewards",
+      "category": "crypto",
+      "kind": "Stablecoin · USDC",
+      "symbol": "k",
+      "color": "#69519c",
+      "base": 2.0,
+      "boost": 4.0,
+      "rateLabel": "Up to · Kraken+",
+      "requirements": "Up to 4.00% with Kraken+; up to 2.00% without. Enable Stablecoin Rewards.",
+      "details": "USDC rewards are available to eligible customers in the US, Canada, Australia, and UK. No holding lockup or USDC rewards fee; Kraken+ subscription costs may apply. Rates are variable and advertised as “up to.”",
+      "protection": "Not covered by FDIC or other deposit insurance. Stablecoin depegging and platform custody risks apply.",
+      "effective": "2026-10-01",
+      "sources": [
+        {
+          "label": "Stablecoin reward rates & terms",
+          "url": "https://support.kraken.com/articles/stablecoin-rewards"
+        }
+      ]
+    }
+  ]
+}

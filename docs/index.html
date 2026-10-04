@@ -1,384 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Notes on crypto, fintech, and how money works — by Iliiaz Akhmedov">
-<link rel="canonical" href="https://money.ilyusha.xyz/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="money.ilyusha.xyz">
-<meta property="og:description" content="Notes on crypto, fintech, and how money works — by Iliiaz Akhmedov">
-<meta property="og:url" content="https://money.ilyusha.xyz/">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="money.ilyusha.xyz">
-<meta name="twitter:description" content="Notes on crypto, fintech, and how money works — by Iliiaz Akhmedov">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<title>money.ilyusha.xyz</title>
-<style>
-  :root {
-    --bg: #0a0a0f;
-    --fg: #e2e8f0;
-    --dim: #94a3b8;
-    --orange: #f59e0b;
-    --gold: #fbbf24;
-    --amber: #f97316;
-    --surface: rgba(245, 158, 11, 0.04);
-    --border: rgba(245, 158, 11, 0.1);
-    --nav-w: 200px;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  a { color: var(--gold); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-
-  /* ---- Animated background ---- */
-  #bg-canvas {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 0; pointer-events: none; opacity: 0.07;
-  }
-  body > *:not(#bg-canvas):not(.sidenav) { position: relative; z-index: 1; }
-
-  /* ---- Sidenav ---- */
-  .sidenav {
-    position: fixed; top: 0; left: 0; width: var(--nav-w); height: 100vh;
-    background: rgba(10, 10, 15, 0.92);
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    border-right: 1px solid var(--border);
-    padding: 28px 20px; display: flex; flex-direction: column; gap: 4px;
-    z-index: 100;
-  }
-
-  .sidenav .brand {
-    font-size: 1.25rem; font-weight: 800; letter-spacing: -0.03em;
-    background: linear-gradient(135deg, var(--amber), var(--gold));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    margin-bottom: 24px; display: block; flex-shrink: 0;
-  }
-
-  .sidenav .section-label {
-    font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.1em; color: #475569; margin-top: 12px; margin-bottom: 6px;
-  }
-
-  .sidenav .nav-link {
-    display: block; padding: 6px 10px; border-radius: 6px;
-    font-size: 0.85rem; color: var(--dim); transition: color 0.15s, background 0.15s;
-    text-decoration: none;
-  }
-  .sidenav .nav-link:hover {
-    color: var(--gold); background: rgba(245, 158, 11, 0.08); text-decoration: none;
-  }
-  .sidenav .divider { height: 1px; background: var(--border); margin: 14px 0; }
-  .sidenav .ext::after { content: " \2197"; font-size: 0.7rem; }
-
-  /* ---- Main content ---- */
-  .main {
-    margin-left: var(--nav-w); min-height: 100vh;
-    padding: 60px 48px 80px; max-width: 900px;
-  }
-
-  /* Hero */
-  .hero { margin-bottom: 56px; text-align: center; }
-
-  .hero .btc-icon {
-    font-size: 4rem; margin-bottom: 16px; display: block;
-    filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.4));
-    animation: float 6s ease-in-out infinite;
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  .hero h1 {
-    font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px;
-  }
-  .hero h1 span {
-    background: linear-gradient(135deg, var(--amber), var(--gold), #fde68a);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: shimmer 4s ease-in-out infinite;
-  }
-  @keyframes shimmer {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  .hero .tagline {
-    color: var(--dim); font-size: 1.1rem; margin-bottom: 20px;
-    max-width: 500px; margin-left: auto; margin-right: auto;
-  }
-  .hero .sub {
-    font-size: 0.85rem; color: #475569;
-    font-family: "SF Mono", "Fira Code", monospace; letter-spacing: 0.05em;
-  }
-
-  .badge {
-    display: inline-block; padding: 5px 14px; font-size: 0.7rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold);
-    border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 20px;
-    background: rgba(245, 158, 11, 0.06); margin-top: 16px;
-  }
-
-  .divider-line {
-    height: 1px; max-width: 200px; margin: 48px auto;
-    background: linear-gradient(90deg, transparent, var(--orange), transparent);
-  }
-
-  /* Sections */
-  .section { margin-bottom: 56px; }
-  .section h2 {
-    font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px;
-  }
-  .section h2 span {
-    background: linear-gradient(135deg, var(--amber), var(--gold));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .section p { color: var(--dim); line-height: 1.8; margin-bottom: 12px; }
-
-  /* Cards grid */
-  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-
-  .card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; padding: 22px; transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  .card:hover {
-    border-color: rgba(245, 158, 11, 0.25);
-    box-shadow: 0 0 30px rgba(245, 158, 11, 0.06);
-  }
-  .card .card-icon { font-size: 1.5rem; margin-bottom: 10px; display: block; }
-  .card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
-  .card p { font-size: 0.82rem; color: var(--dim); line-height: 1.5; margin: 0; }
-
-  /* Ticker tape */
-  .ticker {
-    overflow: hidden; white-space: nowrap; padding: 12px 0;
-    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    margin-bottom: 48px; font-family: "SF Mono", monospace; font-size: 0.8rem;
-    color: #475569;
-  }
-  .ticker-inner {
-    display: inline-block; animation: scroll 30s linear infinite;
-  }
-  @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  .ticker .up { color: #22c55e; }
-  .ticker .down { color: #ef4444; }
-  .ticker .sep { color: #334155; margin: 0 16px; }
-
-  /* Quote */
-  .quote {
-    border-left: 3px solid var(--orange); padding: 16px 24px;
-    margin: 32px 0; background: rgba(245, 158, 11, 0.04); border-radius: 0 10px 10px 0;
-  }
-  .quote p { color: var(--dim); font-style: italic; font-size: 0.95rem; margin: 0; }
-  .quote .attr { color: #475569; font-style: normal; font-size: 0.8rem; margin-top: 8px; }
-
-  /* Todo list */
-  .todo-list { list-style: none; }
-  .todo-list li {
-    padding: 12px 16px; border-bottom: 1px solid var(--border);
-    color: var(--dim); font-size: 0.95rem; cursor: pointer;
-    transition: color 0.2s, background 0.2s;
-  }
-  .todo-list li:last-child { border-bottom: none; }
-  .todo-list li::before {
-    content: "\25CB"; margin-right: 12px; color: #475569; font-size: 1.1rem;
-  }
-  .todo-list li:hover {
-    color: var(--fg); background: rgba(245, 158, 11, 0.04);
-  }
-  .todo-list li.done { text-decoration: line-through; opacity: 0.4; }
-  .todo-list li.done::before { content: "\25CF"; color: var(--gold); }
-
-  /* Placeholder */
-  .placeholder {
-    color: var(--dim); font-size: 0.95rem; padding: 24px;
-    border: 1px dashed var(--border); border-radius: 10px; text-align: center;
-  }
-
-  /* Footer */
-  .footer {
-    margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--border);
-    font-size: 0.78rem; color: var(--dim);
-  }
-
-  /* ---- Mobile ---- */
-  @media (max-width: 768px) {
-    .sidenav {
-      position: fixed; top: auto; bottom: 0; left: 0; width: 100%; height: auto;
-      flex-direction: row; align-items: center; gap: 6px; padding: 10px 16px;
-      border-right: none; border-top: 1px solid var(--border); overflow-x: auto;
-    }
-    .sidenav .brand { margin-bottom: 0; margin-right: 12px; font-size: 1rem; white-space: nowrap; }
-    .sidenav .section-label, .sidenav .divider { display: none; }
-    .sidenav .nav-link { white-space: nowrap; padding: 6px 10px; font-size: 0.8rem; }
-    .main { margin-left: 0; padding: 36px 20px 100px; }
-    .hero h1 { font-size: 1.8rem; }
-    .cards { grid-template-columns: 1fr; }
-  }
-</style>
-</head>
-<body>
-
-<canvas id="bg-canvas"></canvas>
-
-<nav class="sidenav">
-  <span class="brand">money</span>
-  <span class="section-label">Navigate</span>
-  <a class="nav-link" href="#top">Home</a>
-  <a class="nav-link" href="#topics">TODO</a>
-  <a class="nav-link" href="#reading">Reading</a>
-  <a class="nav-link" href="#notes">Notes</a>
-  <div class="divider"></div>
-  <span class="section-label">Links</span>
-  <a class="nav-link ext" href="https://ilyusha.xyz" target="_blank" rel="noopener">ilyusha.xyz</a>
-</nav>
-
-<main class="main" id="top">
-  <section class="hero">
-    <span class="btc-icon">&#x20BF;</span>
-    <h1><span>money.ilyusha.xyz</span></h1>
-    <p class="tagline">How money works. Crypto, fintech, payments, and the systems that move value.</p>
-    <p class="sub">// verify. don't trust.</p>
-    <span class="badge">Work in Progress</span>
-  </section>
-
-  <div class="divider-line"></div>
-
-  <section class="section" id="topics">
-    <h2><span>TODO</span></h2>
-    <ul class="todo-list">
-      <li>Set up a cold wallet (Ledger or Trezor)</li>
-      <li>Run a Bitcoin full node</li>
-      <li>Deploy a smart contract on a testnet</li>
-      <li>Try a DEX swap (Uniswap, Jupiter)</li>
-      <li>Set up DCA into BTC + ETH</li>
-      <li>Read the Bitcoin whitepaper front to back</li>
-      <li>Explore Lightning Network — open a channel</li>
-      <li>Build something with Stripe or Plaid API</li>
-      <li>Understand how MEV extraction works</li>
-      <li>Try multisig with Gnosis Safe</li>
-      <li>Research restaking (EigenLayer)</li>
-      <li>Set up a self-hosted block explorer</li>
-    </ul>
-  </section>
-
-  <div class="divider-line"></div>
-
-  <section class="section" id="reading">
-    <h2><span>Reading List</span></h2>
-    <div class="quote">
-      <p>The root problem with conventional currency is all the trust that's required to make it work.</p>
-      <div class="attr">— Satoshi Nakamoto, 2009</div>
-    </div>
-    <div class="cards">
-      <div class="card">
-        <h3>The Bitcoin Standard</h3>
-        <p>Saifedean Ammous — hard money economics and why Bitcoin matters.</p>
-      </div>
-      <div class="card">
-        <h3>Mastering Bitcoin</h3>
-        <p>Andreas Antonopoulos — deep technical dive into how Bitcoin actually works.</p>
-      </div>
-      <div class="card">
-        <h3>The Infinite Machine</h3>
-        <p>Camila Russo — the story of Ethereum and the people behind it.</p>
-      </div>
-      <div class="card">
-        <h3>Broken Money</h3>
-        <p>Lyn Alden — why our financial system is failing and what comes next.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider-line"></div>
-
-  <section class="section" id="notes">
-    <h2><span>Notes</span></h2>
-    <div class="placeholder">Coming soon — deep dives into protocols, market mechanics, and building with crypto.</div>
-  </section>
-
-  <footer class="footer">Built by <a href="https://ilyusha.xyz">Iliiaz Akhmedov</a> · <a href="mailto:dev@ilyusha.xyz">dev@ilyusha.xyz</a></footer>
-</main>
-
-<script>
-// Toggle todo items
-document.querySelectorAll('.todo-list li').forEach(function(li) {
-  li.addEventListener('click', function() { this.classList.toggle('done'); });
-});
-
-// Subtle animated grid background
-(function() {
-  const c = document.getElementById('bg-canvas');
-  const ctx = c.getContext('2d');
-  let w, h;
-
-  function resize() {
-    w = c.width = window.innerWidth;
-    h = c.height = window.innerHeight * 3;
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    const spacing = 40;
-    const cols = Math.ceil(w / spacing);
-    const rows = Math.ceil(h / spacing);
-    const t = Date.now() * 0.0005;
-
-    // Horizontal lines
-    ctx.strokeStyle = 'rgba(245, 158, 11, 0.04)';
-    ctx.lineWidth = 0.5;
-    for (let r = 0; r < rows; r++) {
-      ctx.beginPath();
-      ctx.moveTo(0, r * spacing);
-      ctx.lineTo(w, r * spacing);
-      ctx.stroke();
-    }
-
-    // Vertical lines
-    for (let c2 = 0; c2 < cols; c2++) {
-      ctx.beginPath();
-      ctx.moveTo(c2 * spacing, 0);
-      ctx.lineTo(c2 * spacing, h);
-      ctx.stroke();
-    }
-
-    // Pulsing dots at intersections
-    for (let r = 0; r < rows; r++) {
-      for (let c2 = 0; c2 < cols; c2++) {
-        if (Math.sin(r * 0.7 + c2 * 0.5 + t) > 0.7) {
-          const alpha = 0.1 + 0.15 * Math.sin(r * 0.3 + c2 * 0.4 + t * 2);
-          ctx.beginPath();
-          ctx.arc(c2 * spacing, r * spacing, 2, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(245, 158, 11, ${alpha})`;
-          ctx.fill();
-        }
-      }
-    }
-
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    draw();
-  }
-})();
-</script>
-
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Money — the yield tracker</title><meta name="description" content="Compare cash, savings, and stablecoin yields. Base rates, boosted APYs, requirements, and official sources in one place."><link rel="canonical" href="https://money.ilyusha.xyz/"><meta property="og:title" content="Money — the yield tracker"><meta property="og:description" content="What is your money earning? Compare provider yields and the terms behind them."><meta property="og:type" content="website"><meta property="og:url" content="https://money.ilyusha.xyz/"><meta name="twitter:card" content="summary"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css"><script src="app.js" defer></script></head>
+<body><a class="skip-link" href="#rates">Skip to rates</a><header><a class="brand" href="#top"><span class="brand-mark">m.</span>money<span class="brand-by">/ by ilyusha</span></a><nav aria-label="Main navigation"><a href="#rates">Yield tracker</a><a href="#methodology">How it works</a></nav><a class="personal" href="https://ilyusha.xyz">ilyusha.xyz ↗</a></header>
+<main id="top"><section class="hero"><div><p class="eyebrow"><span class="dot"></span> THE YIELD TRACKER / USD</p><h1>What is your<br><em>money earning?</em></h1><p class="intro">Cash, savings, and stablecoin yields.<br>The rates, the requirements, and the fine print—in one place.</p></div><aside class="snapshot"><span class="eyebrow">A SNAPSHOT, NOT A LIVE FEED</span><div class="snapshot-count">7<span>providers<br>on the radar</span></div><div class="snapshot-date">Sources checked <time datetime="2026-10-03">Oct 3, 2026</time></div><p>Published rates can change. Check the provider before moving money.</p></aside></section>
+<section id="rates" aria-label="Compare provider yields"><div class="toolbar"><div class="filters" role="group" aria-label="Yield category"><button data-category="all" aria-pressed="true" class="active">All providers <span>7</span></button><button data-category="cash" aria-pressed="false">Cash & savings <span>5</span></button><button data-category="crypto" aria-pressed="false">Crypto & stablecoins <span>2</span></button></div><div class="tools"><label class="search"><span class="sr-only">Search providers</span><input id="search" type="search" placeholder="Search providers…"></label><label class="sort"><span class="sr-only">Sort providers</span><select id="sort"><option value="top">Listed APY ↓</option><option value="base">Base APY ↓</option><option value="name">Provider A–Z</option></select></label></div></div><p id="result-count" class="result-count" aria-live="polite">Showing 7 providers</p>
+<section class="rate-group" data-group="cash"><div class="group-heading"><div><span class="eyebrow">01 / CASH & SAVINGS</span><h2>Dollars on deposit<span>.</span></h2></div><p>Bank accounts, fintech savings & cash management</p></div><div class="column-head" aria-hidden="true"><span>PROVIDER / ACCOUNT</span><span>BASE APY</span><span>LISTED APY</span><span>WHAT TO KNOW</span></div><div class="rows"><article class="provider-row" data-name="x money" data-search="x money stored value account fintech" data-base="4.0" data-top="6.0">
+<div class="provider"><span class="provider-icon" style="--provider:#262923" aria-hidden="true">𝕏</span><div><h3>X Money</h3><p>Stored Value Account</p><span class="kind">Fintech</span></div></div>
+<div class="rate base"><span class="mobile-label">Base APY</span><strong>4.00%</strong><small>Standard</small></div>
+<div class="rate top"><span class="mobile-label">Listed APY</span><strong>6.00%</strong><small>Conditional</small></div>
+<div class="terms"><p>Premium+ subscription, or $1,000 in qualifying deposits within 34 days for 6.00% APY.</p><details><summary>Details & sources <span aria-hidden="true">↗</span></summary><div class="detail-body"><p>Rolling out to select US users aged 18+. No interest for New York residents. Qualifying deposits include eligible ACH direct deposits and X creator payouts. Subscription fees may reduce earnings.</p><p><b>Protection:</b> Pass-through FDIC eligibility through Cross River Bank and sweep program banks; conditions and aggregate limits apply.</p><p class="source-links"><a href="https://money.x.com/en/i/interest-faq" target="_blank" rel="noopener">Rate schedule ↗</a> · <a href="https://money.x.com/en" target="_blank" rel="noopener">Availability &amp; coverage ↗</a></p><p class="checked">Checked 2026-10-03 · Provider rate date: 2026-07-27</p></div></details></div></article>
+<article class="provider-row" data-name="wealthfront" data-search="wealthfront cash account cash management" data-base="3.55" data-top="4.45">
+<div class="provider"><span class="provider-icon" style="--provider:#594770" aria-hidden="true">w</span><div><h3>Wealthfront</h3><p>Cash Account</p><span class="kind">Cash management</span></div></div>
+<div class="rate base"><span class="mobile-label">Base APY</span><strong>3.55%</strong><small>Standard</small></div>
+<div class="rate top"><span class="mobile-label">Listed APY</span><strong>4.45%</strong><small>Temporary boost</small></div>
+<div class="terms"><p>Top rate combines a new-client boost with investing and recurring-deposit requirements.</p><details><summary>Details & sources <span aria-hidden="true">↗</span></summary><div class="detail-body"><p>New clients: +0.65 percentage points for 3 months on up to $150,000. An additional +0.25 requires an eligible funded investing account and $1,000 monthly direct deposits or $2,500 recurring deposits. Zero account fees. The headline boost does not last a full year; see promotion terms for eligibility and balance limits.</p><p><b>Protection:</b> Cash swept to FDIC-insured program banks. Wealthfront is a brokerage, not a bank; pass-through conditions and aggregate limits apply.</p><p class="source-links"><a href="https://www.wealthfront.com/cash" target="_blank" rel="noopener">Cash Account rates &amp; terms ↗</a></p><p class="checked">Checked 2026-10-03 · Provider rate date: 2026-10-01</p></div></details></div></article>
+<article class="provider-row" data-name="cash app" data-search="cash app savings fintech" data-base="1.5" data-top="3.5">
+<div class="provider"><span class="provider-icon" style="--provider:#147940" aria-hidden="true">$</span><div><h3>Cash App</h3><p>Savings</p><span class="kind">Fintech</span></div></div>
+<div class="rate base"><span class="mobile-label">Base APY</span><strong>1.50%</strong><small>Standard</small></div>
+<div class="rate top"><span class="mobile-label">Listed APY</span><strong>3.50%</strong><small>Cash App Green</small></div>
+<div class="terms"><p>Green status: $300 in qualifying deposits or $500 in qualifying purchases per month.</p><details><summary>Details & sources <span aria-hidden="true">↗</span></summary><div class="detail-body"><p>Savings yield enrollment and eligibility required. Have a Cash App Card or sponsor a sponsored account, and qualify for Green. Sponsored accounts may earn the higher rate with sponsor approval. No monthly savings fee or minimum balance. Business accounts are ineligible. The current savings page displays 3.50%; an older learning article still displays 3.25%.</p><p><b>Protection:</b> Conditional FDIC pass-through eligibility through program banks; limits aggregate with your other deposits at each bank.</p><p class="source-links"><a href="https://cash.app/savings" target="_blank" rel="noopener">Savings rates &amp; requirements ↗</a> · <a href="https://cash.app/us/en/legal/savings" target="_blank" rel="noopener">Savings terms ↗</a></p><p class="checked">Checked 2026-10-03 · No effective date published on rate page.</p></div></details></div></article>
+<article class="provider-row" data-name="marcus" data-search="marcus online savings account bank" data-base="3.5" data-top="3.5">
+<div class="provider"><span class="provider-icon" style="--provider:#305466" aria-hidden="true">M</span><div><h3>Marcus</h3><p>Online Savings Account</p><span class="kind">Bank</span></div></div>
+<div class="rate base"><span class="mobile-label">Base APY</span><strong>3.50%</strong><small>Standard</small></div>
+<div class="rate top"><span class="mobile-label">Listed APY</span><strong>3.50%</strong><small>Standard rate</small></div>
+<div class="terms"><p>No monthly fee or minimum deposit. Referral promotions are excluded here.</p><details><summary>Details & sources <span aria-hidden="true">↗</span></summary><div class="detail-body"><p>Variable savings APY. Maximum balance limits apply. Offered by Goldman Sachs Bank USA. Optional referral boosts are not included in this listing.</p><p><b>Protection:</b> FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.</p><p class="source-links"><a href="https://www.marcus.com/us/en/savings" target="_blank" rel="noopener">Savings rate &amp; terms ↗</a></p><p class="checked">Checked 2026-10-03 · Provider rate date: 2026-10-03</p></div></details></div></article>
+<article class="provider-row" data-name="ally" data-search="ally savings account bank" data-base="3.1" data-top="3.1">
+<div class="provider"><span class="provider-icon" style="--provider:#683b65" aria-hidden="true">a</span><div><h3>Ally</h3><p>Savings Account</p><span class="kind">Bank</span></div></div>
+<div class="rate base"><span class="mobile-label">Base APY</span><strong>3.10%</strong><small>Standard</small></div>
+<div class="rate top"><span class="mobile-label">Listed APY</span><strong>3.10%</strong><small>Standard rate</small></div>
+<div class="terms"><p>No minimum opening deposit or monthly maintenance fee.</p><details><summary>Details & sources <span aria-hidden="true">↗</span></summary><div class="detail-body"><p>Variable APY, currently the same across all balance tiers. Certain withdrawals and transfers are limited to 10 per statement cycle; consult account terms.</p><p><b>Protection:</b> FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.</p><p class="source-links"><a href="https://www.ally.com/bank/online-savings-account/" target="_blank" rel="noopener">Savings rate &amp; terms ↗</a></p><p class="checked">Checked 2026-10-03 · Provider rate date: 2026-10-01</p></div></details></div></article></div></section>
+<section class="rate-group crypto-group" data-group="crypto"><div class="group-heading"><div><span class="eyebrow">02 / CRYPTO & STABLECOINS</span><h2>A different kind of yield<span>.</span></h2></div><p>Digital assets · Currently tracking USDC rewards</p></div><div class="crypto-note"><span aria-hidden="true">↳</span> These are crypto rewards, not insured savings. Stablecoins can lose their peg, and platform custody adds risk.</div><div class="column-head" aria-hidden="true"><span>PROVIDER / ASSET</span><span>BASE APY</span><span>LISTED APY</span><span>WHAT TO KNOW</span></div><div class="rows"><article class="provider-row" data-name="kraken" data-search="kraken usdc rewards stablecoin · usdc" data-base="2.0" data-top="4.0">
+<div class="provider"><span class="provider-icon" style="--provider:#69519c" aria-hidden="true">k</span><div><h3>Kraken</h3><p>USDC Rewards</p><span class="kind">Stablecoin · USDC</span></div></div>
+<div class="rate base"><span class="mobile-label">Base APY</span><strong>2.00%</strong><small>Up to</small></div>
+<div class="rate top"><span class="mobile-label">Listed APY</span><strong>4.00%</strong><small>Up to · Kraken+</small></div>
+<div class="terms"><p>Up to 4.00% with Kraken+; up to 2.00% without. Enable Stablecoin Rewards.</p><details><summary>Details & sources <span aria-hidden="true">↗</span></summary><div class="detail-body"><p>USDC rewards are available to eligible customers in the US, Canada, Australia, and UK. No holding lockup or USDC rewards fee; Kraken+ subscription costs may apply. Rates are variable and advertised as “up to.”</p><p><b>Protection:</b> Not covered by FDIC or other deposit insurance. Stablecoin depegging and platform custody risks apply.</p><p class="source-links"><a href="https://support.kraken.com/articles/stablecoin-rewards" target="_blank" rel="noopener">Stablecoin reward rates &amp; terms ↗</a></p><p class="checked">Checked 2026-10-03 · Provider rate date: 2026-10-01</p></div></details></div></article>
+<article class="provider-row" data-name="coinbase" data-search="coinbase usdc rewards stablecoin · usdc" data-base="-1" data-top="3.75">
+<div class="provider"><span class="provider-icon" style="--provider:#2453bb" aria-hidden="true">C</span><div><h3>Coinbase</h3><p>USDC Rewards</p><span class="kind">Stablecoin · USDC</span></div></div>
+<div class="rate base"><span class="mobile-label">Base APY</span><strong>—</strong><small>Membership required</small></div>
+<div class="rate top"><span class="mobile-label">Listed APY</span><strong>3.75%</strong><small>Membership rate</small></div>
+<div class="terms"><p>Coinbase One membership, starting at $4.99/month. Account and region eligibility apply.</p><details><summary>Details & sources <span aria-hidden="true">↗</span></summary><div class="detail-body"><p>Publicly advertised USDC reward APY. Hold at least $1 USDC and meet trading and region eligibility. Coinbase One is required in the US; no non-member US base rate is offered. Your account shows the applicable rate, which can vary. Membership cost reduces net earnings.</p><p><b>Protection:</b> Crypto rewards, not an insured bank deposit. Stablecoin depegging and platform custody risks apply.</p><p class="source-links"><a href="https://www.coinbase.com/usdc" target="_blank" rel="noopener">USDC advertised APY ↗</a> · <a href="https://help.coinbase.com/en/coinbase/coinbase-staking/rewards/usd-coin-rewards-faq" target="_blank" rel="noopener">Reward eligibility ↗</a></p><p class="checked">Checked 2026-10-03 · No effective date published on rate page.</p></div></details></div></article></div></section>
+<p id="empty" hidden>No matching providers. Try another name or category.</p><noscript><p class="noscript">All rates are shown below. Enable JavaScript to search, filter, and sort.</p></noscript></section>
+<section class="methodology" id="methodology"><div><p class="eyebrow">BEHIND THE NUMBERS</p><h2>Read the rate.<br><em>Then the terms.</em></h2></div><div class="method-grid"><div><h3>Base vs. listed</h3><p>Base is the standard rate. Listed includes the featured conditional or promotional rate where shown. It is not an exhaustive maximum; optional promotions may be excluded.</p></div><div><h3>Checked, not streamed</h3><p>This is a manually reviewed snapshot of official provider pages, checked 2026-10-03. Rates do not refresh automatically. Every listing links to its sources and provider date when available.</p></div><div><h3>APY isn’t take-home yield</h3><p>APY includes compounding. Membership costs, taxes, balance caps, and temporary boosts affect what you earn. Rates are variable; a three-month promotion is not a one-year return.</p></div><div><h3>Compare within categories</h3><p>Cash and crypto stay separate. Deposit insurance eligibility depends on the institution, ownership, and program terms. Crypto rewards are not FDIC-insured deposits.</p></div></div></section>
+</main><footer><span>Money / An independent tracker by <a href="https://ilyusha.xyz">Ilyusha ↗</a></span><a href="mailto:dev@ilyusha.xyz?subject=Money%20tracker%20correction">Suggest a provider or correction ↗</a></footer></body></html>
