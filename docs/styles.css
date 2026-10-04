@@ -14,3 +14,8 @@ html{scroll-padding-top:170px}header{height:66px}.hero{padding:25px 0;gap:24px}.
 @media(max-width:760px){.hero{flex-wrap:wrap;padding:18px 0;gap:8px}.hero>div{width:100%}.snapshot{display:flex;align-items:center;gap:8px;min-width:0;width:100%;margin:0;padding:0;border:0}.snapshot-count{display:none}.snapshot-date{display:flex;gap:6px;margin:0;font-size:9px}.snapshot-date time{display:inline}.snapshot p{margin:0;font-size:9px}.snapshot p:before{content:'· ';}}
 @media(max-width:380px){.filters button{white-space:normal;font-size:10px;line-height:1.25;min-width:0}.filters button span{display:none}.snapshot{flex-wrap:wrap;gap:3px 8px}.brand{font-size:18px}nav{gap:8px}}
 .column-head button{font:inherit;letter-spacing:inherit;text-align:left;border:0;padding:7px 0;margin:-7px 0;background:none;color:var(--muted);min-height:30px}.column-head button:hover,.column-head button[aria-pressed="true"]{color:var(--orange)}
+/* Deposit coverage: soft green for insured, soft red for uninsured. */
+.fdic-bank{background:#e2e9e0;color:#456047;border:1px solid #cbd8c8}
+.fdic-conditional{background:#edf0e5;color:#596346;border:1px solid #d7ddc9}
+.fdic-mixed{background:#eee3df;color:#80564d;border:1px solid #dfcbc5}
+.fdic-none{background:#f0e1df;color:#92554f;border:1px solid #dfc4bf}
