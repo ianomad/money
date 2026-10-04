@@ -5,7 +5,8 @@
   const sort = document.getElementById('sort');
   let category = 'all';
   function render() {
-    const query = search.value.trim().toLowerCase();
+    const normalize = value => value.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const query = normalize(search.value);
     let count = 0;
     for (const group of groups) {
       const rows = [...group.querySelectorAll('.provider-row')];
@@ -14,7 +15,7 @@
         : Number(b.dataset[sort.value]) - Number(a.dataset[sort.value]) || a.dataset.name.localeCompare(b.dataset.name));
       let matches = 0;
       for (const row of rows) {
-        row.hidden = !(row.dataset.search.includes(query) && (category === 'all' || category === group.dataset.group));
+        row.hidden = !(normalize(row.dataset.search).includes(query) && (category === 'all' || category === group.dataset.group));
         if (!row.hidden) matches++;
         group.querySelector('.rows').append(row);
       }
@@ -31,6 +32,10 @@
       item.setAttribute('aria-pressed', String(item === button));
     }
     render();
+  });
+  document.getElementById('crypto-shortcut').addEventListener('click', () => {
+    search.value = '';
+    buttons.find(button => button.dataset.category === 'crypto').click();
   });
   search.addEventListener('input', render);
   sort.addEventListener('change', render);

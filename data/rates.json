@@ -166,6 +166,54 @@
           "url": "https://support.kraken.com/articles/stablecoin-rewards"
         }
       ]
+    },
+    {
+      "id": "etrade",
+      "name": "E*TRADE",
+      "product": "Premium Savings Account",
+      "category": "cash",
+      "kind": "Bank · Morgan Stanley Private Bank",
+      "symbol": "E",
+      "color": "#623895",
+      "base": 3.75,
+      "boost": 4.25,
+      "rateLabel": "6-month promotion",
+      "requirements": "New Premium Savings Accounts opened by January 10, 2027. Promotional APY applies for six months.",
+      "details": "Offered by Morgan Stanley Private Bank. No minimum opening deposit or monthly account fee. Promotion applies to eligible new accounts opened September 22, 2026–January 10, 2027, on balances up to $10 million; exceeding the cap may revert the entire balance to the standard rate. Existing accounts are ineligible. After six months, the variable base APY applies. Separate cash bonuses are excluded.",
+      "protection": "FDIC-insured bank deposit with an enhanced coverage program; depositor, ownership, and program-bank aggregation limits apply.",
+      "effective": null,
+      "sources": [
+        {
+          "label": "Savings rates & promotion terms",
+          "url": "https://us.etrade.com/bank/premium-savings-account"
+        },
+        {
+          "label": "Bank rate sheet",
+          "url": "https://us.etrade.com/bank/bank-rates"
+        }
+      ]
+    },
+    {
+      "id": "robinhood",
+      "name": "Robinhood",
+      "product": "High-Yield Cash Program",
+      "category": "cash",
+      "kind": "Brokerage cash",
+      "symbol": "R",
+      "color": "#42652e",
+      "base": null,
+      "boost": 3.6,
+      "rateLabel": "Gold membership",
+      "requirements": "Robinhood Gold ($5/month) and enrollment for eligible cash in self-directed taxable investing accounts.",
+      "details": "Variable rate, effective September 17, 2026. Applies to eligible settled cash, including options collateral. Up to $10,000 of eligible uninvested cash stays in the Brokerage-Held Cash Program; amounts above that are swept to banks. Managed Robinhood Strategies accounts also earn this rate on swept cash without Gold. Fees reduce net earnings.",
+      "protection": "Protection depends on where cash is held. Brokerage-held cash is not an FDIC-insured bank deposit; bank-swept cash is subject to program-bank deposit coverage terms. Robinhood is not a bank.",
+      "effective": "2026-09-17",
+      "sources": [
+        {
+          "label": "High-Yield Cash rate & eligibility",
+          "url": "https://robinhood.com/us/en/support/articles/cash-sweep-program-interest-rate/"
+        }
+      ]
     }
   ]
 }
