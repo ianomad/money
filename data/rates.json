@@ -304,6 +304,38 @@
           "url": "https://www.aave.com/docs/resources/risks"
         }
       ]
+    },
+    {
+      "id": "barclays",
+      "name": "Barclays",
+      "product": "Tiered Savings",
+      "category": "cash",
+      "kind": "Bank · Barclays Bank Delaware",
+      "symbol": "B",
+      "color": "#1676a5",
+      "base": 3.5,
+      "boost": 3.65,
+      "baseLabel": "Below $250,000",
+      "rateLabel": "$250k–$1m tier",
+      "requirements": "3.50% below $250,000; 3.65% for $250,000–$1,000,000. No minimum to open or monthly maintenance fee.",
+      "details": "Variable APY based on the tier containing your end-of-day balance. The published tiers stop at $1 million; confirm treatment of larger balances with Barclays. This is a balance-tier rate, not a temporary boost. The separate Barclays Online Savings account pays 3.20% APY as of September 11, 2026. Cash signup bonuses are excluded from this comparison.",
+      "protection": "Barclays Bank Delaware is an FDIC member. The standard limit is $250,000 per depositor, per bank, per ownership category, including other deposits at the same bank. A higher APY balance tier does not increase insurance coverage; amounts above applicable limits may be uninsured.",
+      "effective": "2026-09-11",
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Standard FDIC limits apply; the $250k–$1m yield tier does not increase coverage."
+      },
+      "sources": [
+        {
+          "label": "Tiered Savings rates & balance tiers",
+          "url": "https://banking.us.barclays/tiered-savings.html"
+        },
+        {
+          "label": "Separate Online Savings rate",
+          "url": "https://banking.us.barclays/online-savings.html"
+        }
+      ]
     }
   ]
 }
