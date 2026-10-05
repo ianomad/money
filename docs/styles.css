@@ -75,3 +75,7 @@ h1 em{font-style:italic}
 .brand{gap:10px;font-family:Georgia,serif;font-weight:500;font-size:26px;letter-spacing:-.6px}
 .brand-mark{width:32px;height:32px;border-radius:9px;background:var(--ink);color:var(--paper);font:italic 22px/1 Georgia,serif}
 .share-chart{background:#fff;border-radius:16px;box-shadow:0 8px 24px #1f241c0c}
+
+.brand{font-family:Georgia,serif;font-weight:500;font-size:28px;letter-spacing:-1px;gap:11px}
+.brand-mark{width:30px;height:30px;border-radius:9px;background:#1c1915;color:#f4efe6;font:500 18px/1 Georgia,serif;font-style:normal;letter-spacing:-1px}
+.brand-mark::before{content:none}
