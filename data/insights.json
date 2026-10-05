@@ -75,22 +75,113 @@
    "source": "FDIC, Deposit Insurance At A Glance",
    "url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance",
    "checked": "2026-10-05"
+  },
+  "tiers": {
+   "amounts": [
+    50000,
+    250000,
+    1000000
+   ],
+   "labels": [
+    "$50,000",
+    "$250,000",
+    "$1,000,000"
+   ],
+   "note": "Example balances for dollar impact. Not account minimums.",
+   "checked": "2026-10-05"
+  },
+  "elevaultCaps": {
+   "interestMax": 500000,
+   "dailyDeposit": 2500,
+   "text": "No minimum deposit or fees. Interest is paid daily on balances up to $500,000; deposits are capped at $2,500 a day.",
+   "source": "Official rate & footnotes",
+   "url": "https://www.elevault.app/",
+   "checked": "2026-10-05"
+  },
+  "ncua": {
+   "single": 250000,
+   "text": "Standard share insurance is $250,000 per member-owner, per federally insured credit union, per ownership category.",
+   "source": "NCUA, Share Insurance Coverage",
+   "url": "https://ncua.gov/consumers/share-insurance-coverage",
+   "checked": "2026-10-05"
+  },
+  "brk": {
+   "ticker": "BRK.B",
+   "name": "Berkshire Hathaway",
+   "asOf": "2026-06-30",
+   "cashRestrictedMn": 41360,
+   "tbillsMn": 324905,
+   "equityMn": 747910,
+   "equivClassA": 1431693,
+   "classBPerA": 1500,
+   "buybacksH1Mn": 4444,
+   "source": "Berkshire Hathaway Form 10-Q for quarter ended June 30, 2026",
+   "url": "https://www.berkshirehathaway.com/qtrly/2ndqtr26.pdf",
+   "secUrl": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526341032/brka-20260630.htm",
+   "checked": "2026-10-05"
+  },
+  "schd": {
+   "ticker": "SCHD",
+   "name": "Schwab U.S. Dividend Equity ETF",
+   "secYield": 3.37,
+   "secYieldAsOf": "2026-10-01",
+   "expense": 0.06,
+   "nav": 32.7,
+   "navAsOf": "2026-10-02",
+   "source": "Schwab Asset Management, SCHD fund page",
+   "url": "https://www.schwabassetmanagement.com/products/schd",
+   "checked": "2026-10-05"
+  },
+  "aapl": {
+   "ticker": "AAPL",
+   "name": "Apple",
+   "periodEnd": "2026-06-27",
+   "repurchase9moMn": 62094,
+   "cashMn": 39544,
+   "dividend": 0.27,
+   "dividendPayable": "2026-08-13",
+   "buybackAuthBn": 100,
+   "buybackAuthSource": "Apple Q2 FY2026 results press release",
+   "buybackAuthUrl": "https://www.apple.com/newsroom/2026/04/apple-reports-second-quarter-results/",
+   "source": "Apple Q3 FY2026 consolidated financial statements and results press release",
+   "url": "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf",
+   "prUrl": "https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/",
+   "checked": "2026-10-05"
+  },
+  "spendTiers": {
+   "amounts": [
+    100000,
+    250000,
+    1000000
+   ],
+   "labels": [
+    "$100,000",
+    "$250,000",
+    "$1,000,000"
+   ],
+   "note": "Example annual card spend for cash-back math.",
+   "checked": "2026-10-05"
   }
  },
  "dropped": [
   {
    "idea": "Series EE bonds double in 20 years",
-   "why": "The guaranteed doubling works out to 3.53% a year, below the 20-year Treasury par yield of 5.67% on Oct 2, 2026, so it is not money-saving advice right now.",
+   "why": "The guaranteed doubling works out to 3.53% a year, below current long Treasury yields, so it is not money-saving advice right now.",
    "url": "https://www.treasurydirect.gov/savings-bonds/ee-bonds/"
+  },
+  {
+   "idea": "I bonds as a primary cash parking spot",
+   "why": "The $10,000 electronic purchase limit per person per year does not move the needle on balances of $50,000–$1,000,000.",
+   "url": "https://www.treasurydirect.gov/savings-bonds/i-bonds/"
+  },
+  {
+   "idea": "Quarterly 5% card category stacking",
+   "why": "Caps around $1,500 per quarter ($75 at 5%) are noise next to five-figure annual gaps on large cash balances.",
+   "url": "https://money.ilyusha.xyz/cards.html"
   },
   {
    "idea": "Tax-free municipal money market funds",
    "why": "No fund's own published yield was verified for this check.",
-   "url": ""
-  },
-  {
-   "idea": "Two-card no-fee combo",
-   "why": "The yearly dollar figure depends on an assumed spending mix, so it was left out in favor of insights that use only published figures.",
    "url": ""
   }
  ]

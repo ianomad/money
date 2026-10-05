@@ -157,3 +157,6 @@ img.brand-mark{width:34px;height:34px;border-radius:4px;border:1px solid #111}
 .insight .catch{color:var(--muted)}.insight .catch b{color:var(--ink)}
 .insight .src{font-size:13px}.insight .src a{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:760px){.insight{grid-template-columns:1fr;padding:22px 0}.insight h3{font-size:18px}.insight p{font-size:14px}.insight .example{font-size:12px}}
+.insight-tag{margin:0 0 4px;font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.insight.stock .insight-rank{font:12px/1.2 var(--mono);color:var(--green);padding-top:6px;letter-spacing:.02em}
+
