@@ -57,7 +57,7 @@ names = ', '.join(p['name'] for p in ranked)
 page=page.replace('LEAD', lead).replace('CHANGE_NOTE', e(note))
 page=page.replace('CASH_ROWS',rows('cash')).replace('CRYPTO_ROWS',rows('crypto')).replace('CHECKED',data['checkedAt'])
 page=page.replace('Compare provider yields and the terms behind them.', f'Top verified offers: {names}. Compare yields and the terms behind them.')
-for asset in ('styles.css', 'app.js', 'analytics.js'):
+for asset in ('styles.css', 'app.js', 'analytics.js', 'favicon.svg'):
     version = hashlib.sha256((ROOT/'docs'/asset).read_bytes()).hexdigest()[:10]
     page = page.replace(f'"{asset}"', f'"{asset}?v={version}"')
 (ROOT/'docs/index.html').write_text(page)
