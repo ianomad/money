@@ -67,3 +67,7 @@ h1 em{font-style:italic}
 .bar-row{grid-template-columns:108px 1fr 58px;grid-template-areas:"name bar rate" "catch catch catch"}
 .bar-row b{grid-area:name}.bar{grid-area:bar}.bar-row strong{grid-area:rate}.bar-row small{grid-area:catch;font-size:12px;line-height:1.35;color:var(--muted);margin:-4px 0 8px}
 @media(max-width:760px){.bar-row{grid-template-columns:88px 1fr 52px}}
+
+.bar-row small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:2px 0 12px;font-size:12px}
+.share-chart{padding:14px 14px 4px}
+.bar-row{margin-bottom:2px}

@@ -40,11 +40,17 @@ def offer_rate(p):
     return p['boost'] if p['boost'] is not None else p['base']
 ranked = sorted(providers, key=lambda p: offer_rate(p) if offer_rate(p) is not None else -1, reverse=True)[:6]
 top = offer_rate(ranked[0]) or 1
+def short_catch(text):
+    import re
+    cut = re.split(r'(?<!\d)\.\s+', text, maxsplit=1)[0].strip()
+    if len(cut) > 64:
+        cut = cut[:61].rsplit(' ', 1)[0].rstrip(',;') + '…'
+    return cut
 bars = []
 for p in ranked:
     value = offer_rate(p) or 0
     width = max(8, round(value / top * 100))
-    bars.append(f'<a class="bar-row" href="#provider-{e(p["id"])}"><b>{e(p["name"])}</b><span class="bar"><i style="width:{width}%"></i></span><strong>{rate(value)}</strong><small>{e(p["requirements"])}</small></a>')
+    bars.append(f'<a class="bar-row" href="#provider-{e(p["id"])}"><b>{e(p["name"])}</b><span class="bar"><i style="width:{width}%"></i></span><strong>{rate(value)}</strong><small>{e(short_catch(p["requirements"]))}</small></a>')
 lead = '<figure class="share-chart"><figcaption>Top verified APY</figcaption>' + ''.join(bars) + '</figure>'
 note = data.get('changeNote') or 'Top verified offers on this snapshot.'
 names = ', '.join(p['name'] for p in ranked)
