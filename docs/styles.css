@@ -80,3 +80,7 @@ h1 em{font-style:italic}
 .brand-mark{width:30px;height:30px;border-radius:9px;background:#1c1915;color:#f4efe6;font:500 18px/1 Georgia,serif;font-style:normal;letter-spacing:-1px}
 .brand-mark::before{content:none}
 img.brand-mark{width:32px;height:32px;border-radius:9px;display:block;object-fit:cover}
+
+.brand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:560;font-size:20px;letter-spacing:-.4px;color:#111}
+img.brand-mark{width:28px;height:28px;border-radius:7px}
+header{background:#f7f4ee}
