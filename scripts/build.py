@@ -44,7 +44,7 @@ bars = []
 for p in ranked:
     value = offer_rate(p) or 0
     width = max(8, round(value / top * 100))
-    bars.append(f'<a class="bar-row" href="#provider-{e(p["id"])}"><b>{e(p["name"])}</b><span class="bar"><i style="width:{width}%"></i></span><strong>{rate(value)}</strong></a>')
+    bars.append(f'<a class="bar-row" href="#provider-{e(p["id"])}"><b>{e(p["name"])}</b><span class="bar"><i style="width:{width}%"></i></span><strong>{rate(value)}</strong><small>{e(p["requirements"])}</small></a>')
 lead = '<figure class="share-chart"><figcaption>Top verified APY</figcaption>' + ''.join(bars) + '</figure>'
 note = data.get('changeNote') or 'Top verified offers on this snapshot.'
 names = ', '.join(p['name'] for p in ranked)
