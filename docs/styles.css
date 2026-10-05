@@ -129,3 +129,16 @@ img.brand-mark{width:34px;height:34px;border-radius:4px;border:1px solid #111}
 /* Three nav pills on small phones */
 @media(max-width:520px){nav{gap:6px}.nav-switch{padding:0 10px;font-size:12px;min-height:32px}.brand{font-size:24px;gap:8px}img.brand-mark{width:28px;height:28px}}
 @media(max-width:360px){.nav-switch{padding:0 8px;font-size:11px}.brand{font-size:21px}}
+.crypto-total{font-size:15px;line-height:1.6;margin:4px 0 0;max-width:720px}.crypto-total b{color:var(--green)}
+.coin-head,.coin-row{display:grid;grid-template-columns:32px minmax(170px,1.6fr) 1fr 1fr 90px;gap:14px;align-items:center}
+.coin-head{font:10px var(--mono);letter-spacing:.7px;color:var(--muted);padding:10px 0;border-bottom:1px solid var(--line)}.coin-head span:nth-child(n+3){text-align:right}
+.coin-list{list-style:none;margin:0;padding:0}.coin-row{padding:12px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}.coin-row:hover{background:#eae9df80}
+.coin-rank{font:13px var(--mono);color:var(--muted)}
+.coin-name{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none}.coin-name:hover b{text-decoration:underline;text-underline-offset:3px}.coin-name b{display:block;font-size:15px;font-weight:650}.coin-name small{display:block;font:12px var(--mono);color:var(--muted)}
+.coin-icon{width:28px;height:28px;border-radius:50%;flex:none}
+.coin-price,.coin-cap,.coin-chg{text-align:right;font-size:15px}.coin-cap{font-weight:650;color:var(--green)}
+.chg.up{color:var(--green)}.chg.down{color:var(--orange)}
+.crypto-plain{margin-top:28px}.crypto-plain a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.econ-sources code{font-size:12px;word-break:break-all}
+@media(max-width:760px){.coin-head{display:none}.coin-row{grid-template-columns:26px 1fr 1fr 1fr;gap:6px 10px}.coin-name{grid-column:2/-1}.coin-price{grid-column:2}.coin-price,.coin-cap,.coin-chg{text-align:left;font-size:14px}.coin-row .mobile-label{display:block;position:static;width:auto;height:auto;overflow:visible;clip:auto;font:9px var(--mono);letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin:0 0 2px}}
+@media(max-width:560px){header{flex-wrap:wrap;row-gap:10px}nav{order:3;width:100%;gap:6px}.nav-switch{padding:0 12px;font-size:12px;min-height:34px}}
