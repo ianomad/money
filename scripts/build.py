@@ -38,12 +38,16 @@ page='''<!doctype html>
 page=page.replace('7<span>providers',f'{len(providers)}<span>providers').replace('All providers <span>7</span>',f'All providers <span>{len(providers)}</span>').replace('Cash & savings <span>5</span>',f'Cash & savings <span>{sum(p["category"]=="cash" for p in providers)}</span>').replace('Crypto & stablecoins <span>2</span>',f'Crypto & stablecoins <span>{sum(p["category"]=="crypto" for p in providers)}</span>').replace('Showing 7 providers',f'Showing {len(providers)} providers').replace('Oct 3, 2026',date.fromisoformat(data['checkedAt']).strftime('%b %-d, %Y'))
 def offer_rate(p):
     return p['boost'] if p['boost'] is not None else p['base']
-best = max(providers, key=lambda p: offer_rate(p) if offer_rate(p) is not None else -1)
-lead = f'<a class="lead-offer" href="#provider-{e(best["id"])}"><strong>{rate(offer_rate(best))}</strong> at {e(best["name"])}</a><p class="lead-catch">{e(best["requirements"])}</p>'
-note = data.get('changeNote') or 'Highest verified offer on this snapshot.'
+ranked = sorted(providers, key=lambda p: offer_rate(p) if offer_rate(p) is not None else -1, reverse=True)[:3]
+cards = []
+for i, p in enumerate(ranked, 1):
+    cards.append(f'<a class="lead-card" href="#provider-{e(p["id"])}"><span>{i}</span><strong>{rate(offer_rate(p))}</strong><b>{e(p["name"])}</b><small>{e(p["rateLabel"])}</small></a>')
+lead = '<div class="lead-board">' + ''.join(cards) + '</div>'
+note = data.get('changeNote') or 'Top verified offers on this snapshot.'
+names = ', '.join(p['name'] for p in ranked)
 page=page.replace('LEAD', lead).replace('CHANGE_NOTE', e(note))
 page=page.replace('CASH_ROWS',rows('cash')).replace('CRYPTO_ROWS',rows('crypto')).replace('CHECKED',data['checkedAt'])
-page=page.replace('Compare provider yields and the terms behind them.', f'{rate(offer_rate(best))} at {best["name"]}, if you qualify. Compare yields and the terms behind them.')
+page=page.replace('Compare provider yields and the terms behind them.', f'Top verified offers: {names}. Compare yields and the terms behind them.')
 for asset in ('styles.css', 'app.js', 'analytics.js'):
     version = hashlib.sha256((ROOT/'docs'/asset).read_bytes()).hexdigest()[:10]
     page = page.replace(f'"{asset}"', f'"{asset}?v={version}"')
