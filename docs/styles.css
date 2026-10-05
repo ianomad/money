@@ -84,3 +84,6 @@ img.brand-mark{width:32px;height:32px;border-radius:9px;display:block;object-fit
 .brand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:560;font-size:20px;letter-spacing:-.4px;color:#111}
 img.brand-mark{width:28px;height:28px;border-radius:7px}
 header{background:#f7f4ee}
+
+.brand{font-family:Georgia,serif;font-weight:500;font-style:italic;font-size:28px;letter-spacing:-1px}
+img.brand-mark{width:34px;height:34px;border-radius:4px;border:1px solid #111}
