@@ -142,3 +142,18 @@ img.brand-mark{width:34px;height:34px;border-radius:4px;border:1px solid #111}
 .econ-sources code{font-size:12px;word-break:break-all}
 @media(max-width:760px){.coin-head{display:none}.coin-row{grid-template-columns:26px 1fr 1fr 1fr;gap:6px 10px}.coin-name{grid-column:2/-1}.coin-price{grid-column:2}.coin-price,.coin-cap,.coin-chg{text-align:left;font-size:14px}.coin-row .mobile-label{display:block;position:static;width:auto;height:auto;overflow:visible;clip:auto;font:9px var(--mono);letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin:0 0 2px}}
 @media(max-width:560px){header{flex-wrap:wrap;row-gap:10px}nav{order:3;width:100%;gap:6px}.nav-switch{padding:0 12px;font-size:12px;min-height:34px}}
+/* Five nav pills on phones */
+@media(max-width:560px){nav{gap:5px}.nav-switch{padding:0 10px;font-size:12px}}
+@media(max-width:400px){nav{gap:4px;justify-content:space-between}.nav-switch{padding:0 7px;font-size:11px;min-height:32px}}
+@media(max-width:340px){nav{gap:3px}.nav-switch{padding:0 5px;font-size:10.5px}}
+/* Insights */
+.insight-list{list-style:none;margin:0;padding:0;counter-reset:ins}
+.insight{display:grid;grid-template-columns:56px 1fr;gap:6px 22px;padding:28px 0;border-bottom:1px solid var(--line)}
+.insight-rank{font:13px var(--mono);color:var(--muted);padding-top:4px}
+.insight h3{margin:0 0 8px;font-size:21px;line-height:1.3;letter-spacing:-.3px}
+.insight h3 em{font-style:normal;color:var(--green)}
+.insight p{margin:0 0 10px;max-width:760px;font-size:15px}
+.insight .example{font:13px/1.65 var(--mono);background:#eceadf;padding:12px 14px;max-width:760px}
+.insight .catch{color:var(--muted)}.insight .catch b{color:var(--ink)}
+.insight .src{font-size:13px}.insight .src a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){.insight{grid-template-columns:1fr;padding:22px 0}.insight h3{font-size:18px}.insight p{font-size:14px}.insight .example{font-size:12px}}

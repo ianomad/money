@@ -1,0 +1,97 @@
+{
+ "checkedAt": "2026-10-04",
+ "inputs": {
+  "tbill": {
+   "date": "2026-10-02",
+   "y4": 3.95,
+   "y13": 4.11,
+   "y26": 4.29,
+   "source": "U.S. Treasury Daily Treasury Bill Rates (coupon-equivalent)",
+   "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_bill_rates&field_tdr_date_value=2026",
+   "checked": "2026-10-04"
+  },
+  "tbillTax": {
+   "text": "Federal tax due on interest earned. No state or local taxes.",
+   "source": "TreasuryDirect, Treasury Bills",
+   "url": "https://www.treasurydirect.gov/marketable-securities/treasury-bills/",
+   "checked": "2026-10-04"
+  },
+  "caBracket": {
+   "rate": 9.3,
+   "from": 72724,
+   "to": 371479,
+   "status": "Single",
+   "year": 2025,
+   "source": "California FTB, 2025 Tax Rate Schedules (Schedule X)",
+   "url": "https://www.ftb.ca.gov/forms/2025/2025-540-tax-rate-schedules.pdf",
+   "checked": "2026-10-04"
+  },
+  "fdicNational": {
+   "savings": 0.37,
+   "asOf": "2026-09-21",
+   "source": "FDIC National Rates and Rate Caps",
+   "url": "https://www.fdic.gov/national-rates-and-rate-caps",
+   "checked": "2026-10-04"
+  },
+  "fed": {
+   "dff": 3.88,
+   "dffDate": "2026-10-01",
+   "lower": 3.75,
+   "upper": 4.0,
+   "source": "FRED, Federal Funds Effective Rate (DFF) and target range (DFEDTARL, DFEDTARU)",
+   "url": "https://fred.stlouisfed.org/series/DFF",
+   "checked": "2026-10-04"
+  },
+  "ibond": {
+   "composite": 4.26,
+   "fixed": 0.9,
+   "period": "May 1, 2026 to October 31, 2026",
+   "limit": 10000,
+   "source": "TreasuryDirect, I bonds",
+   "url": "https://www.treasurydirect.gov/savings-bonds/i-bonds/",
+   "checked": "2026-10-04"
+  },
+  "discover": {
+   "rate": 5,
+   "cap": 1500,
+   "base": 1,
+   "quarter": "Oct–Dec 2026",
+   "categories": "restaurants, entertainment, and utilities",
+   "source": "Discover cashback calendar (via docs/cards.html)",
+   "url": "https://www.discover.com/credit-cards/cash-back/cashback-calendar.html",
+   "checked": "2026-10-04"
+  },
+  "flat2": {
+   "name": "Citi Double Cash",
+   "rate": 2,
+   "source": "docs/cards.html data-everyday",
+   "url": "https://money.ilyusha.xyz/cards.html",
+   "checked": "2026-10-04"
+  },
+  "fdicCategories": {
+   "single": 250000,
+   "jointPerCoOwner": 250000,
+   "trustMax": 1250000,
+   "source": "FDIC, Deposit Insurance At A Glance",
+   "url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance",
+   "checked": "2026-10-04"
+  }
+ },
+ "dropped": [
+  {
+   "idea": "Series EE bonds double in 20 years",
+   "why": "The guaranteed doubling works out to 3.53% a year, below the 20-year Treasury par yield of 5.67% on Oct 2, 2026, so it is not money-saving advice right now.",
+   "url": "https://www.treasurydirect.gov/savings-bonds/ee-bonds/"
+  },
+  {
+   "idea": "Tax-free municipal money market funds",
+   "why": "No fund's own published yield was verified for this check.",
+   "url": ""
+  },
+  {
+   "idea": "Two-card no-fee combo",
+   "why": "The yearly dollar figure depends on an assumed spending mix, so it was left out in favor of insights that use only published figures.",
+   "url": ""
+  }
+ ]
+}
