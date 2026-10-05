@@ -79,3 +79,4 @@ h1 em{font-style:italic}
 .brand{font-family:Georgia,serif;font-weight:500;font-size:28px;letter-spacing:-1px;gap:11px}
 .brand-mark{width:30px;height:30px;border-radius:9px;background:#1c1915;color:#f4efe6;font:500 18px/1 Georgia,serif;font-style:normal;letter-spacing:-1px}
 .brand-mark::before{content:none}
+img.brand-mark{width:32px;height:32px;border-radius:9px;display:block;object-fit:cover}
