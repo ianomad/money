@@ -71,5 +71,10 @@
     "path": "icons/cash-app.svg",
     "source": "https://cash.app/savings",
     "note": "Official inline Cash App Logo SVG from the page header; geometry and colors preserved."
+  },
+  "elevault": {
+    "path": "icons/elevault.png",
+    "source": "https://framerusercontent.com/images/wFuMJgb5ayd7UMpxcrhtRe6nx4.png",
+    "note": "Apple touch icon linked from https://www.elevault.app/."
   }
 }

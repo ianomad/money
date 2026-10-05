@@ -71,7 +71,7 @@ def build():
     gap = fit['base'] - fn['savings']
     out.append(dict(pay=50000 * gap / 100,
         head=f'Cash at the national-average rate gives up <em>{money(50000 * gap / 100)} a year</em> on $50,000.',
-        body=f'The FDIC puts the national average savings rate at {pct(fn["savings"])}. {e(fit["name"])} pays {pct(fit["base"])} with no subscription, boost or promo. Moving the money takes one transfer.',
+        body=f'The FDIC puts the national average savings rate at {pct(fn["savings"])}. {e(fit["name"])} pays {pct(fit["base"])} with no subscription, boost or promo. Check the account’s own deposit and balance limits before moving a large sum.',
         ex=f'Gap: {pct(fit["base"])} − {pct(fn["savings"])} = {gap:.2f} points<br>$10,000 → {money(10000 * gap / 100)}/yr · $25,000 → {money(25000 * gap / 100)}/yr · $50,000 → {money(50000 * gap / 100)}/yr',
         catch=f'Savings rates are variable and can drop any time. The FDIC figure is an average of all banks as of {nice(fn["asOf"])}, so your own bank may pay more or less.',
         src=[(fn['source'], fn['url']), (f'{fit["name"]} rate page', rsrc(fit))]))

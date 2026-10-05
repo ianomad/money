@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-03",
-  "changeNote": "No rate moved in the Oct 3 snapshot. These are still the top verified offers.",
+  "checkedAt": "2026-10-05",
+  "changeNote": "Oct 5: Aave's USDC deposit APY (Ethereum Core / Main market) moved from 4.18% to 4.23%. New: Elevault at 4.34%, now the best no-strings FDIC bank rate here. No other rate moved.",
   "providers": [
     {
       "id": "x-money",
@@ -289,13 +289,13 @@
       "kind": "DeFi lending · Aave V4",
       "symbol": "A",
       "color": "#7365b7",
-      "base": 4.18,
+      "base": 4.23,
       "boost": null,
       "baseLabel": "Market snapshot",
       "rateLabel": "Variable deposit APY",
-      "observedAt": "2026-10-04 05:17 UTC",
+      "observedAt": "2026-10-05 14:13 UTC",
       "requirements": "Supply USDC to the Ethereum Core / Main market. Requires a compatible wallet and ETH for network fees.",
-      "details": "Displayed deposit APY observed on Aave Pro at 2026-10-04 05:17 UTC. This is one USDC market, not a protocol-wide rate. Rates change with market utilisation and governance parameters; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity and, if borrowing, collateral requirements.",
+      "details": "Deposit APY reported by Aave’s public API (the data behind Aave Pro) at 2026-10-05 14:13 UTC. This is one USDC market, not a protocol-wide rate. Rates change with market utilisation and governance parameters; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity and, if borrowing, collateral requirements.",
       "protection": "No FDIC deposit insurance. Smart-contract, oracle, liquidity, and stablecoin depegging risks apply. Borrowing against supplied assets also introduces liquidation risk.",
       "effective": null,
       "fdic": {
@@ -551,6 +551,37 @@
         {
           "label": "Official rates & account terms",
           "url": "https://www.varomoney.com/savings-account/"
+        }
+      ]
+    },
+    {
+      "id": "elevault",
+      "name": "Elevault",
+      "product": "Elevault Portfolio",
+      "category": "cash",
+      "kind": "Bank app · Southern Bancorp Bank",
+      "symbol": "E",
+      "color": "#38665a",
+      "base": 4.34,
+      "boost": null,
+      "rateLabel": "Standard rate",
+      "requirements": "No minimum deposit or fees. Interest is paid daily on balances up to $500,000; deposits are capped at $2,500 a day.",
+      "details": "Variable APY of 4.34% (4.25% interest rate), which Elevault states is accurate as of May 5, 2026. Elevault is a product of Southern Bancorp. You must be a US resident aged 18 or older and scan a valid US driver’s license or state ID to enroll. You fund it by linking an account at another bank, and Elevault may close profiles left unfunded for 60 days. Balances above $500,000 do not earn interest.",
+      "protection": "FDIC-insured deposits at Southern Bancorp Bank. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
+      "effective": "2026-05-05",
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Southern Bancorp Bank; standard coverage and same-bank aggregation limits apply."
+      },
+      "sources": [
+        {
+          "label": "Official rate & footnotes",
+          "url": "https://www.elevault.app/"
+        },
+        {
+          "label": "Account agreement & eligibility",
+          "url": "https://www.elevault.app/legal"
         }
       ]
     }

@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-10-04",
+ "checkedAt": "2026-10-05",
  "inputs": {
   "tbill": {
    "date": "2026-10-02",
@@ -8,13 +8,13 @@
    "y26": 4.29,
    "source": "U.S. Treasury Daily Treasury Bill Rates (coupon-equivalent)",
    "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_bill_rates&field_tdr_date_value=2026",
-   "checked": "2026-10-04"
+   "checked": "2026-10-05"
   },
   "tbillTax": {
    "text": "Federal tax due on interest earned. No state or local taxes.",
    "source": "TreasuryDirect, Treasury Bills",
    "url": "https://www.treasurydirect.gov/marketable-securities/treasury-bills/",
-   "checked": "2026-10-04"
+   "checked": "2026-10-05"
   },
   "caBracket": {
    "rate": 9.3,
@@ -24,14 +24,14 @@
    "year": 2025,
    "source": "California FTB, 2025 Tax Rate Schedules (Schedule X)",
    "url": "https://www.ftb.ca.gov/forms/2025/2025-540-tax-rate-schedules.pdf",
-   "checked": "2026-10-04"
+   "checked": "2026-10-05"
   },
   "fdicNational": {
    "savings": 0.37,
    "asOf": "2026-09-21",
    "source": "FDIC National Rates and Rate Caps",
    "url": "https://www.fdic.gov/national-rates-and-rate-caps",
-   "checked": "2026-10-04"
+   "checked": "2026-10-05"
   },
   "fed": {
    "dff": 3.88,
@@ -40,7 +40,7 @@
    "upper": 4.0,
    "source": "FRED, Federal Funds Effective Rate (DFF) and target range (DFEDTARL, DFEDTARU)",
    "url": "https://fred.stlouisfed.org/series/DFF",
-   "checked": "2026-10-04"
+   "checked": "2026-10-05"
   },
   "ibond": {
    "composite": 4.26,
@@ -49,7 +49,7 @@
    "limit": 10000,
    "source": "TreasuryDirect, I bonds",
    "url": "https://www.treasurydirect.gov/savings-bonds/i-bonds/",
-   "checked": "2026-10-04"
+   "checked": "2026-10-05"
   },
   "discover": {
    "rate": 5,
@@ -66,7 +66,7 @@
    "rate": 2,
    "source": "docs/cards.html data-everyday",
    "url": "https://money.ilyusha.xyz/cards.html",
-   "checked": "2026-10-04"
+   "checked": "2026-10-05"
   },
   "fdicCategories": {
    "single": 250000,
@@ -74,7 +74,7 @@
    "trustMax": 1250000,
    "source": "FDIC, Deposit Insurance At A Glance",
    "url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance",
-   "checked": "2026-10-04"
+   "checked": "2026-10-05"
   }
  },
  "dropped": [
