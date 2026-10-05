@@ -99,3 +99,33 @@ img.brand-mark{width:34px;height:34px;border-radius:4px;border:1px solid #111}
 
 .nav-switch{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid #111;font-size:13px;font-weight:650}
 .nav-switch[aria-current="page"],.nav-switch.here{background:#111;color:#f6f1e7}
+
+/* Economy page */
+.econ-section{margin-top:44px}
+.world-map{margin:0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 8px 24px #1f241c0c}
+.world-map svg{display:block;width:100%;height:auto}
+.world-map path{stroke:#fff;stroke-width:.5;stroke-linejoin:round}
+.world-map path:hover{stroke:var(--ink);stroke-width:1.2}
+.g0{fill:#f1dccf}.g1{fill:#e3b199}.g2{fill:#d27e5d}.g3{fill:#c2411c}.g4{fill:#6e2511}.gn{fill:#e7e2d6}
+.map-legend{display:flex;flex-wrap:wrap;gap:8px 18px;list-style:none;margin:12px 0 0;padding:0;font-size:13px;color:var(--muted)}
+.map-legend li{display:flex;align-items:center;gap:7px}
+.map-legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+.map-legend i.g0{background:#f1dccf}.map-legend i.g1{background:#e3b199}.map-legend i.g2{background:#d27e5d}.map-legend i.g3{background:#c2411c}.map-legend i.g4{background:#6e2511}.map-legend i.gn{background:#e7e2d6}
+.econ-chart{max-width:720px}
+.econ-chart .bar-row{grid-template-columns:128px 1fr 72px;margin-bottom:10px}
+.econ-chart .bar-row b{font-size:14px}
+.econ-chart .bar-row strong{font-size:15px}
+.econ-note{font-size:15px;line-height:1.6;max-width:640px;margin:0 0 20px}
+.flow-lists{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px}
+.flow-lists h3{font:normal 21px/1.2 Georgia,serif;margin:0 0 6px}
+.flow-list{list-style:none;counter-reset:flow;margin:0;padding:0}
+.flow-list li{counter-increment:flow;display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.flow-list li span::before{content:counter(flow);display:inline-block;width:28px;font:13px var(--mono);color:var(--muted)}
+.flow-list strong{font-weight:650;color:var(--green);font-variant-numeric:tabular-nums}
+.econ-sources{font-size:13px;line-height:1.7;color:var(--muted);margin:36px 0 40px;max-width:820px}
+.econ-sources a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){.flow-lists{grid-template-columns:1fr}.world-map{padding:8px;border-radius:12px}.econ-chart .bar-row{grid-template-columns:112px 1fr 64px}.econ-chart .bar-row b{font-size:13px}}
+
+/* Three nav pills on small phones */
+@media(max-width:520px){nav{gap:6px}.nav-switch{padding:0 10px;font-size:12px;min-height:32px}.brand{font-size:24px;gap:8px}img.brand-mark{width:28px;height:28px}}
+@media(max-width:360px){.nav-switch{padding:0 8px;font-size:11px}.brand{font-size:21px}}

@@ -1,0 +1,2738 @@
+{
+ "fetchedAt": "2026-10-04",
+ "gdp": {
+  "indicator": "NGDPD",
+  "label": "GDP, current prices",
+  "unit": "Billions of U.S. dollars",
+  "release": "World Economic Outlook (April 2026)",
+  "lastModified": "2026-04-08 16:07:35",
+  "year": 2025,
+  "api": "https://www.imf.org/external/datamapper/api/v1/NGDPD",
+  "page": "https://www.imf.org/external/datamapper/NGDPD@WEO/OEMDC/ADVEC/WEOWORLD",
+  "estimateFlags": "https://data.imf.org/-/media/iData/External-Storage/Documents/2F78EE59F79143A7921E5E203D3AAA80/en/WEOApr2026all.xlsx",
+  "estimateNote": "estimate = the WEO LATEST_ACTUAL_ANNUAL_DATA for the economy is earlier than the year shown, or is a fiscal year",
+  "values": {
+   "ABW": {
+    "name": "Aruba",
+    "value": 4.521,
+    "latestActual": "2023",
+    "estimate": true
+   },
+   "AFG": {
+    "name": "Afghanistan",
+    "value": 19.662,
+    "latestActual": "FY2024/25",
+    "estimate": true
+   },
+   "AGO": {
+    "name": "Angola",
+    "value": 141.728,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "ALB": {
+    "name": "Albania",
+    "value": 30.279,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "AND": {
+    "name": "Andorra",
+    "value": 4.491,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "ARE": {
+    "name": "United Arab Emirates",
+    "value": 571.643,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "ARG": {
+    "name": "Argentina",
+    "value": 681.485,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "ARM": {
+    "name": "Armenia",
+    "value": 29.243,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "ATG": {
+    "name": "Antigua and Barbuda",
+    "value": 2.273,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "AUS": {
+    "name": "Australia",
+    "value": 1839.961,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "AUT": {
+    "name": "Austria",
+    "value": 579.928,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "AZE": {
+    "name": "Azerbaijan",
+    "value": 75.938,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "BDI": {
+    "name": "Burundi",
+    "value": 6.918,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "BEL": {
+    "name": "Belgium",
+    "value": 724.917,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "BEN": {
+    "name": "Benin",
+    "value": 24.382,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "BFA": {
+    "name": "Burkina Faso",
+    "value": 27.14,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "BGD": {
+    "name": "Bangladesh",
+    "value": 457.904,
+    "latestActual": "FY2024/25",
+    "estimate": true
+   },
+   "BGR": {
+    "name": "Bulgaria",
+    "value": 131.024,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "BHR": {
+    "name": "Bahrain",
+    "value": 47.538,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "BHS": {
+    "name": "Bahamas, The",
+    "value": 16.508,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "BIH": {
+    "name": "Bosnia and Herzegovina",
+    "value": 32.962,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "BLR": {
+    "name": "Belarus",
+    "value": 92.766,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "BLZ": {
+    "name": "Belize",
+    "value": 3.327,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "BOL": {
+    "name": "Bolivia",
+    "value": 64.25,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "BRA": {
+    "name": "Brazil",
+    "value": 2279.918,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "BRB": {
+    "name": "Barbados",
+    "value": 8.017,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "BRN": {
+    "name": "Brunei Darussalam",
+    "value": 15.942,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "BTN": {
+    "name": "Bhutan",
+    "value": 3.474,
+    "latestActual": "FY2023/24",
+    "estimate": true
+   },
+   "BWA": {
+    "name": "Botswana",
+    "value": 19.533,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "CAF": {
+    "name": "Central African Republic",
+    "value": 3.192,
+    "latestActual": "2019",
+    "estimate": true
+   },
+   "CAN": {
+    "name": "Canada",
+    "value": 2319.9,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "CHE": {
+    "name": "Switzerland",
+    "value": 1043.544,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "CHL": {
+    "name": "Chile",
+    "value": 355.346,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "CHN": {
+    "name": "China, People's Republic of",
+    "value": 19626.247,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "CIV": {
+    "name": "Côte d'Ivoire",
+    "value": 98.885,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "CMR": {
+    "name": "Cameroon",
+    "value": 59.282,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "COD": {
+    "name": "Congo, Dem. Rep. of the",
+    "value": 92.833,
+    "latestActual": "2023",
+    "estimate": true
+   },
+   "COG": {
+    "name": "Congo, Republic of ",
+    "value": 15.592,
+    "latestActual": "2022",
+    "estimate": true
+   },
+   "COL": {
+    "name": "Colombia",
+    "value": 457.41,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "COM": {
+    "name": "Comoros",
+    "value": 1.609,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "CPV": {
+    "name": "Cabo Verde",
+    "value": 3.081,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "CRI": {
+    "name": "Costa Rica",
+    "value": 102.902,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "CYP": {
+    "name": "Cyprus",
+    "value": 41.019,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "CZE": {
+    "name": "Czech Republic",
+    "value": 389.02,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "DEU": {
+    "name": "Germany",
+    "value": 5048.059,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "DJI": {
+    "name": "Djibouti",
+    "value": 4.378,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "DMA": {
+    "name": "Dominica",
+    "value": 0.744,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "DNK": {
+    "name": "Denmark",
+    "value": 461.718,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "DOM": {
+    "name": "Dominican Republic",
+    "value": 127.895,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "DZA": {
+    "name": "Algeria",
+    "value": 285.724,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "ECU": {
+    "name": "Ecuador",
+    "value": 130.321,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "EGY": {
+    "name": "Egypt",
+    "value": 364.64,
+    "latestActual": "FY2024/25",
+    "estimate": true
+   },
+   "ESP": {
+    "name": "Spain",
+    "value": 1903.826,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "EST": {
+    "name": "Estonia",
+    "value": 47.004,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "ETH": {
+    "name": "Ethiopia",
+    "value": 109.109,
+    "latestActual": "FY2024/25",
+    "estimate": true
+   },
+   "FIN": {
+    "name": "Finland",
+    "value": 316.86,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "FJI": {
+    "name": "Fiji",
+    "value": 6.041,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "FRA": {
+    "name": "France",
+    "value": 3368.925,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "FSM": {
+    "name": "Micronesia, Fed. States of",
+    "value": 0.502,
+    "latestActual": "FY2023/24",
+    "estimate": true
+   },
+   "GAB": {
+    "name": "Gabon",
+    "value": 21.624,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "GBR": {
+    "name": "United Kingdom",
+    "value": 4003.022,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "GEO": {
+    "name": "Georgia",
+    "value": 38.216,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "GHA": {
+    "name": "Ghana",
+    "value": 114.708,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "GIN": {
+    "name": "Guinea",
+    "value": 27.215,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "GMB": {
+    "name": "Gambia, The",
+    "value": 2.584,
+    "latestActual": "2023",
+    "estimate": true
+   },
+   "GNB": {
+    "name": "Guinea-Bissau",
+    "value": 2.648,
+    "latestActual": "2023",
+    "estimate": true
+   },
+   "GNQ": {
+    "name": "Equatorial Guinea",
+    "value": 12.484,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "GRC": {
+    "name": "Greece",
+    "value": 280.476,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "GRD": {
+    "name": "Grenada",
+    "value": 1.42,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "GTM": {
+    "name": "Guatemala",
+    "value": 121.113,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "GUY": {
+    "name": "Guyana",
+    "value": 27.097,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "HKG": {
+    "name": "Hong Kong SAR",
+    "value": 427.31,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "HND": {
+    "name": "Honduras",
+    "value": 39.694,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "HRV": {
+    "name": "Croatia",
+    "value": 106.055,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "HTI": {
+    "name": "Haiti",
+    "value": 32.102,
+    "latestActual": "FY2024/25",
+    "estimate": true
+   },
+   "HUN": {
+    "name": "Hungary",
+    "value": 246.891,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "IDN": {
+    "name": "Indonesia",
+    "value": 1445.642,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "IND": {
+    "name": "India",
+    "value": 3916.312,
+    "latestActual": "FY2024/25",
+    "estimate": true
+   },
+   "IRL": {
+    "name": "Ireland",
+    "value": 718.14,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "IRN": {
+    "name": "Iran",
+    "value": 371.196,
+    "latestActual": "FY2024/25",
+    "estimate": true
+   },
+   "IRQ": {
+    "name": "Iraq",
+    "value": 264.167,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "ISL": {
+    "name": "Iceland",
+    "value": 38.583,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "ISR": {
+    "name": "Israel",
+    "value": 610.778,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "ITA": {
+    "name": "Italy",
+    "value": 2550.111,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "JAM": {
+    "name": "Jamaica",
+    "value": 22.313,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "JOR": {
+    "name": "Jordan",
+    "value": 61.692,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "JPN": {
+    "name": "Japan",
+    "value": 4435.163,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "KAZ": {
+    "name": "Kazakhstan",
+    "value": 302.746,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "KEN": {
+    "name": "Kenya",
+    "value": 136.455,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "KGZ": {
+    "name": "Kyrgyz Republic",
+    "value": 21.567,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "KHM": {
+    "name": "Cambodia",
+    "value": 49.288,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "KIR": {
+    "name": "Kiribati",
+    "value": 0.349,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "KNA": {
+    "name": "Saint Kitts and Nevis",
+    "value": 1.082,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "KOR": {
+    "name": "Korea, Republic of",
+    "value": 1872.375,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "KWT": {
+    "name": "Kuwait",
+    "value": 157.835,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "LAO": {
+    "name": "Lao P.D.R.",
+    "value": 17.822,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "LBN": {
+    "name": "Lebanon",
+    "value": 34.497,
+    "latestActual": "2021",
+    "estimate": true
+   },
+   "LBR": {
+    "name": "Liberia",
+    "value": 5.216,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "LBY": {
+    "name": "Libya",
+    "value": 44.732,
+    "latestActual": "2019",
+    "estimate": true
+   },
+   "LCA": {
+    "name": "Saint Lucia",
+    "value": 2.651,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "LIE": {
+    "name": "Liechtenstein",
+    "value": 8.991,
+    "latestActual": "2023",
+    "estimate": true
+   },
+   "LSO": {
+    "name": "Lesotho",
+    "value": 2.854,
+    "latestActual": "FY2024/25",
+    "estimate": true
+   },
+   "LTU": {
+    "name": "Lithuania",
+    "value": 94.927,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "LUX": {
+    "name": "Luxembourg",
+    "value": 101.1,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "LVA": {
+    "name": "Latvia",
+    "value": 48.591,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "MAC": {
+    "name": "Macao SAR",
+    "value": 52.061,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "MAR": {
+    "name": "Morocco",
+    "value": 182.587,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "MDA": {
+    "name": "Moldova",
+    "value": 20.342,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "MDG": {
+    "name": "Madagascar",
+    "value": 19.556,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "MDV": {
+    "name": "Maldives",
+    "value": 7.665,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "MEX": {
+    "name": "Mexico",
+    "value": 1832.641,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "MHL": {
+    "name": "Marshall Islands",
+    "value": 0.308,
+    "latestActual": "FY2023/24",
+    "estimate": true
+   },
+   "MKD": {
+    "name": "North Macedonia ",
+    "value": 19.142,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "MLI": {
+    "name": "Mali",
+    "value": 30.05,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "MLT": {
+    "name": "Malta",
+    "value": 27.756,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "MMR": {
+    "name": "Myanmar",
+    "value": 82.4,
+    "latestActual": "FY2021/22",
+    "estimate": true
+   },
+   "MNE": {
+    "name": "Montenegro",
+    "value": 9.228,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "MNG": {
+    "name": "Mongolia",
+    "value": 25.37,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "MOZ": {
+    "name": "Mozambique",
+    "value": 22.338,
+    "latestActual": "2023",
+    "estimate": true
+   },
+   "MRT": {
+    "name": "Mauritania",
+    "value": 12.289,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "MUS": {
+    "name": "Mauritius",
+    "value": 16.126,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "MWI": {
+    "name": "Malawi",
+    "value": 15.047,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "MYS": {
+    "name": "Malaysia",
+    "value": 472.193,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "NAM": {
+    "name": "Namibia",
+    "value": 14.826,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "NER": {
+    "name": "Niger",
+    "value": 21.836,
+    "latestActual": "2022",
+    "estimate": true
+   },
+   "NGA": {
+    "name": "Nigeria",
+    "value": 290.491,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "NIC": {
+    "name": "Nicaragua",
+    "value": 22.237,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "NLD": {
+    "name": "Netherlands",
+    "value": 1332.24,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "NOR": {
+    "name": "Norway",
+    "value": 530.756,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "NPL": {
+    "name": "Nepal",
+    "value": 44.81,
+    "latestActual": "FY2024/25",
+    "estimate": true
+   },
+   "NRU": {
+    "name": "Nauru",
+    "value": 0.176,
+    "latestActual": "FY2020/21",
+    "estimate": true
+   },
+   "NZL": {
+    "name": "New Zealand",
+    "value": 258.832,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "OMN": {
+    "name": "Oman",
+    "value": 106.127,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "PAK": {
+    "name": "Pakistan",
+    "value": 407.786,
+    "latestActual": "FY2024/25",
+    "estimate": true
+   },
+   "PAN": {
+    "name": "Panama",
+    "value": 90.463,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "PER": {
+    "name": "Peru",
+    "value": 341.025,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "PHL": {
+    "name": "Philippines",
+    "value": 487.161,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "PLW": {
+    "name": "Palau",
+    "value": 0.345,
+    "latestActual": "FY2023/24",
+    "estimate": true
+   },
+   "PNG": {
+    "name": "Papua New Guinea",
+    "value": 32.491,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "POL": {
+    "name": "Poland",
+    "value": 1035.586,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "PRI": {
+    "name": "Puerto Rico",
+    "value": 126.525,
+    "latestActual": "FY2023/24",
+    "estimate": true
+   },
+   "PRT": {
+    "name": "Portugal",
+    "value": 346.412,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "PRY": {
+    "name": "Paraguay",
+    "value": 49.358,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "QAT": {
+    "name": "Qatar",
+    "value": 221.229,
+    "latestActual": "2023",
+    "estimate": true
+   },
+   "ROU": {
+    "name": "Romania",
+    "value": 427.941,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "RUS": {
+    "name": "Russian Federation",
+    "value": 2587.938,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "RWA": {
+    "name": "Rwanda",
+    "value": 15.973,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "SAU": {
+    "name": "Saudi Arabia",
+    "value": 1276.943,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "SDN": {
+    "name": "Sudan",
+    "value": 39.718,
+    "latestActual": "2019",
+    "estimate": true
+   },
+   "SEN": {
+    "name": "Senegal",
+    "value": 37.116,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "SGP": {
+    "name": "Singapore",
+    "value": 603.87,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "SLB": {
+    "name": "Solomon Islands",
+    "value": 1.704,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "SLE": {
+    "name": "Sierra Leone",
+    "value": 7.71,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "SLV": {
+    "name": "El Salvador",
+    "value": 37.268,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "SMR": {
+    "name": "San Marino",
+    "value": 2.251,
+    "latestActual": "2023",
+    "estimate": true
+   },
+   "SOM": {
+    "name": "Somalia",
+    "value": 12.956,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "SRB": {
+    "name": "Serbia",
+    "value": 99.953,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "SSD": {
+    "name": "South Sudan, Republic of",
+    "value": 5.733,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "STP": {
+    "name": "São Tomé and Príncipe",
+    "value": 0.981,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "SUR": {
+    "name": "Suriname",
+    "value": 4.664,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "SVK": {
+    "name": "Slovak Republic",
+    "value": 154.442,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "SVN": {
+    "name": "Slovenia",
+    "value": 79.603,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "SWE": {
+    "name": "Sweden",
+    "value": 668.999,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "SWZ": {
+    "name": "Eswatini",
+    "value": 5.166,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "SYC": {
+    "name": "Seychelles",
+    "value": 2.318,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "TCD": {
+    "name": "Chad",
+    "value": 22.092,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "TGO": {
+    "name": "Togo",
+    "value": 11.899,
+    "latestActual": "2023",
+    "estimate": true
+   },
+   "THA": {
+    "name": "Thailand",
+    "value": 577.01,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "TJK": {
+    "name": "Tajikistan",
+    "value": 17.542,
+    "latestActual": "2023",
+    "estimate": true
+   },
+   "TKM": {
+    "name": "Turkmenistan",
+    "value": 77.398,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "TLS": {
+    "name": "Timor-Leste",
+    "value": 2.064,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "TON": {
+    "name": "Tonga",
+    "value": 0.68,
+    "latestActual": "FY2023/24",
+    "estimate": true
+   },
+   "TTO": {
+    "name": "Trinidad and Tobago",
+    "value": 25.932,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "TUN": {
+    "name": "Tunisia",
+    "value": 57.589,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "TUR": {
+    "name": "Türkiye, Republic of",
+    "value": 1597.301,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "TUV": {
+    "name": "Tuvalu",
+    "value": 0.058,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "TWN": {
+    "name": "Taiwan Province of China",
+    "value": 920.05,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "TZA": {
+    "name": "Tanzania",
+    "value": 87.344,
+    "latestActual": "2023",
+    "estimate": true
+   },
+   "UGA": {
+    "name": "Uganda",
+    "value": 66.014,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "UKR": {
+    "name": "Ukraine",
+    "value": 212.927,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "URY": {
+    "name": "Uruguay",
+    "value": 85.575,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "USA": {
+    "name": "United States",
+    "value": 30767.075,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "UVK": {
+    "name": "Kosovo",
+    "value": 12.449,
+    "latestActual": null,
+    "estimate": true
+   },
+   "UZB": {
+    "name": "Uzbekistan",
+    "value": 147.069,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "VCT": {
+    "name": "Saint Vincent and the Grenadines",
+    "value": 1.176,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "VEN": {
+    "name": "Venezuela",
+    "value": 99.661,
+    "latestActual": "2018",
+    "estimate": true
+   },
+   "VNM": {
+    "name": "Vietnam",
+    "value": 494.046,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "VUT": {
+    "name": "Vanuatu",
+    "value": 1.316,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "WSM": {
+    "name": "Samoa",
+    "value": 1.288,
+    "latestActual": "FY2024/25",
+    "estimate": true
+   },
+   "YEM": {
+    "name": "Yemen",
+    "value": 7.897,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "ZAF": {
+    "name": "South Africa",
+    "value": 427.141,
+    "latestActual": "2025",
+    "estimate": false
+   },
+   "ZMB": {
+    "name": "Zambia",
+    "value": 28.88,
+    "latestActual": "2024",
+    "estimate": true
+   },
+   "ZWE": {
+    "name": "Zimbabwe",
+    "value": 53.474,
+    "latestActual": "2024",
+    "estimate": true
+   }
+  }
+ },
+ "fdi": {
+  "source": "UNCTADstat, Foreign direct investment: Inward and outward flows and stock (US.FdiFlowsStock), as published with the World Investment Report 2026",
+  "unit": "Millions of US dollars at current prices",
+  "year": 2025,
+  "page": "https://unctadstat.unctad.org/datacentre/dataviewer/US.FdiFlowsStock",
+  "bulk": "https://unctadstat-api.unctad.org/bulkdownload/US.FdiFlowsStock/US_FdiFlowsStock",
+  "world": {
+   "Inward": 1624258.541,
+   "Outward": 1863570.002
+  },
+  "inflows": {
+   "008": {
+    "name": "Albania",
+    "value": 1846.856
+   },
+   "012": {
+    "name": "Algeria",
+    "value": 1529.716
+   },
+   "024": {
+    "name": "Angola",
+    "value": 1148.731
+   },
+   "660": {
+    "name": "Anguilla",
+    "value": 22.732,
+    "note": "Asset/liability basis."
+   },
+   "028": {
+    "name": "Antigua and Barbuda",
+    "value": 307.065,
+    "note": "Asset/liability basis."
+   },
+   "032": {
+    "name": "Argentina",
+    "value": 3918.273
+   },
+   "051": {
+    "name": "Armenia",
+    "value": 605.131
+   },
+   "533": {
+    "name": "Aruba",
+    "value": 71.081
+   },
+   "036": {
+    "name": "Australia",
+    "value": 35252.623
+   },
+   "040": {
+    "name": "Austria",
+    "value": -7561.847
+   },
+   "031": {
+    "name": "Azerbaijan",
+    "value": 374.2
+   },
+   "044": {
+    "name": "Bahamas",
+    "value": 1536.255
+   },
+   "048": {
+    "name": "Bahrain",
+    "value": 821.011
+   },
+   "050": {
+    "name": "Bangladesh",
+    "value": 1779.987
+   },
+   "052": {
+    "name": "Barbados",
+    "value": 273.091
+   },
+   "112": {
+    "name": "Belarus",
+    "value": 1551.468
+   },
+   "056": {
+    "name": "Belgium",
+    "value": -26793.029
+   },
+   "084": {
+    "name": "Belize",
+    "value": 40.071
+   },
+   "204": {
+    "name": "Benin",
+    "value": 481.66
+   },
+   "060": {
+    "name": "Bermuda",
+    "value": 117.84
+   },
+   "064": {
+    "name": "Bhutan",
+    "value": 8.521
+   },
+   "068": {
+    "name": "Bolivia (Plurinational State of)",
+    "value": 620.346
+   },
+   "070": {
+    "name": "Bosnia and Herzegovina",
+    "value": 662.535
+   },
+   "072": {
+    "name": "Botswana",
+    "value": -653.809
+   },
+   "076": {
+    "name": "Brazil",
+    "value": 76876.998
+   },
+   "092": {
+    "name": "British Virgin Islands",
+    "value": 42906.102
+   },
+   "096": {
+    "name": "Brunei Darussalam",
+    "value": 168.095,
+    "note": "Asset/liability basis."
+   },
+   "100": {
+    "name": "Bulgaria",
+    "value": 3584.119
+   },
+   "854": {
+    "name": "Burkina Faso",
+    "value": 311.876
+   },
+   "108": {
+    "name": "Burundi",
+    "value": 67.589
+   },
+   "132": {
+    "name": "Cabo Verde",
+    "value": 153.086
+   },
+   "116": {
+    "name": "Cambodia",
+    "value": 5099.072
+   },
+   "120": {
+    "name": "Cameroon",
+    "value": 598.95
+   },
+   "124": {
+    "name": "Canada",
+    "value": 66974.893
+   },
+   "136": {
+    "name": "Cayman Islands",
+    "value": 35783.203
+   },
+   "140": {
+    "name": "Central African Republic",
+    "value": 43.82
+   },
+   "148": {
+    "name": "Chad",
+    "value": 4.296
+   },
+   "152": {
+    "name": "Chile",
+    "value": 13151.985
+   },
+   "156": {
+    "name": "China",
+    "value": 104659.0
+   },
+   "344": {
+    "name": "China, Hong Kong SAR",
+    "value": 116474.969
+   },
+   "446": {
+    "name": "China, Macao SAR",
+    "value": 3350.853
+   },
+   "158": {
+    "name": "China, Taiwan Province of",
+    "value": 10961.0,
+    "note": "Asset/liability basis."
+   },
+   "170": {
+    "name": "Colombia",
+    "value": 11426.277
+   },
+   "174": {
+    "name": "Comoros",
+    "value": 9.2
+   },
+   "178": {
+    "name": "Congo",
+    "value": 596.293
+   },
+   "184": {
+    "name": "Cook Islands",
+    "value": 3.41
+   },
+   "188": {
+    "name": "Costa Rica",
+    "value": 5121.799
+   },
+   "384": {
+    "name": "Cote d'Ivoire",
+    "value": 2025.517
+   },
+   "191": {
+    "name": "Croatia",
+    "value": 3076.616
+   },
+   "192": {
+    "name": "Cuba",
+    "value": 79.459
+   },
+   "531": {
+    "name": "Curacao",
+    "value": 183.298
+   },
+   "196": {
+    "name": "Cyprus",
+    "value": 4983.145
+   },
+   "203": {
+    "name": "Czechia",
+    "value": 9768.991
+   },
+   "408": {
+    "name": "Dem. People's Rep. of Korea",
+    "value": 9.208
+   },
+   "180": {
+    "name": "Dem. Rep. of the Congo",
+    "value": 1868.634
+   },
+   "208": {
+    "name": "Denmark",
+    "value": 900.356
+   },
+   "262": {
+    "name": "Djibouti",
+    "value": 149.041
+   },
+   "212": {
+    "name": "Dominica",
+    "value": 46.241,
+    "note": "Asset/liability basis."
+   },
+   "214": {
+    "name": "Dominican Republic",
+    "value": 5032.8
+   },
+   "218": {
+    "name": "Ecuador",
+    "value": 1299.231
+   },
+   "818": {
+    "name": "Egypt",
+    "value": 15452.7
+   },
+   "222": {
+    "name": "El Salvador",
+    "value": 474.834
+   },
+   "226": {
+    "name": "Equatorial Guinea",
+    "value": 293.851
+   },
+   "232": {
+    "name": "Eritrea",
+    "value": 82.365
+   },
+   "233": {
+    "name": "Estonia",
+    "value": 43.34
+   },
+   "748": {
+    "name": "Eswatini",
+    "value": 45.419
+   },
+   "231": {
+    "name": "Ethiopia",
+    "value": 3795.754
+   },
+   "242": {
+    "name": "Fiji",
+    "value": 262.763
+   },
+   "246": {
+    "name": "Finland",
+    "value": 1841.119
+   },
+   "250": {
+    "name": "France",
+    "value": 21907.818
+   },
+   "258": {
+    "name": "French Polynesia",
+    "value": 11.241
+   },
+   "266": {
+    "name": "Gabon",
+    "value": 378.808
+   },
+   "270": {
+    "name": "Gambia",
+    "value": 266.56
+   },
+   "268": {
+    "name": "Georgia",
+    "value": 1688.663
+   },
+   "276": {
+    "name": "Germany",
+    "value": 74272.034
+   },
+   "288": {
+    "name": "Ghana",
+    "value": 1908.244
+   },
+   "300": {
+    "name": "Greece",
+    "value": 12859.611
+   },
+   "308": {
+    "name": "Grenada",
+    "value": 207.022,
+    "note": "Asset/liability basis."
+   },
+   "320": {
+    "name": "Guatemala",
+    "value": 1881.749
+   },
+   "324": {
+    "name": "Guinea",
+    "value": 7763.452
+   },
+   "624": {
+    "name": "Guinea-Bissau",
+    "value": 33.574
+   },
+   "328": {
+    "name": "Guyana",
+    "value": 8968.225
+   },
+   "332": {
+    "name": "Haiti",
+    "value": 12.184
+   },
+   "340": {
+    "name": "Honduras",
+    "value": 881.2
+   },
+   "348": {
+    "name": "Hungary",
+    "value": 3945.622
+   },
+   "352": {
+    "name": "Iceland",
+    "value": 232.285
+   },
+   "356": {
+    "name": "India",
+    "value": 38891.331
+   },
+   "360": {
+    "name": "Indonesia",
+    "value": 21434.98
+   },
+   "364": {
+    "name": "Iran (Islamic Republic of)",
+    "value": 1646.577
+   },
+   "368": {
+    "name": "Iraq",
+    "value": -7618.0
+   },
+   "372": {
+    "name": "Ireland",
+    "value": 14409.895
+   },
+   "376": {
+    "name": "Israel",
+    "value": 26222.319
+   },
+   "380": {
+    "name": "Italy",
+    "value": 8880.537
+   },
+   "388": {
+    "name": "Jamaica",
+    "value": 350.631
+   },
+   "392": {
+    "name": "Japan",
+    "value": 14320.785
+   },
+   "400": {
+    "name": "Jordan",
+    "value": 2021.972
+   },
+   "398": {
+    "name": "Kazakhstan",
+    "value": -861.126
+   },
+   "404": {
+    "name": "Kenya",
+    "value": 3199.846
+   },
+   "296": {
+    "name": "Kiribati",
+    "value": 4.161,
+    "note": "Asset/liability basis."
+   },
+   "412": {
+    "name": "Kosovo",
+    "value": 1237.282
+   },
+   "414": {
+    "name": "Kuwait",
+    "value": 497.363
+   },
+   "417": {
+    "name": "Kyrgyzstan",
+    "value": 642.403
+   },
+   "418": {
+    "name": "Lao People's Dem. Rep.",
+    "value": 1404.783
+   },
+   "428": {
+    "name": "Latvia",
+    "value": 262.156
+   },
+   "422": {
+    "name": "Lebanon",
+    "value": 2041.797
+   },
+   "426": {
+    "name": "Lesotho",
+    "value": -5.771
+   },
+   "430": {
+    "name": "Liberia",
+    "value": 500.0
+   },
+   "434": {
+    "name": "Libya",
+    "value": 827.574
+   },
+   "440": {
+    "name": "Lithuania",
+    "value": 3922.058
+   },
+   "442": {
+    "name": "Luxembourg",
+    "value": -33057.655
+   },
+   "450": {
+    "name": "Madagascar",
+    "value": 304.453
+   },
+   "454": {
+    "name": "Malawi",
+    "value": 451.551
+   },
+   "458": {
+    "name": "Malaysia",
+    "value": 15389.655
+   },
+   "462": {
+    "name": "Maldives",
+    "value": 857.083,
+    "note": "Asset/liability basis."
+   },
+   "466": {
+    "name": "Mali",
+    "value": 843.747
+   },
+   "470": {
+    "name": "Malta",
+    "value": 14360.355
+   },
+   "584": {
+    "name": "Marshall Islands",
+    "value": 3.212
+   },
+   "478": {
+    "name": "Mauritania",
+    "value": 634.081
+   },
+   "480": {
+    "name": "Mauritius",
+    "value": 804.429
+   },
+   "484": {
+    "name": "Mexico",
+    "value": 40870.769
+   },
+   "496": {
+    "name": "Mongolia",
+    "value": 2745.211
+   },
+   "499": {
+    "name": "Montenegro",
+    "value": 675.144
+   },
+   "500": {
+    "name": "Montserrat",
+    "value": 1.355,
+    "note": "Asset/liability basis."
+   },
+   "504": {
+    "name": "Morocco",
+    "value": 3338.083
+   },
+   "508": {
+    "name": "Mozambique",
+    "value": 5692.998
+   },
+   "104": {
+    "name": "Myanmar",
+    "value": 1066.703
+   },
+   "516": {
+    "name": "Namibia",
+    "value": 1447.07
+   },
+   "520": {
+    "name": "Nauru",
+    "value": -0.019
+   },
+   "524": {
+    "name": "Nepal",
+    "value": 43.967
+   },
+   "528": {
+    "name": "Netherlands (Kingdom of the)",
+    "value": -33172.531
+   },
+   "540": {
+    "name": "New Caledonia",
+    "value": 439.548
+   },
+   "554": {
+    "name": "New Zealand",
+    "value": 2542.864
+   },
+   "558": {
+    "name": "Nicaragua",
+    "value": 1502.5
+   },
+   "562": {
+    "name": "Niger",
+    "value": 257.053
+   },
+   "566": {
+    "name": "Nigeria",
+    "value": 4005.36
+   },
+   "807": {
+    "name": "North Macedonia",
+    "value": 528.276
+   },
+   "578": {
+    "name": "Norway",
+    "value": -3030.734
+   },
+   "512": {
+    "name": "Oman",
+    "value": 13306.125
+   },
+   "586": {
+    "name": "Pakistan",
+    "value": 1852.0
+   },
+   "585": {
+    "name": "Palau",
+    "value": 57.118
+   },
+   "591": {
+    "name": "Panama",
+    "value": 905.06
+   },
+   "598": {
+    "name": "Papua New Guinea",
+    "value": -1180.943
+   },
+   "600": {
+    "name": "Paraguay",
+    "value": 1180.339,
+    "note": "Asset/liability basis."
+   },
+   "604": {
+    "name": "Peru",
+    "value": 11794.096
+   },
+   "608": {
+    "name": "Philippines",
+    "value": 9002.614,
+    "note": "Asset/liability basis."
+   },
+   "616": {
+    "name": "Poland",
+    "value": 13914.871
+   },
+   "620": {
+    "name": "Portugal",
+    "value": 10091.783
+   },
+   "634": {
+    "name": "Qatar",
+    "value": 3032.967
+   },
+   "410": {
+    "name": "Republic of Korea",
+    "value": 15804.1
+   },
+   "498": {
+    "name": "Republic of Moldova",
+    "value": 459.54
+   },
+   "642": {
+    "name": "Romania",
+    "value": 9207.009
+   },
+   "643": {
+    "name": "Russian Federation",
+    "value": 25277.554
+   },
+   "646": {
+    "name": "Rwanda",
+    "value": 967.464
+   },
+   "659": {
+    "name": "Saint Kitts and Nevis",
+    "value": 29.239,
+    "note": "Asset/liability basis."
+   },
+   "662": {
+    "name": "Saint Lucia",
+    "value": 250.81,
+    "note": "Asset/liability basis."
+   },
+   "670": {
+    "name": "Saint Vincent and the Grenadines",
+    "value": 117.2,
+    "note": "Asset/liability basis."
+   },
+   "882": {
+    "name": "Samoa",
+    "value": 2.251
+   },
+   "678": {
+    "name": "Sao Tome and Principe",
+    "value": 9.509
+   },
+   "682": {
+    "name": "Saudi Arabia",
+    "value": 32628.095
+   },
+   "686": {
+    "name": "Senegal",
+    "value": 36.577
+   },
+   "688": {
+    "name": "Serbia",
+    "value": 3923.786
+   },
+   "690": {
+    "name": "Seychelles",
+    "value": 339.776
+   },
+   "694": {
+    "name": "Sierra Leone",
+    "value": 177.041
+   },
+   "702": {
+    "name": "Singapore",
+    "value": 150897.702
+   },
+   "534": {
+    "name": "Sint Maarten (Dutch part)",
+    "value": 35.419
+   },
+   "703": {
+    "name": "Slovakia",
+    "value": 733.451
+   },
+   "705": {
+    "name": "Slovenia",
+    "value": 1630.302
+   },
+   "090": {
+    "name": "Solomon Islands",
+    "value": 67.274
+   },
+   "706": {
+    "name": "Somalia",
+    "value": 834.0
+   },
+   "710": {
+    "name": "South Africa",
+    "value": -2314.751,
+    "note": "Asset/liability basis."
+   },
+   "728": {
+    "name": "South Sudan",
+    "value": 73.0
+   },
+   "724": {
+    "name": "Spain",
+    "value": 19927.252
+   },
+   "144": {
+    "name": "Sri Lanka",
+    "value": 1043.936,
+    "note": "Asset/liability basis."
+   },
+   "275": {
+    "name": "State of Palestine",
+    "value": 443.0
+   },
+   "740": {
+    "name": "Suriname",
+    "value": 2039.459
+   },
+   "752": {
+    "name": "Sweden",
+    "value": 30316.456
+   },
+   "756": {
+    "name": "Switzerland",
+    "value": 9502.475
+   },
+   "762": {
+    "name": "Tajikistan",
+    "value": 85.851,
+    "note": "Asset/liability basis."
+   },
+   "764": {
+    "name": "Thailand",
+    "value": 19097.939
+   },
+   "626": {
+    "name": "Timor-Leste",
+    "value": 253.238
+   },
+   "768": {
+    "name": "Togo",
+    "value": 221.287
+   },
+   "776": {
+    "name": "Tonga",
+    "value": -20.196
+   },
+   "780": {
+    "name": "Trinidad and Tobago",
+    "value": -1155.964
+   },
+   "788": {
+    "name": "Tunisia",
+    "value": 1172.753
+   },
+   "792": {
+    "name": "Turkiye",
+    "value": 12478.0
+   },
+   "795": {
+    "name": "Turkmenistan",
+    "value": 701.432
+   },
+   "796": {
+    "name": "Turks and Caicos Islands",
+    "value": 42.058
+   },
+   "798": {
+    "name": "Tuvalu",
+    "value": 0.235
+   },
+   "800": {
+    "name": "Uganda",
+    "value": 3358.037
+   },
+   "804": {
+    "name": "Ukraine",
+    "value": 2602.0
+   },
+   "784": {
+    "name": "United Arab Emirates",
+    "value": 48243.0
+   },
+   "826": {
+    "name": "United Kingdom",
+    "value": 75205.998
+   },
+   "834": {
+    "name": "United Republic of Tanzania",
+    "value": 1717.575
+   },
+   "840": {
+    "name": "United States",
+    "value": 277300.0
+   },
+   "858": {
+    "name": "Uruguay",
+    "value": 687.0
+   },
+   "860": {
+    "name": "Uzbekistan",
+    "value": 4398.423,
+    "note": "Asset/liability basis."
+   },
+   "548": {
+    "name": "Vanuatu",
+    "value": 32.919
+   },
+   "862": {
+    "name": "Venezuela (Bolivarian Rep. of)",
+    "value": -367.0
+   },
+   "704": {
+    "name": "Viet Nam",
+    "value": 20350.0,
+    "note": "Asset/liability basis."
+   },
+   "887": {
+    "name": "Yemen",
+    "value": -5.0
+   },
+   "894": {
+    "name": "Zambia",
+    "value": 1292.725
+   },
+   "716": {
+    "name": "Zimbabwe",
+    "value": 965.0
+   }
+  },
+  "outflows": {
+   "008": {
+    "name": "Albania",
+    "value": 341.489
+   },
+   "012": {
+    "name": "Algeria",
+    "value": 52.8
+   },
+   "024": {
+    "name": "Angola",
+    "value": 125.119
+   },
+   "660": {
+    "name": "Anguilla",
+    "value": 11.834,
+    "note": "Asset/liability basis."
+   },
+   "028": {
+    "name": "Antigua and Barbuda",
+    "value": -18.679,
+    "note": "Asset/liability basis."
+   },
+   "032": {
+    "name": "Argentina",
+    "value": 3618.29
+   },
+   "051": {
+    "name": "Armenia",
+    "value": 252.305
+   },
+   "533": {
+    "name": "Aruba",
+    "value": 18.18
+   },
+   "036": {
+    "name": "Australia",
+    "value": -5813.796
+   },
+   "040": {
+    "name": "Austria",
+    "value": -1233.942
+   },
+   "031": {
+    "name": "Azerbaijan",
+    "value": 910.2
+   },
+   "044": {
+    "name": "Bahamas",
+    "value": 372.752
+   },
+   "048": {
+    "name": "Bahrain",
+    "value": 550.0
+   },
+   "050": {
+    "name": "Bangladesh",
+    "value": 25.145
+   },
+   "052": {
+    "name": "Barbados",
+    "value": 16.734
+   },
+   "112": {
+    "name": "Belarus",
+    "value": 125.565
+   },
+   "056": {
+    "name": "Belgium",
+    "value": -18583.702
+   },
+   "204": {
+    "name": "Benin",
+    "value": 53.201
+   },
+   "060": {
+    "name": "Bermuda",
+    "value": 33.804
+   },
+   "068": {
+    "name": "Bolivia (Plurinational State of)",
+    "value": 156.488
+   },
+   "070": {
+    "name": "Bosnia and Herzegovina",
+    "value": 134.969
+   },
+   "072": {
+    "name": "Botswana",
+    "value": 124.247
+   },
+   "076": {
+    "name": "Brazil",
+    "value": 29376.486
+   },
+   "092": {
+    "name": "British Virgin Islands",
+    "value": 47153.972
+   },
+   "096": {
+    "name": "Brunei Darussalam",
+    "value": 97.584,
+    "note": "Asset/liability basis."
+   },
+   "100": {
+    "name": "Bulgaria",
+    "value": 268.572
+   },
+   "854": {
+    "name": "Burkina Faso",
+    "value": 30.352
+   },
+   "108": {
+    "name": "Burundi",
+    "value": 3.896
+   },
+   "132": {
+    "name": "Cabo Verde",
+    "value": 23.666
+   },
+   "116": {
+    "name": "Cambodia",
+    "value": 138.509
+   },
+   "120": {
+    "name": "Cameroon",
+    "value": 6.89
+   },
+   "124": {
+    "name": "Canada",
+    "value": 54536.637
+   },
+   "136": {
+    "name": "Cayman Islands",
+    "value": 25253.208
+   },
+   "140": {
+    "name": "Central African Republic",
+    "value": 2.223
+   },
+   "148": {
+    "name": "Chad",
+    "value": -216.831
+   },
+   "152": {
+    "name": "Chile",
+    "value": 7323.595
+   },
+   "156": {
+    "name": "China",
+    "value": 174380.0
+   },
+   "344": {
+    "name": "China, Hong Kong SAR",
+    "value": 95326.419
+   },
+   "446": {
+    "name": "China, Macao SAR",
+    "value": 1310.648
+   },
+   "158": {
+    "name": "China, Taiwan Province of",
+    "value": 45311.0,
+    "note": "Asset/liability basis."
+   },
+   "170": {
+    "name": "Colombia",
+    "value": 4116.331
+   },
+   "178": {
+    "name": "Congo",
+    "value": 93.33
+   },
+   "184": {
+    "name": "Cook Islands",
+    "value": 0.328
+   },
+   "188": {
+    "name": "Costa Rica",
+    "value": 1.426
+   },
+   "384": {
+    "name": "Cote d'Ivoire",
+    "value": 362.299
+   },
+   "191": {
+    "name": "Croatia",
+    "value": -306.258
+   },
+   "531": {
+    "name": "Curacao",
+    "value": 45.199
+   },
+   "196": {
+    "name": "Cyprus",
+    "value": -6235.457
+   },
+   "203": {
+    "name": "Czechia",
+    "value": 7516.087
+   },
+   "408": {
+    "name": "Dem. People's Rep. of Korea",
+    "value": 1.904
+   },
+   "180": {
+    "name": "Dem. Rep. of the Congo",
+    "value": 364.658
+   },
+   "208": {
+    "name": "Denmark",
+    "value": 35630.963
+   },
+   "214": {
+    "name": "Dominican Republic",
+    "value": -114.0
+   },
+   "818": {
+    "name": "Egypt",
+    "value": 695.9
+   },
+   "222": {
+    "name": "El Salvador",
+    "value": 29.398
+   },
+   "226": {
+    "name": "Equatorial Guinea",
+    "value": 22.229
+   },
+   "233": {
+    "name": "Estonia",
+    "value": 836.138
+   },
+   "748": {
+    "name": "Eswatini",
+    "value": -5.327
+   },
+   "242": {
+    "name": "Fiji",
+    "value": 43.062
+   },
+   "246": {
+    "name": "Finland",
+    "value": 9634.989
+   },
+   "250": {
+    "name": "France",
+    "value": 57156.115
+   },
+   "258": {
+    "name": "French Polynesia",
+    "value": 12.109
+   },
+   "266": {
+    "name": "Gabon",
+    "value": 55.804
+   },
+   "270": {
+    "name": "Gambia",
+    "value": -0.871
+   },
+   "268": {
+    "name": "Georgia",
+    "value": 299.425
+   },
+   "276": {
+    "name": "Germany",
+    "value": 86836.581
+   },
+   "288": {
+    "name": "Ghana",
+    "value": 38.841
+   },
+   "300": {
+    "name": "Greece",
+    "value": 5428.212
+   },
+   "308": {
+    "name": "Grenada",
+    "value": -7.96,
+    "note": "Asset/liability basis."
+   },
+   "320": {
+    "name": "Guatemala",
+    "value": 2507.723
+   },
+   "324": {
+    "name": "Guinea",
+    "value": 1.413
+   },
+   "624": {
+    "name": "Guinea-Bissau",
+    "value": 0.662
+   },
+   "328": {
+    "name": "Guyana",
+    "value": 17.984
+   },
+   "340": {
+    "name": "Honduras",
+    "value": 71.7
+   },
+   "348": {
+    "name": "Hungary",
+    "value": 2633.197
+   },
+   "352": {
+    "name": "Iceland",
+    "value": -493.112
+   },
+   "356": {
+    "name": "India",
+    "value": 35654.869
+   },
+   "360": {
+    "name": "Indonesia",
+    "value": 7352.83
+   },
+   "364": {
+    "name": "Iran (Islamic Republic of)",
+    "value": 103.993
+   },
+   "368": {
+    "name": "Iraq",
+    "value": 422.0
+   },
+   "372": {
+    "name": "Ireland",
+    "value": 53409.679
+   },
+   "376": {
+    "name": "Israel",
+    "value": 14468.44
+   },
+   "380": {
+    "name": "Italy",
+    "value": 29793.134
+   },
+   "388": {
+    "name": "Jamaica",
+    "value": 1.4
+   },
+   "392": {
+    "name": "Japan",
+    "value": 186089.668
+   },
+   "400": {
+    "name": "Jordan",
+    "value": 97.887
+   },
+   "398": {
+    "name": "Kazakhstan",
+    "value": 523.793
+   },
+   "404": {
+    "name": "Kenya",
+    "value": 1260.041
+   },
+   "296": {
+    "name": "Kiribati",
+    "value": 0.016,
+    "note": "Asset/liability basis."
+   },
+   "412": {
+    "name": "Kosovo",
+    "value": 413.382
+   },
+   "414": {
+    "name": "Kuwait",
+    "value": 35981.226
+   },
+   "417": {
+    "name": "Kyrgyzstan",
+    "value": 33.037
+   },
+   "418": {
+    "name": "Lao People's Dem. Rep.",
+    "value": 38.337
+   },
+   "428": {
+    "name": "Latvia",
+    "value": 390.974
+   },
+   "422": {
+    "name": "Lebanon",
+    "value": 265.361
+   },
+   "430": {
+    "name": "Liberia",
+    "value": 85.963
+   },
+   "434": {
+    "name": "Libya",
+    "value": 80.767
+   },
+   "440": {
+    "name": "Lithuania",
+    "value": 829.08
+   },
+   "442": {
+    "name": "Luxembourg",
+    "value": 101384.342
+   },
+   "450": {
+    "name": "Madagascar",
+    "value": 130.48
+   },
+   "454": {
+    "name": "Malawi",
+    "value": 44.695
+   },
+   "458": {
+    "name": "Malaysia",
+    "value": 2901.304
+   },
+   "466": {
+    "name": "Mali",
+    "value": 58.365
+   },
+   "470": {
+    "name": "Malta",
+    "value": 11402.596
+   },
+   "478": {
+    "name": "Mauritania",
+    "value": 0.059
+   },
+   "480": {
+    "name": "Mauritius",
+    "value": 22.41
+   },
+   "484": {
+    "name": "Mexico",
+    "value": 9073.721
+   },
+   "496": {
+    "name": "Mongolia",
+    "value": 5.534
+   },
+   "499": {
+    "name": "Montenegro",
+    "value": 75.504
+   },
+   "504": {
+    "name": "Morocco",
+    "value": 812.81
+   },
+   "508": {
+    "name": "Mozambique",
+    "value": 66.715
+   },
+   "516": {
+    "name": "Namibia",
+    "value": 42.765
+   },
+   "520": {
+    "name": "Nauru",
+    "value": 4.199
+   },
+   "528": {
+    "name": "Netherlands (Kingdom of the)",
+    "value": 58105.242
+   },
+   "540": {
+    "name": "New Caledonia",
+    "value": 61.473
+   },
+   "554": {
+    "name": "New Zealand",
+    "value": -992.961
+   },
+   "558": {
+    "name": "Nicaragua",
+    "value": 50.943
+   },
+   "562": {
+    "name": "Niger",
+    "value": 6.507
+   },
+   "566": {
+    "name": "Nigeria",
+    "value": 1186.47
+   },
+   "807": {
+    "name": "North Macedonia",
+    "value": 248.79
+   },
+   "578": {
+    "name": "Norway",
+    "value": 5077.9
+   },
+   "512": {
+    "name": "Oman",
+    "value": 181.424
+   },
+   "586": {
+    "name": "Pakistan",
+    "value": 267.0
+   },
+   "591": {
+    "name": "Panama",
+    "value": -904.192
+   },
+   "598": {
+    "name": "Papua New Guinea",
+    "value": 538.994
+   },
+   "600": {
+    "name": "Paraguay",
+    "value": 235.568,
+    "note": "Asset/liability basis."
+   },
+   "604": {
+    "name": "Peru",
+    "value": 2084.267
+   },
+   "608": {
+    "name": "Philippines",
+    "value": 2813.423,
+    "note": "Asset/liability basis."
+   },
+   "616": {
+    "name": "Poland",
+    "value": 1731.594
+   },
+   "620": {
+    "name": "Portugal",
+    "value": 7597.221
+   },
+   "634": {
+    "name": "Qatar",
+    "value": 3343.956
+   },
+   "410": {
+    "name": "Republic of Korea",
+    "value": 41230.6
+   },
+   "498": {
+    "name": "Republic of Moldova",
+    "value": 99.621
+   },
+   "642": {
+    "name": "Romania",
+    "value": 679.34
+   },
+   "643": {
+    "name": "Russian Federation",
+    "value": 12923.744
+   },
+   "646": {
+    "name": "Rwanda",
+    "value": 13.735
+   },
+   "659": {
+    "name": "Saint Kitts and Nevis",
+    "value": 19.788,
+    "note": "Asset/liability basis."
+   },
+   "662": {
+    "name": "Saint Lucia",
+    "value": 31.128,
+    "note": "Asset/liability basis."
+   },
+   "670": {
+    "name": "Saint Vincent and the Grenadines",
+    "value": -4.169,
+    "note": "Asset/liability basis."
+   },
+   "882": {
+    "name": "Samoa",
+    "value": 0.403
+   },
+   "678": {
+    "name": "Sao Tome and Principe",
+    "value": 0.565
+   },
+   "682": {
+    "name": "Saudi Arabia",
+    "value": 27030.915
+   },
+   "686": {
+    "name": "Senegal",
+    "value": 0.638
+   },
+   "688": {
+    "name": "Serbia",
+    "value": 1349.472
+   },
+   "690": {
+    "name": "Seychelles",
+    "value": 37.945
+   },
+   "702": {
+    "name": "Singapore",
+    "value": 94202.455,
+    "note": "Asset/liability basis."
+   },
+   "534": {
+    "name": "Sint Maarten (Dutch part)",
+    "value": 2.372
+   },
+   "703": {
+    "name": "Slovakia",
+    "value": 606.674
+   },
+   "705": {
+    "name": "Slovenia",
+    "value": 867.701
+   },
+   "090": {
+    "name": "Solomon Islands",
+    "value": 15.08
+   },
+   "710": {
+    "name": "South Africa",
+    "value": -4021.858,
+    "note": "Asset/liability basis."
+   },
+   "724": {
+    "name": "Spain",
+    "value": 31345.731
+   },
+   "144": {
+    "name": "Sri Lanka",
+    "value": 98.21,
+    "note": "Asset/liability basis."
+   },
+   "275": {
+    "name": "State of Palestine",
+    "value": -18.0
+   },
+   "740": {
+    "name": "Suriname",
+    "value": -0.919
+   },
+   "752": {
+    "name": "Sweden",
+    "value": 18179.345
+   },
+   "756": {
+    "name": "Switzerland",
+    "value": 37432.781
+   },
+   "762": {
+    "name": "Tajikistan",
+    "value": 94.049,
+    "note": "Asset/liability basis."
+   },
+   "764": {
+    "name": "Thailand",
+    "value": 9591.256
+   },
+   "768": {
+    "name": "Togo",
+    "value": 189.292
+   },
+   "776": {
+    "name": "Tonga",
+    "value": 2.738
+   },
+   "780": {
+    "name": "Trinidad and Tobago",
+    "value": -789.667
+   },
+   "788": {
+    "name": "Tunisia",
+    "value": 37.453
+   },
+   "792": {
+    "name": "Turkiye",
+    "value": 9252.0
+   },
+   "800": {
+    "name": "Uganda",
+    "value": 0.417
+   },
+   "804": {
+    "name": "Ukraine",
+    "value": 104.0
+   },
+   "784": {
+    "name": "United Arab Emirates",
+    "value": 63353.0
+   },
+   "826": {
+    "name": "United Kingdom",
+    "value": 84758.662
+   },
+   "840": {
+    "name": "United States",
+    "value": 262719.0
+   },
+   "858": {
+    "name": "Uruguay",
+    "value": 230.0
+   },
+   "860": {
+    "name": "Uzbekistan",
+    "value": 158.184,
+    "note": "Asset/liability basis."
+   },
+   "548": {
+    "name": "Vanuatu",
+    "value": 2.749
+   },
+   "862": {
+    "name": "Venezuela (Bolivarian Rep. of)",
+    "value": 257.0
+   },
+   "704": {
+    "name": "Viet Nam",
+    "value": 680.0,
+    "note": "Asset/liability basis."
+   },
+   "894": {
+    "name": "Zambia",
+    "value": -149.618
+   },
+   "716": {
+    "name": "Zimbabwe",
+    "value": 4.7
+   }
+  }
+ }
+}
