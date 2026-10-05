@@ -87,3 +87,12 @@ header{background:#f7f4ee}
 
 .brand{font-family:Georgia,serif;font-weight:500;font-style:italic;font-size:28px;letter-spacing:-1px}
 img.brand-mark{width:34px;height:34px;border-radius:4px;border:1px solid #111}
+
+.share-card{margin:16px 0 12px;padding:22px 20px 16px;background:#111;color:#f6f1e7;border-radius:18px}
+.share-card .eyebrow{color:#f6f1e799}
+.share-rate{margin:0;font:normal 64px/0.9 Georgia,serif;letter-spacing:-2px}
+.share-who{margin:8px 0 0;font-size:18px}
+.share-catch,.share-date{margin:8px 0 0;color:#f6f1e7cc;font-size:13px;line-height:1.4}
+.share-date{font:11px var(--mono);letter-spacing:.4px}
+.fit-line{margin:10px 0 0;font-size:14px;line-height:1.45}
+@media(max-width:760px){.share-rate{font-size:52px}.share-card{padding:18px 16px 14px}}

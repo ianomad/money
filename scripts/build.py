@@ -51,8 +51,21 @@ for p in ranked:
     value = offer_rate(p) or 0
     width = max(8, round(value / top * 100))
     bars.append(f'<a class="bar-row" href="#provider-{e(p["id"])}"><b>{e(p["name"])}</b><span class="bar"><i style="width:{width}%"></i></span><strong>{rate(value)}</strong></a>')
-lead = '<figure class="share-chart"><figcaption>Top verified APY</figcaption>' + ''.join(bars) + '</figure>'
-note = data.get('changeNote') or 'Top verified offers on this snapshot.'
+best = ranked[0]
+plain = [p for p in providers if p['fdic']['status']=='bank' and offer_rate(p)==p['base'] and p['base'] is not None]
+plain.sort(key=lambda p: p['base'], reverse=True)
+fit = plain[0] if plain else None
+fit_line = f'If you skip subscriptions and promotions, {fit["name"]} is the straightforward {rate(fit["base"])}.' if fit else ''
+lead = (
+  f'<section class="share-card" id="share"><p class="eyebrow">Today on the tracker</p>'
+  f'<p class="share-rate">{rate(offer_rate(best))}</p>'
+  f'<p class="share-who">{e(best["name"])}</p>'
+  f'<p class="share-catch">{e(short_catch(best["requirements"]))}</p>'
+  f'<p class="share-date">Checked CHECKED · money.ilyusha.xyz</p></section>'
+  f'<figure class="share-chart"><figcaption>Top verified APY</figcaption>{"".join(bars)}</figure>'
+  f'<p class="fit-line">{e(fit_line)}</p>'
+)
+note = data.get('changeNote') or 'No rate moved on this check.'
 names = ', '.join(p['name'] for p in ranked)
 page=page.replace('LEAD', lead).replace('CHANGE_NOTE', e(note))
 page=page.replace('CASH_ROWS',rows('cash')).replace('CRYPTO_ROWS',rows('crypto')).replace('CHECKED',data['checkedAt'])
