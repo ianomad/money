@@ -71,3 +71,7 @@ h1 em{font-style:italic}
 .bar-row small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:2px 0 12px;font-size:12px}
 .share-chart{padding:14px 14px 4px}
 .bar-row{margin-bottom:2px}
+
+.brand{gap:10px;font-family:Georgia,serif;font-weight:500;font-size:26px;letter-spacing:-.6px}
+.brand-mark{width:32px;height:32px;border-radius:9px;background:var(--ink);color:var(--paper);font:italic 22px/1 Georgia,serif}
+.share-chart{background:#fff;border-radius:16px;box-shadow:0 8px 24px #1f241c0c}
