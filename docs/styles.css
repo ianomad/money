@@ -49,3 +49,5 @@ header{background:#f7f3eacc;backdrop-filter:saturate(1.2)}
 h1 em{font-style:italic}
 .top strong{color:var(--green)}
 .tracker-controls{background:#f3efe4f2}
+
+@media(max-width:760px){.back-top{display:none}}
