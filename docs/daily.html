@@ -51,6 +51,28 @@ h1 span{color:var(--o)}
 .take{margin-top:3.2cqw;display:flex;align-items:center;gap:2.4cqw;padding:2.6cqw 3cqw;border-radius:2.4cqw;background:var(--g);color:var(--bg)}
 .take b{flex:none;font:6.4cqw/1 var(--disp);letter-spacing:-.04em}
 .take span{font:700 2.6cqw/1.25 var(--sans)}
+
+/* Motion: gauge fill, bar grow, soft pulse (always on) */
+.gauge .arc-track{stroke-dasharray:0 200}
+.gauge .arc-low{stroke-dasharray:0 200;animation:gaugeLow 900ms cubic-bezier(.2,.8,.2,1) forwards}
+.gauge .arc-hot{stroke-dasharray:0 65.83 0 200;animation:gaugeHot 700ms cubic-bezier(.2,.8,.2,1) 550ms both}
+.gauge .tip{transform-box:fill-box;transform-origin:center;opacity:0;animation:tipIn 500ms ease-out 1100ms both,softPulse 2200ms ease-in-out 1700ms infinite}
+.gv{opacity:0;transform:translateY(1.2cqw);animation:fadeUp 600ms ease-out 700ms both}
+.climb .chip{opacity:0;transform:translateY(1cqw);animation:fadeUp 550ms ease-out both}
+.climb .chip.o{animation-delay:1250ms}
+.climb .chip.d{animation-delay:1400ms}
+.bar .fill{width:0;animation:barGrow 900ms cubic-bezier(.2,.8,.2,1) 1000ms both}
+.bar:not(.hot) .fill{--fill-to:79.5%}
+.bar.hot .fill{--fill-to:100%}
+.bar.hot{animation:hotGlow 2200ms ease-in-out 1900ms infinite}
+.take{opacity:0;transform:translateY(1.2cqw);animation:fadeUp 600ms ease-out 1500ms both,softPulse 2200ms ease-in-out 2200ms infinite}
+@keyframes gaugeLow{from{stroke-dasharray:0 200}to{stroke-dasharray:65.83 200}}
+@keyframes gaugeHot{from{stroke-dasharray:0 65.83 0 200}to{stroke-dasharray:0 65.83 22.67 200}}
+@keyframes barGrow{from{width:0}to{width:var(--fill-to)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(1.2cqw)}to{opacity:1;transform:none}}
+@keyframes tipIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+@keyframes softPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.12)}}
+@keyframes hotGlow{0%,100%{outline-color:var(--o)}50%{outline-color:#ff8a5c}}
 </style></head>
 <body><main class="sheet" id="brief">
 <svg class="deco" viewBox="0 0 1080 1920" preserveAspectRatio="none" aria-hidden="true">
@@ -71,8 +93,8 @@ h1 span{color:var(--o)}
   <svg viewBox="0 0 600 330" role="img" aria-label="Gauge from 0% to 6%: the 10-year Treasury yield is 5.31%, up from a 52-week low of 3.95%">
     <g fill="none" stroke-width="58">
       <path d="M50 300 A250 250 0 0 1 550 300" stroke="#2b241c" pathLength="100"/>
-      <path d="M50 300 A250 250 0 0 1 550 300" stroke="#7a3a22" pathLength="100" stroke-dasharray="65.83 200"/>
-      <path d="M50 300 A250 250 0 0 1 550 300" stroke="#ff5b24" pathLength="100" stroke-dasharray="0 65.83 22.67 200"/>
+      <path class="arc-low" d="M50 300 A250 250 0 0 1 550 300" stroke="#7a3a22" pathLength="100" stroke-dasharray="0 200"/>
+      <path class="arc-hot" d="M50 300 A250 250 0 0 1 550 300" stroke="#ff5b24" pathLength="100" stroke-dasharray="0 65.83 0 200"/>
     </g>
     <path d="M110 300 A190 190 0 0 1 490 300" fill="none" stroke="#f6efe2" stroke-opacity=".3" stroke-width="3" stroke-dasharray="2 13"/>
     <line x1="426" y1="68" x2="406" y2="108" stroke="#f6efe2" stroke-width="5"/>
@@ -80,8 +102,10 @@ h1 span{color:var(--o)}
     <text x="436" y="50" fill="#f6efe2" font-family="Archivo Black,Arial Black,sans-serif" font-size="28">3.95%</text>
     <text x="50" y="330" fill="#a59b8b" font-family="JetBrains Mono,monospace" font-size="20" font-weight="600" text-anchor="middle" dy="26">0%</text>
     <text x="550" y="330" fill="#a59b8b" font-family="JetBrains Mono,monospace" font-size="20" font-weight="600" text-anchor="middle" dy="26">6%</text>
+    <g class="tip">
     <circle cx="534" cy="212" r="33" fill="#ffd23f" stroke="#14110d" stroke-width="8"/>
     <path d="M534 228 V197 M521 208 L534 195 L547 208" stroke="#14110d" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
   </svg>
   <div class="gv"><small>The 10-year now pays</small><b>5.31<sup>%</sup></b></div>
 </div>
@@ -97,13 +121,13 @@ h1 span{color:var(--o)}
       <span class="lbl">3-month Treasury bills</span>
       <span class="rate">4.22%</span>
       <span class="earn">On $100,000: <b>$4,220</b>/yr</span>
-      <i class="fill" style="width:79.5%"></i>
+      <i class="fill" style="--fill-to:79.5%"></i>
     </div>
     <div class="bar hot">
       <span class="lbl">10-year Treasury</span>
       <span class="rate">5.31%</span>
       <span class="earn">On $100,000: <b>$5,310</b>/yr</span>
-      <i class="fill"></i>
+      <i class="fill" style="--fill-to:100%"></i>
     </div>
   </div>
   <div class="take"><b>+$1,090</b><span>more a year on $100,000 by locking the 10-year Treasury instead of rolling 3-month Treasury bills.</span></div>
