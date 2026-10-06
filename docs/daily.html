@@ -8,56 +8,119 @@
 <meta property="og:type" content="article"><meta property="og:url" content="https://money.ilyusha.xyz/daily"><meta name="twitter:card" content="summary">
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><script src="analytics.js" defer></script>
 <style>
-:root{--paper:#f3efe4;--ink:#1f241c;--muted:#65675e;--line:#d9d3c4;--orange:#c2411c;--green:#2c6b45;--red:#a8331b;--mono:'SFMono-Regular',ui-monospace,Menlo,Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--serif:Georgia,'Times New Roman',serif}
+:root{--paper:#f3efe4;--ink:#1f241c;--muted:#65675e;--line:#d9d3c4;--orange:#c2411c;--green:#2c6b45;--red:#a8331b;--soft:#fffdf8;--mono:'SFMono-Regular',ui-monospace,Menlo,Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--serif:Georgia,'Times New Roman',serif}
 *{box-sizing:border-box}html,body{margin:0}body{background:#e6e0d1;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.sheet{container-type:inline-size;width:100%;max-width:1080px;min-height:100vh;margin:0 auto;background:linear-gradient(#f8f4eb,var(--paper) 40%);display:flex;flex-direction:column}
+.sheet{container-type:inline-size;width:100%;max-width:1080px;min-height:100vh;margin:0 auto;background:linear-gradient(#f8f4eb,var(--paper) 38%);display:flex;flex-direction:column}
 @media(min-width:700px){.sheet{min-height:0;aspect-ratio:9/16;max-width:min(1080px,96vh*0.5625)}body{padding:2vh 0}}
-.in{padding:4.8cqw 6.4cqw 3.4cqw;display:flex;flex-direction:column;flex:1}
-.top{display:flex;justify-content:space-between;align-items:center;font:2.2cqw/1 var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
-.brand{display:flex;align-items:center;gap:1.6cqw;font:500 4.2cqw/1 var(--serif);letter-spacing:-.04em;color:var(--ink);text-transform:none}
-.mark{display:grid;place-items:center;width:5.4cqw;height:5.4cqw;border-radius:1.4cqw;background:#1c1915;color:#f4efe6;font:500 3.2cqw/1 var(--serif)}
+.in{padding:4.2cqw 5.8cqw 3.2cqw;display:flex;flex-direction:column;flex:1;gap:0}
+.top{display:flex;justify-content:space-between;align-items:center;font:2cqw/1 var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.brand{display:flex;align-items:center;gap:1.4cqw;font:500 3.8cqw/1 var(--serif);letter-spacing:-.04em;color:var(--ink);text-transform:none}
+.mark{display:grid;place-items:center;width:5cqw;height:5cqw;border-radius:1.3cqw;background:#1c1915;color:#f4efe6;font:500 3cqw/1 var(--serif)}
 .date{color:var(--orange)}
-.rule{height:1px;background:var(--ink);margin:3cqw 0 0}
-.kicker{font:2.2cqw/1.4 var(--mono);letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin:3.6cqw 0 1.8cqw;display:flex;align-items:center;gap:1.6cqw}
-.kicker i{width:1.6cqw;height:1.6cqw;border-radius:50%;background:var(--orange);display:inline-block}
-h1{font:400 8.6cqw/.98 var(--serif);letter-spacing:-.045em;margin:0}
-h1 em{color:var(--orange);font-style:italic}
-.dek{font-size:3cqw;line-height:1.4;color:#3c4036;margin:2.8cqw 0 0;max-width:88%}
-.big{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:3.6cqw;border-block:1px solid var(--line)}
-.big div{padding:2.4cqw 0}.big div+div{border-left:1px solid var(--line);padding-left:4cqw}
-.big b{display:block;font:400 7cqw/1 var(--serif);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-.big b.g{color:var(--green)}
-.big span{display:block;font:2.1cqw/1.45 var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:1.4cqw}
-.items{list-style:none;margin:0;padding:0;counter-reset:n}
-.item{display:grid;grid-template-columns:7.4cqw 1fr;padding:2.2cqw 0;border-bottom:1px solid var(--line)}
-.item:last-child{border-bottom:0}
-.n{font:2.4cqw/1.6 var(--mono);color:var(--orange)}
-.tag{font:2cqw/1 var(--mono);letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin:0 0 1.1cqw}
-.item h2{font:400 4.1cqw/1.1 var(--serif);letter-spacing:-.025em;margin:0}
-.item h2 em{color:var(--orange);font-style:normal}
-.item p{font-size:2.5cqw;line-height:1.38;color:#3c4036;margin:1.1cqw 0 0}
-.scale{display:flex;gap:1.4cqw;flex-wrap:wrap;margin-top:1.3cqw}
-.scale span{font:2.3cqw/1 var(--sans);padding:1.1cqw 1.7cqw;border-radius:99px;background:#fffdf8;border:1px solid var(--line);font-variant-numeric:tabular-nums}
-.scale span b{font-weight:650}.scale .up b{color:var(--green)}.scale .dn b{color:var(--red)}
-.catch{font-size:2.2cqw!important;color:var(--muted)!important}
-.foot{margin-top:auto;padding-top:2.4cqw;border-top:1px solid var(--ink);display:flex;justify-content:space-between;gap:3cqw;align-items:end}
-.src{font:1.85cqw/1.5 var(--mono);color:var(--muted);max-width:68%}
+.rule{height:1px;background:var(--ink);margin:2.6cqw 0 0}
+.hero{margin-top:3.2cqw;display:grid;grid-template-columns:1.05fr .95fr;gap:3cqw;align-items:end}
+.kicker{font:1.9cqw/1 var(--mono);letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin:0 0 1.6cqw;display:flex;align-items:center;gap:1.2cqw}
+.kicker i{width:1.4cqw;height:1.4cqw;border-radius:50%;background:var(--orange);display:inline-block}
+.hero h1{font:400 5.6cqw/.98 var(--serif);letter-spacing:-.04em;margin:0}
+.hero h1 em{color:var(--orange);font-style:italic}
+.big-rate{text-align:right}
+.big-rate b{display:block;font:500 14cqw/.85 var(--serif);letter-spacing:-.06em;color:var(--orange);font-variant-numeric:tabular-nums}
+.big-rate span{display:block;font:1.9cqw/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:1.4cqw}
+.pay{margin-top:3.2cqw;display:grid;grid-template-columns:1fr 1fr;gap:2cqw}
+.pay .box{background:var(--soft);border:1px solid var(--line);border-radius:2.2cqw;padding:2.4cqw 2.6cqw}
+.pay .lbl{font:1.75cqw/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pay .amt{font:500 7.2cqw/1 var(--serif);letter-spacing:-.045em;margin-top:1.2cqw;font-variant-numeric:tabular-nums}
+.pay .amt.g{color:var(--green)}
+.pay .sub{font:2cqw/1.35 var(--mono);color:var(--muted);margin-top:1cqw;text-transform:uppercase;letter-spacing:.06em}
+.barwrap{margin-top:1.6cqw}
+.bar{height:1.6cqw;background:#e8e2d4;border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--green);border-radius:99px}
+.bar.r i{background:var(--red)}
+.bar.o i{background:var(--orange)}
+.sec{margin-top:2.8cqw;padding-top:2.4cqw;border-top:1px solid var(--line)}
+.sec-h{display:flex;justify-content:space-between;align-items:baseline;gap:2cqw;margin-bottom:1.8cqw}
+.sec-h .n{font:2cqw/1 var(--mono);color:var(--orange);letter-spacing:.08em}
+.sec-h h2{font:400 3.4cqw/1.1 var(--serif);letter-spacing:-.025em;margin:0;flex:1}
+.sec-h h2 em{color:var(--orange);font-style:normal}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.6cqw}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:1.8cqw;padding:1.8cqw 1.8cqw 1.6cqw}
+.metric .t{font:1.65cqw/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.metric .v{font:500 4.4cqw/1 var(--serif);letter-spacing:-.03em;margin-top:1cqw;font-variant-numeric:tabular-nums}
+.metric .v.g{color:var(--green)}.metric .v.dn{color:var(--red)}.metric .v.o{color:var(--orange)}
+.metric .d{font:1.7cqw/1.3 var(--mono);color:var(--muted);margin-top:.8cqw}
+.compare{display:grid;grid-template-columns:1fr auto 1fr;gap:1.6cqw;align-items:center;margin-top:.4cqw}
+.vs{font:2.4cqw/1 var(--mono);color:var(--muted);letter-spacing:.08em}
+.arrow{display:flex;flex-direction:column;align-items:center;gap:.6cqw;font:1.7cqw/1 var(--mono);color:var(--green);letter-spacing:.06em;text-transform:uppercase}
+.arrow b{font:500 3.2cqw/1 var(--serif);color:var(--green);letter-spacing:-.02em;text-transform:none}
+.arrow.bad{color:var(--red)}.arrow.bad b{color:var(--red)}
+.pills{display:flex;gap:1.2cqw;flex-wrap:wrap;margin-top:1.6cqw}
+.pills span{font:2cqw/1 var(--sans);padding:1.1cqw 1.6cqw;border-radius:99px;background:var(--soft);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.pills span b{font-weight:650}.pills .up b{color:var(--green)}.pills .dn b{color:var(--red)}
+.foot{margin-top:auto;padding-top:2.2cqw;border-top:1px solid var(--ink);display:flex;justify-content:space-between;gap:3cqw;align-items:end}
+.src{font:1.7cqw/1.45 var(--mono);color:var(--muted);max-width:72%}
 .src a{text-decoration:underline;text-underline-offset:.3em}
-.url{font:500 3.1cqw/1 var(--serif);letter-spacing:-.02em;white-space:nowrap}
-.url small{display:block;font:1.85cqw/1.4 var(--mono);color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:1cqw;text-align:right}
+.cta{font:500 2.8cqw/1 var(--serif);letter-spacing:-.02em;text-align:right;white-space:nowrap}
+.cta small{display:block;font:1.7cqw/1.3 var(--mono);color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:.9cqw}
 </style></head>
 <body><main class="sheet" id="brief"><div class="in">
 <div class="top"><a class="brand" href="index.html"><span class="mark">m</span>money</a><span>Daily brief · <time class="date" datetime="2026-10-05">Mon, Oct 5, 2026</time></span></div>
 <div class="rule"></div>
-<p class="kicker"><i></i>Bonds · lead story</p>
-<h1>The 10-year hit <em>5.31%.</em><br>Highest since 2002.</h1>
-<p class="dek">Closed Oct 5, up 1.36 points from its 52-week low, while stocks sit near a record anyway.</p>
-<div class="big"><div><b class="g">$53,100</b><span>a year on $1,000,000<br>locked for 10 years</span></div><div><b>$13,275</b><span>a year on $250,000<br>at the same 5.31%</span></div></div>
-<ol class="items">
-<li class="item"><span class="n">01</span><div><p class="tag">Rates · the lock-in math</p><h2>Lock 5.31% vs 4.22% bills: <em>+$10,900/yr</em> on $1M.</h2><p>The 3-month bill is 4.22%, the 30-year 5.66%, Fed funds 3.88%. Rolling bills keeps you liquid but exposed to rate cuts.</p><div class="scale"><span class="up">$250k <b>+$2,725/yr</b></span><span class="up">$1M <b>+$10,900/yr</b></span></div><p class="catch">Catch: the note’s price falls if yields keep rising (−8/32 Monday); 5.31% is locked only if held to maturity.</p></div></li>
-<li class="item"><span class="n">02</span><div><p class="tag">Housing · borrowing cost</p><h2>30-year mortgage: <em>7.28%</em>, a 3-year high.</h2><p>Freddie Mac, Oct 1: highest since Nov 2023, vs 6.34% a year ago. Monthly P&amp;I, and extra cost per year:</p><div class="scale"><span class="dn">$250k <b>$1,711/mo</b> · +$1,879/yr</span><span class="dn">$1M <b>$6,842/mo</b> · +$7,516/yr</span></div></div></li>
-<li class="item"><span class="n">03</span><div><p class="tag">Stocks · shrugging it off</p><h2>S&amp;P 500 <em>7,773.95</em>, +0.66%, near its record.</h2><p>0.32% below the Aug 13 high, up 13.6% in 2026 on price; the Nasdaq set a record. At 5.31%, bonds now compete for that dollar.</p><div class="scale"><span class="up">$250k Jan 1 → <b>$283,907</b></span><span class="up">$1M Jan 1 → <b>$1,135,629</b></span></div></div></li>
-</ol>
-<div class="foot"><p class="src">Sources: <a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&amp;field_tdr_date_value=2026">U.S. Treasury</a> · <a href="https://www.morningstar.com/news/dow-jones/202610056521/10-year-treasury-yield-rises-to-5310-data-talk">Dow Jones/Tradeweb</a> · <a href="https://fred.stlouisfed.org/series/MORTGAGE30US">Freddie Mac</a>, <a href="https://fred.stlouisfed.org/series/SP500">S&amp;P 500</a>, <a href="https://fred.stlouisfed.org/series/DFF">DFF</a> via FRED. Not advice.</p><a class="url" href="insights.html">money.ilyusha.xyz<small>More on Insights →</small></a></div>
+
+<div class="hero">
+  <div>
+    <p class="kicker"><i></i>Bonds · lead</p>
+    <h1>10-year Treasury<br>hits a <em>24-year high.</em></h1>
+  </div>
+  <div class="big-rate"><b>5.31%</b><span>closed Oct 5 · +1.36 pts vs 52w low</span></div>
+</div>
+
+<div class="pay">
+  <div class="box">
+    <div class="lbl">$1,000,000 locked 10y</div>
+    <div class="amt g">$53,100</div>
+    <div class="sub">a year · coupon income</div>
+    <div class="barwrap"><div class="bar"><i style="width:100%"></i></div></div>
+  </div>
+  <div class="box">
+    <div class="lbl">$250,000 at same yield</div>
+    <div class="amt">$13,275</div>
+    <div class="sub">a year · same 5.31%</div>
+    <div class="barwrap"><div class="bar"><i style="width:25%"></i></div></div>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="sec-h"><span class="n">01</span><h2>Lock the note vs roll 3-month bills</h2></div>
+  <div class="compare">
+    <div class="metric"><div class="t">10-year</div><div class="v o">5.31%</div><div class="d">locked to maturity</div></div>
+    <div class="arrow"><b>+$10.9k</b>per year on $1M</div>
+    <div class="metric"><div class="t">3-month bill</div><div class="v">4.22%</div><div class="d">Fed funds 3.88%</div></div>
+  </div>
+  <div class="pills"><span class="up">$250k <b>+$2,725/yr</b></span><span class="up">$1M <b>+$10,900/yr</b></span><span>30y <b>5.66%</b></span></div>
+</section>
+
+<section class="sec">
+  <div class="sec-h"><span class="n">02</span><h2>30-year mortgage at a <em>3-year high</em></h2></div>
+  <div class="row">
+    <div class="metric"><div class="t">Rate</div><div class="v dn">7.28%</div><div class="d">vs 6.34% a year ago</div><div class="barwrap"><div class="bar r"><i style="width:92%"></i></div></div></div>
+    <div class="metric"><div class="t">$250k P&amp;I</div><div class="v">$1,711</div><div class="d">/mo · <span style="color:var(--red)">+$1,879/yr</span></div></div>
+    <div class="metric"><div class="t">$1M P&amp;I</div><div class="v">$6,842</div><div class="d">/mo · <span style="color:var(--red)">+$7,516/yr</span></div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-h"><span class="n">03</span><h2>S&amp;P 500 still near its record</h2></div>
+  <div class="compare">
+    <div class="metric"><div class="t">Close</div><div class="v g">7,773.95</div><div class="d">+0.66% today</div></div>
+    <div class="arrow"><b>+13.6%</b>YTD price</div>
+    <div class="metric"><div class="t">$1M since Jan 1</div><div class="v g">$1.14M</div><div class="d">$250k → $283.9k</div></div>
+  </div>
+  <div class="barwrap" style="margin-top:1.8cqw"><div class="bar o"><i style="width:86%"></i></div></div>
+</section>
+
+<div class="foot">
+  <p class="src">Sources: <a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&amp;field_tdr_date_value=2026">U.S. Treasury</a> · Dow Jones/Tradeweb · Freddie Mac · S&amp;P 500 · DFF via FRED. Not advice.</p>
+  <a class="cta" href="insights.html">Insights<small>More numbers →</small></a>
+</div>
 </div></main></body></html>
