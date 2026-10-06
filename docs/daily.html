@@ -7,36 +7,35 @@
 <meta property="og:description" content="3-month Treasury bills in the same account pay 4.15%, or $4,150 a year on $100,000. Moving it is worth $4,140 a year.">
 <meta property="og:type" content="article"><meta property="og:url" content="https://money.ilyusha.xyz/daily">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml"><script src="analytics.js" defer></script>
+<link rel="icon" href="favicon.svg?v=8888aa712f" type="image/svg+xml"><link rel="stylesheet" href="styles.css?v=a780873538"><script src="analytics.js?v=f5cca14b91" defer></script>
 <style>
-*{box-sizing:border-box}html,body{margin:0}
-body{background:#050403;color:#fff6e8;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
-.sheet{position:relative;overflow:hidden;width:min(100vw,1600px);aspect-ratio:16/9;margin:0 auto;background:#0a0806}
-@media(min-aspect-ratio:17/9){.sheet{width:min(1600px,96vh*1.7778)}body{padding:2vh 0}}
+.daily-stage{margin:0 0 36px}
+.sheet{position:relative;overflow:hidden;width:100%;max-width:1200px;aspect-ratio:16/9;margin:0 auto;background:#0a0806;border-radius:16px;border:1px solid var(--line);box-shadow:0 8px 24px #1f241c0c}
 .sheet>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.disp{font-family:'Archivo Black','Arial Black',Impact,sans-serif}
-.mono{font-family:'JetBrains Mono','SFMono-Regular',ui-monospace,Menlo,Consolas,monospace;font-weight:700}
-.sans{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
+.sheet .disp{font-family:'Archivo Black','Arial Black',Impact,sans-serif}
+.sheet .mono{font-family:'JetBrains Mono','SFMono-Regular',ui-monospace,Menlo,Consolas,monospace;font-weight:700}
+.sheet .sans{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
 /* every motion shares one 4s beat, so the card loops forever with no seam */
-svg *{transform-box:fill-box;transform-origin:center}
-.glowA{animation:driftA 4s ease-in-out infinite}
-.glowB{animation:driftB 4s ease-in-out infinite}
-.shard{animation:shard 4s ease-in-out infinite}
-.orbit1{animation:dash1 4s linear infinite}
-.orbit2{animation:dash2 4s linear infinite}
-.sun{animation:breathe 4s ease-in-out infinite}
-.ripple{animation:ripple 4s cubic-bezier(.2,.6,.3,1) infinite;opacity:0}
-.ripple.r2{animation-delay:-1.333s}.ripple.r3{animation-delay:-2.667s}
-.sonar{animation:sonar 2s ease-out infinite;opacity:0}
-.sonar.s2{animation-delay:-1s}
-.speck{animation:speck 2s ease-in-out infinite}
-.flow{animation:flow 2s linear infinite;opacity:0}
-.flow.f2{animation-delay:-.4s}.flow.f3{animation-delay:-.8s}.flow.f4{animation-delay:-1.2s}.flow.f5{animation-delay:-1.6s}
-.shine{animation:shine 4s cubic-bezier(.5,0,.3,1) infinite}
-.hero{animation:heroGlow 4s ease-in-out infinite}
-.pill{animation:pill 4s ease-in-out infinite}
-.bad{animation:bad 2s ease-in-out infinite}
+.sheet svg *{transform-box:fill-box;transform-origin:center}
+.sheet .glowA{animation:driftA 4s ease-in-out infinite}
+.sheet .glowB{animation:driftB 4s ease-in-out infinite}
+.sheet .shard{animation:shard 4s ease-in-out infinite}
+.sheet .orbit1{animation:dash1 4s linear infinite}
+.sheet .orbit2{animation:dash2 4s linear infinite}
+.sheet .sun{animation:breathe 4s ease-in-out infinite}
+.sheet .ripple{animation:ripple 4s cubic-bezier(.2,.6,.3,1) infinite;opacity:0}
+.sheet .ripple.r2{animation-delay:-1.333s}.sheet .ripple.r3{animation-delay:-2.667s}
+.sheet .sonar{animation:sonar 2s ease-out infinite;opacity:0}
+.sheet .sonar.s2{animation-delay:-1s}
+.sheet .speck{animation:speck 2s ease-in-out infinite}
+.sheet .flow{animation:flow 2s linear infinite;opacity:0}
+.sheet .flow.f2{animation-delay:-.4s}.sheet .flow.f3{animation-delay:-.8s}.sheet .flow.f4{animation-delay:-1.2s}.sheet .flow.f5{animation-delay:-1.6s}
+.sheet .shine{animation:shine 4s cubic-bezier(.5,0,.3,1) infinite}
+/* Scope .hero under .sheet so site hero layout styles do not hit the SVG number */
+.sheet g.hero,.sheet .hero{display:unset;justify-content:unset;align-items:unset;gap:unset;padding:0;animation:heroGlow 4s ease-in-out infinite}
+.sheet .pill{animation:pill 4s ease-in-out infinite}
+.sheet .bad{animation:bad 2s ease-in-out infinite}
 @keyframes driftA{0%,100%{transform:translate(0,0) scale(1);opacity:.8}50%{transform:translate(60px,30px) scale(1.12);opacity:1}}
 @keyframes driftB{0%,100%{transform:translate(0,0) scale(1);opacity:.6}50%{transform:translate(-40px,-30px) scale(1.15);opacity:.95}}
 @keyframes shard{0%,100%{opacity:.5;transform:rotate(0deg)}50%{opacity:.85;transform:rotate(2deg)}}
@@ -51,9 +50,14 @@ svg *{transform-box:fill-box;transform-origin:center}
 @keyframes heroGlow{0%,100%{filter:drop-shadow(0 0 10px rgba(255,77,0,.35))}50%{filter:drop-shadow(0 0 34px rgba(255,140,40,.8))}}
 @keyframes pill{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 @keyframes bad{0%,100%{opacity:1}50%{opacity:.72}}
-@media (prefers-reduced-motion:reduce){svg *{animation:none!important}.ripple,.sonar,.flow{opacity:0}}
+@media (prefers-reduced-motion:reduce){.sheet svg *{animation:none!important}.sheet .ripple,.sheet .sonar,.sheet .flow{opacity:0}}
+@media (max-width:760px){.sheet{border-radius:12px}}
 </style></head>
-<body><main class="sheet" id="brief">
+<body><a class="skip-link" href="#brief">Skip to today's brief</a><header><a class="brand" href="index.html"><img class="brand-mark" src="favicon.svg?v=8888aa712f" alt="">money<span class="brand-by">/ by ilyusha</span></a><nav aria-label="Main navigation"><a class="nav-switch" href="index.html">Savings</a><a class="nav-switch" href="cards.html">Cards</a><a class="nav-switch" href="economy.html">Economy</a><a class="nav-switch" href="crypto.html">Crypto</a><a class="nav-switch" href="insights.html">Insights</a><a class="nav-switch" href="daily.html" aria-current="page">Daily</a></nav><a class="personal" href="https://ilyusha.xyz">ilyusha.xyz ↗</a></header>
+<main id="top"><section class="hero"><div><p class="eyebrow"><span class="dot"></span> DAILY / OCT 6</p><h1>Schwab idle cash earns <em>0.01%.</em> 3-month Treasury bills pay 4.15%.</h1><p class="intro">Uninvested cash in a Schwab brokerage account pays almost nothing. The same account can buy 3-month Treasury bills at 4.15%. On $100,000, that gap is $4,140 a year.</p></div><aside class="snapshot"><div class="snapshot-count">$4,140<span>a year<br>left idle</span></div><div class="snapshot-date">Checked <time datetime="2026-10-06">Oct 6, 2026</time></div><p>Framed on $100,000 · Circles drawn to scale</p></aside></section>
+
+<section class="daily-stage" aria-label="Today's visual card">
+<div class="sheet" id="card">
 <p class="sr">Uninvested cash in a Schwab brokerage account earns 0.01%, or $10 a year on $100,000. 3-month Treasury bills, bought in the same account, pay 4.15%, or $4,150 a year. Moving it is worth $4,140 a year.</p>
 <svg viewBox="0 0 1600 900" role="img" aria-label="On $100,000, uninvested cash at Schwab earns $10 a year at 0.01%. 3-month Treasury bills pay $4,150 a year at 4.15%. Circles are drawn to scale.">
   <defs>
@@ -119,4 +123,20 @@ svg *{transform-box:fill-box;transform-origin:center}
     <text x="356" y="744" text-anchor="middle" class="sans" font-size="31" font-weight="800" fill="#06140c">Same account. One trade.</text>
   </g>
 </svg>
-</main></body></html>
+</div>
+</section>
+
+<section id="brief" class="rate-group econ-section"><div class="group-heading"><div><span class="eyebrow">01 / THE TAKEAWAY</span><h2>Idle cash vs 3-month Treasury bills<span>.</span></h2></div><p>Worked out on $100,000</p></div>
+<ol class="insight-list">
+<li class="insight"><span class="insight-rank">01</span><div>
+<p class="insight-tag">Cash</p>
+<h3>On $100,000, the gap is <em>$4,140 a year</em>.</h3>
+<p>Uninvested cash sitting in a Schwab brokerage account earns 0.01%. That is $10 a year on $100,000. 3-month Treasury bills, bought in the same account, pay 4.15% coupon-equivalent — $4,150 a year on the same $100,000. The difference is $4,140 left on the table for doing nothing.</p>
+<p class="example">Schwab idle cash 0.01% → $10/yr on $100,000<br>3-month Treasury bills 4.15% → $4,150/yr on $100,000<br>Gap → $4,140/yr · Circles on the card are drawn to scale ($4,150 vs $10)</p>
+<p>You do not need a new bank. Schwab already lets you buy Treasury bills in the brokerage. Compare that idle cash rate with the plain savings rates on <a href="index.html">Savings</a>, and the T-bill tax notes on <a href="insights.html">Insights</a>.</p>
+<p class="catch"><b>The catch:</b> A Treasury bill locks cash until maturity (about 13 weeks for the 3-month bill). Selling early gets the market price, which can be less than you paid. Bill yields are coupon-equivalent snapshots, not a bank APY, and they change daily. Federal tax still applies; state tax treatment of Treasury interest is usually better than savings interest, but confirm for your state. Schwab’s cash rate and settlement cash rules can change — check the live cash page before you move money.</p>
+<p class="src">Source: <a href="https://www.schwab.com/cash-investments" target="_blank" rel="noopener">Schwab cash investments page ↗</a> (accurate as of Oct 6, 2026) · <a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_bill_rates&amp;field_tdr_date_value=2026" target="_blank" rel="noopener">U.S. Treasury Daily Treasury Bill Rates ↗</a> (13-week coupon-equivalent 4.15% for Oct 5, 2026)</p>
+</div></li>
+</ol></section>
+<p class="econ-note crypto-plain">General information, not financial, tax, or investment advice. Numbers were checked on Oct 6, 2026; rates change, so confirm with the source before you move money.</p>
+</main><footer><span>Money / An independent tracker by <a href="https://ilyusha.xyz">Ilyusha ↗</a></span><a href="index.html">Back to savings</a></footer></body></html>
