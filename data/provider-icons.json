@@ -76,5 +76,10 @@
     "path": "icons/elevault.png",
     "source": "https://framerusercontent.com/images/wFuMJgb5ayd7UMpxcrhtRe6nx4.png",
     "note": "Apple touch icon linked from https://www.elevault.app/."
+  },
+  "everbank": {
+    "path": "icons/everbank.png",
+    "source": "https://www.everbank.com/apple-touch-icon.png",
+    "note": "Apple touch icon linked from https://www.everbank.com/."
   }
 }

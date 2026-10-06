@@ -125,9 +125,9 @@ def build():
         head=f'Parking ${money(amounts[-1])[1:]} at the national-average savings rate gives up <em>{money(top_lose)} a year</em>.',
         body=f'The FDIC puts the national average savings rate at {pct(fn["savings"])} (as of {nice(fn["asOf"])}). '
              f'{e(fit["name"])} pays {pct(fit["base"])} with no subscription or promo, but interest only on balances up to {money(elev_caps["interestMax"])}, '
-             f'and deposits are capped at {money(elev_caps["dailyDeposit"])} a day. Above that earn cap, the next plain no-strings rate on this site is {e(overflow["name"])} at {pct(overflow["base"])}.',
+             f'and funding from a linked bank account is capped at {money(elev_caps["dailyDeposit"])} a day (Elevault says its VaultKeys account and routing numbers can move more, with your other bank setting the limit). Above that earn cap, the next plain no-strings rate on this site is {e(overflow["name"])} at {pct(overflow["base"])}.',
         ex=tier_line(amounts, labels, lambda a: lose[a])
-           + f'<br>{e(fit["name"])} funding: {money(250_000)} takes {days_250} days at {money(elev_caps["dailyDeposit"])}/day · {money(elev_caps["interestMax"])} takes {days_500} days'
+           + f'<br>{e(fit["name"])} linked-account funding: {money(250_000)} takes {days_250} days at {money(elev_caps["dailyDeposit"])}/day · {money(elev_caps["interestMax"])} takes {days_500} days'
            + f'<br>On {money(amounts[-1])}: first {money(elev_caps["interestMax"])} at {pct(fit["base"])}, rest at {e(overflow["name"])} {pct(overflow["base"])} → {money(stacked_vs_national(amounts[-1]))}/yr vs {money(national_earn(amounts[-1]))} at the average',
         catch=f'Savings rates are variable. {e(fit["name"])} balances above {money(elev_caps["interestMax"])} earn no interest on the excess. The FDIC figure is an average of all banks, so a given big bank may pay more or less. Check each bank’s own deposit and balance limits before moving a large sum.',
         src=[(fn['source'], fn['url']), (f'{fit["name"]} rate page', rsrc(fit)), (f'{overflow["name"]} rate page', rsrc(overflow))]))

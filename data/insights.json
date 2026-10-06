@@ -1,20 +1,20 @@
 {
- "checkedAt": "2026-10-05",
+ "checkedAt": "2026-10-06",
  "inputs": {
   "tbill": {
-   "date": "2026-10-02",
+   "date": "2026-10-05",
    "y4": 3.95,
-   "y13": 4.11,
-   "y26": 4.29,
+   "y13": 4.15,
+   "y26": 4.31,
    "source": "U.S. Treasury Daily Treasury Bill Rates (coupon-equivalent)",
    "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_bill_rates&field_tdr_date_value=2026",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "tbillTax": {
    "text": "Federal tax due on interest earned. No state or local taxes.",
    "source": "TreasuryDirect, Treasury Bills",
    "url": "https://www.treasurydirect.gov/marketable-securities/treasury-bills/",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "caBracket": {
    "rate": 9.3,
@@ -24,14 +24,14 @@
    "year": 2025,
    "source": "California FTB, 2025 Tax Rate Schedules (Schedule X)",
    "url": "https://www.ftb.ca.gov/forms/2025/2025-540-tax-rate-schedules.pdf",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "fdicNational": {
    "savings": 0.37,
    "asOf": "2026-09-21",
    "source": "FDIC National Rates and Rate Caps",
    "url": "https://www.fdic.gov/national-rates-and-rate-caps",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "fed": {
    "dff": 3.88,
@@ -49,7 +49,7 @@
    "limit": 10000,
    "source": "TreasuryDirect, I bonds",
    "url": "https://www.treasurydirect.gov/savings-bonds/i-bonds/",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "discover": {
    "rate": 5,
@@ -59,14 +59,14 @@
    "categories": "restaurants, entertainment, and utilities",
    "source": "Discover cashback calendar (via docs/cards.html)",
    "url": "https://www.discover.com/credit-cards/cash-back/cashback-calendar.html",
-   "checked": "2026-10-04"
+   "checked": "2026-10-06"
   },
   "flat2": {
    "name": "Citi Double Cash",
    "rate": 2,
    "source": "docs/cards.html data-everyday",
    "url": "https://money.ilyusha.xyz/cards.html",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "fdicCategories": {
    "single": 250000,
@@ -74,7 +74,7 @@
    "trustMax": 1250000,
    "source": "FDIC, Deposit Insurance At A Glance",
    "url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "tiers": {
    "amounts": [
@@ -88,22 +88,22 @@
     "$1,000,000"
    ],
    "note": "Example balances for dollar impact. Not account minimums.",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "elevaultCaps": {
    "interestMax": 500000,
    "dailyDeposit": 2500,
-   "text": "No minimum deposit or fees. Interest is paid daily on balances up to $500,000; deposits are capped at $2,500 a day.",
+   "text": "No minimum deposit or fees. Interest is paid daily on balances up to $500,000; funding from a linked account is capped at $2,500 a day, though VaultKeys (Elevault account and routing numbers) can move more.",
    "source": "Official rate & footnotes",
    "url": "https://www.elevault.app/",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "ncua": {
    "single": 250000,
    "text": "Standard share insurance is $250,000 per member-owner, per federally insured credit union, per ownership category.",
    "source": "NCUA, Share Insurance Coverage",
    "url": "https://ncua.gov/consumers/share-insurance-coverage",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "brk": {
    "ticker": "BRK.B",
@@ -118,19 +118,19 @@
    "source": "Berkshire Hathaway Form 10-Q for quarter ended June 30, 2026",
    "url": "https://www.berkshirehathaway.com/qtrly/2ndqtr26.pdf",
    "secUrl": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526341032/brka-20260630.htm",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "schd": {
    "ticker": "SCHD",
    "name": "Schwab U.S. Dividend Equity ETF",
    "secYield": 3.37,
-   "secYieldAsOf": "2026-10-01",
+   "secYieldAsOf": "2026-10-02",
    "expense": 0.06,
-   "nav": 32.7,
-   "navAsOf": "2026-10-02",
+   "nav": 32.71,
+   "navAsOf": "2026-10-05",
    "source": "Schwab Asset Management, SCHD fund page",
    "url": "https://www.schwabassetmanagement.com/products/schd",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "aapl": {
    "ticker": "AAPL",
@@ -146,7 +146,7 @@
    "source": "Apple Q3 FY2026 consolidated financial statements and results press release",
    "url": "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf",
    "prUrl": "https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   },
   "spendTiers": {
    "amounts": [
@@ -160,7 +160,7 @@
     "$1,000,000"
    ],
    "note": "Example annual card spend for cash-back math.",
-   "checked": "2026-10-05"
+   "checked": "2026-10-06"
   }
  },
  "dropped": [
