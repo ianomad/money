@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-06",
-  "changeNote": "Oct 6: Aave's USDC deposit APY (Ethereum Core / Main market) moved from 4.23% to 4.12%. New: EverBank Performance Savings at 4.20% for new accounts on all balances, with no minimum or monthly fee. No other rate moved.",
+  "checkedAt": "2026-10-07",
+  "changeNote": "Oct 7: Aave's USDC deposit APY (Ethereum Core / Main market) moved from 4.12% to 4.18%. New: Happen Bank LevelUp Savings at 4.20% with $250+ in monthly deposits (3.00% otherwise), and Openbank High Yield Savings at 4.15% for six months for new customers (3.80% standard). No other rate moved.",
   "providers": [
     {
       "id": "x-money",
@@ -289,13 +289,13 @@
       "kind": "DeFi lending · Aave V4",
       "symbol": "A",
       "color": "#7365b7",
-      "base": 4.12,
+      "base": 4.18,
       "boost": null,
       "baseLabel": "Market snapshot",
       "rateLabel": "Variable deposit APY",
-      "observedAt": "2026-10-06 14:18 UTC",
+      "observedAt": "2026-10-07 14:22 UTC",
       "requirements": "Supply USDC to the Ethereum Core / Main market. Requires a compatible wallet and ETH for network fees.",
-      "details": "Deposit APY reported by Aave’s public API (the data behind Aave Pro) at 2026-10-06 14:18 UTC. This is one USDC market, not a protocol-wide rate. Rates change with market utilisation and governance parameters; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity and, if borrowing, collateral requirements.",
+      "details": "Deposit APY reported by Aave’s public API (the data behind Aave Pro) at 2026-10-07 14:22 UTC. This is one USDC market, not a protocol-wide rate. Rates change with market utilisation and governance parameters; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity and, if borrowing, collateral requirements.",
       "protection": "No FDIC deposit insurance. Smart-contract, oracle, liquidity, and stablecoin depegging risks apply. Borrowing against supplied assets also introduces liquidation risk.",
       "effective": null,
       "fdic": {
@@ -612,6 +612,62 @@
         }
       ],
       "baseLabel": "New accounts"
+    },
+    {
+      "id": "happen",
+      "name": "Happen Bank",
+      "product": "LevelUp High-Yield Savings",
+      "category": "cash",
+      "kind": "Bank · Happen Bank, N.A.",
+      "symbol": "H",
+      "color": "#38665a",
+      "base": 3.0,
+      "boost": 4.2,
+      "baseLabel": "Standard rate",
+      "rateLabel": "LevelUp · $250+/month deposits",
+      "requirements": "Deposit at least $250 per statement cycle to earn 4.20% on the full balance; otherwise 3.00%. $0 to open, no minimum balance, no account fees.",
+      "details": "Variable APYs accurate as of October 6, 2026. The rate is evaluated each statement cycle based on deposits in the previous cycle; interest payments, bonuses, credits, and refunds do not count as deposits. New accounts earn the LevelUp Rate until the first evaluation, which is the third statement cycle after opening. Multiple deposits can add up to the $250. Fees may reduce earnings.",
+      "protection": "FDIC-insured deposits at Happen Bank, N.A.. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
+      "effective": "2026-10-06",
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Happen Bank, N.A.; standard coverage and same-bank aggregation limits apply."
+      },
+      "sources": [
+        {
+          "label": "Official rates & account terms",
+          "url": "https://www.happen.com/personal-banking/savings/high-yield-savings"
+        }
+      ]
+    },
+    {
+      "id": "openbank",
+      "name": "Openbank",
+      "product": "High Yield Savings",
+      "category": "cash",
+      "kind": "Bank · Santander Bank, N.A.",
+      "symbol": "O",
+      "color": "#38665a",
+      "base": 3.8,
+      "boost": 4.15,
+      "baseLabel": "Standard variable APY",
+      "rateLabel": "6-month new-customer boost",
+      "requirements": "New Openbank customers who open by November 3, 2026: 3.80% plus a 0.35-point boost for six months (4.15%). $500 minimum to open.",
+      "details": "The boost is added to the variable standard APY for six months from opening, then the account earns the standard rate in effect. Accounts opened before September 23, 2026 are not eligible. Personal accounts only; cannot be combined with other Santander bonus offers. Fees may reduce earnings; see Openbank's fee schedule.",
+      "protection": "Openbank is part of Santander Bank, N.A., Member FDIC. Deposits at Santander Bank and Openbank are combined, not separately insured; the standard $250,000 limit per depositor, bank, and ownership category applies.",
+      "effective": null,
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Santander Bank, N.A.; Openbank and Santander deposits aggregate for coverage."
+      },
+      "sources": [
+        {
+          "label": "Official rate & boost terms",
+          "url": "https://www.openbank.us/banking/high-yield-savings-account"
+        }
+      ]
     }
   ]
 }

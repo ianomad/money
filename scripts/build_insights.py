@@ -219,7 +219,7 @@ def build():
         ticker=schd['ticker'],
         head=f'{schd["ticker"]}: SEC 30-day yield {pct(schd["secYield"])} → <em>{money(schd_inc[amounts[-1]])} a year</em> on {money(amounts[-1])}.',
         thesis=f'{e(schd["name"])} tracks the Dow Jones U.S. Dividend 100 Index at a {pct(schd["expense"])} expense ratio. '
-               f'The published SEC 30-day yield was {pct(schd["secYield"])} as of {nice(schd["secYieldAsOf"])} (NAV {money(schd["nav"])} on {nice(schd["navAsOf"])}). '
+               f'The published SEC 30-day yield was {pct(schd["secYield"])} as of {nice(schd["secYieldAsOf"])} (NAV ${schd["nav"]:.2f} on {nice(schd["navAsOf"])}). '
                f'Thesis: a low-cost equity sleeve that pays a documented income stream while you keep dry powder in T-bills or insured cash.',
         scale=tier_line(amounts, labels, lambda a: schd_inc[a])
               + f'<br>Same {money(amounts[1])} in a {pct(fn["savings"])} average savings account: {money(national_earn(amounts[1]))}/yr of interest—and no equity risk',

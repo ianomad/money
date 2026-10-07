@@ -81,5 +81,15 @@
     "path": "icons/everbank.png",
     "source": "https://www.everbank.com/apple-touch-icon.png",
     "note": "Apple touch icon linked from https://www.everbank.com/."
+  },
+  "happen": {
+    "path": "icons/happen.png",
+    "source": "https://www.happen.com/favicon.ico",
+    "note": "Favicon linked from https://www.happen.com/, converted to PNG."
+  },
+  "openbank": {
+    "path": "icons/openbank.png",
+    "source": "https://assets.santandermedia.com/adobe/assets/urn:aaid:aem:64b85ac4-213a-46ed-8f0a-55241b46b5f6/as/openbank-favicon-64x64.avif?width=180&quality=80&assetName=openbank-favicon-180x180.png",
+    "note": "Apple touch icon linked from https://www.openbank.us/."
   }
 }
