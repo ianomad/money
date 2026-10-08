@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-07T14:33:51Z",
+ "fetchedAt": "2026-10-08T14:52:42Z",
  "source": "CoinGecko public API",
  "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false",
  "coins": [
@@ -8,227 +8,227 @@
    "symbol": "btc",
    "name": "Bitcoin",
    "image": "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400",
-   "current_price": 83047,
-   "market_cap": 1669147061622,
+   "current_price": 82579,
+   "market_cap": 1659443644111,
    "market_cap_rank": 1,
-   "price_change_percentage_24h": -3.46667,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -0.47585,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "ethereum",
    "symbol": "eth",
    "name": "Ethereum",
    "image": "https://coin-images.coingecko.com/coins/images/279/large/ethereum.png?1696501628",
-   "current_price": 2561.86,
-   "market_cap": 312907698780,
+   "current_price": 2529.01,
+   "market_cap": 308832851600,
    "market_cap_rank": 2,
-   "price_change_percentage_24h": -5.3816,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -1.2674,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "tether",
    "symbol": "usdt",
    "name": "Tether",
    "image": "https://coin-images.coingecko.com/coins/images/325/large/Tether.png?1696501661",
-   "current_price": 0.99974,
-   "market_cap": 184039450073,
+   "current_price": 0.999361,
+   "market_cap": 183970695544,
    "market_cap_rank": 3,
-   "price_change_percentage_24h": -0.01201,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -0.03763,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "binancecoin",
    "symbol": "bnb",
    "name": "BNB",
    "image": "https://coin-images.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1696501970",
-   "current_price": 766.3,
-   "market_cap": 102059803567,
+   "current_price": 756.98,
+   "market_cap": 100798693599,
    "market_cap_rank": 4,
-   "price_change_percentage_24h": -2.13623,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -1.22648,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "ripple",
    "symbol": "xrp",
    "name": "XRP",
    "image": "https://coin-images.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1696501442",
-   "current_price": 1.43,
-   "market_cap": 90278944065,
+   "current_price": 1.4,
+   "market_cap": 88519226694,
    "market_cap_rank": 5,
-   "price_change_percentage_24h": -5.39928,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -1.64304,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "usd-coin",
    "symbol": "usdc",
    "name": "USDC",
    "image": "https://coin-images.coingecko.com/coins/images/6319/large/USDC.png?1769615602",
-   "current_price": 0.999829,
-   "market_cap": 74083455353,
+   "current_price": 0.999658,
+   "market_cap": 73517389329,
    "market_cap_rank": 6,
-   "price_change_percentage_24h": -0.0082,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -0.01498,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "solana",
    "symbol": "sol",
    "name": "Solana",
    "image": "https://coin-images.coingecko.com/coins/images/4128/large/solana.png?1718769756",
-   "current_price": 115.77,
-   "market_cap": 68215735732,
+   "current_price": 112.35,
+   "market_cap": 66193919381,
    "market_cap_rank": 7,
-   "price_change_percentage_24h": -4.24144,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -3.0328,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "tron",
    "symbol": "trx",
    "name": "TRON",
    "image": "https://coin-images.coingecko.com/coins/images/1094/large/photo_2026-04-13_09-59-16.png?1776048311",
-   "current_price": 0.334459,
-   "market_cap": 31765238236,
+   "current_price": 0.334375,
+   "market_cap": 31761389405,
    "market_cap_rank": 8,
-   "price_change_percentage_24h": -0.36977,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": 0.00261,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "figure-heloc",
    "symbol": "figr_heloc",
    "name": "Figure Heloc",
    "image": "https://coin-images.coingecko.com/coins/images/68480/large/figure.png?1755863954",
-   "current_price": 1.036,
-   "market_cap": 24388575498,
+   "current_price": 1.019,
+   "market_cap": 24063270802,
    "market_cap_rank": 9,
-   "price_change_percentage_24h": -0.29618,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -1.67531,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "zcash",
    "symbol": "zec",
    "name": "Zcash",
    "image": "https://coin-images.coingecko.com/coins/images/486/large/Brandmark-Yellow_%281%29.png?1785810558",
-   "current_price": 1323.42,
-   "market_cap": 22461229243,
+   "current_price": 1207.52,
+   "market_cap": 20497608438,
    "market_cap_rank": 10,
-   "price_change_percentage_24h": -3.18406,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -8.62832,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "hyperliquid",
    "symbol": "hype",
    "name": "Hyperliquid",
    "image": "https://coin-images.coingecko.com/coins/images/50882/large/hyperliquid.jpg?1729431300",
-   "current_price": 88.57,
-   "market_cap": 19703524006,
+   "current_price": 85.84,
+   "market_cap": 19094838516,
    "market_cap_rank": 11,
-   "price_change_percentage_24h": -4.22241,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -2.97048,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "dogecoin",
    "symbol": "doge",
    "name": "Dogecoin",
    "image": "https://coin-images.coingecko.com/coins/images/5/large/dogecoin.png?1696501409",
-   "current_price": 0.088338,
-   "market_cap": 13803446690,
+   "current_price": 0.08706,
+   "market_cap": 13602159606,
    "market_cap_rank": 12,
-   "price_change_percentage_24h": -7.61159,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -1.32352,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "monero",
    "symbol": "xmr",
    "name": "Monero",
    "image": "https://coin-images.coingecko.com/coins/images/69/large/monero_logo.png?1696501460",
-   "current_price": 551.59,
-   "market_cap": 10377506693,
+   "current_price": 548.46,
+   "market_cap": 10319260365,
    "market_cap_rank": 13,
-   "price_change_percentage_24h": -1.56902,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -0.14891,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "usds",
    "symbol": "usds",
    "name": "USDS",
    "image": "https://coin-images.coingecko.com/coins/images/39926/large/usds.webp?1726666683",
-   "current_price": 0.999258,
-   "market_cap": 10217556983,
+   "current_price": 0.998821,
+   "market_cap": 10199814531,
    "market_cap_rank": 14,
-   "price_change_percentage_24h": -0.04389,
-   "last_updated": "2026-10-07T14:30:20.000Z"
-  },
-  {
-   "id": "chainlink",
-   "symbol": "link",
-   "name": "Chainlink",
-   "image": "https://coin-images.coingecko.com/coins/images/877/large/Chainlink_Logo_500.png?1760023405",
-   "current_price": 13.37,
-   "market_cap": 10007803507,
-   "market_cap_rank": 15,
-   "price_change_percentage_24h": -4.24673,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -0.04882,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "whitebit",
    "symbol": "wbt",
    "name": "WhiteBIT Coin",
    "image": "https://coin-images.coingecko.com/coins/images/27045/large/wbt_token.png?1696526096",
-   "current_price": 82.64,
-   "market_cap": 9818403308,
+   "current_price": 81.9,
+   "market_cap": 9728714715,
+   "market_cap_rank": 15,
+   "price_change_percentage_24h": -0.83865,
+   "last_updated": "2026-10-08T14:50:12.000Z"
+  },
+  {
+   "id": "chainlink",
+   "symbol": "link",
+   "name": "Chainlink",
+   "image": "https://coin-images.coingecko.com/coins/images/877/large/Chainlink_Logo_500.png?1760023405",
+   "current_price": 12.97,
+   "market_cap": 9700018041,
    "market_cap_rank": 16,
-   "price_change_percentage_24h": -3.78931,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -2.97,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "cardano",
    "symbol": "ada",
    "name": "Cardano",
    "image": "https://coin-images.coingecko.com/coins/images/975/large/cardano.png?1696502090",
-   "current_price": 0.252662,
-   "market_cap": 9488651823,
+   "current_price": 0.247356,
+   "market_cap": 9287589138,
    "market_cap_rank": 17,
-   "price_change_percentage_24h": -7.39065,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -2.04536,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "leo-token",
    "symbol": "leo",
    "name": "LEO Token",
    "image": "https://coin-images.coingecko.com/coins/images/8418/large/leo-token.png?1696508607",
-   "current_price": 8.88,
-   "market_cap": 8164648037,
+   "current_price": 8.91,
+   "market_cap": 8195435328,
    "market_cap_rank": 18,
-   "price_change_percentage_24h": -0.12587,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": 0.3771,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "rain",
    "symbol": "rain",
    "name": "Rain",
    "image": "https://coin-images.coingecko.com/coins/images/69134/large/Rain_logo_1_.png?1762952191",
-   "current_price": 0.01092647,
-   "market_cap": 7750557476,
+   "current_price": 0.01054444,
+   "market_cap": 7478697399,
    "market_cap_rank": 19,
-   "price_change_percentage_24h": -3.06587,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -3.35499,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   },
   {
    "id": "stellar",
    "symbol": "xlm",
    "name": "Stellar",
    "image": "https://coin-images.coingecko.com/coins/images/100/large/fmpFRHHQ_400x400.jpg?1735231350",
-   "current_price": 0.201195,
-   "market_cap": 7051095342,
+   "current_price": 0.198696,
+   "market_cap": 6962477523,
    "market_cap_rank": 20,
-   "price_change_percentage_24h": -6.41102,
-   "last_updated": "2026-10-07T14:30:20.000Z"
+   "price_change_percentage_24h": -0.9093,
+   "last_updated": "2026-10-08T14:50:12.000Z"
   }
  ],
  "global": {
   "sourceUrl": "https://api.coingecko.com/api/v3/global",
-  "totalMarketCapUsd": 2842665884911.395,
-  "btcDominance": 58.749963430875354,
-  "activeCryptocurrencies": 22028,
-  "updatedAt": 1791383239
+  "totalMarketCapUsd": 2811372882375.7036,
+  "btcDominance": 58.90260966384372,
+  "activeCryptocurrencies": 22081,
+  "updatedAt": 1791471030
  }
 }

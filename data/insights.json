@@ -1,14 +1,14 @@
 {
- "checkedAt": "2026-10-07",
+ "checkedAt": "2026-10-08",
  "inputs": {
   "tbill": {
-   "date": "2026-10-06",
-   "y4": 3.95,
-   "y13": 4.14,
-   "y26": 4.3,
+   "date": "2026-10-07",
+   "y4": 3.94,
+   "y13": 4.15,
+   "y26": 4.29,
    "source": "U.S. Treasury Daily Treasury Bill Rates (coupon-equivalent)",
    "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_bill_rates&field_tdr_date_value=2026",
-   "checked": "2026-10-07"
+   "checked": "2026-10-08"
   },
   "tbillTax": {
    "text": "Federal tax due on interest earned. No state or local taxes.",
@@ -31,7 +31,7 @@
    "asOf": "2026-09-21",
    "source": "FDIC National Rates and Rate Caps",
    "url": "https://www.fdic.gov/national-rates-and-rate-caps",
-   "checked": "2026-10-07"
+   "checked": "2026-10-08"
   },
   "fed": {
    "dff": 3.88,
@@ -49,7 +49,7 @@
    "limit": 10000,
    "source": "TreasuryDirect, I bonds",
    "url": "https://www.treasurydirect.gov/savings-bonds/i-bonds/",
-   "checked": "2026-10-07"
+   "checked": "2026-10-08"
   },
   "discover": {
    "rate": 5,
@@ -59,7 +59,7 @@
    "categories": "restaurants, entertainment, and utilities",
    "source": "Discover cashback calendar (via docs/cards.html)",
    "url": "https://www.discover.com/credit-cards/cash-back/cashback-calendar.html",
-   "checked": "2026-10-07"
+   "checked": "2026-10-08"
   },
   "flat2": {
    "name": "Citi Double Cash",
@@ -130,7 +130,7 @@
    "navAsOf": "2026-10-06",
    "source": "Schwab Asset Management, SCHD fund page",
    "url": "https://www.schwabassetmanagement.com/products/schd",
-   "checked": "2026-10-07"
+   "checked": "2026-10-08"
   },
   "aapl": {
    "ticker": "AAPL",
