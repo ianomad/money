@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Money — Borrowing at a 7.28% mortgage while cash earns 4.21% costs about $3,070 a year per $100,000.</title>
-<meta name="description" content="Freddie Mac’s 30-year fixed mortgage rate averaged 7.28% on Oct 1, 2026, the highest since November 2023. 3-month Treasury bills yield 4.21%. On every $100,000 borrowed instead of put down, that is about $3,070 a year more in interest than the cash earns.">
+<title>Money — No paycheck in 2026? A married couple can take up to $131,100 of stock gains and owe $0 federal income tax.</title>
+<meta name="description" content="In 2026, a married couple pays a 0% federal rate on long-term capital gains up to $98,900 of taxable income, after a $32,200 standard deduction. With no other income, that is $131,100 of gains at $0 federal income tax. A couple already earning $131,100 or more pays at least $15,000 on the same $100,000 of gains.">
 <link rel="canonical" href="https://money.ilyusha.xyz/daily">
-<meta property="og:title" content="Borrowing at 7.28% while cash earns 4.21% costs about $3,070 a year per $100,000.">
-<meta property="og:description" content="The 30-year mortgage rate is the highest since November 2023. No Treasury of any maturity pays that much: the best is the 20-year at 5.68%.">
+<meta property="og:title" content="No paycheck this year? $100,000 of stock gains can cost $0 in federal tax instead of $15,000.">
+<meta property="og:description" content="A married couple can take up to $131,100 of long-term gains in 2026 at a 0% federal rate. Sell by Dec 31 and buy right back: wash-sale rules only apply to losses.">
 <meta property="og:type" content="article"><meta property="og:url" content="https://money.ilyusha.xyz/daily">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg?v=8888aa712f" type="image/svg+xml"><link rel="stylesheet" href="styles.css?v=a780873538"><script src="analytics.js?v=f5cca14b91" defer></script>
 <style>
 .daily-stage{margin:0 0 36px}
-.sheet{position:relative;overflow:hidden;width:100%;max-width:1200px;aspect-ratio:16/9;margin:0 auto;background:#0a0806;border-radius:16px;border:1px solid var(--line);box-shadow:0 8px 24px #1f241c0c}
+.sheet{position:relative;overflow:hidden;width:100%;max-width:1200px;aspect-ratio:16/9;margin:0 auto;background:#060a07;border-radius:16px;border:1px solid var(--line);box-shadow:0 8px 24px #1f241c0c}
 .sheet>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .sheet .disp{font-family:'Archivo Black','Arial Black',Impact,sans-serif}
@@ -23,113 +23,124 @@
 .sheet .shard{animation:shard 4s ease-in-out infinite}
 .sheet .comet{animation:comet 4s linear infinite}
 .sheet .ring{animation:spin 4s linear infinite}
+.sheet .ringR{animation:spinR 4s linear infinite}
 .sheet .glowDot{animation:breathe 2s ease-in-out infinite}
-.sheet .areaPulse{animation:areaPulse 4s ease-in-out infinite}
 .sheet .sonar{animation:sonar 2s ease-out infinite;opacity:0}
 .sheet .sonar.s2{animation-delay:-1s}
 .sheet .shine{animation:shine 4s cubic-bezier(.5,0,.3,1) infinite}
+.sheet .wedge{animation:wedge 4s ease-in-out infinite}
+.sheet .wedgeGlow{animation:wedgeGlow 4s ease-in-out infinite}
+.sheet .bad{animation:bad 2s ease-in-out infinite}
 /* Scope .hero under .sheet so site hero layout styles do not hit the SVG number */
 .sheet g.hero,.sheet .hero{display:unset;justify-content:unset;align-items:unset;gap:unset;padding:0;animation:heroGlow 4s ease-in-out infinite}
 .sheet .pill{animation:pill 4s ease-in-out infinite}
-.sheet .bad{animation:bad 2s ease-in-out infinite}
 @keyframes driftA{0%,100%{transform:translate(0,0) scale(1);opacity:.8}50%{transform:translate(60px,30px) scale(1.12);opacity:1}}
 @keyframes driftB{0%,100%{transform:translate(0,0) scale(1);opacity:.6}50%{transform:translate(-40px,-30px) scale(1.15);opacity:.95}}
 @keyframes shard{0%,100%{opacity:.5;transform:rotate(0deg)}50%{opacity:.85;transform:rotate(2deg)}}
 @keyframes comet{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes breathe{0%,100%{transform:scale(1);opacity:.75}50%{transform:scale(1.25);opacity:1}}
-@keyframes areaPulse{0%,100%{opacity:.75}50%{opacity:1}}
-@keyframes sonar{0%{transform:scale(1);opacity:.9}100%{transform:scale(4.2);opacity:0}}
+@keyframes spinR{to{transform:rotate(-360deg)}}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.75}50%{transform:scale(1.18);opacity:1}}
+@keyframes sonar{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.32);opacity:0}}
 @keyframes shine{0%,35%{transform:translateX(-900px) skewX(-20deg)}75%,100%{transform:translateX(900px) skewX(-20deg)}}
-@keyframes heroGlow{0%,100%{filter:drop-shadow(0 0 10px rgba(255,77,109,.30))}50%{filter:drop-shadow(0 0 34px rgba(255,77,109,.75))}}
+@keyframes wedge{0%,100%{transform:translate(6px,-12px) rotate(0deg)}50%{transform:translate(19px,-38px) rotate(6deg)}}
+@keyframes wedgeGlow{0%,100%{filter:drop-shadow(0 0 6px rgba(255,77,109,.35))}50%{filter:drop-shadow(0 0 26px rgba(255,77,109,.85))}}
+@keyframes heroGlow{0%,100%{filter:drop-shadow(0 0 10px rgba(61,255,154,.28))}50%{filter:drop-shadow(0 0 34px rgba(61,255,154,.72))}}
 @keyframes pill{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
-@keyframes bad{0%,100%{opacity:1}50%{opacity:.55}}
+@keyframes bad{0%,100%{opacity:1}50%{opacity:.6}}
 @media (prefers-reduced-motion:reduce){.sheet svg *{animation:none!important}.sheet .sonar{opacity:0}.sheet .comet{opacity:0}}
 @media (max-width:760px){.sheet{border-radius:12px}}
 </style></head>
 <body><a class="skip-link" href="#brief">Skip to today's brief</a><header><a class="brand" href="index.html"><img class="brand-mark" src="favicon.svg?v=8888aa712f" alt="">money<span class="brand-by">/ by ilyusha</span></a><nav aria-label="Main navigation"><a class="nav-switch" href="index.html">Savings</a><a class="nav-switch" href="cards.html">Cards</a><a class="nav-switch" href="economy.html">Economy</a><a class="nav-switch" href="crypto.html">Crypto</a><a class="nav-switch" href="insights.html">Insights</a><a class="nav-switch" href="daily.html" aria-current="page">Daily</a></nav><a class="personal" href="https://ilyusha.xyz">ilyusha.xyz ↗</a></header>
-<main id="top"><section class="hero"><div><p class="eyebrow"><span class="dot"></span> DAILY / OCT 7 · MORNING</p><h1>A new mortgage costs <em>7.28%.</em> Your cash earns 4.21%.</h1><p class="intro">Freddie Mac’s 30-year fixed rate averaged 7.28% on Oct 1, up from 5.98% in late February and the highest since November 2023. 3-month Treasury bills yield 4.21%. Borrow $100,000 while the same cash sits in Treasury bills and you pay about $3,070 a year more than it earns.</p></div><aside class="snapshot"><div class="snapshot-count">$3,070<span>a year<br>per $100,000</span></div><div class="snapshot-date">Checked <time datetime="2026-10-07">Oct 7, 2026</time></div><p>Mortgage rate as of Oct 1 · Treasury bills as of Oct 6</p></aside></section>
+<main id="top"><section class="hero"><div><p class="eyebrow"><span class="dot"></span> DAILY / OCT 7 · EVENING</p><h1>No paycheck this year? Stock gains can owe <em>$0</em> in federal tax.</h1><p class="intro">In 2026, a married couple pays a 0% federal rate on long-term gains until taxable income passes $98,900, and the $32,200 standard deduction comes off first. With no other income, that is $131,100 of gains at $0. A couple already earning $131,100 or more in pay owes at least $15,000 on the same $100,000 of gains.</p></div><aside class="snapshot"><div class="snapshot-count">$15,000<span>kept per<br>$100,000 of gains</span></div><div class="snapshot-date">Checked <time datetime="2026-10-07">Oct 7, 2026</time></div><p>2026 IRS tax tables · trades by Dec 31, 2026</p></aside></section>
 
 <section class="daily-stage" aria-label="Today's visual card">
 <div class="sheet" id="card">
-<p class="sr">Borrowing $100,000 at a 7.28% 30-year mortgage rate while the same cash earns 4.21% in 3-month Treasury bills costs about $3,070 a year. The mortgage rate is the highest since November 2023, and the gap between the two is the widest of 2026.</p>
-<svg viewBox="0 0 1600 900" role="img" aria-label="Borrowing $100,000 at a 7.28% mortgage rate while the cash earns 4.21% in 3-month Treasury bills costs about $3,070 a year. Line chart from January to today: the 30-year mortgage rate climbs from about 6% to 7.28% while the 3-month Treasury bill yield rises from 3.6% to 4.21%, and the gap between them is the widest of 2026.">
+<p class="sr">A married couple with no paycheck in 2026 can sell stock held over a year with up to $131,100 of gains and owe $0 federal income tax. On $100,000 of gains, a salary year costs $15,000 in federal tax and a no-paycheck year costs $0, so you keep an extra $15,000. Sell by Dec 31 and buy right back.</p>
+<svg viewBox="0 0 1600 900" role="img" aria-label="A married couple with no paycheck in 2026 can sell stock held over a year with up to $131,100 of gains and owe $0 federal income tax. Two pie charts of a $100,000 gain: in a salary year a 15% slice, $15,000, goes to federal tax and you keep $85,000; in a no-paycheck year you keep all $100,000. You keep an extra $15,000. Sell by Dec 31 and buy right back.">
   <defs>
-    <radialGradient id="bg" cx="22%" cy="25%" r="95%"><stop offset="0" stop-color="#1c0f10"/><stop offset=".55" stop-color="#0a0707"/><stop offset="1" stop-color="#040303"/></radialGradient>
-    <radialGradient id="gA" r="50%"><stop offset="0" stop-color="#ff4d6d" stop-opacity=".30"/><stop offset="1" stop-color="#ff4d6d" stop-opacity="0"/></radialGradient>
-    <radialGradient id="gB" r="50%"><stop offset="0" stop-color="#3dff9a" stop-opacity=".22"/><stop offset="1" stop-color="#3dff9a" stop-opacity="0"/></radialGradient>
-    <radialGradient id="dotGlow" r="50%"><stop offset="0" stop-color="#ff4d6d" stop-opacity=".8"/><stop offset="1" stop-color="#ff4d6d" stop-opacity="0"/></radialGradient>
-    <radialGradient id="dotGlowG" r="50%"><stop offset="0" stop-color="#3dff9a" stop-opacity=".7"/><stop offset="1" stop-color="#3dff9a" stop-opacity="0"/></radialGradient>
-    <linearGradient id="heroFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#ffe3e8"/><stop offset="1" stop-color="#ff4d6d"/></linearGradient>
-    <linearGradient id="gapFill" gradientUnits="userSpaceOnUse" x1="0" y1="230" x2="0" y2="680"><stop offset="0" stop-color="#ff4d6d" stop-opacity=".62"/><stop offset=".6" stop-color="#ff4d6d" stop-opacity=".22"/><stop offset="1" stop-color="#ff8a3d" stop-opacity=".06"/></linearGradient>
-    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#fff1e8" stroke-opacity=".045"/></pattern>
-    <clipPath id="heroClip"><text x="92" y="596" class="disp" font-size="196" letter-spacing="-8">$3,070</text></clipPath>
+    <radialGradient id="bg" cx="20%" cy="22%" r="95%"><stop offset="0" stop-color="#0f1f15"/><stop offset=".55" stop-color="#070b08"/><stop offset="1" stop-color="#030403"/></radialGradient>
+    <radialGradient id="gA" r="50%"><stop offset="0" stop-color="#3dff9a" stop-opacity=".26"/><stop offset="1" stop-color="#3dff9a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gB" r="50%"><stop offset="0" stop-color="#ff4d6d" stop-opacity=".22"/><stop offset="1" stop-color="#ff4d6d" stop-opacity="0"/></radialGradient>
+    <radialGradient id="dotGlowG" r="50%"><stop offset="0" stop-color="#3dff9a" stop-opacity=".55"/><stop offset="1" stop-color="#3dff9a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="coinG" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#b9ffd9"/><stop offset=".45" stop-color="#3dff9a"/><stop offset="1" stop-color="#14a35c"/></radialGradient>
+    <radialGradient id="coinDim" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#2f5a42"/><stop offset="1" stop-color="#173325"/></radialGradient>
+    <linearGradient id="slice" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8aa0"/><stop offset="1" stop-color="#ff2d55"/></linearGradient>
+    <linearGradient id="heroFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#dcffe9"/><stop offset="1" stop-color="#3dff9a"/></linearGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#e8fff1" stroke-opacity=".045"/></pattern>
+    <clipPath id="heroClip"><text x="90" y="590" class="disp" font-size="164" letter-spacing="-6">$15,000</text></clipPath>
   </defs>
 
   <!-- field -->
   <rect width="1600" height="900" fill="url(#bg)"/>
   <rect width="1600" height="900" fill="url(#grid)"/>
-  <circle class="glowA" cx="240" cy="200" r="340" fill="url(#gA)"/>
-  <circle class="glowB" cx="1450" cy="860" r="260" fill="url(#gB)"/>
-  <g class="shard"><polygon points="0,0 220,0 0,260" fill="#ff4d6d" opacity=".10"/></g>
-  <polygon points="1600,0 1470,0 1600,150" fill="#3dff9a" opacity=".10"/>
-
-  <!-- chart: Freddie Mac 30-year fixed mortgage (weekly) vs 3-month Treasury bill (daily), Jan 8 to today -->
-  <g class="mono" font-size="17" letter-spacing="2" fill="#7a6f70">
-    <line x1="800" x2="1440" y1="624.0" y2="624.0" stroke="#fff1e8" stroke-opacity=".10" stroke-dasharray="3 9"/><text x="1462" y="630.0">4%</text><line x1="800" x2="1440" y1="508.0" y2="508.0" stroke="#fff1e8" stroke-opacity=".10" stroke-dasharray="3 9"/><text x="1462" y="514.0">5%</text><line x1="800" x2="1440" y1="392.0" y2="392.0" stroke="#fff1e8" stroke-opacity=".10" stroke-dasharray="3 9"/><text x="1462" y="398.0">6%</text><line x1="800" x2="1440" y1="276.0" y2="276.0" stroke="#fff1e8" stroke-opacity=".10" stroke-dasharray="3 9"/><text x="1462" y="282.0">7%</text>
-    <text x="800" y="812">JAN</text><text x="1400" y="812" text-anchor="end" fill="#fff6e8">TODAY</text>
-  </g>
-  <path d="M800.0,373.4 L815.5,385.0 L831.0,381.6 L846.5,380.4 L862.0,379.2 L877.5,381.6 L893.0,390.8 L908.5,394.3 L924.0,392.0 L939.5,379.2 L955.0,366.5 L970.5,347.9 L986.0,338.6 L1001.5,349.1 L1017.0,357.2 L1032.5,365.3 L1048.0,357.2 L1063.5,349.1 L1079.0,350.2 L1094.5,332.8 L1110.0,330.5 L1125.5,336.3 L1141.0,331.7 L1156.5,337.5 L1172.0,335.2 L1187.5,342.1 L1203.0,335.2 L1218.5,328.2 L1233.9,324.7 L1249.4,315.4 L1264.9,312.0 L1280.4,314.3 L1295.9,316.6 L1311.4,315.4 L1326.9,309.6 L1342.4,303.8 L1357.9,281.8 L1373.4,272.5 L1388.9,243.5 L1400.0,599.6 L1397.8,598.5 L1391.1,602.0 L1388.9,604.3 L1386.7,600.8 L1384.5,595.0 L1382.3,591.5 L1375.6,596.2 L1373.4,596.2 L1371.2,602.0 L1369.0,605.4 L1366.8,604.3 L1360.1,607.8 L1357.9,610.1 L1355.7,607.8 L1353.5,611.2 L1351.3,611.2 L1344.6,615.9 L1342.4,624.0 L1340.2,629.8 L1338.0,631.0 L1329.2,634.4 L1326.9,636.8 L1324.7,633.3 L1322.5,633.3 L1320.3,634.4 L1313.7,635.6 L1311.4,642.6 L1309.2,641.4 L1307.0,640.2 L1304.8,639.1 L1298.2,637.9 L1295.9,639.1 L1293.7,640.2 L1291.5,640.2 L1289.3,639.1 L1282.7,640.2 L1280.4,639.1 L1278.2,639.1 L1276.0,636.8 L1273.8,636.8 L1267.2,639.1 L1264.9,635.6 L1262.7,636.8 L1260.5,636.8 L1258.3,634.4 L1251.7,643.7 L1249.4,644.9 L1247.2,643.7 L1245.0,635.6 L1242.8,628.6 L1236.2,628.6 L1233.9,629.8 L1231.7,636.8 L1229.5,639.1 L1227.3,640.2 L1220.7,641.4 L1218.5,642.6 L1216.2,643.7 L1214.0,642.6 L1211.8,636.8 L1205.2,641.4 L1203.0,643.7 L1200.7,639.1 L1198.5,640.2 L1196.3,639.1 L1187.5,644.9 L1185.2,641.4 L1183.0,639.1 L1180.8,639.1 L1174.2,643.7 L1172.0,642.6 L1169.7,641.4 L1167.5,641.4 L1165.3,641.4 L1156.5,643.7 L1154.2,643.7 L1152.0,648.4 L1149.8,648.4 L1143.2,649.5 L1141.0,649.5 L1138.7,648.4 L1136.5,648.4 L1134.3,647.2 L1127.7,649.5 L1125.5,649.5 L1123.2,649.5 L1121.0,650.7 L1118.8,649.5 L1112.2,660.0 L1110.0,660.0 L1107.7,661.1 L1105.5,661.1 L1096.7,661.1 L1094.5,661.1 L1092.3,664.6 L1090.0,662.3 L1087.8,661.1 L1081.2,660.0 L1079.0,660.0 L1076.8,660.0 L1074.5,658.8 L1072.3,658.8 L1065.7,660.0 L1063.5,660.0 L1061.3,660.0 L1059.0,660.0 L1056.8,658.8 L1050.2,661.1 L1048.0,661.1 L1045.8,661.1 L1043.5,661.1 L1041.3,661.1 L1034.7,660.0 L1032.5,660.0 L1030.3,660.0 L1028.0,660.0 L1025.8,657.6 L1019.2,658.8 L1017.0,658.8 L1014.8,657.6 L1012.5,657.6 L1010.3,657.6 L1003.7,660.0 L1001.5,661.1 L999.3,660.0 L997.0,657.6 L994.8,656.5 L988.2,657.6 L986.0,658.8 L983.8,658.8 L981.5,658.8 L979.3,657.6 L972.7,655.3 L970.5,655.3 L968.3,655.3 L966.1,654.2 L963.8,654.2 L957.2,654.2 L955.0,655.3 L952.8,655.3 L950.6,656.5 L948.3,656.5 L941.7,656.5 L939.5,656.5 L937.3,657.6 L935.1,657.6 L932.8,657.6 L926.2,660.0 L924.0,658.8 L921.8,657.6 L919.6,657.6 L917.3,656.5 L910.7,662.3 L908.5,661.1 L906.3,660.0 L904.1,660.0 L901.8,660.0 L895.2,660.0 L893.0,660.0 L890.8,658.8 L888.6,660.0 L879.7,661.1 L877.5,658.8 L875.3,658.8 L873.1,660.0 L870.8,660.0 L864.2,661.1 L862.0,662.3 L859.8,660.0 L857.6,660.0 L855.4,660.0 L848.7,662.3 L846.5,662.3 L844.3,661.1 L842.1,662.3 L839.9,662.3 L833.2,658.8 L831.0,657.6 L828.8,658.8 L826.6,658.8 L817.7,662.3 L815.5,661.1 L813.3,662.3 L811.1,662.3 L808.9,662.3 L802.2,668.1 L800.0,668.1 Z" fill="url(#gapFill)" class="areaPulse"/>
-  <text x="1079.0" y="499.1" text-anchor="middle" class="mono" font-size="18" letter-spacing="3" fill="#fff6e8" opacity=".9">THE GAP</text>
-  <text x="1079.0" y="527.1" text-anchor="middle" class="mono" font-size="15" letter-spacing="2.5" fill="#ffb3c0" opacity=".9">WIDEST OF 2026</text>
-  <path d="M800.0,668.1 L802.2,668.1 L808.9,662.3 L811.1,662.3 L813.3,662.3 L815.5,661.1 L817.7,662.3 L826.6,658.8 L828.8,658.8 L831.0,657.6 L833.2,658.8 L839.9,662.3 L842.1,662.3 L844.3,661.1 L846.5,662.3 L848.7,662.3 L855.4,660.0 L857.6,660.0 L859.8,660.0 L862.0,662.3 L864.2,661.1 L870.8,660.0 L873.1,660.0 L875.3,658.8 L877.5,658.8 L879.7,661.1 L888.6,660.0 L890.8,658.8 L893.0,660.0 L895.2,660.0 L901.8,660.0 L904.1,660.0 L906.3,660.0 L908.5,661.1 L910.7,662.3 L917.3,656.5 L919.6,657.6 L921.8,657.6 L924.0,658.8 L926.2,660.0 L932.8,657.6 L935.1,657.6 L937.3,657.6 L939.5,656.5 L941.7,656.5 L948.3,656.5 L950.6,656.5 L952.8,655.3 L955.0,655.3 L957.2,654.2 L963.8,654.2 L966.1,654.2 L968.3,655.3 L970.5,655.3 L972.7,655.3 L979.3,657.6 L981.5,658.8 L983.8,658.8 L986.0,658.8 L988.2,657.6 L994.8,656.5 L997.0,657.6 L999.3,660.0 L1001.5,661.1 L1003.7,660.0 L1010.3,657.6 L1012.5,657.6 L1014.8,657.6 L1017.0,658.8 L1019.2,658.8 L1025.8,657.6 L1028.0,660.0 L1030.3,660.0 L1032.5,660.0 L1034.7,660.0 L1041.3,661.1 L1043.5,661.1 L1045.8,661.1 L1048.0,661.1 L1050.2,661.1 L1056.8,658.8 L1059.0,660.0 L1061.3,660.0 L1063.5,660.0 L1065.7,660.0 L1072.3,658.8 L1074.5,658.8 L1076.8,660.0 L1079.0,660.0 L1081.2,660.0 L1087.8,661.1 L1090.0,662.3 L1092.3,664.6 L1094.5,661.1 L1096.7,661.1 L1105.5,661.1 L1107.7,661.1 L1110.0,660.0 L1112.2,660.0 L1118.8,649.5 L1121.0,650.7 L1123.2,649.5 L1125.5,649.5 L1127.7,649.5 L1134.3,647.2 L1136.5,648.4 L1138.7,648.4 L1141.0,649.5 L1143.2,649.5 L1149.8,648.4 L1152.0,648.4 L1154.2,643.7 L1156.5,643.7 L1165.3,641.4 L1167.5,641.4 L1169.7,641.4 L1172.0,642.6 L1174.2,643.7 L1180.8,639.1 L1183.0,639.1 L1185.2,641.4 L1187.5,644.9 L1196.3,639.1 L1198.5,640.2 L1200.7,639.1 L1203.0,643.7 L1205.2,641.4 L1211.8,636.8 L1214.0,642.6 L1216.2,643.7 L1218.5,642.6 L1220.7,641.4 L1227.3,640.2 L1229.5,639.1 L1231.7,636.8 L1233.9,629.8 L1236.2,628.6 L1242.8,628.6 L1245.0,635.6 L1247.2,643.7 L1249.4,644.9 L1251.7,643.7 L1258.3,634.4 L1260.5,636.8 L1262.7,636.8 L1264.9,635.6 L1267.2,639.1 L1273.8,636.8 L1276.0,636.8 L1278.2,639.1 L1280.4,639.1 L1282.7,640.2 L1289.3,639.1 L1291.5,640.2 L1293.7,640.2 L1295.9,639.1 L1298.2,637.9 L1304.8,639.1 L1307.0,640.2 L1309.2,641.4 L1311.4,642.6 L1313.7,635.6 L1320.3,634.4 L1322.5,633.3 L1324.7,633.3 L1326.9,636.8 L1329.2,634.4 L1338.0,631.0 L1340.2,629.8 L1342.4,624.0 L1344.6,615.9 L1351.3,611.2 L1353.5,611.2 L1355.7,607.8 L1357.9,610.1 L1360.1,607.8 L1366.8,604.3 L1369.0,605.4 L1371.2,602.0 L1373.4,596.2 L1375.6,596.2 L1382.3,591.5 L1384.5,595.0 L1386.7,600.8 L1388.9,604.3 L1391.1,602.0 L1397.8,598.5 L1400.0,599.6" fill="none" stroke="#3dff9a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
-  <path d="M800.0,373.4 L815.5,385.0 L831.0,381.6 L846.5,380.4 L862.0,379.2 L877.5,381.6 L893.0,390.8 L908.5,394.3 L924.0,392.0 L939.5,379.2 L955.0,366.5 L970.5,347.9 L986.0,338.6 L1001.5,349.1 L1017.0,357.2 L1032.5,365.3 L1048.0,357.2 L1063.5,349.1 L1079.0,350.2 L1094.5,332.8 L1110.0,330.5 L1125.5,336.3 L1141.0,331.7 L1156.5,337.5 L1172.0,335.2 L1187.5,342.1 L1203.0,335.2 L1218.5,328.2 L1233.9,324.7 L1249.4,315.4 L1264.9,312.0 L1280.4,314.3 L1295.9,316.6 L1311.4,315.4 L1326.9,309.6 L1342.4,303.8 L1357.9,281.8 L1373.4,272.5 L1388.9,243.5" fill="none" stroke="#ff4d6d" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
-  <path d="M800.0,373.4 L815.5,385.0 L831.0,381.6 L846.5,380.4 L862.0,379.2 L877.5,381.6 L893.0,390.8 L908.5,394.3 L924.0,392.0 L939.5,379.2 L955.0,366.5 L970.5,347.9 L986.0,338.6 L1001.5,349.1 L1017.0,357.2 L1032.5,365.3 L1048.0,357.2 L1063.5,349.1 L1079.0,350.2 L1094.5,332.8 L1110.0,330.5 L1125.5,336.3 L1141.0,331.7 L1156.5,337.5 L1172.0,335.2 L1187.5,342.1 L1203.0,335.2 L1218.5,328.2 L1233.9,324.7 L1249.4,315.4 L1264.9,312.0 L1280.4,314.3 L1295.9,316.6 L1311.4,315.4 L1326.9,309.6 L1342.4,303.8 L1357.9,281.8 L1373.4,272.5 L1388.9,243.5" pathLength="1000" class="comet" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-dasharray="40 960" opacity=".9"/>
-  <path d="M800.0,668.1 L802.2,668.1 L808.9,662.3 L811.1,662.3 L813.3,662.3 L815.5,661.1 L817.7,662.3 L826.6,658.8 L828.8,658.8 L831.0,657.6 L833.2,658.8 L839.9,662.3 L842.1,662.3 L844.3,661.1 L846.5,662.3 L848.7,662.3 L855.4,660.0 L857.6,660.0 L859.8,660.0 L862.0,662.3 L864.2,661.1 L870.8,660.0 L873.1,660.0 L875.3,658.8 L877.5,658.8 L879.7,661.1 L888.6,660.0 L890.8,658.8 L893.0,660.0 L895.2,660.0 L901.8,660.0 L904.1,660.0 L906.3,660.0 L908.5,661.1 L910.7,662.3 L917.3,656.5 L919.6,657.6 L921.8,657.6 L924.0,658.8 L926.2,660.0 L932.8,657.6 L935.1,657.6 L937.3,657.6 L939.5,656.5 L941.7,656.5 L948.3,656.5 L950.6,656.5 L952.8,655.3 L955.0,655.3 L957.2,654.2 L963.8,654.2 L966.1,654.2 L968.3,655.3 L970.5,655.3 L972.7,655.3 L979.3,657.6 L981.5,658.8 L983.8,658.8 L986.0,658.8 L988.2,657.6 L994.8,656.5 L997.0,657.6 L999.3,660.0 L1001.5,661.1 L1003.7,660.0 L1010.3,657.6 L1012.5,657.6 L1014.8,657.6 L1017.0,658.8 L1019.2,658.8 L1025.8,657.6 L1028.0,660.0 L1030.3,660.0 L1032.5,660.0 L1034.7,660.0 L1041.3,661.1 L1043.5,661.1 L1045.8,661.1 L1048.0,661.1 L1050.2,661.1 L1056.8,658.8 L1059.0,660.0 L1061.3,660.0 L1063.5,660.0 L1065.7,660.0 L1072.3,658.8 L1074.5,658.8 L1076.8,660.0 L1079.0,660.0 L1081.2,660.0 L1087.8,661.1 L1090.0,662.3 L1092.3,664.6 L1094.5,661.1 L1096.7,661.1 L1105.5,661.1 L1107.7,661.1 L1110.0,660.0 L1112.2,660.0 L1118.8,649.5 L1121.0,650.7 L1123.2,649.5 L1125.5,649.5 L1127.7,649.5 L1134.3,647.2 L1136.5,648.4 L1138.7,648.4 L1141.0,649.5 L1143.2,649.5 L1149.8,648.4 L1152.0,648.4 L1154.2,643.7 L1156.5,643.7 L1165.3,641.4 L1167.5,641.4 L1169.7,641.4 L1172.0,642.6 L1174.2,643.7 L1180.8,639.1 L1183.0,639.1 L1185.2,641.4 L1187.5,644.9 L1196.3,639.1 L1198.5,640.2 L1200.7,639.1 L1203.0,643.7 L1205.2,641.4 L1211.8,636.8 L1214.0,642.6 L1216.2,643.7 L1218.5,642.6 L1220.7,641.4 L1227.3,640.2 L1229.5,639.1 L1231.7,636.8 L1233.9,629.8 L1236.2,628.6 L1242.8,628.6 L1245.0,635.6 L1247.2,643.7 L1249.4,644.9 L1251.7,643.7 L1258.3,634.4 L1260.5,636.8 L1262.7,636.8 L1264.9,635.6 L1267.2,639.1 L1273.8,636.8 L1276.0,636.8 L1278.2,639.1 L1280.4,639.1 L1282.7,640.2 L1289.3,639.1 L1291.5,640.2 L1293.7,640.2 L1295.9,639.1 L1298.2,637.9 L1304.8,639.1 L1307.0,640.2 L1309.2,641.4 L1311.4,642.6 L1313.7,635.6 L1320.3,634.4 L1322.5,633.3 L1324.7,633.3 L1326.9,636.8 L1329.2,634.4 L1338.0,631.0 L1340.2,629.8 L1342.4,624.0 L1344.6,615.9 L1351.3,611.2 L1353.5,611.2 L1355.7,607.8 L1357.9,610.1 L1360.1,607.8 L1366.8,604.3 L1369.0,605.4 L1371.2,602.0 L1373.4,596.2 L1375.6,596.2 L1382.3,591.5 L1384.5,595.0 L1386.7,600.8 L1388.9,604.3 L1391.1,602.0 L1397.8,598.5 L1400.0,599.6" pathLength="1000" class="comet" fill="none" stroke="#e9fff2" stroke-width="5" stroke-linecap="round" stroke-dasharray="30 970" opacity=".7"/>
-
-  <!-- mortgage today -->
-  <circle cx="1388.9" cy="243.5" r="70" fill="url(#dotGlow)" class="glowDot"/>
-  <circle class="ring" cx="1388.9" cy="243.5" r="34" fill="none" stroke="#ff4d6d" stroke-opacity=".7" stroke-width="2" stroke-dasharray="4 9"/>
-  <circle class="sonar" cx="1388.9" cy="243.5" r="12" fill="none" stroke="#ff4d6d" stroke-width="2.5"/>
-  <circle class="sonar s2" cx="1388.9" cy="243.5" r="12" fill="none" stroke="#ff4d6d" stroke-width="2.5"/>
-  <circle cx="1388.9" cy="243.5" r="12" fill="#ff4d6d"/><circle cx="1388.9" cy="243.5" r="5" fill="#ffffff"/>
-  <text x="1340.9" y="181.5" text-anchor="end" class="disp" font-size="56" letter-spacing="-1" fill="#ff4d6d">7.28%</text>
-  <text x="1340.9" y="211.5" text-anchor="end" class="mono" font-size="17" letter-spacing="2.5" fill="#e6d3d5">30-YEAR MORTGAGE · HIGHEST SINCE 2023</text>
-
-  <!-- T-bills today -->
-  <circle cx="1400.0" cy="599.6" r="56" fill="url(#dotGlowG)" class="glowDot"/>
-  <circle class="sonar s2" cx="1400.0" cy="599.6" r="10" fill="none" stroke="#3dff9a" stroke-width="2.5"/>
-  <circle cx="1400.0" cy="599.6" r="10" fill="#3dff9a"/><circle cx="1400.0" cy="599.6" r="4" fill="#ffffff"/>
-  <text x="1360.0" y="737.6" text-anchor="end" class="disp" font-size="56" letter-spacing="-1" fill="#3dff9a">4.21%</text>
-  <text x="1360.0" y="767.6" text-anchor="end" class="mono" font-size="17" letter-spacing="2.5" fill="#c9d3ca">3-MONTH TREASURY BILLS</text>
+  <circle class="glowA" cx="250" cy="210" r="360" fill="url(#gA)"/>
+  <circle class="glowB" cx="1030" cy="380" r="300" fill="url(#gB)"/>
+  <g class="shard"><polygon points="0,0 230,0 0,270" fill="#3dff9a" opacity=".10"/></g>
+  <polygon points="1600,900 1420,900 1600,720" fill="#ff4d6d" opacity=".10"/>
 
   <!-- left: the words and the hero number -->
-  <text x="96" y="124" class="mono" font-size="23" letter-spacing="4" fill="#ff8a7a">BORROW AT 7.28% WHILE YOUR CASH</text>
-  <text x="96" y="158" class="mono" font-size="23" letter-spacing="4" fill="#ff8a7a">EARNS 4.21% IN TREASURY BILLS</text>
-  <text x="92" y="270" class="disp" font-size="98" letter-spacing="-4" fill="#fff6e8">Borrowing</text>
-  <text x="92" y="370" class="disp" font-size="98" letter-spacing="-4" fill="#ff4d6d">costs you</text>
-  <text x="96" y="438" class="mono" font-size="23" letter-spacing="4" fill="#a59a9b">ON EVERY $100,000, ABOUT</text>
-  <g class="hero"><text x="92" y="596" class="disp" font-size="196" letter-spacing="-8" fill="url(#heroFill)">$3,070</text></g>
-  <g clip-path="url(#heroClip)"><rect class="shine" x="92" y="400" width="120" height="240" fill="#ffffff" opacity=".55"/></g>
-  <text x="96" y="650" class="sans" font-size="33" font-weight="700" fill="#fff6e8">a year more than your cash earns</text>
+  <text x="96" y="124" class="mono" font-size="23" letter-spacing="4" fill="#7dffbf">SELL $100,000 OF STOCK GAINS</text>
+  <text x="96" y="158" class="mono" font-size="23" letter-spacing="4" fill="#7dffbf">HELD OVER A YEAR · MARRIED</text>
+  <text x="92" y="268" class="disp" font-size="96" letter-spacing="-4" fill="#f3fff7">No paycheck</text>
+  <text x="92" y="366" class="disp" font-size="96" letter-spacing="-4" fill="#3dff9a">this year?</text>
+  <text x="96" y="436" class="mono" font-size="23" letter-spacing="4" fill="#9fb5a6">YOU KEEP AN EXTRA</text>
+  <g class="hero"><text x="90" y="590" class="disp" font-size="164" letter-spacing="-6" fill="url(#heroFill)">$15,000</text></g>
+  <g clip-path="url(#heroClip)"><rect class="shine" x="90" y="420" width="120" height="200" fill="#ffffff" opacity=".55"/></g>
+  <text x="96" y="646" class="sans" font-size="33" font-weight="700" fill="#f3fff7">that a salary year sends to the IRS</text>
   <g class="pill">
-    <rect x="96" y="694" width="400" height="76" rx="38" fill="#3dff9a"/>
-    <text x="296" y="744" text-anchor="middle" class="sans" font-size="31" font-weight="800" fill="#06140c">Put more down.</text>
+    <rect x="96" y="694" width="520" height="76" rx="38" fill="#3dff9a"/>
+    <text x="356" y="744" text-anchor="middle" class="sans" font-size="31" font-weight="800" fill="#05140b">Sell by Dec 31. Buy right back.</text>
   </g>
+
+  <!-- right: the same $100,000 gain, two years -->
+  <g class="mono" font-size="19" letter-spacing="3.5" text-anchor="middle">
+    <text x="1030" y="262" fill="#ffb3c0">SALARY YEAR</text>
+    <text x="1380" y="262" fill="#7dffbf">NO PAYCHECK</text>
+  </g>
+
+  <!-- A: salary year, 15% slice cut out -->
+  <circle cx="1030" cy="450" r="135" fill="none" stroke="#ff4d6d" stroke-opacity=".28" stroke-width="2" stroke-dasharray="3 8"/>
+  <path d="M1030,450 L1139.2,370.6 A135,135 0 1 1 1030.0,315.0 Z" fill="url(#coinDim)" stroke="#3dff9a" stroke-opacity=".45" stroke-width="2" stroke-linejoin="round"/>
+  <g class="wedgeGlow"><path class="wedge" d="M1030,450 L1030.0,315.0 A135,135 0 0 1 1139.2,370.6 Z" fill="url(#slice)" stroke="#ffd0d9" stroke-width="2" stroke-linejoin="round"/></g>
+  <text x="1016" y="478" text-anchor="middle" class="disp" font-size="40" letter-spacing="-1" fill="#e9fff2">$85,000</text>
+  <text x="1016" y="508" text-anchor="middle" class="mono" font-size="15" letter-spacing="3" fill="#9fc9b0">YOU KEEP</text>
+
+  <!-- B: no paycheck, the whole coin -->
+  <circle cx="1380" cy="450" r="215" fill="url(#dotGlowG)" class="glowDot"/>
+  <circle class="sonar" cx="1380" cy="450" r="135" fill="none" stroke="#3dff9a" stroke-width="2.5"/>
+  <circle class="sonar s2" cx="1380" cy="450" r="135" fill="none" stroke="#3dff9a" stroke-width="2.5"/>
+  <circle class="ring" cx="1380" cy="450" r="156" fill="none" stroke="#3dff9a" stroke-opacity=".7" stroke-width="2" stroke-dasharray="4 10"/>
+  <circle cx="1380" cy="450" r="170" pathLength="1000" class="comet" fill="none" stroke="#e9fff2" stroke-width="5" stroke-linecap="round" stroke-dasharray="70 930" opacity=".85"/>
+  <circle cx="1380" cy="450" r="135" fill="url(#coinG)"/>
+  <circle class="ringR" cx="1380" cy="450" r="118" fill="none" stroke="#05140b" stroke-opacity=".25" stroke-width="2" stroke-dasharray="2 7"/>
+  <text x="1380" y="466" text-anchor="middle" class="disp" font-size="48" letter-spacing="-1.5" fill="#05140b">$100,000</text>
+  <text x="1380" y="500" text-anchor="middle" class="mono" font-size="15" letter-spacing="3" fill="#0b3a21">YOU KEEP</text>
+
+  <!-- tax under each -->
+  <text x="1030" y="684" text-anchor="middle" class="disp bad" font-size="58" letter-spacing="-1.5" fill="#ff4d6d">$15,000</text>
+  <text x="1380" y="684" text-anchor="middle" class="disp" font-size="58" letter-spacing="-1.5" fill="#3dff9a">$0</text>
+  <g class="mono" font-size="17" letter-spacing="3" text-anchor="middle" fill="#c9d3ca">
+    <text x="1030" y="716">FEDERAL TAX</text>
+    <text x="1380" y="716">FEDERAL TAX</text>
+  </g>
+  <line x1="900" x2="1530" y1="768" y2="768" stroke="#e8fff1" stroke-opacity=".12" stroke-dasharray="3 9"/>
+  <text x="1215" y="808" text-anchor="middle" class="mono" font-size="18" letter-spacing="3" fill="#9fb5a6">$0 ON UP TO $131,100 OF GAINS IN 2026</text>
 </svg>
+
 </div>
 </section>
 
-<section id="brief" class="rate-group econ-section"><div class="group-heading"><div><span class="eyebrow">01 / THE TAKEAWAY</span><h2>Debt now costs more than cash earns<span>.</span></h2></div><p>Worked out on $100,000</p></div>
+<section id="brief" class="rate-group econ-section"><div class="group-heading"><div><span class="eyebrow">01 / THE TAKEAWAY</span><h2>A low-income year is a tax-free window<span>.</span></h2></div><p>Worked out on $100,000 of gains</p></div>
 <ol class="insight-list">
 <li class="insight"><span class="insight-rank">01</span><div>
-<p class="insight-tag">Mortgages</p>
-<h3>On $100,000, a bigger down payment is a <em>sure 7.28%</em>, about $3,070 a year more than 3-month Treasury bills pay.</h3>
-<p>Freddie Mac’s weekly survey put the average 30-year fixed mortgage at 7.28% on Oct 1, 2026, up from 7.03% a week earlier and 5.98% on Feb 26. It last stood that high on Nov 22, 2023 (7.29%). Over the same stretch, 3-month Treasury bills rose only from 3.68% to 4.21%. So every $100,000 you borrow while keeping the same $100,000 parked in Treasury bills costs about $3,070 a year more than it earns. On matching weekly dates, that gap is the widest of 2026; it was 2.30 points in late February.</p>
-<p class="example">30-year fixed mortgage 7.28% → about $7,280 a year of interest per $100,000 borrowed (about $7,250 in the first year as the loan pays down)<br>3-month Treasury bills 4.21% → about $4,210 a year on $100,000<br>Gap 3.07 points → about $3,070 a year on every $100,000 borrowed instead of put down<br>Best Treasury of any maturity today: 20-year at 5.68%, still 1.60 points below the mortgage rate<br>Same $100,000 loan at February’s 5.98%: $598 a month; at 7.28%: $684 a month, about $1,030 more a year and $30,900 more interest over 30 years (about $146,300 total)</p>
-<p>Who it is for: anyone buying a home soon with cash on hand, and anyone who took a mortgage at 7% or more in 2023 or 2024, where extra principal payments earn that loan’s rate, guaranteed. For where to keep the cash you do hold, see <a href="index.html">Savings</a>; for more ideas, see <a href="insights.html">Insights</a>.</p>
-<p class="catch"><b>The catch:</b> money in a house is hard to get back without selling or borrowing again, so keep a real cash reserve first. 7.28% is a national average of loan applications; your quote depends on credit, down payment and points. Mortgage interest is deductible only if you itemize, which narrows the gap for some households; Treasury bill interest is taxed federally but not by states. If rates fall later, a smaller loan still refinances fine. Freddie Mac publishes a new weekly number every Thursday at 12 p.m. ET.</p>
-<p class="src">Source: <a href="https://www.freddiemac.com/pmms" target="_blank" rel="noopener">Freddie Mac Primary Mortgage Market Survey ↗</a> (30-year fixed 7.28% as of Oct 1, 2026; 7.03% the week before) · <a href="https://fred.stlouisfed.org/series/MORTGAGE30US" target="_blank" rel="noopener">FRED: 30-Year Fixed Rate Mortgage Average ↗</a> (Freddie Mac weekly history: 5.98% Feb 26, 2026; 7.29% Nov 22, 2023) · <a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&amp;field_tdr_date_value=2026" target="_blank" rel="noopener">U.S. Treasury Daily Par Yield Curve Rates ↗</a> (3-month 4.21% and 20-year 5.68% on Oct 6, 2026; 3-month 3.68% Feb 26)</p>
+<p class="insight-tag">Taxes</p>
+<h3>Married with no paycheck in 2026? $100,000 of long-term stock gains owes <em>$0</em> in federal income tax, instead of at least $15,000.</h3>
+<p>The IRS taxes gains on investments held more than one year at 0%, 15% or 20%, depending on taxable income. For 2026, a married couple filing jointly pays 0% on those gains as long as taxable income stays at or under $98,900 (single filers: $49,450). Taxable income is what is left after the standard deduction, which is $32,200 for couples in 2026. So a couple with no wages or other income can take $131,100 of long-term gains and owe the IRS nothing. A couple whose pay already pushes taxable income past $98,900 (about $131,100 of wages on the standard deduction) pays at least 15% on every dollar of gain.</p>
+<p class="example">Married, no other income, $100,000 of long-term gains → $100,000 − $32,200 standard deduction = $67,800 taxable, under the $98,900 limit → $0 federal income tax<br>Most a couple can take at $0: $32,200 + $98,900 = $131,100 of gains (single: $16,100 + $49,450 = $65,550)<br>Same $100,000 of gains on top of $131,100+ of pay → 15% = $15,000 (up to 18.8%, or $18,800, once income passes $250,000, from the 3.8% net investment income tax)<br>Some other income? Each taxable dollar of pension, IRA withdrawal or interest uses up a dollar of room: with $40,000 of IRA withdrawals, $91,100 of gains still owe $0<br>Sell and buy right back: shares bought for $50,000 and now worth $150,000 get a new $150,000 cost, so that $100,000 of gain is never taxed later</p>
+<p>Who it is for: early retirees living off a brokerage account, couples on a sabbatical or between jobs, and retirees before Social Security and required IRA withdrawals start. It only matters in a regular (taxable) brokerage account; IRAs and 401(k)s don’t owe capital gains tax on trades. Buying the same shares back right away is fine here, because the wash-sale rule only blocks losses, not gains. For where to keep cash from a sale, see <a href="index.html">Savings</a>; for more ideas, see <a href="insights.html">Insights</a>.</p>
+<p class="catch"><b>The catch:</b> shares held one year or less, including recently reinvested dividends, are short-term and taxed like wages, so choose which shares you sell (brokers call them lots). The $98,900 limit counts all taxable income, so overshoot by $10,000 and that $10,000 is taxed at 15%. States can still tax the gain: California has no lower rate for capital gains and taxes them as ordinary income. More income can also shrink ACA marketplace health-insurance tax credits, make more of your Social Security taxable, and raise Medicare premiums two years later, so run the numbers or ask a tax pro first. Trades must happen by Dec 31, 2026. These are 2026 amounts; the IRS has not yet published 2027’s.</p>
+<p class="src">Source: <a href="https://www.irs.gov/pub/irs-drop/rp-25-32.pdf" target="_blank" rel="noopener">IRS Revenue Procedure 2025-32 ↗</a> (2026 0% capital gains rate up to $98,900 of taxable income married filing jointly, $49,450 single; 15% up to $613,700 married filing jointly) · <a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill" target="_blank" rel="noopener">IRS IR-2025-103 ↗</a> (2026 standard deduction $32,200 married filing jointly, $16,100 single) · <a href="https://www.irs.gov/taxtopics/tc409" target="_blank" rel="noopener">IRS Topic 409 ↗</a> (held more than one year = long-term) · <a href="https://www.irs.gov/publications/p550" target="_blank" rel="noopener">IRS Publication 550 ↗</a> (a wash sale is a sale at a loss) · <a href="https://www.irs.gov/taxtopics/tc559" target="_blank" rel="noopener">IRS Topic 559 ↗</a> (3.8% net investment income tax above $250,000 married filing jointly) · <a href="https://www.ftb.ca.gov/file/personal/income-types/capital-gains-and-losses.html" target="_blank" rel="noopener">California Franchise Tax Board ↗</a> (no lower rate for capital gains)</p>
 </div></li>
 </ol></section>
 <p class="econ-note crypto-plain">General information, not financial, tax, or investment advice. Numbers were checked on Oct 7, 2026; rates change, so confirm with the source before you move money.</p>
