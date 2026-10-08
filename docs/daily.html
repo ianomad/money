@@ -1,155 +1,140 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Money — $100,000 in Sandisk (SNDK) on Dec 31 is worth about $712,958. Here is why it ran, and the 56% drop on the way.</title>
-<meta name="description" content="Sandisk stock went from $237.38 on Dec 31, 2025 to $1,692.42 on Oct 7, 2026, 7.1 times the money. Quarterly sales went from $1.90 billion to $8.97 billion in a year as AI data centers bought flash storage. It also fell 56% in five weeks this summer.">
+<title>Money — $100,000 in Dell (DELL) on Dec 31 is worth about $459,930. AI servers did it; thin margins are the catch.</title>
+<meta name="description" content="Dell stock went from $125.88 on Dec 31, 2025 to $578.96 on Oct 7, 2026, 4.6 times the money. AI server sales doubled to $16.4 billion in a quarter with $95 billion more on order. The catch: Dell keeps about 21 cents of each sales dollar after making the product.">
 <link rel="canonical" href="https://money.ilyusha.xyz/daily">
-<meta property="og:title" content="$100,000 in Sandisk on Dec 31 is now about $712,958.">
-<meta property="og:description" content="Real sales growth from AI data centers, and a 56% drop in five weeks along the way. Next test: earnings Oct 29.">
+<meta property="og:title" content="$100,000 in Dell on Dec 31 is now about $459,930. Yes, the laptop company.">
+<meta property="og:description" content="AI server sales doubled to $16.4 billion last quarter, with $95 billion more on order. Big orders, thin margins. Next test: earnings, expected late November.">
 <meta property="og:type" content="article"><meta property="og:url" content="https://money.ilyusha.xyz/daily">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg?v=8888aa712f" type="image/svg+xml"><link rel="stylesheet" href="styles.css?v=a780873538"><script src="analytics.js?v=f5cca14b91" defer></script>
 <style>
 .daily-stage{margin:0 0 36px}
-.sheet{position:relative;overflow:hidden;width:100%;max-width:1200px;aspect-ratio:16/9;margin:0 auto;background:#05050d;border-radius:16px;border:1px solid var(--line);box-shadow:0 8px 24px #1f241c0c}
+.sheet{position:relative;overflow:hidden;width:100%;max-width:1200px;aspect-ratio:16/9;margin:0 auto;background:#f3eee3;border-radius:16px;border:1px solid var(--line);box-shadow:0 8px 24px #1f241c0c}
 .sheet>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .sheet .disp{font-family:'Inter Tight',Inter,'Arial Black',sans-serif;font-weight:900}
 .sheet .mono{font-family:'JetBrains Mono','SFMono-Regular',ui-monospace,Menlo,Consolas,monospace;font-weight:700}
 .sheet .sans{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
-/* every motion runs on one 6s beat (or 3s / 2s), so the card loops every 12s with no seam (tape = 12s) */
+.sheet .serif{font-family:'Instrument Serif','DM Serif Display',Georgia,'Times New Roman',serif;font-style:italic}
+/* one 12s loop: everything runs on 12s / 6s / 3s / 2s beats, so the last frame meets the first */
 .sheet svg *{transform-box:fill-box;transform-origin:center}
-.sheet .haloV{animation:haloV 6s ease-in-out infinite}
-.sheet .haloC{animation:haloC 3s ease-in-out infinite}
-.sheet .comet{animation:comet 6s linear infinite}
-.sheet .tape{animation:tape 12s linear infinite;transform-box:view-box;transform-origin:0 0}
-.sheet .glowDot{animation:breathe 2s ease-in-out infinite}
+.sheet .blob{animation:blob 12s ease-in-out infinite}
+.sheet .ring{animation:spin 12s linear infinite;transform-box:view-box;transform-origin:1000px 446px}
+.sheet .ringDash{animation:spinBack 12s linear infinite}
+.sheet .sweep{animation:sweep 6s cubic-bezier(.45,0,.35,1) infinite;transform-box:view-box;transform-origin:0 0}
+.sheet .col{transform-origin:center bottom;animation:rise 6s ease-in-out infinite}
+.sheet .c0{animation-delay:-6.00s}.sheet .c1{animation-delay:-5.82s}.sheet .c2{animation-delay:-5.64s}.sheet .c3{animation-delay:-5.46s}.sheet .c4{animation-delay:-5.28s}.sheet .c5{animation-delay:-5.10s}.sheet .c6{animation-delay:-4.92s}.sheet .c7{animation-delay:-4.74s}.sheet .c8{animation-delay:-4.56s}.sheet .c9{animation-delay:-4.38s}.sheet .c10{animation-delay:-4.20s}
+.sheet .tNew{animation:tile 3s ease-in-out infinite}
+.sheet .tOld{animation:tileOld 3s ease-in-out infinite}
+.sheet .uline{animation:uline 6s ease-in-out infinite;transform-origin:left center}
 .sheet .sonar{animation:sonar 2s ease-out infinite;opacity:0}
 .sheet .sonar.s2{animation-delay:-1s}
-.sheet .shine{animation:shine 6s cubic-bezier(.5,0,.3,1) infinite}
-.sheet .flow{animation:flow 3s linear infinite}
-.sheet .dropTag{animation:dropTag 3s ease-in-out infinite}
-.sheet .grow{transform-origin:left center;animation:grow 6s ease-in-out infinite}
-.sheet g.hero,.sheet .hero{display:unset;justify-content:unset;align-items:unset;gap:unset;padding:0;animation:heroGlow 6s ease-in-out infinite}
+.sheet .glowN{animation:breathe 3s ease-in-out infinite}
+.sheet .flow{animation:flow 2s linear infinite}
 .sheet .pill{animation:pill 3s ease-in-out infinite}
-.sheet .areaPulse{animation:areaPulse 6s ease-in-out infinite}
-@keyframes haloV{0%,100%{transform:translate(0,0) scale(1);opacity:.75}50%{transform:translate(-50px,30px) scale(1.12);opacity:1}}
-@keyframes haloC{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.15);opacity:1}}
-@keyframes comet{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
-@keyframes tape{from{transform:translateX(0)}to{transform:translateX(-1600px)}}
-@keyframes breathe{0%,100%{transform:scale(1);opacity:.75}50%{transform:scale(1.2);opacity:1}}
-@keyframes sonar{0%{transform:scale(1);opacity:.85}100%{transform:scale(3.2);opacity:0}}
-@keyframes shine{0%,40%{transform:translateX(-200px) skewX(-20deg)}80%,100%{transform:translateX(900px) skewX(-20deg)}}
-@keyframes flow{to{stroke-dashoffset:-26}}
-@keyframes dropTag{0%,100%{filter:drop-shadow(0 0 4px rgba(255,90,61,.3))}50%{filter:drop-shadow(0 0 22px rgba(255,90,61,.85))}}
-@keyframes grow{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.985)}}
-@keyframes heroGlow{0%,100%{filter:drop-shadow(0 0 10px rgba(34,228,255,.25))}50%{filter:drop-shadow(0 0 34px rgba(34,228,255,.65))}}
-@keyframes pill{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
-@keyframes areaPulse{0%,100%{opacity:.75}50%{opacity:1}}
-@media (prefers-reduced-motion:reduce){.sheet svg *{animation:none!important}.sheet .sonar{opacity:0}.sheet .comet{opacity:0}}
+@keyframes blob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-120px,90px) scale(1.15)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spinBack{to{transform:rotate(-360deg)}}
+@keyframes sweep{0%{transform:translateX(0)}70%,100%{transform:translateX(820px)}}
+@keyframes rise{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.025)}}
+@keyframes tile{0%,100%{opacity:.55;transform:scale(.86)}35%{opacity:1;transform:scale(1)}}
+@keyframes tileOld{0%,100%{opacity:.7}35%{opacity:1}}
+@keyframes uline{0%,100%{transform:scaleX(.35)}50%{transform:scaleX(1)}}
+@keyframes sonar{0%{transform:scale(1);opacity:.9}100%{transform:scale(3.4);opacity:0}}
+@keyframes breathe{0%,100%{transform:scale(.9);opacity:.6}50%{transform:scale(1.15);opacity:1}}
+@keyframes flow{to{stroke-dashoffset:-22}}
+@keyframes pill{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+@media (prefers-reduced-motion:reduce){.sheet svg *{animation:none!important}.sheet .sonar{opacity:0}}
 @media (max-width:760px){.sheet{border-radius:12px}}
 </style></head>
 <body><a class="skip-link" href="#brief">Skip to today's brief</a><header><a class="brand" href="index.html"><img class="brand-mark" src="favicon.svg?v=8888aa712f" alt="">money<span class="brand-by">/ by ilyusha</span></a><nav aria-label="Main navigation"><a class="nav-switch" href="index.html">Savings</a><a class="nav-switch" href="cards.html">Cards</a><a class="nav-switch" href="economy.html">Economy</a><a class="nav-switch" href="crypto.html">Crypto</a><a class="nav-switch" href="insights.html">Insights</a><a class="nav-switch" href="daily.html" aria-current="page">Daily</a></nav><a class="personal" href="https://ilyusha.xyz">ilyusha.xyz ↗</a></header>
-<main id="top"><section class="hero"><div><p class="eyebrow"><span class="dot"></span> DAILY / OCT 8 · MORNING · STOCKS</p><h1>$100,000 in Sandisk on Dec 31 is now about <em>$712,958</em>.</h1><p class="intro">Sandisk (SNDK), the flash-memory maker Western Digital spun off in February 2025, closed 2025 at $237.38 a share and closed Wednesday, Oct 7 at $1,692.42. That is 7.1 times the money in nine months, one of the biggest runs in the S&amp;P 500 this year. The reason is real: AI data centers are buying flash storage, and Sandisk’s quarterly sales went from $1.90 billion to $8.97 billion in a year. The ride was not smooth. It fell 56% in five weeks this summer.</p></div><aside class="snapshot"><div class="snapshot-count">7.1×<span>since<br>Dec 31</span></div><div class="snapshot-date">Checked <time datetime="2026-10-08">Oct 8, 2026</time></div><p>Nasdaq closing prices through Oct 7 · Sandisk 8-K, Aug 5</p></aside></section>
+<main id="top"><section class="hero"><div><p class="eyebrow"><span class="dot"></span> DAILY / OCT 8 · AFTERNOON · STOCKS</p><h1>$100,000 in Dell on Dec 31 is now about <em>$459,930</em>. Yes, the laptop company.</h1><p class="intro">Dell Technologies (DELL) closed 2025 at $125.88 a share and closed Wednesday, Oct 7 at $578.96. That is 4.6 times the money in nine months, the No. 3 performer in the S&amp;P 500 this year according to two daily trackers. The reason is real: Dell has become one of the biggest builders of AI servers, and those sales doubled to $16.4 billion in its latest quarter, with $95 billion more already ordered. The catch is that it is a thin-margin business.</p></div><aside class="snapshot"><div class="snapshot-count">4.6×<span>since<br>Dec 31</span></div><div class="snapshot-date">Checked <time datetime="2026-10-08">Oct 8, 2026</time></div><p>Nasdaq closing prices through Oct 7 · Dell 8-K, Sept 1</p></aside></section>
 
 <section class="daily-stage" aria-label="Today's visual card">
 <div class="sheet" id="card">
-<p class="sr">$100,000 in Sandisk (SNDK) at the Dec 31, 2025 close was worth about $712,958 at the Oct 7, 2026 close. It peaked near $983,655 on June 25 and fell 56% to $427,959 by July 29. Quarterly sales went from $1.90 billion to $8.97 billion in a year, at an 84.6% gross margin. Real sales. Brutal swings. Next test: earnings Oct 29.</p>
-<svg viewBox="0 0 1600 900" role="img" aria-label="$100,000 put into Sandisk stock (SNDK) at the Dec 31, 2025 close was worth about $712,958 at the Oct 7, 2026 close, 7.1 times the money. It peaked near $983,655 on June 25, then fell 56% to $427,964 by July 29 before recovering. Why it moved: quarterly sales went from $1.90 billion to $8.97 billion in a year as AI data centers bought flash storage, at an 84.6% gross margin. Real sales. Brutal swings.">
+<p class="sr">$100,000 in Dell (DELL) at the Dec 31, 2025 close was worth about $459,930 at the Oct 7, 2026 close, 4.6 times the money. It doubled in May alone. AI server sales went from $8.2 billion to $16.4 billion in a quarter, year over year, with $95 billion more on order. Big orders. Thin margins: Dell keeps about 21 cents of each sales dollar after making the product; Sandisk keeps 85 cents.</p>
+<svg viewBox="0 0 1600 900" role="img" aria-label="$100,000 put into Dell Technologies stock (DELL) at the Dec 31, 2025 close was worth about $459,930 at the Oct 7, 2026 close, 4.6 times the money. Month by month it went from $100,000 to about $166,000 at the end of April, doubled to about $334,000 in May after earnings, and reached about $460,000 by Oct 7. Why: Dell's AI server sales doubled from $8.2 billion to $16.4 billion in a quarter, year over year, with $95 billion more on order. Big orders. Thin margins: Dell keeps about 21 cents of each sales dollar after making the product, versus 85 cents at Sandisk.">
   <defs>
-    <radialGradient id="sk" cx="78%" cy="18%" r="90%"><stop offset="0" stop-color="#1b1745"/><stop offset=".5" stop-color="#0b0b1f"/><stop offset="1" stop-color="#05050d"/></radialGradient>
-    <radialGradient id="haloV" r="50%"><stop offset="0" stop-color="#8b5cff" stop-opacity=".30"/><stop offset="1" stop-color="#8b5cff" stop-opacity="0"/></radialGradient>
-    <radialGradient id="haloC" r="50%"><stop offset="0" stop-color="#22e4ff" stop-opacity=".24"/><stop offset="1" stop-color="#22e4ff" stop-opacity="0"/></radialGradient>
-    <radialGradient id="dotG" r="50%"><stop offset="0" stop-color="#22e4ff" stop-opacity=".85"/><stop offset="1" stop-color="#22e4ff" stop-opacity="0"/></radialGradient>
-    <linearGradient id="lineG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#22e4ff"/><stop offset="1" stop-color="#b6fff3"/></linearGradient>
-    <linearGradient id="areaG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22e4ff" stop-opacity=".30"/><stop offset=".7" stop-color="#7c5cff" stop-opacity=".07"/><stop offset="1" stop-color="#7c5cff" stop-opacity="0"/></linearGradient>
-    <linearGradient id="heroG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#d9f9ff"/><stop offset="1" stop-color="#22e4ff"/></linearGradient>
-    <linearGradient id="barNew" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#22e4ff"/></linearGradient>
-    <clipPath id="heroClip"><text x="104" y="246" class="disp" font-size="164" letter-spacing="-7">$712,958</text></clipPath>
-    <clipPath id="tapeClip"><rect x="0" y="842" width="1600" height="58"/></clipPath>
+    <radialGradient id="paper" cx="30%" cy="20%" r="95%"><stop offset="0" stop-color="#fbf8f1"/><stop offset=".6" stop-color="#f3eee3"/><stop offset="1" stop-color="#e9e2d3"/></radialGradient>
+    <radialGradient id="blob" r="50%"><stop offset="0" stop-color="#2340ff" stop-opacity=".16"/><stop offset="1" stop-color="#2340ff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glowN" r="50%"><stop offset="0" stop-color="#2340ff" stop-opacity=".55"/><stop offset="1" stop-color="#2340ff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="colInk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26241f"/><stop offset="1" stop-color="#4a463d"/></linearGradient>
+    <linearGradient id="colMay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#111018"/><stop offset="1" stop-color="#3a3630"/></linearGradient>
+    <linearGradient id="colNow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b74ff"/><stop offset="1" stop-color="#1a2fd6"/></linearGradient>
+    <linearGradient id="tileG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a63ff"/><stop offset="1" stop-color="#1f35e0"/></linearGradient>
+    <linearGradient id="sweep" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset=".5" stop-color="#ffffff" stop-opacity=".55"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="uline" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2340ff"/><stop offset=".5" stop-color="#8fa0ff"/><stop offset="1" stop-color="#2340ff"/></linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#d6cebd"/></pattern>
+    <clipPath id="colClip"><rect x="900.1" y="632.8" width="38" height="109.2" rx="5"/><rect x="958.3" y="642.7" width="38" height="99.3" rx="5"/><rect x="1016.5" y="613.5" width="38" height="128.5" rx="5"/><rect x="1074.6" y="599.6" width="38" height="142.4" rx="5"/><rect x="1132.8" y="560.7" width="38" height="181.3" rx="5"/><rect x="1191.0" y="376.9" width="38" height="365.1" rx="5"/><rect x="1249.2" y="367.7" width="38" height="374.3" rx="5"/><rect x="1307.4" y="390.3" width="38" height="351.7" rx="5"/><rect x="1365.5" y="346.4" width="38" height="395.6" rx="5"/><rect x="1423.7" y="275.3" width="38" height="466.7" rx="5"/><rect x="1481.9" y="239.8" width="38" height="502.2" rx="5"/></clipPath>
+    <path id="ringPath" d="M1000,446 m-110,0 a110,110 0 1,1 220,0 a110,110 0 1,1 -220,0"/>
   </defs>
-  <rect width="1600" height="900" fill="url(#sk)"/>
-  <circle class="haloV" cx="1260" cy="160" r="420" fill="url(#haloV)"/>
-  <circle class="haloC" cx="1400" cy="462" r="300" fill="url(#haloC)"/>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <rect width="1600" height="900" fill="url(#dots)" opacity=".7"/>
+  <circle class="blob" cx="1300" cy="300" r="460" fill="url(#blob)"/>
 
-  <!-- headline + hero -->
-  <text x="110" y="78" class="mono" font-size="22" letter-spacing="4" fill="#9aa6d6">$100,000 IN SANDISK ON DEC 31 IS NOW</text>
-  <g class="hero"><text x="104" y="246" class="disp" font-size="164" letter-spacing="-7" fill="url(#heroG)">$712,958</text></g>
-  <g clip-path="url(#heroClip)"><rect class="shine" x="104" y="80" width="140" height="200" fill="#ffffff" opacity=".5"/></g>
-  <text x="112" y="294" class="sans" font-size="27" font-weight="700" fill="#e7ebff">7.1× in nine months  <tspan fill="#6f7a99" font-weight="600">· Oct 7 close · $SNDK</tspan></text>
+  <!-- hero -->
+  <text x="96" y="98" class="mono" font-size="21" letter-spacing="4" fill="#2340ff">$100,000 IN DELL ON DEC 31 IS NOW</text>
+  <text x="88" y="262" class="disp" font-size="158" letter-spacing="-7" fill="#111018">$459,930</text>
+  <rect class="uline" x="96" y="290" width="600" height="7" rx="3.5" fill="url(#uline)"/>
+  <text x="96" y="356" class="serif" font-size="46" fill="#3b372f">Yes, the laptop company.</text>
+  <text x="98" y="398" class="mono" font-size="15" letter-spacing="2.5" fill="#8a8273">OCT 7 CLOSE · PRICE ONLY · $DELL</text>
 
-  <!-- why it moved: one comparison -->
-  <g transform="translate(1046 54)">
-    <text x="0" y="22" class="mono" font-size="17" letter-spacing="3.5" fill="#22e4ff">WHY: AI DATA CENTERS BUY FLASH</text>
-    <text x="0" y="62" class="mono" font-size="15" letter-spacing="2" fill="#9aa6d6">SALES IN ONE QUARTER</text>
-    <rect x="0" y="80" width="83.5" height="34" rx="6" fill="#3a3f66"/>
-    <text x="95.5" y="105" class="mono" font-size="19" fill="#c9d0f2">$1.90B</text>
-    <text x="0" y="138" class="mono" font-size="13" letter-spacing="2" fill="#6f7a99">YEAR-AGO QUARTER</text>
-    <rect class="grow" x="0" y="154" width="394" height="34" rx="6" fill="url(#barNew)"/>
-    <text x="384" y="179" text-anchor="end" class="mono" font-size="19" fill="#05050d">$8.97B</text>
-    <text x="0" y="212" class="mono" font-size="13" letter-spacing="2" fill="#6f7a99">LATEST QUARTER · 84.6% GROSS MARGIN</text>
-  </g>
-
-  <!-- chart -->
-  <line x1="110" x2="1560" y1="790.0" y2="790.0" stroke="#c9d4ff" stroke-opacity="0.32" stroke-dasharray="0"/><text x="1560" y="796.0" text-anchor="end" class="mono" font-size="15" letter-spacing="1" fill="#6f7a99">$0</text><line x1="110" x2="1560" y1="675.0" y2="675.0" stroke="#c9d4ff" stroke-opacity="0.16" stroke-dasharray="2 8"/><text x="1560" y="681.0" text-anchor="end" class="mono" font-size="15" letter-spacing="1" fill="#6f7a99"></text><line x1="110" x2="1560" y1="560.0" y2="560.0" stroke="#c9d4ff" stroke-opacity="0.16" stroke-dasharray="2 8"/><text x="1560" y="566.0" text-anchor="end" class="mono" font-size="15" letter-spacing="1" fill="#6f7a99">$500K</text><line x1="110" x2="1560" y1="445.0" y2="445.0" stroke="#c9d4ff" stroke-opacity="0.16" stroke-dasharray="2 8"/><text x="1560" y="451.0" text-anchor="end" class="mono" font-size="15" letter-spacing="1" fill="#6f7a99"></text><line x1="110" x2="1560" y1="330.0" y2="330.0" stroke="#c9d4ff" stroke-opacity="0.16" stroke-dasharray="2 8"/><text x="1560" y="336.0" text-anchor="end" class="mono" font-size="15" letter-spacing="1" fill="#6f7a99">$1M</text>
-  <text x="116.7" y="820" class="mono" font-size="15" letter-spacing="2" fill="#6f7a99">JAN</text><text x="251.1" y="820" class="mono" font-size="15" letter-spacing="2" fill="#6f7a99">FEB</text><text x="378.8" y="820" class="mono" font-size="15" letter-spacing="2" fill="#6f7a99">MAR</text><text x="526.6" y="820" class="mono" font-size="15" letter-spacing="2" fill="#6f7a99">APR</text><text x="667.7" y="820" class="mono" font-size="15" letter-spacing="2" fill="#6f7a99">MAY</text><text x="802.0" y="820" class="mono" font-size="15" letter-spacing="2" fill="#6f7a99">JUN</text><text x="943.1" y="820" class="mono" font-size="15" letter-spacing="2" fill="#6f7a99">JUL</text><text x="1090.9" y="820" class="mono" font-size="15" letter-spacing="2" fill="#6f7a99">AUG</text><text x="1232.0" y="820" class="mono" font-size="15" letter-spacing="2" fill="#6f7a99">SEP</text><text x="1373.1" y="820" class="mono" font-size="15" letter-spacing="2" fill="#6f7a99">OCT</text>
-  <path d="M110.0,744.0 L116.7,736.7 L123.4,736.9 L130.2,722.2 L136.9,721.5 L143.6,725.2 L150.3,716.9 L157.0,714.6 L163.8,714.5 L170.5,714.8 L177.2,710.7 L183.9,709.8 L190.6,702.2 L197.3,692.9 L204.1,692.4 L210.8,698.2 L217.5,698.8 L224.2,696.7 L230.9,687.8 L237.7,685.5 L244.4,678.3 L251.1,661.1 L257.8,655.2 L264.5,676.7 L271.2,678.3 L278.0,674.1 L284.7,676.9 L291.4,685.0 L298.1,673.9 L304.8,667.9 L311.6,668.6 L318.3,675.6 L325.0,673.7 L331.7,669.6 L338.4,664.0 L345.2,660.8 L351.9,666.3 L358.6,667.5 L365.3,663.7 L372.0,666.9 L378.8,670.0 L385.5,680.4 L392.2,673.9 L398.9,680.4 L405.6,687.8 L412.3,675.9 L419.1,670.1 L425.8,663.0 L432.5,670.1 L439.2,661.8 L445.9,653.6 L452.7,650.4 L459.4,643.9 L466.1,640.4 L472.8,652.5 L479.5,653.9 L486.2,653.9 L493.0,658.6 L499.7,673.1 L506.4,670.7 L513.1,679.1 L519.8,666.9 L526.6,655.8 L533.3,654.0 L540.0,649.6 L546.7,652.3 L553.4,638.7 L560.2,625.0 L566.9,624.9 L573.6,605.4 L580.3,607.0 L587.0,617.2 L593.8,611.8 L600.5,611.5 L607.2,613.1 L613.9,614.9 L620.6,600.3 L627.3,609.3 L634.1,598.2 L640.8,582.6 L647.5,595.8 L654.2,583.8 L660.9,577.5 L667.7,560.0 L674.4,546.6 L681.1,517.5 L687.8,516.8 L694.5,530.3 L701.2,487.2 L708.0,490.1 L714.7,508.6 L721.4,509.6 L728.1,522.1 L734.8,517.2 L741.6,531.7 L748.3,521.9 L755.0,520.1 L761.7,491.1 L768.4,503.5 L775.2,482.0 L781.9,481.9 L788.6,471.9 L795.3,461.5 L802.0,448.7 L808.8,457.4 L815.5,435.1 L822.2,449.0 L828.9,487.8 L835.6,471.8 L842.3,470.9 L849.1,471.6 L855.8,425.4 L862.5,406.3 L869.2,381.5 L875.9,404.1 L882.7,410.4 L889.4,366.6 L896.1,349.4 L902.8,409.5 L909.5,419.0 L916.2,337.5 L923.0,384.9 L929.7,392.7 L936.4,349.4 L943.1,396.2 L949.8,451.9 L956.6,452.0 L963.3,476.5 L970.0,455.3 L976.7,429.9 L983.4,418.7 L990.2,465.6 L996.9,449.4 L1003.6,477.0 L1010.3,516.6 L1017.0,527.5 L1023.8,520.5 L1030.5,482.0 L1037.2,480.1 L1043.9,477.9 L1050.6,511.6 L1057.3,542.3 L1064.1,577.6 L1070.8,593.1 L1077.5,542.0 L1084.2,554.6 L1090.9,540.4 L1097.7,513.4 L1104.4,528.3 L1111.1,546.1 L1117.8,555.1 L1124.5,550.1 L1131.2,543.7 L1138.0,529.5 L1144.7,493.9 L1151.4,472.0 L1158.1,443.7 L1164.8,475.0 L1171.6,486.0 L1178.3,479.8 L1185.0,480.7 L1191.7,500.7 L1198.4,503.1 L1205.2,499.4 L1211.9,502.2 L1218.6,502.2 L1225.3,486.4 L1232.0,492.2 L1238.8,489.0 L1245.5,488.7 L1252.2,452.8 L1258.9,453.2 L1265.6,448.1 L1272.3,462.0 L1279.1,473.5 L1285.8,489.3 L1292.5,493.3 L1299.2,495.5 L1305.9,477.2 L1312.7,442.8 L1319.4,447.7 L1326.1,424.3 L1332.8,438.0 L1339.5,450.2 L1346.2,445.5 L1353.0,458.1 L1359.7,454.8 L1366.4,452.8 L1373.1,443.6 L1379.8,456.7 L1386.6,459.8 L1393.3,468.2 L1400.0,462.0 L1400,790 L110,790 Z" fill="url(#areaG)" class="areaPulse"/>
-  <path d="M110.0,744.0 L116.7,736.7 L123.4,736.9 L130.2,722.2 L136.9,721.5 L143.6,725.2 L150.3,716.9 L157.0,714.6 L163.8,714.5 L170.5,714.8 L177.2,710.7 L183.9,709.8 L190.6,702.2 L197.3,692.9 L204.1,692.4 L210.8,698.2 L217.5,698.8 L224.2,696.7 L230.9,687.8 L237.7,685.5 L244.4,678.3 L251.1,661.1 L257.8,655.2 L264.5,676.7 L271.2,678.3 L278.0,674.1 L284.7,676.9 L291.4,685.0 L298.1,673.9 L304.8,667.9 L311.6,668.6 L318.3,675.6 L325.0,673.7 L331.7,669.6 L338.4,664.0 L345.2,660.8 L351.9,666.3 L358.6,667.5 L365.3,663.7 L372.0,666.9 L378.8,670.0 L385.5,680.4 L392.2,673.9 L398.9,680.4 L405.6,687.8 L412.3,675.9 L419.1,670.1 L425.8,663.0 L432.5,670.1 L439.2,661.8 L445.9,653.6 L452.7,650.4 L459.4,643.9 L466.1,640.4 L472.8,652.5 L479.5,653.9 L486.2,653.9 L493.0,658.6 L499.7,673.1 L506.4,670.7 L513.1,679.1 L519.8,666.9 L526.6,655.8 L533.3,654.0 L540.0,649.6 L546.7,652.3 L553.4,638.7 L560.2,625.0 L566.9,624.9 L573.6,605.4 L580.3,607.0 L587.0,617.2 L593.8,611.8 L600.5,611.5 L607.2,613.1 L613.9,614.9 L620.6,600.3 L627.3,609.3 L634.1,598.2 L640.8,582.6 L647.5,595.8 L654.2,583.8 L660.9,577.5 L667.7,560.0 L674.4,546.6 L681.1,517.5 L687.8,516.8 L694.5,530.3 L701.2,487.2 L708.0,490.1 L714.7,508.6 L721.4,509.6 L728.1,522.1 L734.8,517.2 L741.6,531.7 L748.3,521.9 L755.0,520.1 L761.7,491.1 L768.4,503.5 L775.2,482.0 L781.9,481.9 L788.6,471.9 L795.3,461.5 L802.0,448.7 L808.8,457.4 L815.5,435.1 L822.2,449.0 L828.9,487.8 L835.6,471.8 L842.3,470.9 L849.1,471.6 L855.8,425.4 L862.5,406.3 L869.2,381.5 L875.9,404.1 L882.7,410.4 L889.4,366.6 L896.1,349.4 L902.8,409.5 L909.5,419.0 L916.2,337.5 L923.0,384.9 L929.7,392.7 L936.4,349.4 L943.1,396.2 L949.8,451.9 L956.6,452.0 L963.3,476.5 L970.0,455.3 L976.7,429.9 L983.4,418.7 L990.2,465.6 L996.9,449.4 L1003.6,477.0 L1010.3,516.6 L1017.0,527.5 L1023.8,520.5 L1030.5,482.0 L1037.2,480.1 L1043.9,477.9 L1050.6,511.6 L1057.3,542.3 L1064.1,577.6 L1070.8,593.1 L1077.5,542.0 L1084.2,554.6 L1090.9,540.4 L1097.7,513.4 L1104.4,528.3 L1111.1,546.1 L1117.8,555.1 L1124.5,550.1 L1131.2,543.7 L1138.0,529.5 L1144.7,493.9 L1151.4,472.0 L1158.1,443.7 L1164.8,475.0 L1171.6,486.0 L1178.3,479.8 L1185.0,480.7 L1191.7,500.7 L1198.4,503.1 L1205.2,499.4 L1211.9,502.2 L1218.6,502.2 L1225.3,486.4 L1232.0,492.2 L1238.8,489.0 L1245.5,488.7 L1252.2,452.8 L1258.9,453.2 L1265.6,448.1 L1272.3,462.0 L1279.1,473.5 L1285.8,489.3 L1292.5,493.3 L1299.2,495.5 L1305.9,477.2 L1312.7,442.8 L1319.4,447.7 L1326.1,424.3 L1332.8,438.0 L1339.5,450.2 L1346.2,445.5 L1353.0,458.1 L1359.7,454.8 L1366.4,452.8 L1373.1,443.6 L1379.8,456.7 L1386.6,459.8 L1393.3,468.2 L1400.0,462.0" fill="none" stroke="url(#lineG)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
-  <path d="M110.0,744.0 L116.7,736.7 L123.4,736.9 L130.2,722.2 L136.9,721.5 L143.6,725.2 L150.3,716.9 L157.0,714.6 L163.8,714.5 L170.5,714.8 L177.2,710.7 L183.9,709.8 L190.6,702.2 L197.3,692.9 L204.1,692.4 L210.8,698.2 L217.5,698.8 L224.2,696.7 L230.9,687.8 L237.7,685.5 L244.4,678.3 L251.1,661.1 L257.8,655.2 L264.5,676.7 L271.2,678.3 L278.0,674.1 L284.7,676.9 L291.4,685.0 L298.1,673.9 L304.8,667.9 L311.6,668.6 L318.3,675.6 L325.0,673.7 L331.7,669.6 L338.4,664.0 L345.2,660.8 L351.9,666.3 L358.6,667.5 L365.3,663.7 L372.0,666.9 L378.8,670.0 L385.5,680.4 L392.2,673.9 L398.9,680.4 L405.6,687.8 L412.3,675.9 L419.1,670.1 L425.8,663.0 L432.5,670.1 L439.2,661.8 L445.9,653.6 L452.7,650.4 L459.4,643.9 L466.1,640.4 L472.8,652.5 L479.5,653.9 L486.2,653.9 L493.0,658.6 L499.7,673.1 L506.4,670.7 L513.1,679.1 L519.8,666.9 L526.6,655.8 L533.3,654.0 L540.0,649.6 L546.7,652.3 L553.4,638.7 L560.2,625.0 L566.9,624.9 L573.6,605.4 L580.3,607.0 L587.0,617.2 L593.8,611.8 L600.5,611.5 L607.2,613.1 L613.9,614.9 L620.6,600.3 L627.3,609.3 L634.1,598.2 L640.8,582.6 L647.5,595.8 L654.2,583.8 L660.9,577.5 L667.7,560.0 L674.4,546.6 L681.1,517.5 L687.8,516.8 L694.5,530.3 L701.2,487.2 L708.0,490.1 L714.7,508.6 L721.4,509.6 L728.1,522.1 L734.8,517.2 L741.6,531.7 L748.3,521.9 L755.0,520.1 L761.7,491.1 L768.4,503.5 L775.2,482.0 L781.9,481.9 L788.6,471.9 L795.3,461.5 L802.0,448.7 L808.8,457.4 L815.5,435.1 L822.2,449.0 L828.9,487.8 L835.6,471.8 L842.3,470.9 L849.1,471.6 L855.8,425.4 L862.5,406.3 L869.2,381.5 L875.9,404.1 L882.7,410.4 L889.4,366.6 L896.1,349.4 L902.8,409.5 L909.5,419.0 L916.2,337.5 L923.0,384.9 L929.7,392.7 L936.4,349.4 L943.1,396.2 L949.8,451.9 L956.6,452.0 L963.3,476.5 L970.0,455.3 L976.7,429.9 L983.4,418.7 L990.2,465.6 L996.9,449.4 L1003.6,477.0 L1010.3,516.6 L1017.0,527.5 L1023.8,520.5 L1030.5,482.0 L1037.2,480.1 L1043.9,477.9 L1050.6,511.6 L1057.3,542.3 L1064.1,577.6 L1070.8,593.1 L1077.5,542.0 L1084.2,554.6 L1090.9,540.4 L1097.7,513.4 L1104.4,528.3 L1111.1,546.1 L1117.8,555.1 L1124.5,550.1 L1131.2,543.7 L1138.0,529.5 L1144.7,493.9 L1151.4,472.0 L1158.1,443.7 L1164.8,475.0 L1171.6,486.0 L1178.3,479.8 L1185.0,480.7 L1191.7,500.7 L1198.4,503.1 L1205.2,499.4 L1211.9,502.2 L1218.6,502.2 L1225.3,486.4 L1232.0,492.2 L1238.8,489.0 L1245.5,488.7 L1252.2,452.8 L1258.9,453.2 L1265.6,448.1 L1272.3,462.0 L1279.1,473.5 L1285.8,489.3 L1292.5,493.3 L1299.2,495.5 L1305.9,477.2 L1312.7,442.8 L1319.4,447.7 L1326.1,424.3 L1332.8,438.0 L1339.5,450.2 L1346.2,445.5 L1353.0,458.1 L1359.7,454.8 L1366.4,452.8 L1373.1,443.6 L1379.8,456.7 L1386.6,459.8 L1393.3,468.2 L1400.0,462.0" fill="none" pathLength="1000" class="comet" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-dasharray="70 930"/>
-
-  <!-- start -->
-  <circle cx="110.0" cy="744.0" r="7" fill="#7c5cff"/>
-  <text x="124.0" y="778.0" class="mono" font-size="16" letter-spacing="1.5" fill="#b9b0ff">$100K · DEC 31</text>
-
-  <!-- peak -> trough: the whiplash -->
-  <circle cx="916.2" cy="337.5" r="7" fill="#ffffff"/>
-  <text x="900.2" y="343.5" text-anchor="end" class="mono" font-size="16" letter-spacing="1.5" fill="#e7ebff">PEAK $984K · JUN 25</text>
-  <g class="drop">
-    <line x1="956.2" x2="956.2" y1="337.5" y2="593.1" stroke="#ff5a3d" stroke-width="3" stroke-dasharray="6 7" class="flow"/>
-    <line x1="946.2" x2="966.2" y1="337.5" y2="337.5" stroke="#ff5a3d" stroke-width="3"/>
-    <path d="M946.2,579.1 L956.2,593.1 L966.2,579.1" fill="none" stroke="#ff5a3d" stroke-width="3"/>
-  </g>
-  <circle cx="1070.8" cy="593.1" r="7" fill="#ff5a3d"/>
-  <text x="1066.8" y="627.1" text-anchor="middle" class="mono" font-size="16" letter-spacing="1.5" fill="#ff9a85">$428K · JUL 29</text>
-  <g class="dropTag"><rect x="724.2" y="545.0" width="210" height="60" rx="10" fill="#2a0f12" stroke="#ff5a3d" stroke-width="2"/>
-  <text x="829.2" y="571.0" text-anchor="middle" class="disp" font-size="26" fill="#ff5a3d">−56%</text>
-  <text x="829.2" y="595.0" text-anchor="middle" class="mono" font-size="13" letter-spacing="2" fill="#ffb3a6">IN FIVE WEEKS</text></g>
-
-  <!-- now -->
-  <circle cx="1400.0" cy="462.0" r="11" fill="none" stroke="#22e4ff" stroke-width="3" class="sonar"/>
-  <circle cx="1400.0" cy="462.0" r="11" fill="none" stroke="#22e4ff" stroke-width="3" class="sonar s2"/>
-  <circle cx="1400.0" cy="462.0" r="40" fill="url(#dotG)" class="glowDot"/>
-  <circle cx="1400.0" cy="462.0" r="8" fill="#ffffff"/>
-  <text x="1424.0" y="469.0" class="mono" font-size="18" letter-spacing="1.5" fill="#b6fff3">$713K NOW</text>
+  <!-- the one comparison: AI server sales in one quarter, 1 tile = $1B -->
+  <text x="96" y="470" class="mono" font-size="16" letter-spacing="3" fill="#26241f">WHY: AI SERVER SALES IN ONE QUARTER</text>
+  <text x="96" y="506" class="sans" font-size="20" font-weight="700" fill="#8a8273">A year ago</text>
+  <rect class="tOld" style="animation-delay:-0.00s" x="96" y="520" width="26" height="26" rx="5" fill="#c9c1b0"/><rect class="tOld" style="animation-delay:-0.12s" x="129" y="520" width="26" height="26" rx="5" fill="#c9c1b0"/><rect class="tOld" style="animation-delay:-0.24s" x="162" y="520" width="26" height="26" rx="5" fill="#c9c1b0"/><rect class="tOld" style="animation-delay:-0.36s" x="195" y="520" width="26" height="26" rx="5" fill="#c9c1b0"/><rect class="tOld" style="animation-delay:-0.48s" x="228" y="520" width="26" height="26" rx="5" fill="#c9c1b0"/><rect class="tOld" style="animation-delay:-0.60s" x="261" y="520" width="26" height="26" rx="5" fill="#c9c1b0"/><rect class="tOld" style="animation-delay:-0.72s" x="294" y="520" width="26" height="26" rx="5" fill="#c9c1b0"/><rect class="tOld" style="animation-delay:-0.84s" x="327" y="520" width="26" height="26" rx="5" fill="#c9c1b0"/><rect x="360" y="520" width="5.2" height="26" rx="3" fill="#c9c1b0" opacity=".9"/>
+  <text x="381" y="541" class="sans" font-size="26" font-weight="800" fill="#8a8273">$8.2B</text>
+  <text x="96" y="592" class="sans" font-size="20" font-weight="700" fill="#2340ff">Last quarter</text>
+  <rect class="tNew" style="animation-delay:-0.00s" x="96" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-0.12s" x="129" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-0.24s" x="162" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-0.36s" x="195" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-0.48s" x="228" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-0.60s" x="261" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-0.72s" x="294" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-0.84s" x="327" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-0.96s" x="360" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-1.08s" x="393" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-1.20s" x="426" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-1.32s" x="459" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-1.44s" x="492" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-1.56s" x="525" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-1.68s" x="558" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect class="tNew" style="animation-delay:-1.80s" x="591" y="606" width="26" height="26" rx="5" fill="url(#tileG)"/><rect x="624" y="606" width="10.4" height="26" rx="3" fill="url(#tileG)" opacity=".9"/>
+  <text x="650" y="627" class="disp" font-size="30" fill="#2340ff">$16.4B</text>
+  <text x="96" y="672" class="mono" font-size="14" letter-spacing="2" fill="#8a8273">EACH SQUARE = $1B · PLUS $95B MORE ALREADY ON ORDER</text>
 
   <!-- takeaway -->
-  <g class="pill">
-    <rect x="130" y="372" width="520" height="70" rx="35" fill="#f4f6ff"/>
-    <text x="390" y="418" text-anchor="middle" class="sans" font-size="29" font-weight="800" fill="#0b0b1f">Real sales. Brutal swings.</text>
-  </g>
-  <text x="152" y="476" class="mono" font-size="16" letter-spacing="2" fill="#9aa6d6">NEXT TEST: EARNINGS OCT 29</text>
+  <g class="pill"><rect x="96" y="712" width="452" height="72" rx="36" fill="#111018"/>
+  <text x="322" y="759" text-anchor="middle" class="sans" font-size="30" font-weight="800" fill="#fbf8f1">Big orders. Thin margins.</text></g>
+  <text x="98" y="822" class="mono" font-size="15" letter-spacing="1.5" fill="#d2452b">CATCH: DELL KEEPS ~21¢ OF EACH SALES DOLLAR AFTER MAKING THE GEAR · SANDISK: 85¢</text>
 
-  <!-- ticker tape -->
-  <rect x="0" y="842" width="1600" height="58" fill="#0e0e26"/>
-  <line x1="0" x2="1600" y1="842" y2="842" stroke="#22e4ff" stroke-opacity=".35"/>
-  <g clip-path="url(#tapeClip)"><g class="tape">
-    <text x="0" y="879" class="mono" font-size="19" letter-spacing="1" fill="#c9d0f2" textLength="1600" lengthAdjust="spacing"> SNDK $1,692.42  ▲ 613% IN 2026  ·  QUARTERLY SALES $1.90B → $8.97B (+372%)  ·  GROSS MARGIN 84.6%  ·  DATACENTER SALES 14× Y/Y  ·  NEXT EARNINGS OCT 29  ·  </text>
-    <text x="1600" y="879" class="mono" font-size="19" letter-spacing="1" fill="#c9d0f2" textLength="1600" lengthAdjust="spacing"> SNDK $1,692.42  ▲ 613% IN 2026  ·  QUARTERLY SALES $1.90B → $8.97B (+372%)  ·  GROSS MARGIN 84.6%  ·  DATACENTER SALES 14× Y/Y  ·  NEXT EARNINGS OCT 29  ·  </text>
-  </g></g>
+  <!-- skyline: what $100,000 was worth at each month end -->
+  <text x="1530" y="98" text-anchor="end" class="mono" font-size="15" letter-spacing="3" fill="#8a8273">YOUR $100,000, MONTH BY MONTH</text>
+  <line x1="884" x2="1538" y1="632.8" y2="632.8" stroke="#2340ff" stroke-opacity=".45" stroke-width="2" stroke-dasharray="3 7"/>
+  <circle class="glowN" cx="1500.9" cy="239.8" r="80" fill="url(#glowN)"/>
+  <rect class="col c0" x="900.1" y="632.8" width="38" height="109.2" rx="5" fill="url(#colInk)"/><rect class="col c1" x="958.3" y="642.7" width="38" height="99.3" rx="5" fill="url(#colInk)"/><rect class="col c2" x="1016.5" y="613.5" width="38" height="128.5" rx="5" fill="url(#colInk)"/><rect class="col c3" x="1074.6" y="599.6" width="38" height="142.4" rx="5" fill="url(#colInk)"/><rect class="col c4" x="1132.8" y="560.7" width="38" height="181.3" rx="5" fill="url(#colInk)"/><rect class="col c5" x="1191.0" y="376.9" width="38" height="365.1" rx="5" fill="url(#colMay)"/><rect class="col c6" x="1249.2" y="367.7" width="38" height="374.3" rx="5" fill="url(#colInk)"/><rect class="col c7" x="1307.4" y="390.3" width="38" height="351.7" rx="5" fill="url(#colInk)"/><rect class="col c8" x="1365.5" y="346.4" width="38" height="395.6" rx="5" fill="url(#colInk)"/><rect class="col c9" x="1423.7" y="275.3" width="38" height="466.7" rx="5" fill="url(#colInk)"/><rect class="col c10" x="1481.9" y="239.8" width="38" height="502.2" rx="5" fill="url(#colNow)"/>
+  <g clip-path="url(#colClip)"><rect class="sweep" x="730" y="176" width="150" height="586" fill="url(#sweep)"/></g>
+  <line x1="880" x2="1540" y1="742" y2="742" stroke="#26241f" stroke-width="2"/>
+  <text x="919.1" y="772" text-anchor="middle" class="mono" font-size="14" letter-spacing="1" fill="#8a8273">DEC</text><text x="977.3" y="772" text-anchor="middle" class="mono" font-size="14" letter-spacing="1" fill="#8a8273">JAN</text><text x="1035.5" y="772" text-anchor="middle" class="mono" font-size="14" letter-spacing="1" fill="#8a8273">FEB</text><text x="1093.6" y="772" text-anchor="middle" class="mono" font-size="14" letter-spacing="1" fill="#8a8273">MAR</text><text x="1151.8" y="772" text-anchor="middle" class="mono" font-size="14" letter-spacing="1" fill="#8a8273">APR</text><text x="1210.0" y="772" text-anchor="middle" class="mono" font-size="14" letter-spacing="1" fill="#8a8273">MAY</text><text x="1268.2" y="772" text-anchor="middle" class="mono" font-size="14" letter-spacing="1" fill="#8a8273">JUN</text><text x="1326.4" y="772" text-anchor="middle" class="mono" font-size="14" letter-spacing="1" fill="#8a8273">JUL</text><text x="1384.5" y="772" text-anchor="middle" class="mono" font-size="14" letter-spacing="1" fill="#8a8273">AUG</text><text x="1442.7" y="772" text-anchor="middle" class="mono" font-size="14" letter-spacing="1" fill="#8a8273">SEP</text><text x="1500.9" y="772" text-anchor="middle" class="mono" font-size="15" letter-spacing="1" fill="#2340ff">OCT 7</text>
+  <!-- May doubling -->
+  <path d="M1151.8,548.7 C1151.8,336.9 1161.0,334.9 1206.0,362.9" fill="none" stroke="#111018" stroke-width="2.5" stroke-dasharray="5 6" class="flow"/>
+  <path d="M1196.0,354.9 L1207.0,364.9 L1211.0,349.9" fill="none" stroke="#111018" stroke-width="2.5" stroke-linejoin="round"/>
+  <text x="1204.0" y="316.9" text-anchor="end" class="mono" font-size="16" letter-spacing="1.5" fill="#111018">×2 IN MAY</text>
+  <!-- now -->
+  <circle class="sonar" cx="1500.9" cy="239.8" r="10" fill="none" stroke="#2340ff" stroke-width="3"/>
+  <circle class="sonar s2" cx="1500.9" cy="239.8" r="10" fill="none" stroke="#2340ff" stroke-width="3"/>
+  <circle cx="1500.9" cy="239.8" r="7" fill="#fbf8f1" stroke="#2340ff" stroke-width="3"/>
+  <text x="1519.9" y="213.8" text-anchor="end" class="disp" font-size="34" fill="#2340ff">$460K</text>
+  <text x="919.1" y="618.8" text-anchor="middle" class="mono" font-size="14" fill="#2340ff">$100K</text>
+
+  <!-- rotating badge -->
+  <g class="ring"><text class="mono" font-size="14" fill="#26241f"><textPath href="#ringPath" textLength="689.2" lengthAdjust="spacing">SINCE DEC 31 · NINE MONTHS · SINCE DEC 31 · NINE MONTHS · </textPath></text></g>
+  <circle cx="1000" cy="446" r="90" fill="#fbf8f1" stroke="#26241f" stroke-width="2"/>
+  <circle class="ringDash" cx="1000" cy="446" r="80" fill="none" stroke="#2340ff" stroke-width="2" stroke-dasharray="4 8"/>
+  <text x="1000" y="468" text-anchor="middle" class="disp" font-size="68" letter-spacing="-3" fill="#111018">4.6×</text>
+  <text x="1000" y="500" text-anchor="middle" class="mono" font-size="13" letter-spacing="2.5" fill="#8a8273">THE MONEY</text>
 </svg>
 
 </div>
 </section>
 
-<section id="brief" class="rate-group econ-section"><div class="group-heading"><div><span class="eyebrow">01 / THE TAKEAWAY</span><h2>The run is backed by sales, and it still nearly halved in five weeks<span>.</span></h2></div><p>Worked out on $100,000 bought Dec 31, 2025</p></div>
+<section id="brief" class="rate-group econ-section"><div class="group-heading"><div><span class="eyebrow">01 / THE TAKEAWAY</span><h2>The orders are real. The profit on each one is thin<span>.</span></h2></div><p>Worked out on $100,000 bought Dec 31, 2025</p></div>
 <ol class="insight-list">
 <li class="insight"><span class="insight-rank">01</span><div>
 <p class="insight-tag">Stocks · fast growers</p>
-<h3>Sandisk turned $100,000 into about <em>$712,958</em> this year because AI data centers need flash storage.</h3>
-<p>AI servers don’t just need chips that think; they need somewhere fast to keep the data. That is NAND flash, the memory inside solid-state drives, and Sandisk makes it. When the AI buildout ran into a shortage of it this year, Sandisk sold more drives at much higher prices. In its quarter ended July 3, 2026, sales hit $8.97 billion, up 372% from $1.90 billion a year earlier. The company said about two-thirds of the jump from the prior quarter came from higher prices and one-third from selling more. Gross margin, the share of each sales dollar left after making the product, went from 26.2% to 84.6%. Sales to data centers were $2.98 billion, about 14 times the $213 million a year before.</p>
-<p class="example">Dec 31, 2025 close: $237.38 → $100,000 buys about 421 shares<br>Oct 7, 2026 close: $1,692.42 → about $712,958 (7.1×, +613%)<br>Peak close Jun 25: $2,335.00 → about $983,655<br>Low close Jul 29: $1,015.89 → about $427,959 (−56% from the peak in five weeks)<br>Still 28% below the June peak today<br>A year ago (Oct 7, 2025 close $120.95): $100,000 would be about $1.4 million</p>
-<p>Why it might not be done: for the quarter ending Oct 2, Sandisk guided to $10.3–10.8 billion of sales and $44–46 of adjusted earnings per share. Four quarters at the $45 midpoint would be $180 a share, so today’s price is about 9.4 times that pace. That is cheap for a company growing this fast, and it is cheap for a reason: the market is betting these memory prices are near a peak. The board also added $14 billion to its buyback in August.</p>
-<p class="catch"><b>The catch:</b> memory is a boom-and-bust business. In July, memory stocks sold off on fears of new supply: China’s biggest memory maker, CXMT, had a huge stock market debut, and SK Hynix said it would raise 2026 spending on new capacity by 50%. Sandisk fell from $2,335 to $1,015.89 in five weeks even though nothing had gone wrong in its own numbers. If prices for flash stop rising, the profits can shrink as fast as they grew. The next test is earnings on Oct 29 after the close. If you own it, size it so a 50% drop doesn’t force you to sell. For more ideas, see <a href="insights.html">Insights</a>; for where to park cash, see <a href="index.html">Savings</a>.</p>
-<p class="src">Source: <a href="https://www.nasdaq.com/market-activity/stocks/sndk/historical" target="_blank" rel="noopener">Nasdaq SNDK historical closing prices ↗</a> ($237.38 on Dec 31, 2025; $2,335.00 on Jun 25, 2026; $1,015.89 on Jul 29, 2026; $1,692.42 on Oct 7, 2026; $120.95 on Oct 7, 2025) · <a href="https://www.sec.gov/Archives/edgar/data/2023554/000162828026053346/sndkq4-26ex991xpressrelease.htm" target="_blank" rel="noopener">Sandisk fiscal Q4 2026 results, SEC Form 8-K Ex. 99.1, Aug 5, 2026 ↗</a> (revenue $8,965M vs $1,901M, up 372%; gross margin 84.6% vs 26.2%; datacenter $2,977M vs $213M; Q1 FY27 guidance $10.3–10.8B revenue, $44–46 non-GAAP EPS; additional $14B buyback) · <a href="https://investor.sandisk.com/news-releases/news-release-details/sandisk-reports-fiscal-fourth-quarter-2026-financial-results" target="_blank" rel="noopener">Sandisk investor relations ↗</a> · <a href="https://www.sandisk.com/company/newsroom/press-releases/2026/2026-09-29-sandisk-to-report-first-quarter-fiscal-year-2027-results-on-october-29-2026" target="_blank" rel="noopener">Sandisk: Q1 FY27 results on Oct 29, 2026 ↗</a> · July selloff context: <a href="https://247wallst.com/investing/2026/07/27/sandisk-sinks-12-micron-drops-5-sk-hynix-falls-8-as-chinas-cxmt-ipo-rattles-memory-stocks/" target="_blank" rel="noopener">24/7 Wall St., Jul 27 ↗</a>, <a href="https://247wallst.com/investing/2026/07/29/sandisk-sinks-7-micron-slides-6-as-memory-selloff-intensifies-seagate-bucks-the-trend/" target="_blank" rel="noopener">Jul 29 ↗</a></p>
+<h3>Dell turned $100,000 into about <em>$459,930</em> this year by building the servers AI runs on.</h3>
+<p>Most people know Dell for laptops. The money this year came from somewhere else: racks of AI servers, packed with Nvidia chips, that Dell assembles, ships and installs for cloud companies, governments and big businesses. In its quarter ended July 31, 2026, Dell sold $16.4 billion of AI servers, double the $8.2 billion a year earlier. It booked a record $60.9 billion of new AI orders in that one quarter and ended it with $95 billion of orders still waiting to ship. Total sales were $47.0 billion, up 58%, and earnings per share were $6.34, up 273%. Dell then raised its full-year forecast by $25 billion, to $192 billion of sales, including $74 billion of AI servers, about three times last year.</p>
+<p class="example">Dec 31, 2025 close: $125.88 → $100,000 buys about 794 shares<br>Low close Jan 20: $111.07 → about $88,235 (it started the year by falling 12%)<br>May 29, the day after first-quarter results: +32.8% in one day; the stock doubled in May<br>Oct 7, 2026 close: $578.96 → about $459,930 (4.6×, +360%, price only, before dividends)<br>Record close Sep 17: $588.40; Oct 7 was 1.6% below it<br>A year ago (Oct 7, 2025 close $150.87): $100,000 would be about $383,748</p>
+<p>Why it might not be done: Dell expects $25.50 of adjusted earnings per share this fiscal year, so today’s price is about 23 times that. That is not cheap, but it is far from bubble pricing for earnings growing this fast, and Dell says its pipeline of possible AI deals is still several times its $95 billion backlog.</p>
+<p class="catch"><b>The catch:</b> Dell is mostly a builder, not the chip maker. After paying for the parts and making the product, it keeps about 21 cents of each sales dollar (21.1% adjusted gross margin last quarter, 20.9% under standard accounting). Sandisk, this morning’s card, kept about 85 cents. Thin margins leave little cushion if chip or memory costs jump, if big AI customers delay orders, or if rivals cut prices. The stock fell 21% between June 1 and July 29 this year while the business kept growing. The next test is third-quarter results, expected in late November; Dell has not announced the date yet. If you own it, size it so a 20–30% drop doesn’t force you to sell. For more ideas, see <a href="insights.html">Insights</a>; for where to park cash, see <a href="index.html">Savings</a>.</p>
+<p class="src">Source: <a href="https://www.nasdaq.com/market-activity/stocks/dell/historical" target="_blank" rel="noopener">Nasdaq DELL historical closing prices ↗</a> ($125.88 on Dec 31, 2025; $111.07 on Jan 20, 2026; $317.05 on May 28 and $420.91 on May 29; $465.96 on Jun 1; $369.64 on Jul 29; $588.40 on Sep 17; $578.96 on Oct 7, 2026; $150.87 on Oct 7, 2025) · <a href="https://www.sec.gov/Archives/edgar/data/1571996/000157199626000039/exhibit991earnings8kq2fy27.htm" target="_blank" rel="noopener">Dell fiscal Q2 2027 results, SEC Form 8-K Ex. 99.1, Sept 1, 2026 ↗</a> (AI-optimized server revenue $16,401M vs $8,208M, up 100%; record $60.9B AI orders; $95B AI backlog; revenue $46,971M vs $29,776M, up 58%; diluted EPS $6.34, up 273%; gross margin 20.9%, non-GAAP 21.1%; FY27 guidance $192B revenue, $74B AI server revenue, up 200%, $25.50 non-GAAP EPS) · S&amp;P 500 rank: <a href="https://topstocksytd.com/best-stocks-2026-so-far/" target="_blank" rel="noopener">Top Stocks YTD, Oct 7 ↗</a>, <a href="https://chartrow.com/sp500/stock-performance" target="_blank" rel="noopener">ChartRow, Oct 6 ↗</a> · Sandisk gross margin 84.6%: <a href="https://www.sec.gov/Archives/edgar/data/2023554/000162828026053346/sndkq4-26ex991xpressrelease.htm" target="_blank" rel="noopener">Sandisk 8-K, Aug 5, 2026 ↗</a></p>
 </div></li>
 </ol></section>
 <p class="econ-note crypto-plain">General information, not financial, tax, or investment advice. Numbers were checked on Oct 8, 2026; stock prices move every day, past gains don’t predict future ones, and this is not a recommendation to buy or sell any stock.</p>
