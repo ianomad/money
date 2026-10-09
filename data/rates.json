@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-08",
-  "changeNote": "Oct 8: Aave's USDC deposit APY (Ethereum Core / Main market) moved from 4.18% to 7.15% as borrowing demand pushed the market to about 86% utilization; this variable onchain rate can drop quickly. No other rate moved.",
+  "checkedAt": "2026-10-09",
+  "changeNote": "Oct 9: Aave's USDC deposit APY (Ethereum Core / Main market) moved from 7.15% to 7.08%, with about 84% of the market's supplied USDC borrowed; this variable onchain rate can drop quickly. No other rate moved.",
   "providers": [
     {
       "id": "x-money",
@@ -289,13 +289,13 @@
       "kind": "DeFi lending · Aave V4",
       "symbol": "A",
       "color": "#7365b7",
-      "base": 7.15,
+      "base": 7.08,
       "boost": null,
       "baseLabel": "Market snapshot",
       "rateLabel": "Variable deposit APY",
-      "observedAt": "2026-10-08 14:50 UTC",
+      "observedAt": "2026-10-09 14:34 UTC",
       "requirements": "Supply USDC to the Ethereum Core / Main market. Requires a compatible wallet and ETH for network fees.",
-      "details": "Deposit APY reported by Aave’s public API (the data behind Aave Pro) at 2026-10-08 14:50 UTC. This is one USDC market, not a protocol-wide rate. At this snapshot about 86% of the market’s supplied USDC was borrowed, which is what pushed the deposit rate up; it can fall quickly as borrowers repay or new deposits arrive. Rates change with market utilisation and governance parameters; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity and, if borrowing, collateral requirements.",
+      "details": "Deposit APY reported by Aave’s public API (the data behind Aave Pro) at 2026-10-09 14:34 UTC. This is one USDC market, not a protocol-wide rate. At this snapshot about 84% of the market’s supplied USDC was borrowed, which is what pushed the deposit rate up; it can fall quickly as borrowers repay or new deposits arrive. Rates change with market utilisation and governance parameters; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity and, if borrowing, collateral requirements.",
       "protection": "No FDIC deposit insurance. Smart-contract, oracle, liquidity, and stablecoin depegging risks apply. Borrowing against supplied assets also introduces liquidation risk.",
       "effective": null,
       "fdic": {
