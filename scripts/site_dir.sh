@@ -4,4 +4,4 @@ set -e
 cd "$(dirname "$0")/.."
 python3 scripts/compose.py
 rm -rf _site && cp -r docs _site
-rm -f _site/savings.html _site/world.html _site/daily.html _site/crypto.html _site/economy.html _site/insights.html
+rm -f _site/cards-src.html _site/savings.html _site/world.html _site/daily.html _site/crypto.html _site/economy.html _site/insights.html
