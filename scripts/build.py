@@ -73,5 +73,7 @@ page=page.replace('Compare provider yields and the terms behind them.', f'Top ve
 for asset in ('styles.css', 'app.js', 'analytics.js', 'favicon.svg'):
     version = hashlib.sha256((ROOT/'docs'/asset).read_bytes()).hexdigest()[:10]
     page = page.replace(f'"{asset}"', f'"{asset}?v={version}"')
-(ROOT/'docs/index.html').write_text(page)
+(ROOT/'docs/savings.html').write_text(page)  # source; scripts/compose.py builds index.html from it
 print(f'Built tracker with {len(providers)} providers.')
+import subprocess, sys
+subprocess.run([sys.executable, str(ROOT/'scripts/compose.py')], check=True)

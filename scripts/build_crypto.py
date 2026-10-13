@@ -95,3 +95,5 @@ def build():
 if __name__ == '__main__':
     if '--fetch' in sys.argv: fetch()
     build()
+import subprocess as _sp, sys as _sys
+_sp.run([_sys.executable, str(ROOT/'scripts/compose.py')], check=True)
