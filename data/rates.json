@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-09",
-  "changeNote": "Oct 9: Aave's USDC deposit APY (Ethereum Core / Main market) moved from 7.15% to 7.08%, with about 84% of the market's supplied USDC borrowed; this variable onchain rate can drop quickly. No other rate moved.",
+  "checkedAt": "2026-10-13",
+  "changeNote": "Oct 13: added X Money's direct-deposit terms; Aave now synced daily from DefiLlama and listed with stablecoin yields, not savings.",
   "providers": [
     {
       "id": "x-money",
@@ -13,8 +13,8 @@
       "base": 4.0,
       "boost": 6.0,
       "rateLabel": "Conditional",
-      "requirements": "Premium+ subscription, or $1,000 in qualifying deposits within 34 days for 6.00% APY.",
-      "details": "Rolling out to select US users aged 18+. No interest for New York residents. Qualifying deposits include eligible ACH direct deposits and X creator payouts. Subscription fees may reduce earnings.",
+      "requirements": "6.00% with Premium+ or $1,000+ direct deposit (ACH payroll or X creator payouts) in the last 34 days; 4.00% otherwise.",
+      "details": "Variable rate. No interest for New York residents. Held at Cross River Bank and swept to partner banks, FDIC-insured up to $10M in total. Premium+ costs about $395/yr.",
       "protection": "Pass-through FDIC eligibility through Cross River Bank and sweep program banks; conditions and aggregate limits apply.",
       "effective": "2026-07-27",
       "sources": [
@@ -25,6 +25,10 @@
         {
           "label": "Availability & coverage",
           "url": "https://money.x.com/en"
+        },
+        {
+          "label": "YieldFinder listing (Oct 12, 2026)",
+          "url": "https://yieldfinder.app/institutions/x-money"
         }
       ],
       "fdic": {
@@ -289,7 +293,7 @@
       "kind": "DeFi lending · Aave V4",
       "symbol": "A",
       "color": "#7365b7",
-      "base": 7.08,
+      "base": 3.71,
       "boost": null,
       "baseLabel": "Market snapshot",
       "rateLabel": "Variable deposit APY",

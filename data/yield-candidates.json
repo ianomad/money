@@ -1,0 +1,37 @@
+{
+ "checkedAt": "2026-10-13",
+ "ourTop": 6.0,
+ "threshold": 4.5,
+ "candidates": [
+  {
+   "name": "Union High Yield Checking Account",
+   "apy": 6.17,
+   "source": "doctorofcredit.com",
+   "beatsTop": true
+  },
+  {
+   "name": "Rave Checking",
+   "apy": 6.1,
+   "source": "doctorofcredit.com",
+   "beatsTop": true
+  },
+  {
+   "name": "Sunward CU",
+   "apy": 5.04,
+   "source": "doctorofcredit.com",
+   "beatsTop": false
+  },
+  {
+   "name": "Badass Bank",
+   "apy": 4.55,
+   "source": "doctorofcredit.com",
+   "beatsTop": false
+  },
+  {
+   "name": "Connexus CU",
+   "apy": 4.5,
+   "source": "doctorofcredit.com",
+   "beatsTop": false
+  }
+ ]
+}

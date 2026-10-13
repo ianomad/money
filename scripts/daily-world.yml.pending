@@ -11,12 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Fetch FX and rebuild world.html
-        run: python3 scripts/build_yields.py --fetch
+        run: sh scripts/daily_refresh.sh
       - name: Commit if changed
         run: |
           git config user.name "money-bot"
           git config user.email "money-bot@users.noreply.github.com"
-          git add data/fx.json docs/
+          git add data/ docs/
           git diff --cached --quiet || git commit -m "Daily FX refresh for world deposits $(date -u +%F)"
           git push
       - name: Compose site

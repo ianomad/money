@@ -38,7 +38,7 @@ page='''<!doctype html>
 page=page.replace('7<span>providers',f'{len(providers)}<span>providers').replace('All providers <span>7</span>',f'All providers <span>{len(providers)}</span>').replace('Cash & savings <span>5</span>',f'Cash & savings <span>{sum(p["category"]=="cash" for p in providers)}</span>').replace('Crypto & stablecoins <span>2</span>',f'Crypto & stablecoins <span>{sum(p["category"]=="crypto" for p in providers)}</span>').replace('Showing 7 providers',f'Showing {len(providers)} providers').replace('Oct 3, 2026',date.fromisoformat(data['checkedAt']).strftime('%b %-d, %Y'))
 def offer_rate(p):
     return p['boost'] if p['boost'] is not None else p['base']
-ranked = sorted(providers, key=lambda p: offer_rate(p) if offer_rate(p) is not None else -1, reverse=True)[:6]
+ranked = sorted([p for p in providers if p['category']=='cash'], key=lambda p: offer_rate(p) if offer_rate(p) is not None else -1, reverse=True)[:6]
 top = offer_rate(ranked[0]) or 1
 def short_catch(text):
     import re

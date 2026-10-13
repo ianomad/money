@@ -66,7 +66,7 @@ rates = re.sub(r'<div class="filters" role="group".*?</div>', '', rates, count=1
 rates = rates.replace('<div class="rows">', '<div class="rows collapsed">', 1)
 ncash = len(re.findall(r'class="provider-row"', rates))
 rates = rates.replace('<p id="empty"', f'<button type="button" class="show-all" id="show-all">Show all {ncash}</button><p id="empty"', 1)
-rates = rates.replace('<a href="#methodology">How we compare ↗</a>', '<a href="#methodology">How we compare ↓</a> · Crypto yields moved to <a href="/markets#crypto-rates">Markets</a>')
+rates = rates.replace('<a href="#methodology">How we compare ↗</a>', '<a href="#methodology">How we compare ↓</a> · <a href="#stablecoins">Stablecoin yields ↓</a>')
 method = re.search(r'<section class="methodology".*?</section>', svm, re.S)
 method = tuck(method.group(0).replace('class="methodology" id="methodology"', 'class="methodology"'), 'How we compare: base vs. top APY, checks, caveats') if method else ''
 method = method.replace('<details class="tuck">', '<details class="tuck" id="methodology">', 1)
@@ -94,8 +94,18 @@ const ex=()=>{if(b&&b.isConnected){r.classList.remove('collapsed');b.remove()}};
 const tabs=[...document.querySelectorAll('.view-tabs a')];function show(v){document.getElementById('view-us').hidden=v==='world';document.getElementById('view-world').hidden=v!=='world';tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.view===v)))}
 const want=()=>{const h=location.hash.slice(1);return (h==='world'||document.getElementById(h)?.closest('#view-world'))?'world':'us'};tabs.forEach(t=>t.onclick=e=>{e.preventDefault();history.replaceState(null,'',t.dataset.view==='world'?'#world':location.pathname+location.search);show(t.dataset.view)});
 window.addEventListener('hashchange',()=>show(want()));show(want());const h=location.hash.slice(1);if(h&&h!=='world'){const el=document.getElementById(h);if(el){if(el.tagName==='DETAILS')el.open=true;el.scrollIntoView()}}})();</script>'''
+
+dj_defi = dj('defi.json'); dp = dj_defi['pools']
+def tvl(v): return f'${v/1e9:.1f}B' if v>=1e9 else f'${v/1e6:.0f}M'
+stable = ('<span id="stablecoins"></span>' + tuck(digest('stable-top', f"STABLECOIN YIELDS / LIVE FROM DEFILLAMA · {dj_defi['checkedAt']}",
+    'Stablecoin lending pays about the same as top savings, but with no FDIC insurance.',
+    ('Top stablecoin yield (pools over $100M)', f"{dp[0]['apy']:.2f}%", f"{dp[0]['protocol']} · {dp[0]['coin']} on {dp[0]['chain']}",
+     'Rates change daily with borrowing demand. Risks: no FDIC insurance, smart-contract bugs or hacks, the coin can slip below $1, and network fees to move money.'),
+    ('Protocol · chain', 'APY', 'Coin · money in pool'),
+    [(r['protocol'], r['chain'], f"{r['apy']:.2f}%", f"{r['coin']} · {tvl(r['tvl'])} in pool") for r in dp]),
+    f"Stablecoin yields: top {dp[0]['apy']:.2f}% (Aave, Maple, Sky, Ethena…), not FDIC insured"))
 tabs = '<div class="view-tabs" role="tablist"><a href="/" data-view="us" role="tab"><span>US savings</span></a><a href="/#world" data-view="world" role="tab"><span>World deposits</span></a></div>'
-body = (tabs + f'<div id="view-us">{hero}{rates}{method}<a class="back-top" href="#rates" aria-label="Back to filters">↑ Filters</a></div>'
+body = (tabs + f'<div id="view-us">{hero}{rates}{stable}{method}<a class="back-top" href="#rates" aria-label="Back to filters">↑ Filters</a></div>'
         + f'<div id="view-world" class="wrap" hidden><span id="world"></span>{world_hero}{world_rest}</div>' + show_js)
 desc = re.search(r'<meta name="description" content="([^"]*)"', sv).group(1)
 # ---------- lazy helpers (perf) ----------
