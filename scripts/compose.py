@@ -10,7 +10,7 @@ Every builder calls this at the end; deploy.yml runs it again before deploying. 
 """
 import re, hashlib, json, sys
 from pathlib import Path as _P; sys.path.insert(0, str(_P(__file__).resolve().parent))
-from digest import digest, compact_insights, strip_tags, DIGEST_CSS, DIGEST_JS
+from digest import digest, compact_insights, strip_tags, DIGEST_CSS, DIGEST_JS, UI_CSS, topcard, barchart, tile, e
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]; D = ROOT/'docs'
 def dj(n): return json.loads((ROOT/'data'/n).read_text())
@@ -75,12 +75,20 @@ for c in yd['countries']:
     pr = max(c['products'], key=lambda x: x['rate']); best.append((c, pr))
 best.sort(key=lambda t: -t[1]['rate'])
 kg = next(((c, pr) for c, pr in best if c.get('featured')), best[0])
+fx = dj('fx.json')['rates']; kc, kp = kg
+fxs = kc.get('fxStart'); fxm = (fxs['rate']/fx[kc['currency']]-1)*100 if fxs and fx.get(kc['currency']) else None
+world_card = topcard('Top pick abroad · steady currency', f"{kp['rate']:g}%", f"{kp['bank']} · {kc['name']}",
+    f"{kp['product']}, {kp['term']}, paid in {kc['currency']}. Main risk: if the {kc['currency']} falls against the dollar, it eats the extra interest.",
+    f"Verified {kp.get('verified', yd['checkedAt'])}",
+    [('Insured', kc['insurance'].split('(')[0].strip() + (f" (≈${1e6/fx['KGS']:,.0f})" if kc['currency']=='KGS' and '1,000,000' in kc['insurance'] else '')), ('Min', kp.get('min','')), ('Currency', kc['currency'])] + ([(f"{kc['currency']} vs $ since {fxs['date'][:4]}", f"{fxm:+.1f}%")] if fxm is not None else []),
+    ('See how foreigners open accounts', '#world-more'),
+    [(c['name'], pr['rate'], f"{pr['rate']:g}%", '#world-top') for c, pr in best[:6]], 'Best deposit rate by country')
 world_hero = digest('world-top', 'WORLD / BANK DEPOSITS ABROAD',
     'Banks abroad pay far more than US savings, but in their own currency, so a falling currency can wipe out the extra interest.',
-    ('Standout: steady currency', f"{kg[1]['rate']:g}%", f"{kg[0]['name']} · {kg[1]['bank']}", f"{kg[1]['product']}, {kg[1]['term']}, in {kg[1]['currency']}. {kg[0]['insurance'].split('(')[0].strip()}."),
+    world_card,
     ('Country', 'Best rate', 'Bank, term, currency'),
     [(c['name'], pr['bank'], f"{pr['rate']:g}%", f"{pr['product']} · {pr['term']} · {pr['currency']}") for c, pr in best])
-world_rest = tuck(wdm[wdm.index(sec(wdm, 'hero')) + len(sec(wdm, 'hero')):], 'Bank-by-bank details, the $500k Kyrgyzstan example, and how foreigners open accounts')
+world_rest = '<span id="world-more"></span>' + tuck(wdm[wdm.index(sec(wdm, 'hero')) + len(sec(wdm, 'hero')):], 'Bank-by-bank details, the $500k Kyrgyzstan example, and how foreigners open accounts')
 show_js = '''<script>(()=>{const r=document.querySelector('#rates .rows'),b=document.getElementById('show-all');if(b)b.onclick=()=>{r.classList.remove('collapsed');b.remove()};
 const ex=()=>{if(b&&b.isConnected){r.classList.remove('collapsed');b.remove()}};const q=document.getElementById('search');q&&q.addEventListener('input',ex);['coverage','minimum','sort'].forEach(i=>{const e=document.getElementById(i);e&&e.addEventListener('change',ex)});if(new URLSearchParams(location.search).toString())ex();
 const tabs=[...document.querySelectorAll('.view-tabs a')];function show(v){document.getElementById('view-us').hidden=v==='world';document.getElementById('view-world').hidden=v!=='world';tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.view===v)))}
@@ -99,7 +107,7 @@ LAZY_JS = '''<script>(()=>{const load=d=>{if(d.dataset.done)return Promise.resol
 def lazyimg(h):
     return re.sub(r'<img (?![^>]*loading=)(?![^>]*brand-mark)', '<img loading="lazy" ', h)
 
-idx = page('Money — rates at home and abroad', desc, '/', 'rates', body + DIGEST_JS, head_styles(wd) + DIGEST_CSS, '<script src="/app.js" defer></script>')
+idx = page('Money — rates at home and abroad', desc, '/', 'rates', body + DIGEST_JS, head_styles(wd) + DIGEST_CSS + UI_CSS, '<script src="/app.js" defer></script>')
 for asset in ('styles.css', 'app.js', 'analytics.js', 'favicon.svg'):
     v = hashlib.sha256((D/asset).read_bytes()).hexdigest()[:10]
     idx = idx.replace(f'"/{asset}"', f'"/{asset}?v={v}"')
@@ -133,23 +141,46 @@ mk_js = LAZY_JS + '''<script>(()=>{const h=location.hash.slice(1);if(!h)return;c
 brief = sec(dym, 'brief'); daily_m = dym.replace(brief, tuck(brief, 'The full story behind today’s card'))
 stocks = sec(insm, 'stocks'); n_st = len(re.findall(r'<li class="insight', stocks))
 stocks_c = ('<section class="digest" id="stocks"><p class="eyebrow"><span class="dot"></span> STOCK NOTES</p><h2 class="takeaway">'
-    f'{n_st} short notes on stocks and funds, each backed by a company filing. Tap one for the numbers and the risk.</h2>'
+    f'{n_st} stock notes, each from a company filing.</h2>'
     + compact_insights(re.search(r'<ol class="insight-list">.*?</ol>', stocks, re.S).group(0)) + '</section>')
-body = f'<div id="daily">{daily_m}</div>{jump}{stocks_c}{crypto_block}{econ_block}{mk_js}{DIGEST_JS}'
+ij = dj('insights.json')['inputs']; eth = next((c for c in coins if c['symbol']=='eth'), coins[1])
+mv = sorted(coins, key=lambda c: c['price_change_percentage_24h']); up_, dn_ = mv[-1], mv[0]
+tiles = ('<div class="tiles">' + tile('Bitcoin', px(btc['current_price']), btc['price_change_percentage_24h'], '24h · CoinGecko', '#crypto')
+    + tile('Ethereum', px(eth['current_price']), eth['price_change_percentage_24h'], '24h', '#crypto')
+    + tile('Top mover', up_['symbol'].upper(), up_['price_change_percentage_24h'], 'Best of top 20 coins, 24h', '#crypto')
+    + tile('Biggest drop', dn_['symbol'].upper(), dn_['price_change_percentage_24h'], 'Worst of top 20 coins, 24h', '#crypto')
+    + tile('Fed funds', f"{ij['fed']['dff']:g}%", None, f"Target {ij['fed']['lower']:g}–{ij['fed']['upper']:g}%")
+    + tile('3-month T-bill', f"{ij['tbill']['y13']:g}%", None, f"US Treasury, {ij['tbill']['date']}") + '</div>')
+top8 = coins[:8]
+crypto_v = (f'<div class="vcard"><p class="eyebrow"><span class="dot"></span> CRYPTO · 24H</p><h3>Crypto is {money(tot)}; Bitcoin is {cj["global"]["btcDominance"]:.0f}% of it.</h3><p class="one">Biggest coins, 24h move. Most follow Bitcoin.</p>'
+    + barchart([(c['symbol'].upper(), round(c['price_change_percentage_24h'],1)+0.0, f"{round(c['price_change_percentage_24h'],1)+0.0:+.1f}%", '#crypto-top') for c in top8], 'Top 8 by value · 24h change') + '<a class="more" href="#crypto-top">All 20 coins and crypto yields ↓</a></div>')
+econ_v = (f'<div class="vcard"><p class="eyebrow"><span class="dot"></span> ECONOMY · IMF {ej["gdp"]["year"]}</p><h3>US + China = {(top[0]["value"]+top[1]["value"])/world*100:.0f}% of world GDP.</h3><p class="one">Biggest economies, IMF estimate.</p>'
+    + barchart([(v['name'], v['value'], bn(v['value']), '#economy-top') for v in top[:8]], 'GDP, US dollars') + '<a class="more" href="#economy">World map and investment flows ↓</a></div>')
+vgrid = f'<div class="vgrid">{crypto_v}{econ_v}</div>'
+body = f'{tiles}<div id="daily">{daily_m}</div>{jump}{vgrid}{stocks_c}{crypto_block}{econ_block}{mk_js}{DIGEST_JS}'
 desc = re.search(r'<meta name="description" content="([^"]*)"', dy).group(1)
-mk = page('Money — markets', desc, '/markets', 'markets', body, head_styles(dy) + head_styles(cr) + head_styles(ec) + head_styles(ins) + DIGEST_CSS)
+mk = page('Money — markets', desc, '/markets', 'markets', body, head_styles(dy) + head_styles(cr) + head_styles(ec) + head_styles(ins) + DIGEST_CSS + UI_CSS)
 (D/'markets.html').write_text(lazyimg(mk))
 
 # ---------- Notes ----------
 ib = sec(insm, 'insights'); lis = re.findall(r'<li class="insight[^"]*">.*?</div></li>', ib, re.S)
 first_h = strip_tags(re.search(r'<h3>(.*?)</h3>', lis[0], re.S).group(1)) if lis else ''
-notes_m = ('<section class="digest" id="insights"><p class="eyebrow"><span class="dot"></span> NOTES / CASH, TAX, CREDIT</p>'
-    f'<h2 class="takeaway">{len(lis)} money moves, ranked by how many dollars they are worth on a big balance.</h2>'
-    f'<div class="pick"><span class="k">Biggest one</span><span class="w">{first_h}</span></div>'
-    + compact_insights(re.search(r'<ol class="insight-list">.*?</ol>', ib, re.S).group(0))
-    + '<p>Stock notes are on <a href="/markets#stocks">Markets</a>.</p></section>')
+from datetime import date as _d
+nchk = dj('insights.json').get('checkedAt', ''); ndate = _d.fromisoformat(nchk).strftime('%b %-d, %Y') if nchk else ''
+def ncard(li):
+    tag = strip_tags((re.search(r'<p class="insight-tag">(.*?)</p>', li, re.S) or [0, 'Note'])[1])
+    h = re.search(r'<h3>(.*?)</h3>', li, re.S).group(1); km = re.search(r'<em>(.*?)</em>', h, re.S)
+    rest = re.search(r'</h3>(.*)</div></li>$', li, re.S).group(1)
+    return (f'<li class="ncard"><p class="meta"><span>{e(tag)}</span><span>{e(ndate)}</span></p>'
+            + (f'<span class="n">{strip_tags(km.group(1))}</span>' if km else '')
+            + f'<h3>{strip_tags(h)}</h3><details><summary>The numbers and the catch</summary><div class="detail-body">{rest}</div></details></li>')
+cards_html = ''.join(ncard(l) for l in lis) or '<li class="ncard"><h3>No notes yet. New ones land here as soon as the numbers are checked.</h3></li>'
+notes_m = ('<section class="notes-intro"><p class="eyebrow"><span class="dot"></span> NOTES</p><h1>Money notes, in <em>plain English.</em></h1>'
+    '<p>Short takeaways on cash, tax and credit, the same ones we share on <a href="https://x.com/MoneyBeastAI">@MoneyBeastAI</a>. Each card shows one number: what the move is worth on a big balance.</p>'
+    '<p>How to use them: read the number, and if it matters to you, tap the card for the math and the catch. Biggest dollar impact first.</p></section>'
+    f'<ul class="ncards" id="insights">{cards_html}</ul><p>Stock notes are on <a href="/markets#stocks">Markets</a>.</p>')
 desc = re.search(r'<meta name="description" content="([^"]*)"', ins).group(1)
-(D/'notes.html').write_text(lazyimg(page('Money — notes', desc, '/notes', 'notes', notes_m, head_styles(ins) + DIGEST_CSS)))
+(D/'notes.html').write_text(lazyimg(page('Money — notes', desc, '/notes', 'notes', notes_m, head_styles(ins) + DIGEST_CSS + UI_CSS)))
 
 # ---------- nav everywhere ----------
 cards = rd('cards-src.html'); cm = main(cards)
@@ -158,14 +189,18 @@ for a in re.findall(r'<article class="provider-row" data-name.*?</article>', sec
     g = lambda pat: (re.search(pat, a, re.S) or [None, ''])[1]
     crows.append((strip_tags(g(r'<h3[^>]*>(.*?)</h3>')), strip_tags(g(r'</h3><p>(.*?)</p>')), float(g(r'data-everyday="([\d.]+)"') or 0), float(g(r'data-best="([\d.]+)"') or 0), strip_tags(g(r'<div class="terms"><p>(.*?)</p>'))))
 crows.sort(key=lambda r: (-r[2], -r[3]))
-flat = next((r for r in crows if r[1].strip() == '$0 fee'), crows[0])
+cm_ = re.search(r'Checked[^<]*?(\w{3} \d+, \d{4}|\d{4}-\d\d-\d\d)', cards); cchk = 'Checked ' + cm_.group(1) if cm_ else 'Terms change'
+flat = next((r for r in sorted(crows, key=lambda r: (-r[2], -r[3])) if r[1].strip() == '$0 fee'), crows[0])
+flat_url = next((re.search(r'href="(https[^"]+)"', x).group(1) for x in re.findall(r'<article class="provider-row" data-name.*?</article>', sec(cm, 'cards'), re.S) if flat[0] in x), '#cards')
 cards_d = digest('cards-top', 'CARDS / CASH BACK',
     f"For one card that earns on everything, {flat[0]} pays a flat {flat[2]:g}% with no annual fee; category cards pay more only where you spend a lot.",
-    ('Simple pick', f'{flat[2]:g}%', flat[0], flat[4].split('. ')[0] + '.'),
+    topcard('Simple pick · one card for everything', f'{flat[2]:g}% back', flat[0], 'Best for: anyone who wants one card for all spending, with no categories to track.', cchk,
+        [('Annual fee', flat[1].replace(' fee', '')), ('How it pays', flat[4].split('. ')[0].split(': ')[-1])],
+        ('Apply at ' + flat[0].split()[0], flat_url), [(n, ev, f'{ev:g}%', '#cards-top') for n, sub, ev, bs, t in crows[:6]], 'Cash back on everything'),
     ('Card', 'On everything', 'Best rate · what to know'),
     [(n, sub, f'{ev:g}%', f'Up to {bs:g}% · ' + t.split('. ')[0] + '.') for n, sub, ev, bs, t in crows])
 cards_body = cards_d + tuck(sec(cm, 'winners'), 'Best card for each spending category') + tuck(sec(cm, 'cards'), 'All cards, with filters and full terms') + DIGEST_JS
-cards_out = cards.replace(cm, cards_body).replace('</head>', DIGEST_CSS + TUCK_CSS + '</head>', 1)
+cards_out = cards.replace(cm, cards_body).replace('</head>', DIGEST_CSS + UI_CSS + TUCK_CSS + '</head>', 1)
 (D/'cards.html').write_text(lazyimg(setnav(cards_out, 'cards')))
 for n in ('cards-src.html', 'savings.html', 'world.html', 'crypto.html', 'economy.html', 'insights.html', 'daily.html'):
     (D/n).write_text(setnav(rd(n), 'x'))
