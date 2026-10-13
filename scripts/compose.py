@@ -82,7 +82,7 @@ desc = re.search(r'<meta name="description" content="([^"]*)"', sv).group(1)
 (D/'frag').mkdir(exist_ok=True)
 def lazytuck(html, label, name):
     (D/'frag'/f'{name}.html').write_text(html)
-    return f'<details class="tuck lazy" data-frag="/frag/{name}.html?v={hashlib.sha256(html.encode()).hexdigest()[:8]}"><summary>{label}</summary><div class="frag-body"><p>Loading…</p></div></details>'
+    return f'<details class="tuck lazy" data-frag="/frag/{name}?v={hashlib.sha256(html.encode()).hexdigest()[:8]}"><summary>{label}</summary><div class="frag-body"><p>Loading…</p></div></details>'
 LAZY_JS = '''<script>(()=>{const load=d=>{if(d.dataset.done)return Promise.resolve();d.dataset.done=1;return fetch(d.dataset.frag).then(r=>r.text()).then(t=>{d.querySelector('.frag-body').innerHTML=t})};document.querySelectorAll('details.lazy').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)load(d)}));window.__loadAllFrags=()=>Promise.all([...document.querySelectorAll('details.lazy')].map(load))})();</script>'''
 def lazyimg(h):
     return re.sub(r'<img (?![^>]*loading=)(?![^>]*brand-mark)', '<img loading="lazy" ', h)
