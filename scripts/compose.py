@@ -78,34 +78,43 @@ tabs = '<div class="view-tabs" role="tablist"><a href="/" data-view="us" role="t
 body = (tabs + f'<div id="view-us">{hero}{rates}{method}<a class="back-top" href="#rates" aria-label="Back to filters">↑ Filters</a></div>'
         + f'<div id="view-world" class="wrap" hidden><span id="world"></span>{world_hero}{world_rest}</div>' + show_js)
 desc = re.search(r'<meta name="description" content="([^"]*)"', sv).group(1)
+# ---------- lazy helpers (perf) ----------
+(D/'frag').mkdir(exist_ok=True)
+def lazytuck(html, label, name):
+    (D/'frag'/f'{name}.html').write_text(html)
+    return f'<details class="tuck lazy" data-frag="/frag/{name}.html?v={hashlib.sha256(html.encode()).hexdigest()[:8]}"><summary>{label}</summary><div class="frag-body"><p>Loading…</p></div></details>'
+LAZY_JS = '''<script>(()=>{const load=d=>{if(d.dataset.done)return Promise.resolve();d.dataset.done=1;return fetch(d.dataset.frag).then(r=>r.text()).then(t=>{d.querySelector('.frag-body').innerHTML=t})};document.querySelectorAll('details.lazy').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)load(d)}));window.__loadAllFrags=()=>Promise.all([...document.querySelectorAll('details.lazy')].map(load))})();</script>'''
+def lazyimg(h):
+    return re.sub(r'<img (?![^>]*loading=)(?![^>]*brand-mark)', '<img loading="lazy" ', h)
+
 idx = page('Money — rates at home and abroad', desc, '/', 'rates', body, head_styles(wd), '<script src="/app.js" defer></script>')
 for asset in ('styles.css', 'app.js', 'analytics.js', 'favicon.svg'):
     v = hashlib.sha256((D/asset).read_bytes()).hexdigest()[:10]
     idx = idx.replace(f'"/{asset}"', f'"/{asset}?v={v}"')
-(D/'index.html').write_text(idx)
+(D/'index.html').write_text(lazyimg(idx))
 
 # ---------- Markets ----------
 dy, ins, cr, ec = rd('daily.html'), rd('insights.html'), rd('crypto.html'), rd('economy.html')
 dym, insm, crm, ecm = main(dy), main(ins), main(cr), main(ec)
 cy = sec(svm, 'crypto-rates').replace('<div class="rows">', '<div class="rows">', 1)
 crypto_block = (f'<div id="crypto">{demote(sec(crm, "hero"))}{sec(crm, "biggest")}'
-                + tuck(sec(crm, 'coins'), 'Full coin list') + tuck(cy, 'Crypto & stablecoin yields (moved from Rates)').replace('<details class="tuck">', '<details class="tuck" id="crypto-yields">', 1) + '</div>')
+                + lazytuck(sec(crm, 'coins'), 'Full coin list', 'coins') + tuck(cy, 'Crypto & stablecoin yields (moved from Rates)').replace('<details class="tuck">', '<details class="tuck" id="crypto-yields">', 1) + '</div>')
 econ_block = (f'<div id="economy">{demote(sec(ecm, "hero"))}{sec(ecm, "biggest")}'
-              + tuck(sec(ecm, 'map'), 'World GDP map') + tuck(sec(ecm, 'flows'), 'Investment flows (FDI)') + '</div>')
+              + lazytuck(sec(ecm, 'map'), 'World GDP map', 'gdp-map') + lazytuck(sec(ecm, 'flows'), 'Investment flows (FDI)', 'fdi') + '</div>')
 jump = '<p class="jump"><a href="#daily">Today’s card</a><a href="#stocks">Stock notes</a><a href="#crypto">Crypto</a><a href="#economy">Economy</a></p>'
-mk_js = '''<script>(()=>{const h=location.hash.slice(1);const el=h&&document.getElementById(h);if(el){const d=el.closest('details');if(d)d.open=true;setTimeout(()=>el.scrollIntoView(),50)}})();</script>'''
+mk_js = LAZY_JS + '''<script>(()=>{const h=location.hash.slice(1);if(!h)return;const go=()=>{const el=document.getElementById(h);if(el){const d=el.closest('details');if(d)d.open=true;setTimeout(()=>el.scrollIntoView(),50)}};document.getElementById(h)?go():window.__loadAllFrags().then(go)})();</script>'''
 body = f'<div id="daily">{dym}</div>{jump}{sec(insm, "stocks")}{crypto_block}{econ_block}{mk_js}'
 desc = re.search(r'<meta name="description" content="([^"]*)"', dy).group(1)
 mk = page('Money — markets', desc, '/markets', 'markets', body, head_styles(dy) + head_styles(cr) + head_styles(ec))
-(D/'markets.html').write_text(mk)
+(D/'markets.html').write_text(lazyimg(mk))
 
 # ---------- Notes ----------
 notes_m = insm.replace(sec(insm, 'stocks'), '<p class="jump">Stock notes moved to <a href="/markets#stocks">Markets</a>.</p>')
 desc = re.search(r'<meta name="description" content="([^"]*)"', ins).group(1)
-(D/'notes.html').write_text(page('Money — notes', desc, '/notes', 'notes', notes_m, head_styles(ins)))
+(D/'notes.html').write_text(lazyimg(page('Money — notes', desc, '/notes', 'notes', notes_m, head_styles(ins))))
 
 # ---------- nav everywhere ----------
-cards = rd('cards.html'); (D/'cards.html').write_text(setnav(cards, 'cards'))
+cards = rd('cards.html'); (D/'cards.html').write_text(lazyimg(setnav(cards, 'cards')))
 for n in ('savings.html', 'world.html', 'crypto.html', 'economy.html', 'insights.html', 'daily.html'):
     (D/n).write_text(setnav(rd(n), 'x'))
 print('Composed index.html, markets.html, notes.html')
