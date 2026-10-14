@@ -62,7 +62,7 @@ def finalize(h):
 
 # ---------- ui4: patterns from NerdWallet/Bankrate (badges, earnings calc, trust line), Robinhood/Yahoo (sticky nav, colored chips) ----------
 UI4 = r'''
-header{position:sticky;top:0;z-index:20;background:rgba(251,250,246,.92)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+header{position:sticky;top:0;z-index:20;background:#fbfaf6!important}
 .trust{font:12px/1.5 var(--mono);color:var(--muted);margin:14px 0 0;display:flex;flex-wrap:wrap;gap:4px 14px}.trust b{color:#2f6b45;font-weight:600}
 .badge{display:inline-block;font:600 11px/1 var(--mono);letter-spacing:.4px;text-transform:uppercase;color:var(--gold);background:#f4ecd6;border-radius:99px;padding:4px 8px;margin:4px 6px 0 0;vertical-align:middle}
 .earn{border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px 18px;margin:12px 0;font-size:16px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
