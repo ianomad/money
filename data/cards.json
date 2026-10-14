@@ -1,35 +1,358 @@
-{"checkedAt":"2026-10-13","pointValue":0.01,
-"assumption":"Points and miles counted at 1¢ each (what Chase, Amex, Capital One and Bilt points are worth as cash or in the issuer's travel portal without a boost). Travel transfers can be worth more; we don't assume it. Credits and perks are not counted, because their value depends on whether you'd spend that money anyway.",
-"profile":{"dining":300,"groceries":400,"gas":150,"travel":150,"streaming":30,"other":970},
-"cards":[
-{"id":"rh","name":"Robinhood Gold Card","issuer":"Robinhood","fee":60,"feeNote":"Card has no fee, but needs Robinhood Gold at $5/mo ($60/yr)","url":"https://robinhood.com/us/en/gold/","type":"cash",
- "earn":{"other":3},"earnText":"3% on everything","perks":"Gold also pays 3.6% on brokerage cash and a 3% IRA match","bonus":null},
-{"id":"dc","name":"Citi Double Cash","issuer":"Citi","fee":0,"url":"https://www.citi.com/credit-cards/citi-double-cash-credit-card","type":"cash",
- "earn":{"other":2},"earnText":"2% on everything (1% when you buy, 1% when you pay); 5% on hotels, cars, attractions via Citi Travel","perks":"3% foreign transaction fee","bonus":null},
-{"id":"ac","name":"Wells Fargo Active Cash","issuer":"Wells Fargo","fee":0,"url":"https://creditcards.wellsfargo.com/active-cash-credit-card/","type":"cash",
- "earn":{"other":2},"earnText":"2% on everything","perks":"Phone protection up to $600 ($25 deductible); 0% intro APR 12 months","bonus":"$100 after $500 in 3 months"},
-{"id":"fu","name":"Chase Freedom Unlimited","issuer":"Chase","fee":0,"url":"https://creditcards.chase.com/cash-back-credit-cards/freedom/unlimited","type":"cash",
- "earn":{"dining":3,"other":1.5},"earnText":"3% dining and drugstores, 5% Chase Travel, 1.5% everything else","perks":"0% intro APR 15 months","bonus":"$200 after $500 in 3 months"},
-{"id":"sv","name":"Capital One Savor","issuer":"Capital One","fee":0,"url":"https://www.capitalone.com/credit-cards/savor/","type":"cash",
- "earn":{"dining":3,"groceries":3,"streaming":3,"other":1},"earnText":"3% dining, groceries (not Walmart/Target), entertainment, streaming; 1% else","perks":"No foreign transaction fees","bonus":"$200 after $500 in 3 months"},
-{"id":"bcp","name":"Amex Blue Cash Preferred","issuer":"American Express","fee":95,"feeNote":"$0 the first year, then $95","url":"https://www.americanexpress.com/us/credit-cards/card/blue-cash-preferred/","type":"cash",
- "earn":{"groceries":6,"streaming":6,"gas":3,"other":1},"cap":{"groceries":6000},"earnText":"6% US supermarkets (first $6,000/yr) and streaming, 3% gas and transit, 1% else","perks":"","bonus":null},
-{"id":"ap","name":"Apple Card","issuer":"Apple (Goldman Sachs)","fee":0,"url":"https://www.apple.com/apple-card/","type":"cash",
- "earn":{"other":2},"earnText":"2% with Apple Pay, 3% at Apple, 1% with the physical card","note":"We assume you pay with Apple Pay everywhere","perks":"No fees","bonus":null},
-{"id":"csp","name":"Chase Sapphire Preferred","issuer":"Chase","fee":95,"url":"https://creditcards.chase.com/rewards-credit-cards/sapphire/preferred","type":"travel",
- "earn":{"dining":3,"gas":3,"streaming":3,"travel":2,"other":1},"earnText":"5x Chase Travel, 3x dining, gas, streaming, online grocery, 2x other travel, 1x else","perks":"$100/yr Chase Travel hotel credit; points transfer to airlines and hotels; no foreign fees","bonus":"75,000 points after $5,000 in 3 months"},
-{"id":"csr","name":"Chase Sapphire Reserve","issuer":"Chase","fee":795,"url":"https://creditcards.chase.com/rewards-credit-cards/sapphire/reserve","type":"travel",
- "earn":{"dining":3,"travel":4,"other":1},"earnText":"8x Chase Travel, 4x flights and hotels booked direct, 3x dining, 1x else","perks":"$300 travel credit, $500 The Edit hotel credit, $300 dining, $300 StubHub, lounges (Priority Pass + Sapphire)","bonus":"100,000 points after $6,000 in 3 months"},
-{"id":"ag","name":"Amex Gold","issuer":"American Express","fee":325,"url":"https://www.americanexpress.com/us/credit-cards/card/gold-card/","type":"travel",
- "earn":{"dining":4,"groceries":4,"travel":3,"other":1},"cap":{"dining":50000,"groceries":25000},"earnText":"4x restaurants (first $50k/yr), 4x US supermarkets (first $25k/yr), 3x flights, 1x else","perks":"$100 Resy, $84 Dunkin', dining and Uber Cash credits (monthly, enrollment)","bonus":null},
-{"id":"apl","name":"Amex Platinum","issuer":"American Express","fee":895,"url":"https://www.americanexpress.com/us/credit-cards/card/platinum/","type":"travel",
- "earn":{"travel":5,"other":1},"earnText":"5x flights and prepaid Amex Travel hotels, 1x else","perks":"Biggest lounge network; $400 Resy, $300 lululemon, $219 CLEAR+, hotel credits up to $300 twice a year, and more","bonus":null},
-{"id":"vx","name":"Capital One Venture X","issuer":"Capital One","fee":395,"url":"https://www.capitalone.com/credit-cards/venture-x/","type":"travel",
- "earn":{"other":2},"earnText":"2x on everything, 10x hotels and cars, 5x flights via Capital One Travel","perks":"Capital One lounges; no foreign fees; miles transfer to airlines","bonus":null},
-{"id":"bb","name":"Bilt Blue","issuer":"Bilt","fee":0,"url":"https://www.bilt.com/card","type":"rent",
- "earn":{"other":1},"rent":1.25,"earnText":"Up to 1.25x on rent or mortgage with no fee, 1x everyday","perks":"Pay rent by card with no transaction fee","bonus":"$100 of Bilt Cash"},
-{"id":"bo","name":"Bilt Obsidian","issuer":"Bilt","fee":95,"url":"https://www.bilt.com/card","type":"rent",
- "earn":{"groceries":3,"travel":2,"other":1},"rent":1.25,"earnText":"3x dining or groceries (your pick), 2x travel, 1x else, up to 1.25x rent","perks":"$100 Bilt Travel hotel credit","bonus":"$200 of Bilt Cash"},
-{"id":"bp","name":"Bilt Palladium","issuer":"Bilt","fee":495,"url":"https://www.bilt.com/card","type":"rent",
- "earn":{"other":2},"rent":1.25,"earnText":"2x everyday, up to 1.25x rent","perks":"$400 hotel credit, $200 Bilt Cash, Priority Pass","bonus":"50,000 points + Gold status after $4,000 in 90 days"}
-]}
+{
+ "checkedAt": "2026-10-13",
+ "pointValue": 0.01,
+ "assumption": "Points and miles counted at 1\u00a2 each (what Chase, Amex, Capital One and Bilt points are worth as cash or in the issuer's travel portal without a boost). Travel transfers can be worth more; we don't assume it. Credits and perks are not counted, because their value depends on whether you'd spend that money anyway.",
+ "profile": {
+  "dining": 300,
+  "groceries": 400,
+  "gas": 150,
+  "travel": 150,
+  "streaming": 30,
+  "other": 970
+ },
+ "cards": [
+  {
+   "id": "rh",
+   "name": "Robinhood Gold Card",
+   "issuer": "Robinhood",
+   "fee": 60,
+   "feeNote": "Card has no fee, but needs Robinhood Gold at $5/mo ($60/yr)",
+   "url": "https://robinhood.com/us/en/gold/",
+   "type": "cash",
+   "earn": {
+    "other": 3
+   },
+   "earnText": "3% on everything",
+   "perks": "Gold also pays 3.6% on brokerage cash and a 3% IRA match",
+   "bonus": null
+  },
+  {
+   "id": "dc",
+   "name": "Citi Double Cash",
+   "issuer": "Citi",
+   "fee": 0,
+   "url": "https://www.citi.com/credit-cards/citi-double-cash-credit-card",
+   "type": "cash",
+   "earn": {
+    "other": 2
+   },
+   "earnText": "2% on everything (1% when you buy, 1% when you pay); 5% on hotels, cars, attractions via Citi Travel",
+   "perks": "3% foreign transaction fee",
+   "bonus": null
+  },
+  {
+   "id": "ac",
+   "name": "Wells Fargo Active Cash",
+   "issuer": "Wells Fargo",
+   "fee": 0,
+   "url": "https://creditcards.wellsfargo.com/active-cash-credit-card/",
+   "type": "cash",
+   "earn": {
+    "other": 2
+   },
+   "earnText": "2% on everything",
+   "perks": "Phone protection up to $600 ($25 deductible); 0% intro APR 12 months",
+   "bonus": "$100 after $500 in 3 months"
+  },
+  {
+   "id": "fu",
+   "name": "Chase Freedom Unlimited",
+   "issuer": "Chase",
+   "fee": 0,
+   "url": "https://creditcards.chase.com/cash-back-credit-cards/freedom/unlimited",
+   "type": "cash",
+   "earn": {
+    "dining": 3,
+    "other": 1.5
+   },
+   "earnText": "3% dining and drugstores, 5% Chase Travel, 1.5% everything else",
+   "perks": "0% intro APR 15 months",
+   "bonus": "$200 after $500 in 3 months"
+  },
+  {
+   "id": "sv",
+   "name": "Capital One Savor",
+   "issuer": "Capital One",
+   "fee": 0,
+   "url": "https://www.capitalone.com/credit-cards/savor/",
+   "type": "cash",
+   "earn": {
+    "dining": 3,
+    "groceries": 3,
+    "streaming": 3,
+    "other": 1
+   },
+   "earnText": "3% dining, groceries (not Walmart/Target), entertainment, streaming; 1% else",
+   "perks": "No foreign transaction fees",
+   "bonus": "$200 after $500 in 3 months"
+  },
+  {
+   "id": "bcp",
+   "name": "Amex Blue Cash Preferred",
+   "issuer": "American Express",
+   "fee": 95,
+   "feeNote": "$0 the first year, then $95",
+   "url": "https://www.americanexpress.com/us/credit-cards/card/blue-cash-preferred/",
+   "type": "cash",
+   "earn": {
+    "groceries": 6,
+    "streaming": 6,
+    "gas": 3,
+    "other": 1
+   },
+   "cap": {
+    "groceries": 6000
+   },
+   "earnText": "6% US supermarkets (first $6,000/yr) and streaming, 3% gas and transit, 1% else",
+   "perks": "",
+   "bonus": null
+  },
+  {
+   "id": "ap",
+   "name": "Apple Card",
+   "issuer": "Apple (Goldman Sachs)",
+   "fee": 0,
+   "url": "https://www.apple.com/apple-card/",
+   "type": "cash",
+   "earn": {
+    "other": 2
+   },
+   "earnText": "2% with Apple Pay, 3% at Apple, 1% with the physical card",
+   "note": "We assume you pay with Apple Pay everywhere",
+   "perks": "No fees",
+   "bonus": null
+  },
+  {
+   "id": "csp",
+   "name": "Chase Sapphire Preferred",
+   "issuer": "Chase",
+   "fee": 95,
+   "url": "https://creditcards.chase.com/rewards-credit-cards/sapphire/preferred",
+   "type": "travel",
+   "earn": {
+    "dining": 3,
+    "gas": 3,
+    "streaming": 3,
+    "travel": 2,
+    "other": 1
+   },
+   "earnText": "5x Chase Travel, 3x dining, gas, streaming, online grocery, 2x other travel, 1x else",
+   "perks": "$100/yr Chase Travel hotel credit; points transfer to airlines and hotels; no foreign fees",
+   "bonus": "75,000 points after $5,000 in 3 months"
+  },
+  {
+   "id": "csr",
+   "name": "Chase Sapphire Reserve",
+   "issuer": "Chase",
+   "fee": 795,
+   "url": "https://creditcards.chase.com/rewards-credit-cards/sapphire/reserve",
+   "type": "travel",
+   "earn": {
+    "dining": 3,
+    "travel": 4,
+    "other": 1
+   },
+   "earnText": "8x Chase Travel, 4x flights and hotels booked direct, 3x dining, 1x else",
+   "perks": "$300 travel credit, $500 The Edit hotel credit, $300 dining, $300 StubHub, lounges (Priority Pass + Sapphire)",
+   "bonus": "100,000 points after $6,000 in 3 months"
+  },
+  {
+   "id": "ag",
+   "name": "Amex Gold",
+   "issuer": "American Express",
+   "fee": 325,
+   "url": "https://www.americanexpress.com/us/credit-cards/card/gold-card/",
+   "type": "travel",
+   "earn": {
+    "dining": 4,
+    "groceries": 4,
+    "travel": 3,
+    "other": 1
+   },
+   "cap": {
+    "dining": 50000,
+    "groceries": 25000
+   },
+   "earnText": "4x restaurants (first $50k/yr), 4x US supermarkets (first $25k/yr), 3x flights, 1x else",
+   "perks": "$100 Resy, $84 Dunkin', dining and Uber Cash credits (monthly, enrollment)",
+   "bonus": null
+  },
+  {
+   "id": "apl",
+   "name": "Amex Platinum",
+   "issuer": "American Express",
+   "fee": 895,
+   "url": "https://www.americanexpress.com/us/credit-cards/card/platinum/",
+   "type": "travel",
+   "earn": {
+    "travel": 5,
+    "other": 1
+   },
+   "earnText": "5x flights and prepaid Amex Travel hotels, 1x else",
+   "perks": "Biggest lounge network; $400 Resy, $300 lululemon, $219 CLEAR+, hotel credits up to $300 twice a year, and more",
+   "bonus": null
+  },
+  {
+   "id": "vx",
+   "name": "Capital One Venture X",
+   "issuer": "Capital One",
+   "fee": 395,
+   "url": "https://www.capitalone.com/credit-cards/venture-x/",
+   "type": "travel",
+   "earn": {
+    "other": 2
+   },
+   "earnText": "2x on everything, 10x hotels and cars, 5x flights via Capital One Travel",
+   "perks": "Capital One lounges; no foreign fees; miles transfer to airlines",
+   "bonus": null
+  },
+  {
+   "id": "bb",
+   "name": "Bilt Blue",
+   "issuer": "Bilt",
+   "fee": 0,
+   "url": "https://www.bilt.com/card",
+   "type": "rent",
+   "earn": {
+    "other": 1
+   },
+   "rent": 1.25,
+   "earnText": "Up to 1.25x on rent or mortgage with no fee, 1x everyday",
+   "perks": "Pay rent by card with no transaction fee",
+   "bonus": "$100 of Bilt Cash"
+  },
+  {
+   "id": "bo",
+   "name": "Bilt Obsidian",
+   "issuer": "Bilt",
+   "fee": 95,
+   "url": "https://www.bilt.com/card",
+   "type": "rent",
+   "earn": {
+    "groceries": 3,
+    "travel": 2,
+    "other": 1
+   },
+   "rent": 1.25,
+   "earnText": "3x dining or groceries (your pick), 2x travel, 1x else, up to 1.25x rent",
+   "perks": "$100 Bilt Travel hotel credit",
+   "bonus": "$200 of Bilt Cash"
+  },
+  {
+   "id": "bp",
+   "name": "Bilt Palladium",
+   "issuer": "Bilt",
+   "fee": 495,
+   "url": "https://www.bilt.com/card",
+   "type": "rent",
+   "earn": {
+    "other": 2
+   },
+   "rent": 1.25,
+   "earnText": "2x everyday, up to 1.25x rent",
+   "perks": "$400 hotel credit, $200 Bilt Cash, Priority Pass",
+   "bonus": "50,000 points + Gold status after $4,000 in 90 days"
+  },
+  {
+   "id": "di",
+   "name": "Discover it Cash Back",
+   "issuer": "Discover (Capital One)",
+   "fee": 0,
+   "url": "https://www.discover.com/credit-cards/cash-back/it-card.html",
+   "type": "cash",
+   "earn": {
+    "other": 1
+   },
+   "earnText": "5% in rotating quarterly categories (activate, quarterly cap), 1% else",
+   "note": "We count only the 1% base, since categories change each quarter",
+   "perks": "Cashback Match: all cash back doubled at the end of year one (not counted)",
+   "bonus": "Cashback Match in year one"
+  },
+  {
+   "id": "ag2",
+   "name": "U.S. Bank Altitude Go",
+   "issuer": "U.S. Bank",
+   "fee": 0,
+   "url": "https://www.usbank.com/credit-cards/altitude-go-visa-signature-credit-card.html",
+   "type": "cash",
+   "earn": {
+    "dining": 4,
+    "groceries": 2,
+    "gas": 2,
+    "streaming": 2,
+    "other": 1
+   },
+   "cap": {
+    "dining": 8000
+   },
+   "earnText": "4x dining on the first $2,000 each quarter, 2x groceries, gas/EV, streaming, 1x else",
+   "perks": "0% intro APR 15 billing cycles",
+   "bonus": "20,000 points after $1,000 in 90 days"
+  },
+  {
+   "id": "so2",
+   "name": "SoFi Unlimited 2%",
+   "issuer": "SoFi",
+   "fee": 0,
+   "url": "https://www.sofi.com/credit-card/",
+   "type": "cash",
+   "earn": {
+    "other": 2
+   },
+   "earnText": "2% on all eligible purchases",
+   "perks": "",
+   "bonus": null
+  },
+  {
+   "id": "soe",
+   "name": "SoFi Everyday Cash",
+   "issuer": "SoFi",
+   "fee": 0,
+   "url": "https://www.sofi.com/credit-card/",
+   "type": "cash",
+   "earn": {
+    "dining": 3,
+    "groceries": 2,
+    "other": 1
+   },
+   "earnText": "3% dining, 2% groceries, 1% else",
+   "perks": "",
+   "bonus": null
+  },
+  {
+   "id": "pp",
+   "name": "PayPal Cashback Mastercard",
+   "issuer": "PayPal",
+   "fee": 0,
+   "url": "https://www.paypal.com/us/digital-wallet/manage-money/paypal-cashback-mastercard",
+   "type": "cash",
+   "earn": {
+    "other": 1.5
+   },
+   "earnText": "3% when you check out with PayPal, 1.5% everywhere else",
+   "note": "We count 1.5%; PayPal checkout spend would earn more",
+   "perks": "",
+   "bonus": null
+  },
+  {
+   "id": "bce",
+   "name": "Amex Blue Cash Everyday",
+   "issuer": "American Express",
+   "fee": 0,
+   "url": "https://www.americanexpress.com/us/credit-cards/card/blue-cash-everyday/",
+   "type": "cash",
+   "earn": {
+    "groceries": 3,
+    "gas": 3,
+    "other": 1
+   },
+   "cap": {
+    "groceries": 6000,
+    "gas": 6000
+   },
+   "earnText": "3% US supermarkets, US online retail, US gas (each on first $6,000/yr), 1% else",
+   "perks": "$84 Disney streaming credit",
+   "bonus": null
+  }
+ ]
+}

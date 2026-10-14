@@ -67,11 +67,6 @@
     "path": "icons/marcus.png",
     "source": "https://www.marcus.com/content/dam/marcus/us/en/logo/favicon.ico"
   },
-  "cash-app": {
-    "path": "icons/cash-app.svg",
-    "source": "https://cash.app/savings",
-    "note": "Official inline Cash App Logo SVG from the page header; geometry and colors preserved."
-  },
   "elevault": {
     "path": "icons/elevault.png",
     "source": "https://framerusercontent.com/images/wFuMJgb5ayd7UMpxcrhtRe6nx4.png",
@@ -91,5 +86,33 @@
     "path": "icons/openbank.png",
     "source": "https://assets.santandermedia.com/adobe/assets/urn:aaid:aem:64b85ac4-213a-46ed-8f0a-55241b46b5f6/as/openbank-favicon-64x64.avif?width=180&quality=80&assetName=openbank-favicon-180x180.png",
     "note": "Apple touch icon linked from https://www.openbank.us/."
+  },
+  "capitalone": {
+    "path": "icons/capital-one.png",
+    "source": "existing"
+  },
+  "amex": {
+    "path": "icons/amex.png",
+    "source": "existing"
+  },
+  "synchrony": {
+    "path": "icons/synchrony.png",
+    "source": "https://www.google.com/s2/favicons?domain=synchrony.com&sz=64"
+  },
+  "citizens": {
+    "path": "icons/citizens.png",
+    "source": "https://www.google.com/s2/favicons?domain=citizensaccess.com&sz=64"
+  },
+  "wellsfargo": {
+    "path": "icons/wellsfargo.png",
+    "source": "https://www.google.com/s2/favicons?domain=wellsfargo.com&sz=64"
+  },
+  "chime": {
+    "path": "icons/chime.png",
+    "source": "https://www.google.com/s2/favicons?domain=chime.com&sz=64"
+  },
+  "betterment": {
+    "path": "icons/betterment.png",
+    "source": "https://www.google.com/s2/favicons?domain=betterment.com&sz=64"
   }
 }

@@ -105,7 +105,7 @@ def sources_fold(kind):
     s = dj('sources.json'); rows = [x for x in s['sources'] if (x['kind'] == 'card') == (kind == 'cards') or kind == 'rates' and x['kind'] == 'savings']
     if kind == 'cards':
         d = dj('cards.json'); rows = [{'name': c['issuer'], 'product': c['name'], 'url': c['url'], 'status': 'read', 'checked': d['checkedAt']} for c in d['cards']]
-    def st(x): return 'Checked' if x['status'] == 'read' else 'Page blocked our check; not listed until verified'
+    def st(x): return ('Checked' if x['status'] == 'read' else 'Not listed') + (': ' + x['note'] if x.get('note') else ('' if x['status'] == 'read' else ': could not verify'))
     t = ''.join(f'<tr><td><a href="{e(x["url"])}" rel="nofollow noopener">{e(x["name"])}</a></td><td>{e(x["product"])}</td><td>{e(st(x))}</td><td>{e(x["checked"])}</td></tr>' for x in rows)
     intro = ('Every rate and card term comes from the institution’s own website, not from comparison sites. Each row shows when we last checked. '
              'We cover the biggest US banks by assets, the major fintech apps, and newer startups. Nobody pays to be listed or ranked higher.')

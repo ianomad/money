@@ -641,6 +641,202 @@
           "url": "https://www.openbank.us/banking/high-yield-savings-account"
         }
       ]
+    },
+    {
+      "id": "capitalone",
+      "name": "Capital One",
+      "product": "360 Performance Savings",
+      "category": "cash",
+      "kind": "Bank · Capital One, N.A.",
+      "symbol": "C",
+      "color": "#004977",
+      "base": 3.1,
+      "boost": null,
+      "rateLabel": "Standard rate",
+      "requirements": "No minimum, no monthly fee. Discover Online Savings now points to this account.",
+      "details": "Variable APY; same rate on all balances.",
+      "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
+      "effective": "2026-10-13",
+      "observedAt": "2026-10-13",
+      "sources": [
+        {
+          "label": "Official rate page (checked Oct 13, 2026)",
+          "url": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/"
+        }
+      ],
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Capital One; standard coverage limits apply."
+      }
+    },
+    {
+      "id": "amex",
+      "name": "American Express",
+      "product": "High Yield Savings",
+      "category": "cash",
+      "kind": "Bank · American Express National Bank",
+      "symbol": "A",
+      "color": "#016fd0",
+      "base": 3.1,
+      "boost": null,
+      "rateLabel": "Standard rate",
+      "requirements": "No minimum balance or monthly fee.",
+      "details": "Variable APY.",
+      "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
+      "effective": "2026-10-13",
+      "observedAt": "2026-10-13",
+      "sources": [
+        {
+          "label": "Official rate page (checked Oct 13, 2026)",
+          "url": "https://www.americanexpress.com/en-us/banking/online-savings/account/"
+        }
+      ],
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "American Express; standard coverage limits apply."
+      }
+    },
+    {
+      "id": "synchrony",
+      "name": "Synchrony",
+      "product": "High Yield Savings",
+      "category": "cash",
+      "kind": "Bank · Synchrony Bank",
+      "symbol": "S",
+      "color": "#3b3b3b",
+      "base": 3.55,
+      "boost": null,
+      "rateLabel": "Standard rate",
+      "requirements": "No minimum deposit or balance, no monthly fee.",
+      "details": "Variable APY.",
+      "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
+      "effective": "2026-10-13",
+      "observedAt": "2026-10-13",
+      "sources": [
+        {
+          "label": "Official rate page (checked Oct 13, 2026)",
+          "url": "https://www.synchrony.com/banking/high-yield-savings"
+        }
+      ],
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Synchrony; standard coverage limits apply."
+      }
+    },
+    {
+      "id": "citizens",
+      "name": "Citizens Access",
+      "product": "Savings",
+      "category": "cash",
+      "kind": "Bank · Citizens Bank, N.A.",
+      "symbol": "C",
+      "color": "#008555",
+      "base": 2.8,
+      "boost": null,
+      "rateLabel": "Standard rate",
+      "requirements": "No fees; same rate on all balances.",
+      "details": "Variable APY. Bank lists the rate as accurate as of Jul 28, 2026.",
+      "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
+      "effective": "2026-07-28",
+      "observedAt": "2026-10-13",
+      "sources": [
+        {
+          "label": "Official rate page (checked Oct 13, 2026)",
+          "url": "https://www.citizensaccess.com/"
+        }
+      ],
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Citizens Access; standard coverage limits apply."
+      }
+    },
+    {
+      "id": "wellsfargo",
+      "name": "Wells Fargo",
+      "product": "Way2Save Savings",
+      "category": "cash",
+      "kind": "Bank · Wells Fargo Bank, N.A.",
+      "symbol": "W",
+      "color": "#d71e28",
+      "base": 0.01,
+      "boost": null,
+      "rateLabel": "Standard rate",
+      "requirements": "Big-bank benchmark: what most branch savings pay.",
+      "details": "Standard rate on all balances; rates can vary by location.",
+      "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
+      "effective": "2026-10-13",
+      "observedAt": "2026-10-13",
+      "sources": [
+        {
+          "label": "Official rate page (checked Oct 13, 2026)",
+          "url": "https://www.wellsfargo.com/savings-cds/way2save/"
+        }
+      ],
+      "fdic": {
+        "status": "bank",
+        "label": "FDIC · Bank deposit",
+        "summary": "Wells Fargo; standard coverage limits apply."
+      }
+    },
+    {
+      "id": "chime",
+      "name": "Chime",
+      "product": "High-Yield Savings",
+      "category": "cash",
+      "kind": "Fintech · The Bancorp Bank / Stride Bank",
+      "symbol": "C",
+      "color": "#1ec677",
+      "base": 1.0,
+      "boost": 4.0,
+      "rateLabel": "Conditional",
+      "requirements": "4.00% as a Chime Prime member or 3.00% as Chime Plus, both need a qualifying direct deposit; 1.00% otherwise.",
+      "details": "Variable APY.",
+      "protection": "Pass-through FDIC insurance through partner banks; conditions apply.",
+      "effective": "2026-10-13",
+      "observedAt": "2026-10-13",
+      "sources": [
+        {
+          "label": "Official rate page (checked Oct 13, 2026)",
+          "url": "https://www.chime.com/savings-account/"
+        }
+      ],
+      "fdic": {
+        "status": "conditional",
+        "label": "FDIC · Pass-through",
+        "summary": "Chime; standard coverage limits apply."
+      }
+    },
+    {
+      "id": "betterment",
+      "name": "Betterment",
+      "product": "Cash Reserve",
+      "category": "cash",
+      "kind": "Cash management · partner banks",
+      "symbol": "B",
+      "color": "#1f4dcc",
+      "base": 3.5,
+      "boost": 4.25,
+      "rateLabel": "New-customer boost",
+      "requirements": "4.25% is a 0.75% boost for new Cash Reserve customers on up to $1M, through Feb 15, 2027; 3.50% standard.",
+      "details": "Variable APY; swept to partner banks (up to $8M joint coverage per Betterment).",
+      "protection": "Pass-through FDIC insurance through partner banks; conditions apply.",
+      "effective": "2026-10-13",
+      "observedAt": "2026-10-13",
+      "sources": [
+        {
+          "label": "Official rate page (checked Oct 13, 2026)",
+          "url": "https://www.betterment.com/cash-reserve"
+        }
+      ],
+      "fdic": {
+        "status": "conditional",
+        "label": "FDIC · Pass-through",
+        "summary": "Betterment; standard coverage limits apply."
+      }
     }
   ]
 }
