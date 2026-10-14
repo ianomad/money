@@ -59,3 +59,47 @@ def finalize(h):
     h = h.replace('</footer>', f'<p class="fine">{note}</p></footer>', 1)
     h = h.replace('<footer>', '<footer>', 1)
     return h
+
+# ---------- ui4: patterns from NerdWallet/Bankrate (badges, earnings calc, trust line), Robinhood/Yahoo (sticky nav, colored chips) ----------
+UI4 = r'''
+header{position:sticky;top:0;z-index:20;background:rgba(251,250,246,.92)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.trust{font:12px/1.5 var(--mono);color:var(--muted);margin:14px 0 0;display:flex;flex-wrap:wrap;gap:4px 14px}.trust b{color:#2f6b45;font-weight:600}
+.badge{display:inline-block;font:600 11px/1 var(--mono);letter-spacing:.4px;text-transform:uppercase;color:var(--gold);background:#f4ecd6;border-radius:99px;padding:4px 8px;margin:4px 6px 0 0;vertical-align:middle}
+.earn{border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px 18px;margin:12px 0;font-size:16px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.earn input{font:600 18px var(--serif);width:7.5em;padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)}
+.earn output{font:600 24px var(--serif);color:var(--gold)}.yr{display:block;font:12px var(--mono);color:var(--muted);font-weight:400}
+.tile .d{display:inline-block;padding:2px 7px;border-radius:99px}.tile .d.up{background:#e6f0e9}.tile .d.down{background:#f7e6e0}
+'''
+EARN_JS = r'''<script>(()=>{const i=document.getElementById("earn-amt");if(!i)return;const m=+i.dataset.m,o=document.getElementById("earn-out"),top=parseFloat(i.dataset.r),f=n=>"$"+Math.round(n).toLocaleString("en-US"),els=[...document.querySelectorAll(i.dataset.sel)].filter(e=>/%/.test(e.textContent));els.forEach(e=>{e.dataset.r=parseFloat(e.textContent);e.insertAdjacentHTML("beforeend",'<span class="yr"></span>')});const u=()=>{const a=(+i.value.replace(/[^\d.]/g,"")||0)*m;o.textContent=f(a*top/100);els.forEach(e=>e.lastChild.textContent=f(a*e.dataset.r/100)+"/yr")};i.oninput=u;u()})()</script>'''
+from datetime import date as _date
+def ui4(h):
+    if '<main' not in h or 'class="trust"' in h: return h
+    path = re.search(r'<link rel="canonical" href="[^"]*?(/[a-z]*)"', h)
+    rates = 'data-view="us"' in h; cards = 'id="cards-top"' in h
+    today = _date.today().strftime('%b %-d, %Y')
+    src = {True: 'Rates checked by hand against each bank’s own page'}.get(rates) or ('Card terms checked against issuer pages' if cards else 'Data from CoinGecko, US Treasury, Fed, IMF and company filings')
+    h = re.sub(r'(<main[^>]*>)', r'\1' + f'<p class="trust"><span><b>●</b> Updated {today}</span><span>{src}</span><span>No sponsored rankings</span></p>', h, count=1)
+    if rates:
+        rows = re.findall(r'<article id="(provider-[^"]+)" class="provider-row"[^>]*data-base="([\d.]+)" data-top="([\d.]+)"', h)
+        if rows:
+            tb = max(rows, key=lambda r: float(r[2]))[0]; bb = max(rows, key=lambda r: float(r[1]))[0]
+            for pid, lab in ((tb, 'Highest rate'), (bb, 'Best with no conditions')):
+                h = re.sub(rf'(<article id="{pid}".*?</h3>)', lambda m: m.group(1) + f'<span class="badge">{lab}</span>', h, count=1, flags=re.S)
+        r = re.search(r'class="share-rate">([\d.]+)%', h)
+        if r:
+            box = (f'<div class="earn"><label for="earn-amt">If you keep $</label><input id="earn-amt" inputmode="decimal" value="10,000" data-m="1" data-r="{r.group(1)}" data-sel=".rate.top strong,#stable-top .dg-row .v">'
+                   f'<span>at the top rate, you earn</span><output id="earn-out"></output><span>a year.</span></div>')
+            h = re.sub(r'(<section class="share-card" id="share">.*?</figure>)', lambda m: m.group(1) + box, h, count=1, flags=re.S)
+    if cards:
+        h = re.sub(r'(<div class="dg-rows[^"]*"><div class="dg-row"><div><h3>[^<]*</h3>)', r'\1<span class="badge">Highest rate</span>', h, count=1)
+        w = re.search(r'class="share-who">([^<]*)<', h)
+        if w: h = h.replace(f'<div class="dg-row"><div><h3>{w.group(1)}</h3>', f'<div class="dg-row"><div><h3>{w.group(1)}</h3><span class="badge">Best for one card</span>', 1)
+        r = re.search(r'class="share-rate">([\d.]+)%', h)
+        if r:
+            box = (f'<div class="earn"><label for="earn-amt">If you spend $</label><input id="earn-amt" inputmode="decimal" value="2,000" data-m="12" data-r="{r.group(1)}" data-sel="#cards-top .dg-row .v">'
+                   f'<span>a month, this card pays</span><output id="earn-out"></output><span>a year.</span></div>')
+            h = re.sub(r'(<div class="tc">.*?</figure></div>)', lambda m: m.group(1) + box, h, count=1, flags=re.S)
+    if 'id="earn-amt"' in h: h = h.replace('</body>', EARN_JS + '</body>', 1)
+    return h.replace('</style>', mini(UI4) + '</style>', 1)
+_fin3 = finalize
+def finalize(h): return ui4(_fin3(h))
