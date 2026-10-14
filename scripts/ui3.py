@@ -45,6 +45,7 @@ em{color:var(--gold)}p{max-width:68ch}
 footer{margin-top:56px!important;padding-top:24px!important;padding-bottom:40px!important;border-top:1px solid var(--line);font-size:13px!important;color:var(--muted);display:flex;flex-direction:column;gap:8px}
 .fine{font-size:12px;color:var(--muted);margin:0}
 header{background:none!important;border-bottom:1px solid var(--line)}.tracker-controls{background:none!important;padding:8px 0!important;margin:8px 0!important;position:static!important;box-shadow:none!important;border:0!important}
+details>summary{color:var(--gold)!important;opacity:1!important}footer a{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:560px){.tiles{grid-template-columns:1fr 1fr!important}nav a{padding:6px 10px!important}header{gap:10px!important}}
 '''
 def mini(css): return re.sub(r'\s*([{};:,>])\s*', r'\1', re.sub(r'/\*.*?\*/', '', css, flags=re.S)).replace(';}', '}').strip()
