@@ -10,6 +10,7 @@ Every builder calls this at the end; deploy.yml runs it again before deploying. 
 """
 import re, hashlib, json, sys
 from pathlib import Path as _P; sys.path.insert(0, str(_P(__file__).resolve().parent))
+from ui3 import finalize
 from digest import digest, compact_insights, strip_tags, DIGEST_CSS, DIGEST_JS, UI_CSS, topcard, barchart, tile, e
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]; D = ROOT/'docs'
@@ -121,7 +122,7 @@ idx = page('Money — rates at home and abroad', desc, '/', 'rates', body + DIGE
 for asset in ('styles.css', 'app.js', 'analytics.js', 'favicon.svg'):
     v = hashlib.sha256((D/asset).read_bytes()).hexdigest()[:10]
     idx = idx.replace(f'"/{asset}"', f'"/{asset}?v={v}"')
-(D/'index.html').write_text(lazyimg(idx))
+(D/'index.html').write_text(finalize(lazyimg(idx)))
 
 # ---------- Markets ----------
 dy, ins, cr, ec = rd('daily.html'), rd('insights.html'), rd('crypto.html'), rd('economy.html')
@@ -170,7 +171,7 @@ vgrid = f'<div class="vgrid">{crypto_v}{econ_v}</div>'
 body = f'{tiles}<div id="daily">{daily_m}</div>{jump}{vgrid}{stocks_c}{crypto_block}{econ_block}{mk_js}{DIGEST_JS}'
 desc = re.search(r'<meta name="description" content="([^"]*)"', dy).group(1)
 mk = page('Money — markets', desc, '/markets', 'markets', body, head_styles(dy) + head_styles(cr) + head_styles(ec) + head_styles(ins) + DIGEST_CSS + UI_CSS)
-(D/'markets.html').write_text(lazyimg(mk))
+(D/'markets.html').write_text(finalize(lazyimg(mk)))
 
 # ---------- Notes ----------
 ib = sec(insm, 'insights'); lis = re.findall(r'<li class="insight[^"]*">.*?</div></li>', ib, re.S)
@@ -190,7 +191,7 @@ notes_m = ('<section class="notes-intro"><p class="eyebrow"><span class="dot"></
     '<p>How to use them: read the number, and if it matters to you, tap the card for the math and the catch. Biggest dollar impact first.</p></section>'
     f'<ul class="ncards" id="insights">{cards_html}</ul><p>Stock notes are on <a href="/markets#stocks">Markets</a>.</p>')
 desc = re.search(r'<meta name="description" content="([^"]*)"', ins).group(1)
-(D/'notes.html').write_text(lazyimg(page('Money — notes', desc, '/notes', 'notes', notes_m, head_styles(ins) + DIGEST_CSS + UI_CSS)))
+(D/'notes.html').write_text(finalize(lazyimg(page('Money — notes', desc, '/notes', 'notes', notes_m, head_styles(ins) + DIGEST_CSS + UI_CSS))))
 
 # ---------- nav everywhere ----------
 cards = rd('cards-src.html'); cm = main(cards)
@@ -211,7 +212,7 @@ cards_d = digest('cards-top', 'CARDS / CASH BACK',
     [(n, sub, f'{ev:g}%', f'Up to {bs:g}% · ' + t.split('. ')[0] + '.') for n, sub, ev, bs, t in crows])
 cards_body = cards_d + tuck(sec(cm, 'winners'), 'Best card for each spending category') + tuck(sec(cm, 'cards'), 'All cards, with filters and full terms') + DIGEST_JS
 cards_out = cards.replace(cm, cards_body).replace('</head>', DIGEST_CSS + UI_CSS + TUCK_CSS + '</head>', 1)
-(D/'cards.html').write_text(lazyimg(setnav(cards_out, 'cards')))
+(D/'cards.html').write_text(finalize(lazyimg(setnav(cards_out, 'cards'))))
 for n in ('cards-src.html', 'savings.html', 'world.html', 'crypto.html', 'economy.html', 'insights.html', 'daily.html'):
     (D/n).write_text(setnav(rd(n), 'x'))
 print('Composed index.html, markets.html, notes.html')
