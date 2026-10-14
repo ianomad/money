@@ -75,9 +75,9 @@ from datetime import date as _date
 def ui4(h):
     if '<main' not in h or 'class="trust"' in h: return h
     path = re.search(r'<link rel="canonical" href="[^"]*?(/[a-z]*)"', h)
-    rates = 'data-view="us"' in h; cards = 'id="cards-top"' in h
+    rates = 'data-view="us"' in h; cards = 'class="calc"' in h
     today = _date.today().strftime('%b %-d, %Y')
-    src = {True: 'Rates checked by hand against each bank’s own page'}.get(rates) or ('Card terms checked against issuer pages' if cards else 'Data from CoinGecko, US Treasury, Fed, IMF and company filings')
+    src = {True: 'Rates checked by hand against each bank’s own page'}.get(rates) or ('Card terms checked against issuer pages' if cards else 'Data from FRED (Fed, Treasury, EIA, Freddie Mac), BLS and CoinGecko')
     h = re.sub(r'(<main[^>]*>)', r'\1' + f'<p class="trust"><span><b>●</b> Updated {today}</span><span>{src}</span><span>No sponsored rankings</span></p>', h, count=1)
     if rates:
         rows = re.findall(r'<article id="(provider-[^"]+)" class="provider-row"[^>]*data-base="([\d.]+)" data-top="([\d.]+)"', h)

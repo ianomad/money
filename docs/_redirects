@@ -9,7 +9,9 @@
 /crypto.html /markets#crypto 301
 /economy /markets#economy 301
 /economy.html /markets#economy 301
-/insights /notes 301
-/insights.html /notes 301
+/insights / 301
+/insights.html / 301
+/notes / 301
+/notes.html / 301
 /cards-src /cards 301
 /cards-src.html /cards 301

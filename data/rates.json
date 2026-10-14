@@ -38,37 +38,6 @@
       }
     },
     {
-      "id": "cash-app",
-      "name": "Cash App",
-      "product": "Savings",
-      "category": "cash",
-      "kind": "Fintech",
-      "symbol": "$",
-      "color": "#147940",
-      "base": 1.5,
-      "boost": 3.5,
-      "rateLabel": "Cash App Green",
-      "requirements": "Green status: $300 in qualifying deposits or $500 in qualifying purchases per month.",
-      "details": "Savings yield enrollment and eligibility required. Have a Cash App Card or sponsor a sponsored account, and qualify for Green. Sponsored accounts may earn the higher rate with sponsor approval. No monthly savings fee or minimum balance. Business accounts are ineligible. The current savings page displays 3.50%; an older learning article still displays 3.25%.",
-      "protection": "Conditional FDIC pass-through eligibility through program banks; limits aggregate with your other deposits at each bank.",
-      "effective": null,
-      "sources": [
-        {
-          "label": "Savings rates & requirements",
-          "url": "https://cash.app/savings"
-        },
-        {
-          "label": "Savings terms",
-          "url": "https://cash.app/us/en/legal/savings"
-        }
-      ],
-      "fdic": {
-        "status": "conditional",
-        "label": "FDIC · Conditional",
-        "summary": "Eligible balances at program banks; card and pass-through requirements apply."
-      }
-    },
-    {
       "id": "wealthfront",
       "name": "Wealthfront",
       "product": "Cash Account",

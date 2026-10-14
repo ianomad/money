@@ -1,0 +1,365 @@
+{
+ "checkedAt": "2026-10-13",
+ "excluded": "Block, Cash App, Square, Afterpay (policy)",
+ "sources": [
+  {
+   "name": "JPMorgan Chase",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "Chase Savings",
+   "url": "https://www.chase.com/personal/savings",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "Bank of America",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "Advantage Savings",
+   "url": "https://www.bankofamerica.com/deposits/savings/savings-accounts/",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "Citi",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "Citi Accelerate Savings",
+   "url": "https://www.citi.com/banking/savings-account",
+   "checked": "2026-10-13",
+   "status": "thin page (needs a browser)",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "Wells Fargo",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "Way2Save Savings",
+   "url": "https://www.wellsfargo.com/savings-cds/way2save/",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "U.S. Bank",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "Standard Savings",
+   "url": "https://www.usbank.com/bank-accounts/savings-accounts/standard-savings-account.html",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": 3.5,
+   "apys": [
+    3.5
+   ]
+  },
+  {
+   "name": "PNC",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "High Yield Savings",
+   "url": "https://www.pnc.com/en/personal-banking/banking/savings/high-yield-savings.html",
+   "checked": "2026-10-13",
+   "status": "blocked (TimeoutError)",
+   "apy": null
+  },
+  {
+   "name": "Capital One",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "360 Performance Savings",
+   "url": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "Goldman Sachs (Marcus)",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "Marcus High-Yield Savings",
+   "url": "https://www.marcus.com/us/en/savings/high-yield-savings",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": 4.4,
+   "apys": [
+    4.4,
+    3.5,
+    1.0
+   ]
+  },
+  {
+   "name": "Truist",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "Truist One Savings",
+   "url": "https://www.truist.com/savings/truist-one-savings",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "American Express",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "Amex High Yield Savings",
+   "url": "https://www.americanexpress.com/en-us/banking/online-savings/account/",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "Discover",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "Online Savings",
+   "url": "https://www.discover.com/online-banking/savings-account/",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "Ally",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "Online Savings",
+   "url": "https://www.ally.com/bank/online-savings-account/",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": 0.37,
+   "apys": [
+    0.37
+   ]
+  },
+  {
+   "name": "Synchrony",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "High Yield Savings",
+   "url": "https://www.synchrony.com/banking/high-yield-savings",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "Citizens",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "Citizens Access Savings",
+   "url": "https://www.citizensaccess.com/savings/high-yield-savings-account",
+   "checked": "2026-10-13",
+   "status": "blocked (403)",
+   "apy": null
+  },
+  {
+   "name": "Fifth Third",
+   "group": "Big bank",
+   "kind": "savings",
+   "product": "Momentum Savings",
+   "url": "https://www.53.com/content/fifth-third/en/personal-banking/bank/savings-cds/momentum-savings.html",
+   "checked": "2026-10-13",
+   "status": "thin page (needs a browser)",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "SoFi",
+   "group": "Fintech",
+   "kind": "savings",
+   "product": "Checking & Savings",
+   "url": "https://www.sofi.com/banking/",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": 4.5,
+   "apys": [
+    4.5,
+    4.2,
+    3.3,
+    0.9
+   ]
+  },
+  {
+   "name": "Chime",
+   "group": "Fintech",
+   "kind": "savings",
+   "product": "Chime Savings",
+   "url": "https://www.chime.com/savings-account/",
+   "checked": "2026-10-13",
+   "status": "blocked (403)",
+   "apy": null
+  },
+  {
+   "name": "Robinhood",
+   "group": "Fintech",
+   "kind": "savings",
+   "product": "Gold cash sweep",
+   "url": "https://robinhood.com/us/en/gold/",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": 3.6,
+   "apys": [
+    3.6
+   ]
+  },
+  {
+   "name": "Wealthfront",
+   "group": "Fintech",
+   "kind": "savings",
+   "product": "Cash Account",
+   "url": "https://www.wealthfront.com/cash",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": 4.45,
+   "apys": [
+    4.45,
+    3.55,
+    0.65,
+    0.38
+   ]
+  },
+  {
+   "name": "Betterment",
+   "group": "Fintech",
+   "kind": "savings",
+   "product": "Cash Reserve",
+   "url": "https://www.betterment.com/cash-reserve",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": 4.25,
+   "apys": [
+    4.25,
+    3.5,
+    0.75
+   ]
+  },
+  {
+   "name": "Apple",
+   "group": "Fintech",
+   "kind": "savings",
+   "product": "Apple Card Savings",
+   "url": "https://www.apple.com/apple-card/savings/",
+   "checked": "2026-10-13",
+   "status": "blocked (404)",
+   "apy": null
+  },
+  {
+   "name": "PayPal",
+   "group": "Fintech",
+   "kind": "savings",
+   "product": "PayPal Savings",
+   "url": "https://www.paypal.com/us/digital-wallet/manage-money/savings-account",
+   "checked": "2026-10-13",
+   "status": "blocked (404)",
+   "apy": null
+  },
+  {
+   "name": "Revolut",
+   "group": "Fintech",
+   "kind": "savings",
+   "product": "Revolut US savings",
+   "url": "https://www.revolut.com/en-US/savings/",
+   "checked": "2026-10-13",
+   "status": "blocked (403)",
+   "apy": null
+  },
+  {
+   "name": "Varo",
+   "group": "Fintech",
+   "kind": "savings",
+   "product": "Varo Savings",
+   "url": "https://www.varomoney.com/bank/savings-account/",
+   "checked": "2026-10-13",
+   "status": "blocked (404)",
+   "apy": null
+  },
+  {
+   "name": "Current",
+   "group": "Fintech",
+   "kind": "savings",
+   "product": "Savings Pods",
+   "url": "https://current.com/savings/",
+   "checked": "2026-10-13",
+   "status": "blocked (404)",
+   "apy": null
+  },
+  {
+   "name": "X Money",
+   "group": "Fintech",
+   "kind": "savings",
+   "product": "X Money balance",
+   "url": "https://money.x.com/",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": 6.0,
+   "apys": [
+    6.0
+   ]
+  },
+  {
+   "name": "Mercury",
+   "group": "Fintech",
+   "kind": "savings",
+   "product": "Mercury Treasury",
+   "url": "https://mercury.com/treasury",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "Bilt",
+   "group": "Startup",
+   "kind": "card",
+   "product": "Bilt Cards",
+   "url": "https://www.bilt.com/card",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "Imprint",
+   "group": "Startup",
+   "kind": "card",
+   "product": "Imprint co-brand cards",
+   "url": "https://www.imprint.co/",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "Jiko",
+   "group": "Startup",
+   "kind": "savings",
+   "product": "Jiko T-bill account",
+   "url": "https://www.jiko.io/",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  },
+  {
+   "name": "Atomic",
+   "group": "Startup",
+   "kind": "savings",
+   "product": "Atomic Treasury",
+   "url": "https://atomic.financial/",
+   "checked": "2026-10-13",
+   "status": "read",
+   "apy": null,
+   "apys": []
+  }
+ ]
+}

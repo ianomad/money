@@ -11,12 +11,13 @@ Every builder calls this at the end; deploy.yml runs it again before deploying. 
 import re, hashlib, json, sys
 from pathlib import Path as _P; sys.path.insert(0, str(_P(__file__).resolve().parent))
 from ui3 import finalize
+import pages2
 from digest import digest, compact_insights, strip_tags, DIGEST_CSS, DIGEST_JS, UI_CSS, topcard, barchart, tile, e
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]; D = ROOT/'docs'
 def dj(n): return json.loads((ROOT/'data'/n).read_text())
 def rd(n): return (D/n).read_text()
-NAV_ITEMS = [('Rates','/','rates'),('Markets','/markets','markets'),('Cards','/cards','cards'),('Notes','/notes','notes')]
+NAV_ITEMS = [('Rates','/','rates'),('Markets','/markets','markets'),('Cards','/cards','cards')]
 def nav(cur): return '<nav aria-label="Main navigation">'+''.join(f'<a class="nav-switch" href="{h}"{" aria-current=\"page\"" if k==cur else ""}>{l}</a>' for l,h,k in NAV_ITEMS)+'</nav>'
 def setnav(s, cur): return re.sub(r'<nav aria-label="Main navigation">.*?</nav>', nav(cur), s, count=1, flags=re.S)
 def main(s): return re.search(r'<main[^>]*>(.*)</main>', s, re.S).group(1)
@@ -106,7 +107,9 @@ stable = ('<span id="stablecoins"></span>' + tuck(digest('stable-top', f"STABLEC
     [(r['protocol'], r['chain'], f"{r['apy']:.2f}%", f"{r['coin']} · {tvl(r['tvl'])} in pool") for r in dp]),
     f"Stablecoin yields: top {dp[0]['apy']:.2f}% (Aave, Maple, Sky, Ethena…), not FDIC insured"))
 tabs = '<div class="view-tabs" role="tablist"><a href="/" data-view="us" role="tab"><span>US savings</span></a><a href="/#world" data-view="world" role="tab"><span>World deposits</span></a></div>'
-body = (tabs + f'<div id="view-us">{hero}{rates}{stable}{method}<a class="back-top" href="#rates" aria-label="Back to filters">↑ Filters</a></div>'
+rates_head = ('<section class="pagehead"><p class="eyebrow">RATES / WHERE YOUR CASH EARNS MOST</p><h1>Get paid more for <em>money you keep.</em></h1>'
+  '<p class="lead">For anyone with cash sitting in a bank. <b>US savings</b> compares insured US accounts, checked by hand. <b>World deposits</b> shows what banks abroad pay, and the currency risk that comes with it.</p></section>')
+body = (pages2.CSS + rates_head + tabs + f'<div id="view-us">{hero}{rates}{stable}{method}{pages2.sources_fold("rates")}<a class="back-top" href="#rates" aria-label="Back to filters">↑ Filters</a></div>'
         + f'<div id="view-world" class="wrap" hidden><span id="world"></span>{world_hero}{world_rest}</div>' + show_js)
 desc = re.search(r'<meta name="description" content="([^"]*)"', sv).group(1)
 # ---------- lazy helpers (perf) ----------
@@ -168,30 +171,10 @@ crypto_v = (f'<div class="vcard"><p class="eyebrow"><span class="dot"></span> CR
 econ_v = (f'<div class="vcard"><p class="eyebrow"><span class="dot"></span> ECONOMY · IMF {ej["gdp"]["year"]}</p><h3>US + China = {(top[0]["value"]+top[1]["value"])/world*100:.0f}% of world GDP.</h3><p class="one">Biggest economies, IMF estimate.</p>'
     + barchart([(v['name'], v['value'], bn(v['value']), '#economy-top') for v in top[:8]], 'GDP, US dollars') + '<a class="more" href="#economy">World map and investment flows ↓</a></div>')
 vgrid = f'<div class="vgrid">{crypto_v}{econ_v}</div>'
-body = f'{tiles}<div id="daily">{daily_m}</div>{jump}{vgrid}{stocks_c}{crypto_block}{econ_block}{mk_js}{DIGEST_JS}'
-desc = re.search(r'<meta name="description" content="([^"]*)"', dy).group(1)
+body = pages2.markets_top() + tuck(crypto_block, 'Crypto: all top 20 coins and crypto yields') + tuck(econ_block, 'World economy: GDP map and investment flows') + mk_js + DIGEST_JS
+desc = 'Mortgage rates, savings rates, gas, the S&P 500 and the dollar, each with one line on what it means for you, plus the dates to watch.'
 mk = page('Money — markets', desc, '/markets', 'markets', body, head_styles(dy) + head_styles(cr) + head_styles(ec) + head_styles(ins) + DIGEST_CSS + UI_CSS)
 (D/'markets.html').write_text(finalize(lazyimg(mk)))
-
-# ---------- Notes ----------
-ib = sec(insm, 'insights'); lis = re.findall(r'<li class="insight[^"]*">.*?</div></li>', ib, re.S)
-first_h = strip_tags(re.search(r'<h3>(.*?)</h3>', lis[0], re.S).group(1)) if lis else ''
-from datetime import date as _d
-nchk = dj('insights.json').get('checkedAt', ''); ndate = _d.fromisoformat(nchk).strftime('%b %-d, %Y') if nchk else ''
-def ncard(li):
-    tag = strip_tags((re.search(r'<p class="insight-tag">(.*?)</p>', li, re.S) or [0, 'Note'])[1])
-    h = re.search(r'<h3>(.*?)</h3>', li, re.S).group(1); km = re.search(r'<em>(.*?)</em>', h, re.S)
-    rest = re.search(r'</h3>(.*)</div></li>$', li, re.S).group(1)
-    return (f'<li class="ncard"><p class="meta"><span>{e(tag)}</span><span>{e(ndate)}</span></p>'
-            + (f'<span class="n">{strip_tags(km.group(1))}</span>' if km else '')
-            + f'<h3>{strip_tags(h)}</h3><details><summary>The numbers and the catch</summary><div class="detail-body">{rest}</div></details></li>')
-cards_html = ''.join(ncard(l) for l in lis) or '<li class="ncard"><h3>No notes yet. New ones land here as soon as the numbers are checked.</h3></li>'
-notes_m = ('<section class="notes-intro"><p class="eyebrow"><span class="dot"></span> NOTES</p><h1>Money notes, in <em>plain English.</em></h1>'
-    '<p>Short takeaways on cash, tax and credit, the same ones we share on <a href="https://x.com/MoneyBeastHQ">@MoneyBeastHQ</a>. Each card shows one number: what the move is worth on a big balance.</p>'
-    '<p>How to use them: read the number, and if it matters to you, tap the card for the math and the catch. Biggest dollar impact first.</p></section>'
-    f'<ul class="ncards" id="insights">{cards_html}</ul><p>Stock notes are on <a href="/markets#stocks">Markets</a>.</p>')
-desc = re.search(r'<meta name="description" content="([^"]*)"', ins).group(1)
-(D/'notes.html').write_text(finalize(lazyimg(page('Money — notes', desc, '/notes', 'notes', notes_m, head_styles(ins) + DIGEST_CSS + UI_CSS))))
 
 # ---------- nav everywhere ----------
 cards = rd('cards-src.html'); cm = main(cards)
@@ -210,9 +193,10 @@ cards_d = digest('cards-top', 'CARDS / CASH BACK',
         ('Apply at ' + flat[0].split()[0], flat_url), [(n, ev, f'{ev:g}%', '#cards-top') for n, sub, ev, bs, t in crows[:6]], 'Cash back on everything'),
     ('Card', 'On everything', 'Best rate · what to know'),
     [(n, sub, f'{ev:g}%', f'Up to {bs:g}% · ' + t.split('. ')[0] + '.') for n, sub, ev, bs, t in crows])
-cards_body = cards_d + tuck(sec(cm, 'winners'), 'Best card for each spending category') + tuck(sec(cm, 'cards'), 'All cards, with filters and full terms') + DIGEST_JS
+cards_body = pages2.cards_body() + pages2.sources_fold('cards')
 cards_out = cards.replace(cm, cards_body).replace('</head>', DIGEST_CSS + UI_CSS + TUCK_CSS + '</head>', 1)
 (D/'cards.html').write_text(finalize(lazyimg(setnav(cards_out, 'cards'))))
 for n in ('cards-src.html', 'savings.html', 'world.html', 'crypto.html', 'economy.html', 'insights.html', 'daily.html'):
     (D/n).write_text(setnav(rd(n), 'x'))
-print('Composed index.html, markets.html, notes.html')
+(D/'notes.html').unlink(missing_ok=True)
+print('Composed index.html, markets.html, cards.html')
