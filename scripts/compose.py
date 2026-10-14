@@ -186,7 +186,7 @@ def ncard(li):
             + f'<h3>{strip_tags(h)}</h3><details><summary>The numbers and the catch</summary><div class="detail-body">{rest}</div></details></li>')
 cards_html = ''.join(ncard(l) for l in lis) or '<li class="ncard"><h3>No notes yet. New ones land here as soon as the numbers are checked.</h3></li>'
 notes_m = ('<section class="notes-intro"><p class="eyebrow"><span class="dot"></span> NOTES</p><h1>Money notes, in <em>plain English.</em></h1>'
-    '<p>Short takeaways on cash, tax and credit, the same ones we share on <a href="https://x.com/MoneyBeastAI">@MoneyBeastAI</a>. Each card shows one number: what the move is worth on a big balance.</p>'
+    '<p>Short takeaways on cash, tax and credit, the same ones we share on <a href="https://x.com/MoneyBeastHQ">@MoneyBeastHQ</a>. Each card shows one number: what the move is worth on a big balance.</p>'
     '<p>How to use them: read the number, and if it matters to you, tap the card for the math and the catch. Biggest dollar impact first.</p></section>'
     f'<ul class="ncards" id="insights">{cards_html}</ul><p>Stock notes are on <a href="/markets#stocks">Markets</a>.</p>')
 desc = re.search(r'<meta name="description" content="([^"]*)"', ins).group(1)
