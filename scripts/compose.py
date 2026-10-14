@@ -50,7 +50,7 @@ def page(title, desc, url, cur, body, extra_head='', scripts=''):
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{title}</title><meta name="description" content="{desc}"><link rel="canonical" href="https://money.ilyusha.xyz{url}"><meta property="og:title" content="{title}"><meta property="og:description" content="{desc}"><meta property="og:type" content="website"><meta property="og:url" content="https://money.ilyusha.xyz{url}"><meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.ico?v=6" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=6"><link rel="apple-touch-icon" href="/apple-touch-icon.png?v=6"><link rel="stylesheet" href="/styles.css"><script src="/analytics.js" defer></script>{scripts}{TUCK_CSS}{extra_head}</head>
 <body><header><a class="brand" href="/"><img class="brand-mark" src="/favicon.svg?v=6" width="32" height="32" style="border-radius:6px" alt="">money<span class="brand-by">/ by ilyusha</span></a>{nav(cur)}<a class="personal" href="https://ilyusha.xyz">ilyusha.xyz ↗</a></header>
-<main id="top">{body}</main><footer><span>Money / An independent tracker by <a href="https://ilyusha.xyz">Ilyusha ↗</a></span><a href="mailto:dev@ilyusha.xyz?subject=Money%20correction">Suggest a correction ↗</a></footer></body></html>'''
+<main id="top">{body}</main><footer><span>Money / An independent tracker by <a href="https://ilyusha.xyz">Ilyusha ↗</a></span><span><a href="/sponsor">Sponsor</a> · <a href="mailto:dev@ilyusha.xyz?subject=Money%20correction">Suggest a correction ↗</a></span></footer></body></html>'''
 TUCK_CSS = '''<style>.tuck{margin:1.2rem 0;border:1px solid rgba(127,127,127,.3);border-radius:.8rem;padding:.8rem 1.1rem}.tuck>summary{cursor:pointer;font-weight:600}.tuck[open]>summary{margin-bottom:.8rem}
 .view-tabs{display:flex;gap:.5rem;margin:1.2rem 0 .4rem}.view-tabs a{padding:.45rem 1rem;border:1px solid rgba(127,127,127,.4);border-radius:2rem;text-decoration:none;color:inherit}.view-tabs a[aria-selected="true"]{background:currentColor}.view-tabs a[aria-selected="true"] span{filter:invert(1)}
 .rows.collapsed .provider-row:nth-child(n+9){display:none}.show-all{margin:1rem 0;padding:.6rem 1.2rem;border-radius:2rem;border:1px solid rgba(127,127,127,.5);background:none;color:inherit;cursor:pointer;font:inherit}
@@ -199,4 +199,6 @@ cards_out = cards.replace(cm, cards_body).replace('</head>', DIGEST_CSS + UI_CSS
 for n in ('cards-src.html', 'savings.html', 'world.html', 'crypto.html', 'economy.html', 'insights.html', 'daily.html'):
     (D/n).write_text(setnav(rd(n), 'x'))
 (D/'notes.html').unlink(missing_ok=True)
-print('Composed index.html, markets.html, cards.html')
+import build_sponsor
+build_sponsor.write(page, finalize, lazyimg, rd, D, DIGEST_CSS, UI_CSS)
+print('Composed index.html, markets.html, cards.html, sponsor.html')
