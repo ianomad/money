@@ -1,6 +1,6 @@
 """ui3: one design system + performance pass applied to every served page (called by compose.py).
 - inlines styles.css + the ui3 override layer (no render-blocking CSS)
-- swaps the 176KB gtag.js for a ~1KB cookieless GA4 page_view beacon (same property)
+- loads the standard GA4 gtag.js via /analytics.js exactly once per page (no hand-rolled beacon: it broke sessions/engagement/attribution)
 - trims header clutter; moves legal fine print to the footer"""
 import re
 from pathlib import Path
@@ -52,7 +52,12 @@ def mini(css): return re.sub(r'\s*([{};:,>])\s*', r'\1', re.sub(r'/\*.*?\*/', ''
 def finalize(h):
     css = mini((D/'styles.css').read_text()) + mini(UI3)
     h = re.sub(r'<link rel="stylesheet" href="/?styles\.css[^"]*">', lambda m: '<style>'+css+'</style>', h, count=1)
-    h = re.sub(r'<script src="/?analytics\.js[^"]*" defer></script>', lambda m: BEACON, h)
+    # Standard gtag.js via /analytics.js (host-gated, async gtag). Strip any old beacon or duplicate tag, then add exactly one.
+    h = h.replace(BEACON, '')
+    h = re.sub(r'<script>addEventListener\("load",function\(\)\{if\(location\.hostname!=="money\.ilyusha\.xyz".*?</script>', '', h, flags=re.S)
+    tag = '<script src="/analytics.js" defer></script>'
+    h = re.sub(r'<script src="/?analytics\.js[^"]*"[^>]*></script>', '', h)
+    h = h.replace('</head>', tag + '</head>', 1) if '</head>' in h else h
     fine = re.findall(r'<p class="econ-note crypto-plain">(General information.*?)</p>', h, re.S)
     h = re.sub(r'<p class="econ-note crypto-plain">General information.*?</p>', '', h, flags=re.S)
     note = fine[0] if fine else 'General information, not financial advice. Rates and terms change; confirm with the provider before you move money.'
