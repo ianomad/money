@@ -10,7 +10,7 @@ paths = sys.argv[1:]
 if paths:
     urls = [BASE + p for p in paths]
 else:
-    sm = urllib.request.urlopen(BASE + '/sitemap.xml', timeout=20).read().decode()
+    sm = urllib.request.urlopen(urllib.request.Request(BASE + '/sitemap.xml', headers={'User-Agent': 'curl/8'}), timeout=20).read().decode()
     urls = re.findall(r'<loc>([^<]+)</loc>', sm)
 body = json.dumps({'host': 'money.ilyusha.xyz', 'key': KEY, 'keyLocation': f'{BASE}/{KEY}.txt', 'urlList': urls}).encode()
 req = urllib.request.Request('https://api.indexnow.org/indexnow', data=body, headers={'Content-Type': 'application/json; charset=utf-8'})
