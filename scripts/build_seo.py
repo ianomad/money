@@ -3,7 +3,7 @@ from datetime import date
 
 BASE = 'https://money.ilyusha.xyz'
 # (path, served file) — only composed, public pages; builder source pages redirect and stay out.
-PAGES = [('/', 'index.html'), ('/best-hysa', 'best-hysa.html'), ('/best-nofee-cards', 'best-nofee-cards.html'), ('/markets', 'markets.html'), ('/cards', 'cards.html'),
+PAGES = [('/', 'index.html'), ('/best-hysa', 'best-hysa.html'), ('/best-nofee-cards', 'best-nofee-cards.html'), ('/pay-property-tax-credit-card', 'pay-property-tax-credit-card.html'), ('/markets', 'markets.html'), ('/cards', 'cards.html'),
          ('/sponsor', 'sponsor.html'), ('/disclosure', 'disclosure.html'), ('/privacy', 'privacy.html')]
 
 

@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-20",
+  "note": "Card convenience fees for paying secured property tax online, from each county tax collector's own site. eCheck is free in every county listed.",
+  "dueDates": {"first": "Dec 10", "second": "Apr 10", "source": "https://content.govdelivery.com/accounts/CAALAME/bulletins/3f70ad5"},
+  "counties": [
+    {"county": "Alameda", "creditPct": 2.3, "minFee": null, "debit": "credit-card fee applies to card payments", "echeck": 0, "source": "https://www.alamedacountyca.gov/propertytax/fee.htm"},
+    {"county": "Los Angeles", "creditPct": 2.22, "minFee": 1.49, "debit": "same 2.22% for debit", "echeck": 0, "source": "https://ttc.lacounty.gov/pay-your-property-taxes/"},
+    {"county": "Santa Clara", "creditPct": 2.22, "minFee": 1.49, "debit": "same 2.22% for debit", "echeck": 0, "source": "https://dtac.santaclaracounty.gov/taxes/obtain-secured-property-tax-information"},
+    {"county": "San Francisco", "creditPct": 2.25, "minFee": 2.0, "debit": "same 2.25% for debit", "echeck": 0, "source": "https://sftreasurer.org/service-fee"}
+  ]
+}
