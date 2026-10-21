@@ -262,7 +262,7 @@
       "kind": "DeFi lending · Aave V4",
       "symbol": "A",
       "color": "#7365b7",
-      "base": 3.8,
+      "base": 3.78,
       "boost": null,
       "baseLabel": "Market snapshot",
       "rateLabel": "Variable deposit APY",
