@@ -108,7 +108,8 @@ stable = ('<span id="stablecoins"></span>' + tuck(digest('stable-top', f"STABLEC
     f"Stablecoin yields: top {dp[0]['apy']:.2f}% (Aave, Maple, Sky, Ethena…), not FDIC insured"))
 tabs = '<div class="view-tabs" role="tablist"><a href="/" data-view="us" role="tab"><span>US savings</span></a><a href="/#world" data-view="world" role="tab"><span>World deposits</span></a></div>'
 rates_head = ('<section class="pagehead"><p class="eyebrow">RATES / WHERE YOUR CASH EARNS MOST</p><h1>Get paid more for <em>money you keep.</em></h1>'
-  '<p class="lead">For anyone with cash sitting in a bank. <b>US savings</b> compares insured US accounts, checked by hand. <b>World deposits</b> shows what banks abroad pay, and the currency risk that comes with it.</p></section>')
+  '<p class="lead">For anyone with cash sitting in a bank. <b>US savings</b> compares insured US accounts, checked by hand. <b>World deposits</b> shows what banks abroad pay, and the currency risk that comes with it.</p>'
+  '<p class="lead guides" style="margin-top:.6em;font-size:.95em">Quick answers: <a href="/best-hysa">best no-strings savings</a> · <a href="/tbills-vs-savings-california">T-bills vs savings in California</a> · <a href="/best-nofee-cards">best no-fee cash-back cards</a> · <a href="/pay-property-tax-credit-card">paying property tax by card</a></p></section>')
 body = (pages2.CSS + rates_head + tabs + f'<div id="view-us">{hero}{rates}{stable}{method}{pages2.sources_fold("rates")}<a class="back-top" href="#rates" aria-label="Back to filters">↑ Filters</a></div>'
         + f'<div id="view-world" class="wrap" hidden><span id="world"></span>{world_hero}{world_rest}</div>' + show_js)
 desc = re.search(r'<meta name="description" content="([^"]*)"', sv).group(1)
