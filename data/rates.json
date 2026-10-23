@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-13",
-  "changeNote": "Oct 13: added X Money's direct-deposit terms; Aave now synced daily from DefiLlama and listed with stablecoin yields, not savings.",
+  "checkedAt": "2026-10-23",
+  "changeNote": "Oct 23: Pibank raised its no-strings savings rate to 4.40% APY, now the top plain rate here (Elevault 4.34%). Rechecked X Money, Axos, Marcus, Peak, Newtek, EverBank, Elevault: unchanged.",
   "providers": [
     {
       "id": "x-money",
@@ -421,13 +421,13 @@
       "kind": "Bank · Intercredit Bank, N.A.",
       "symbol": "P",
       "color": "#38665a",
-      "base": 4.25,
+      "base": 4.4,
       "boost": null,
       "rateLabel": "Standard rate",
       "requirements": "No minimum opening balance, monthly fees, or qualifying direct-deposit requirement.",
-      "details": "Earn interest starting at $0.01. Variable APY; Pibank is a brand of Intercredit Bank, so balances held under both names count toward the same FDIC limit.",
+      "details": "Earn interest starting at $0.01. Variable APY (raised from 4.25% to 4.40%, offer valid as of Oct 21, 2026). Pibank is a brand of Intercredit Bank, so balances held under both names count toward the same FDIC limit.",
       "protection": "FDIC-insured deposits at Intercredit Bank, N.A.. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
-      "effective": "2026-09-29",
+      "effective": "2026-10-21",
       "fdic": {
         "status": "bank",
         "label": "FDIC · Bank deposit",
