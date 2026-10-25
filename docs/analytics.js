@@ -14,6 +14,13 @@
     allow_ad_personalization_signals: false
   });
 
+  // Measure clicks on the "Follow on X" links (header pill + footer line).
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[data-x-follow]');
+    if (!a) return;
+    gtag('event', 'x_follow_click', { link_location: a.dataset.xFollow, page_path: window.location.pathname, transport_type: 'beacon' });
+  });
+
   const tag = document.createElement('script');
   tag.async = true;
   tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;

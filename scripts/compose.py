@@ -215,3 +215,11 @@ build_article_tbills.write(page, finalize, lazyimg, rd, D, DIGEST_CSS, UI_CSS)
 import build_seo
 build_seo.write(D)
 print('Composed index.html, markets.html, cards.html, sponsor.html, disclosure.html, privacy.html, best-hysa.html, best-nofee-cards.html, robots.txt, sitemap.xml')
+
+# ---------- X follow path on every served page (pages built by other scripts too; idempotent) ----------
+from ui3 import xfollow
+_SRC = {'savings.html','world.html','daily.html','crypto.html','economy.html','insights.html','cards-src.html'}
+for _p in sorted(D.glob('*.html')):
+    if _p.name in _SRC: continue
+    _h = _p.read_text(); _n = xfollow(_h)
+    if _n != _h: _p.write_text(_n)
