@@ -1,8 +1,8 @@
 {
  "home": {
-  "alt": "Top no-strings savings rate: Pibank 4.40% vs the 0.37% US average",
+  "alt": "Top no-strings savings rate: Pibank 4.40% vs the 0.38% US average",
   "big": "4.40%",
-  "line": "Pibank pays it with no conditions. The US average is 0.37%."
+  "line": "Pibank pays it with no conditions. The US average is 0.38%."
  },
  "markets": {
   "alt": "30-year mortgage rate 7.32%: about $2,748 a month on a $400,000 loan",
@@ -15,9 +15,9 @@
   "line": "Robinhood Gold Card on $2,000/mo of spending, after its fee. Best no-fee card: Citi Double Cash, $480."
  },
  "best-hysa": {
-  "alt": "$10,000 earns $440 a year at Pibank (4.40%) vs $37 at the 0.37% US average savings rate",
+  "alt": "$10,000 earns $440 a year at Pibank (4.40%) vs $38 at the 0.38% US average savings rate",
   "big": "$440/yr",
-  "line": "on $10,000 at Pibank’s 4.40%, vs $37 at the 0.37% US average."
+  "line": "on $10,000 at Pibank’s 4.40%, vs $38 at the 0.38% US average."
  },
  "best-nofee-cards": {
   "alt": "A flat 2% no-fee card pays about $480 a year on $24,000 of spending",
