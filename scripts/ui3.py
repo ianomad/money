@@ -124,3 +124,27 @@ def xfollow(h):
     return h.replace('</head>', X_CSS + '</head>', 1)
 _fin4 = finalize
 def finalize(h): return xfollow(_fin4(h))
+
+# ---------- Share cards (Oct 25 2026): large og:image / twitter card on every served page; images from scripts/build_og.py ----------
+SITE = 'https://money.ilyusha.xyz'
+OG_PAGES = {'/': 'home', '/markets': 'markets', '/cards': 'cards', '/cards.html': 'cards', '/best-hysa': 'best-hysa',
+            '/best-nofee-cards': 'best-nofee-cards', '/tbills-vs-savings-california': 'tbills-vs-savings-california',
+            '/pay-property-tax-credit-card': 'pay-property-tax-credit-card'}
+def ogtags(h):
+    """Idempotent: strips old og:image*/twitter:* tags and writes one fresh set. Unknown pages use the home card."""
+    if '</head>' not in h: return h
+    m = re.search(r'<link rel="canonical" href="https://money\.ilyusha\.xyz(/[^"]*)"', h)
+    name = OG_PAGES.get(m.group(1) if m else '/', 'home')
+    try:
+        import json; alt = json.loads((D/'og'/'meta.json').read_text())[name]['alt']
+    except Exception: alt = 'Money, an independent tracker of savings rates, markets and cards at money.ilyusha.xyz'
+    alt = alt.replace('&', '&amp;').replace('"', '&quot;').replace('<', '&lt;')
+    h = re.sub(r'<meta (?:property="og:image[^"]*"|name="twitter:[^"]*")[^>]*>', '', h)
+    img = f'{SITE}/og/{name}.png'
+    tags = (f'<meta property="og:image" content="{img}"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200">'
+            f'<meta property="og:image:height" content="630"><meta property="og:image:alt" content="{alt}"><meta name="twitter:card" content="summary_large_image">'
+            f'<meta name="twitter:site" content="@MoneyBeastHQ"><meta name="twitter:image" content="{img}"><meta name="twitter:image:alt" content="{alt}">')
+    if 'property="og:url"' in h: return re.sub(r'(<meta property="og:url"[^>]*>)', lambda mm: mm.group(1) + tags, h, count=1)
+    return h.replace('</head>', tags + '</head>', 1)
+_fin5 = finalize
+def finalize(h): return ogtags(_fin5(h))

@@ -1,0 +1,37 @@
+{
+ "home": {
+  "alt": "Top no-strings savings rate: Pibank 4.40% vs the 0.37% US average",
+  "big": "4.40%",
+  "line": "Pibank pays it with no conditions. The US average is 0.37%."
+ },
+ "markets": {
+  "alt": "30-year mortgage rate 7.32%: about $2,748 a month on a $400,000 loan",
+  "big": "7.32%",
+  "line": "About $2,748/mo on a $400,000 loan, vs $2,468 a year ago. Freddie Mac, Oct 22."
+ },
+ "cards": {
+  "alt": "Robinhood Gold Card pays $660 a year after fees on $2,000 a month of spending; best no-fee card Citi Double Cash pays $480",
+  "big": "$660/yr",
+  "line": "Robinhood Gold Card on $2,000/mo of spending, after its fee. Best no-fee card: Citi Double Cash, $480."
+ },
+ "best-hysa": {
+  "alt": "$10,000 earns $440 a year at Pibank (4.40%) vs $37 at the 0.37% US average savings rate",
+  "big": "$440/yr",
+  "line": "on $10,000 at Pibank’s 4.40%, vs $37 at the 0.37% US average."
+ },
+ "best-nofee-cards": {
+  "alt": "A flat 2% no-fee card pays about $480 a year on $24,000 of spending",
+  "big": "$480/yr",
+  "line": "from a flat 2% no-fee card on $24,000 a year of spending. Category cards win only on heavy dining or groceries."
+ },
+ "tbills-vs-savings-california": {
+  "alt": "In California’s 9.3% bracket a 4.32% 26-week T-bill keeps 4.32% while 4.40% savings keeps 3.99% after state tax",
+  "big": "4.32% vs 3.99%",
+  "line": "A 26-week T-bill keeps all 4.32%. A 4.40% savings account keeps 3.99% after CA tax (9.3% bracket)."
+ },
+ "pay-property-tax-credit-card": {
+  "alt": "California counties charge 2.22% to 2.30% to pay property tax by credit card; eCheck is free",
+  "big": "2.22–2.30%",
+  "line": "card fee charged by CA counties. eCheck is free. A 2% card loses money; a bonus minimum can win."
+ }
+}

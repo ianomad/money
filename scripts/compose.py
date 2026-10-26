@@ -196,6 +196,14 @@ cards_d = digest('cards-top', 'CARDS / CASH BACK',
     [(n, sub, f'{ev:g}%', f'Up to {bs:g}% · ' + t.split('. ')[0] + '.') for n, sub, ev, bs, t in crows])
 cards_body = pages2.cards_body() + pages2.sources_fold('cards')
 cards_out = cards.replace(cm, cards_body).replace('</head>', DIGEST_CSS + UI_CSS + TUCK_CSS + '</head>', 1)
+# og:description for /cards (cards-src.html carried the old savings blurb). Built from the same cards.json numbers the page shows.
+_cd = dj('cards.json'); _pf = _cd['profile']
+for _c in _cd['cards']: _c['val'] = pages2.card_value(_c, _pf, _cd['pointValue'])
+_best = max(_cd['cards'], key=lambda c: c['val']); _nf = max((c for c in _cd['cards'] if c['fee'] == 0 and c['type'] == 'cash'), key=lambda c: c['val'])
+_sp = sum(v for k, v in _pf.items() if isinstance(v, (int, float)) and k != 'rent')
+cards_desc = (f"Which credit card pays you the most? On ${_sp:,.0f}/mo of spending, {_best['name']} nets ${_best['val']:,}/yr after its fee; "
+    f"the best no-fee card, {_nf['name']}, pays ${_nf['val']:,}. {len(_cd['cards'])} cards ranked by yearly value after fees. No sponsored rankings.")
+cards_out = re.sub(r'<meta property="og:description" content="[^"]*">', lambda m_: f'<meta property="og:description" content="{e(cards_desc)}">', cards_out, count=1)
 (D/'cards.html').write_text(finalize(lazyimg(setnav(cards_out, 'cards'))))
 for n in ('cards-src.html', 'savings.html', 'world.html', 'crypto.html', 'economy.html', 'insights.html', 'daily.html'):
     (D/n).write_text(setnav(rd(n), 'x'))
@@ -216,10 +224,13 @@ import build_seo
 build_seo.write(D)
 print('Composed index.html, markets.html, cards.html, sponsor.html, disclosure.html, privacy.html, best-hysa.html, best-nofee-cards.html, robots.txt, sitemap.xml')
 
-# ---------- X follow path on every served page (pages built by other scripts too; idempotent) ----------
-from ui3 import xfollow
+import build_og
+build_og.main()
+
+# ---------- X follow + share-card tags on every served page (pages built by other scripts too; idempotent) ----------
+from ui3 import xfollow, ogtags
 _SRC = {'savings.html','world.html','daily.html','crypto.html','economy.html','insights.html','cards-src.html'}
 for _p in sorted(D.glob('*.html')):
     if _p.name in _SRC: continue
-    _h = _p.read_text(); _n = xfollow(_h)
+    _h = _p.read_text(); _n = ogtags(xfollow(_h))
     if _n != _h: _p.write_text(_n)
