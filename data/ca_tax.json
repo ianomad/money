@@ -1,7 +1,7 @@
 {
  "year": 2025,
  "source": "https://www.ftb.ca.gov/forms/2025/2025-540-tax-rate-schedules.pdf",
- "checkedAt": "2026-10-21",
+ "checkedAt": "2026-10-26",
  "brackets": [
   {"rate": 4.0, "single": "$26,264–$41,452", "joint": "$52,528–$82,904"},
   {"rate": 6.0, "single": "$41,452–$57,542", "joint": "$82,904–$115,084"},

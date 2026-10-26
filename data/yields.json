@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-25",
+  "checkedAt": "2026-10-26",
   "note": "Bank-level deposit products, hand-verified against bank pages or named rate trackers. Rates are annual, before tax. Foreigner/non-resident access marked 'confirm' was NOT verified on the bank page; ask the bank before you travel or wire.",
   "countries": [
     {"code":"KG","name":"Kyrgyzstan","currency":"KGS","featured":true,
@@ -24,14 +24,14 @@
     {"code":"KZ","name":"Kazakhstan","currency":"KZT",
      "insurance":"Up to 10 million tenge for tenge savings deposits (KDIF; limits differ by deposit type)",
      "products":[
-      {"bank":"Kaspi Bank","product":"Savings Kaspi Deposit","currency":"KZT","rate":18.0,"rateNote":"effective, from Oct 2, 2026","term":"3 mo","min":"100,000 KZT","access":"Kaspi app; needs Kazakh IIN (confirm)","source":"https://finratings.kz/news/16875-kaspi-snizit-stavku-po-nakopitelnomu-depozitu-do-18/","verified":"2026-10-12"},
+      {"bank":"Kaspi Bank","product":"Savings Kaspi Deposit","currency":"KZT","rate":18.0,"rateNote":"effective, from Oct 2, 2026","term":"3 mo","min":"100,000 KZT","access":"Kaspi app; needs Kazakh IIN (confirm)","source":"https://guide.kaspi.kz/client/ru/cumulative_deposit/conditions/q19622","verified":"2026-10-26"},
       {"bank":"Halyk Bank","product":"Universal","currency":"KZT","rate":14.32,"rateNote":"15.3% effective (6 mo)","term":"6–12 mo","min":"1,000 KZT","usdOption":"USD/EUR 0.98% (12 mo)","access":"Branch/app (confirm)","source":"https://profinance.kz/deposits/khalyk-srochnyy","verified":"2026-10-25"}
      ]},
     {"code":"TR","name":"Turkey","currency":"TRY",
      "fxStart":{"date":"2023-10-12","rate":27.748,"source":"https://api.frankfurter.app/2023-10-12?from=USD&to=TRY","label":"ECB reference via Frankfurter"},
      "insurance":"TMSF covers up to a set lira amount per person per bank (check current limit)",
      "products":[
-      {"bank":"Türk Ticaret Bankası","product":"Salkım Hesap","currency":"TRY","rate":44.5,"rateNote":"first 100k TRY earns no interest; 17.5% withholding","term":"32 days","min":"see bank","access":"Needs Turkish tax number (confirm)","source":"https://turkinform.com.tr/900-bin-liranin-faiz-getirisi-degisti-zirvedeki-banka-belli-oldu","verified":"2026-10-12"},
+      {"bank":"Türk Ticaret Bankası","product":"Salkım Hesap","currency":"TRY","rate":44.5,"rateNote":"90-day welcome rate; first 100k TRY earns no interest; 17.5% withholding","term":"32 days","min":"see bank","access":"Needs Turkish tax number (confirm)","source":"https://www.hangikredi.com/yatirim-araclari/mevduat-faiz-oranlari/turk-ticaret-bankasi","verified":"2026-10-26"},
       {"bank":"Alternatifbank","product":"Time deposit","currency":"TRY","rate":44.0,"term":"32 days","min":"100,000 TRY tier","access":"Needs Turkish tax number (confirm)","source":"https://yatirimci.ai/en/time-deposit","verified":"2026-10-25"},
       {"bank":"ON Dijital","product":"Time deposit","currency":"TRY","rate":41.5,"term":"181–365 days","min":"100,000 TRY tier","access":"Digital (confirm)","source":"https://yatirimci.ai/en/time-deposit","verified":"2026-10-25"}
      ]},
