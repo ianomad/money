@@ -77,6 +77,25 @@ def _():
     got = json.loads(subprocess.run(['node', '-e', js], capture_output=True, text=True, check=True).stdout)
     want = [[round(x * 1e6) for x in (k['end'], k['beZero'], k['beUS'], k['termReturn'])] for k in (W.calc(*c) for c in cases)]
     assert got == want, (got, want)
+import pages2 as P
+_CD = json.loads((ROOT / 'data/cards.json').read_text()); _CB = {c['id']: c for c in _CD['cards']}; _PR = _CD['profile']
+@case('Cards: Chase Sapphire Preferred at $2,000/mo, 1c points = $373 rewards - $95 fee = $278 (verified on Chase Oct 26, 2026)')
+def _(): near(P.card_rewards(_CB['csp'], _PR), 373.2); assert P.card_value(_CB['csp'], _PR) == 278
+@case('Cards: CSP first year adds 75,000 points = $750 because $6,000 in 3 months meets $5,000 -> $1,028')
+def _(): assert P.card_value(_CB['csp'], _PR, 0.01, True) == 1028
+@case('Cards: bonus not counted if spend misses requirement: CSP at $1,000/mo (3,000 < 5,000)')
+def _(): assert P.card_bonus(_CB['csp'], {k: v / 2 for k, v in _PR.items()}) == 0
+@case('Cards: points at 1.5c raise CSP to $373.2*1.5 - $95 = $465; cash cards unchanged')
+def _(): assert P.card_value(_CB['csp'], _PR, 0.015) == 465 and P.card_value(_CB['dc'], _PR, 0.015) == 480
+@case('Cards: Blue Cash Preferred grocery cap: $1,000/mo groceries = $6,000*6% + $6,000*1%')
+def _(): p = dict.fromkeys(_PR, 0); p['groceries'] = 1000; assert P.card_value(_CB['bcp'], p) == round(360 + 60 - 95)
+@case('Cards: JS calculator matches Python on every card (3 scenarios)')
+def _():
+    sc = [(_PR, 1, False), (_PR, 1.7, True), ({k: v * 3 for k, v in _PR.items()}, 0.8, True)]
+    js = (ROOT / 'scripts/cards_calc.js').read_text() + f"\nconst C={json.dumps(_CD['cards'])},S={json.dumps(sc)};console.log(JSON.stringify(S.map(s=>C.map(c=>MBCards.value(c,s[0],s[1],s[2])))))"
+    got = json.loads(subprocess.run(['node', '-e', js], capture_output=True, text=True, check=True).stdout)
+    want = [[P.card_value(c, p, cpp / 100, fy) for c in _CD['cards']] for p, cpp, fy in sc]
+    assert got == want, (got, want)
 def main():
     bad = 0
     for n, f in CASES:

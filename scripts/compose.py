@@ -197,7 +197,7 @@ cards_d = digest('cards-top', 'CARDS / CASH BACK',
     ('Card', 'On everything', 'Best rate · what to know'),
     [(n, sub, f'{ev:g}%', f'Up to {bs:g}% · ' + t.split('. ')[0] + '.') for n, sub, ev, bs, t in crows])
 cards_body = pages2.cards_body() + pages2.sources_fold('cards')
-cards_out = cards.replace(cm, cards_body).replace('</head>', DIGEST_CSS + UI_CSS + TUCK_CSS + '</head>', 1)
+cards_out = re.sub(r"<script>\s*\(\(\) => \{\s*const list = document\.querySelector\('#cards \.rows'\);.*?</script>", '', cards.replace(cm, cards_body), flags=re.S)  # old card-list script; its list is gone.replace('</head>', DIGEST_CSS + UI_CSS + TUCK_CSS + '</head>', 1)
 # og:description for /cards (cards-src.html carried the old savings blurb). Built from the same cards.json numbers the page shows.
 _cd = dj('cards.json'); _pf = _cd['profile']
 for _c in _cd['cards']: _c['val'] = pages2.card_value(_c, _pf, _cd['pointValue'])

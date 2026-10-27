@@ -320,3 +320,7 @@ fieldset.toggles{border:0;padding:0;min-width:0}fieldset.toggles legend{font-siz
 .wtable th[scope=row]{grid-column:1/-1;padding:0;font:600 17px var(--serif);text-transform:none;letter-spacing:0;color:var(--ink);border:0}
 .wtable td{display:block;padding:0;border:0}.wtable td::before{content:attr(data-l);display:block;font:600 11px var(--sans);text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:2px}
 }
+.ctable small.math{color:var(--ink);font-family:var(--mono);font-size:12px}.ctable small.chk a{display:inline-block;padding:7px 2px;margin:-7px 0}
+.calc .g2{grid-template-columns:1fr 2fr;align-items:end}.calc label.tg{flex-direction:row;align-items:center;gap:8px;min-height:44px;color:var(--ink)}.calc label.tg input{width:18px;height:18px}
+@media(max-width:640px){.ctable.cards-t{display:table;overflow:visible}.cards-t td{padding:10px 4px}}
+.site-header details.menu{position:static}.menu:not([open]) .menu-panel{display:none}

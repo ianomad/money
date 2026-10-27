@@ -1,0 +1,11 @@
+(function(){var I=[].slice.call(document.querySelectorAll('#card-calc .g:not(.g2) input')),T=document.querySelector('.ctable tbody'),O=document.getElementById('calc-tot'),CP=document.getElementById('cpp'),FY=document.getElementById('fy'),N=document.getElementById('calc-note');
+function $(v){return (v<0?'−$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US')}
+function u(){var p={},tot=0;I.forEach(function(i){p[i.name]=+i.value.replace(/[^\d.]/g,'')||0;tot+=p[i.name]});var cpp=+CP.value.replace(/[^\d.]/g,'');if(!(cpp>=0))cpp=1;var fy=FY.checked;
+O.textContent=$(tot)+'/mo';N.textContent=(fy?'Showing year one: rewards minus the fee, plus a signup bonus where your spending meets it.':'Showing an ongoing year: rewards minus the annual fee.')+' Points counted at '+cpp+'¢ each.';
+var V={};CARDS.forEach(function(c){var rw=MBCards.rewards(c,p,cpp),bn=fy?MBCards.bonus(c,p,cpp):0;V[c.id]={c:c,v:Math.round(rw-c.fee+bn),rw:rw,bn:bn}});
+[].slice.call(T.rows).map(function(r){var x=V[r.dataset.id];r.querySelector('[data-v]').textContent=$(x.v);r.className=x.v<0?'neg':'';
+r.querySelector('[data-m]').textContent='Rewards '+$(x.rw)+' − fee $'+x.c.fee.toLocaleString('en-US')+(fy?' + bonus '+$(x.bn):'')+' = '+$(x.v)+(fy?' in year one':'/yr');return[x.v,r]}).sort(function(a,b){return b[0]-a[0]}).forEach(function(x){T.appendChild(x[1])});
+var all=CARDS.map(function(c){return V[c.id]});function best(f){return all.filter(f).sort(function(a,b){return b.v-a.v})[0]}
+document.querySelectorAll('[data-pick]').forEach(function(el){var k=el.dataset.pick,x=k==='top'?best(function(){return true}):k==='nofee'?best(function(x){return x.c.fee===0}):k==='travel'?best(function(x){return x.c.type==='travel'}):V[k];
+el.querySelector('h3').textContent=x.c.name;el.querySelector('.v').textContent=$(x.v)+(fy?' yr 1':'/yr')})}
+I.concat([CP]).forEach(function(i){i.oninput=u});FY.onchange=u;u()})();
