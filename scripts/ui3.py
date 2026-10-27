@@ -153,3 +153,8 @@ def finalize(h): return ogtags(_fin5(h))
 from theme import apply as _theme
 _fin6 = finalize
 def finalize(h): return _theme(_fin6(h))
+
+# ---------- SEO metadata (Oct 26 2026): titles, descriptions, JSON-LD, related tools on guides ----------
+from seo_meta import apply as _seo
+_fin7 = finalize
+def finalize(h): return _seo(_fin7(h))
