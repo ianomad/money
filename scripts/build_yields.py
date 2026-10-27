@@ -9,6 +9,8 @@ import json, subprocess, sys, hashlib
 from datetime import date
 from html import escape as e
 from pathlib import Path
+def fxn(v): return f'{v:,.0f}' if v >= 1000 else f'{v:,.4g}'
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA, FX, OUT = ROOT/'data/yields.json', ROOT/'data/fx.json', ROOT/'docs/world.html'
 FX_API = 'https://open.er-api.com/v6/latest/USD'
@@ -37,9 +39,9 @@ fxmove = kgnow/kg0-1
 def country(c):
     rows=''.join(f'''<tr><td><b>{e(p['bank'])}</b><br><small>{e(p['product'])}</small></td><td>{e(p['currency'])}</td><td><b>{p['rate']:g}%</b>{'<br><small>'+e(p['rateNote'])+'</small>' if p.get('rateNote') else ''}</td><td>{e(p['term'])}</td><td>{e(p['min'])}</td><td>{e(p.get('usdOption','—'))}</td><td>{e(p['access'])}</td><td><a href="{e(p['source'])}" target="_blank" rel="noopener">source ↗</a><br><small>verified {e(p['verified'])}</small></td></tr>''' for p in sorted(c['products'],key=lambda p:-p['rate']))
     now = fx['rates'].get(c['currency'])
-    fxline = f'Today 1 USD = {now:,.4g} {c["currency"]}' if now else ''
+    fxline = f'Today 1 USD = {fxn(now)} {c["currency"]}' if now else ''
     if c.get('fxStart') and now:
-        fxline += f' · {c["fxStart"]["date"]}: {c["fxStart"]["rate"]:,.4g} (<a href="{e(c["fxStart"]["source"])}" target="_blank" rel="noopener">{e(c["fxStart"]["label"])}</a>) · local currency {"lost" if now>c["fxStart"]["rate"] else "gained"} {abs(1-c["fxStart"]["rate"]/now):.0%} vs USD'
+        fxline += f' · {c["fxStart"]["date"]}: {fxn(c["fxStart"]["rate"])} (<a href="{e(c["fxStart"]["source"])}" target="_blank" rel="noopener">{e(c["fxStart"]["label"])}</a>) · local currency {"lost" if now>c["fxStart"]["rate"] else "gained"} {abs(1-c["fxStart"]["rate"]/now):.0%} vs USD'
     best=max(c['products'],key=lambda p:p['rate'])
     return f'''<details class="yc" id="{c['code'].lower()}"><summary><b>{e(c['name'])}</b> · best {best['rate']:g}% ({e(best['bank'])}, {e(best['currency'])}) · {len(c['products'])} product{'s' if len(c['products'])>1 else ''}</summary><p class="fx">{fxline}</p><div class="tw"><table><thead><tr><th>Bank / product</th><th>Cur.</th><th>Rate</th><th>Term</th><th>Minimum</th><th>USD/EUR option</th><th>Foreigners / how to open</th><th>Source</th></tr></thead><tbody>{rows}</tbody></table></div><p class="ins"><b>Deposit insurance:</b> {e(c['insurance'])}</p></details>'''
 

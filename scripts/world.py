@@ -4,6 +4,8 @@ import json
 from datetime import date
 from pathlib import Path
 from html import escape as e
+def fxn(v): return f'{v:,.0f}' if v >= 1000 else f'{v:,.4g}'
+
 ROOT = Path(__file__).resolve().parents[1]
 import os as _os; from pathlib import Path as _Path; DATA = _Path(_os.environ.get('MB_DATA') or ROOT / 'data')  # tests point MB_DATA at a frozen snapshot
 
@@ -48,7 +50,7 @@ def row(r):
     d = r.get('fxd')
     if d and r['cur'] != 'USD':
         lab = 'official' if d.get('official') else 'market rate, not official'
-        fxs += f'<small>Today {r["fxNow"]:,.4g} per $ · <a href="{e(d["url"])}" target="_blank" rel="noopener">{lab}</a>{" · " + fd(d["date"]) if d.get("stale") else ""}</small>'
+        fxs += f'<small>Today {fxn(r["fxNow"])} per $ · <a href="{e(d["url"])}" target="_blank" rel="noopener">{lab}</a>{" · " + fd(d["date"]) if d.get("stale") else ""}</small>'
     src = f' · <a href="{e(r["src"])}" target="_blank" rel="noopener">Source ↗</a>' if r['src'] else ''
     return (f'<tr data-rate="{r["rate"]}" data-est="{r["est"] if r["est"] is not None else -999}"><th scope="row">{e(r["name"])}<small>{r["banks"]} bank{"s" if r["banks"] > 1 else ""} tracked</small></th>'
             f'<td data-l="Top rate we track"><b>{r["rate"]:g}%</b><small>{e(r["bank"])} · {e(r["term"])} · {r["cur"]}</small></td><td data-l="Currency vs $">{fxs}</td><td data-l="Est. 12-month USD result*"><b>{est}</b></td><td data-l="Deposit insurance">{ins}</td>'
