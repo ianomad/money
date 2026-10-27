@@ -238,3 +238,6 @@ for _p in sorted(D.glob('*.html')):
     if _p.name in _SRC: continue
     _h = _p.read_text(); _n = ogtags(xfollow(_h))
     if _n != _h: _p.write_text(_n)
+# automated data + page checks (warnings print; hard failures stop the build so a broken site isn't pushed)
+import check_data as _cd
+if _cd.main(): sys.exit(1)
