@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-25",
+  "checkedAt": "2026-10-27",
   "changeNote": "Oct 25: Openbank raised its standard rate to 4.00% (4.35% with the new-customer boost), CIT's boost is now 4.25% with code BOOST50, and SoFi Plus pays 4.70% on the first $20,000. Pibank's 4.40% is still the top plain rate. Rechecked Peak, Pibank, Newtek, Elevault, EverBank, Axos, E*TRADE, Marcus, Betterment, Happen, Varo, Robinhood, X Money: unchanged.",
   "providers": [
     {
@@ -354,7 +354,7 @@
           "url": "https://www.axosbank.com/personal/bank/axos-one"
         }
       ],
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-27"
     },
     {
       "id": "sofi",
@@ -447,7 +447,7 @@
           "url": "https://www.pibank.com/pibank-savings/"
         }
       ],
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-27"
     },
     {
       "id": "newtek",
@@ -476,7 +476,7 @@
         }
       ],
       "baseLabel": "Existing accounts",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-27"
     },
     {
       "id": "cit",
@@ -598,7 +598,7 @@
         }
       ],
       "baseLabel": "New accounts",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-27"
     },
     {
       "id": "happen",
@@ -695,17 +695,17 @@
       "kind": "Bank · American Express National Bank",
       "symbol": "A",
       "color": "#016fd0",
-      "base": 3.1,
+      "base": 3.2,
       "boost": null,
       "rateLabel": "Standard rate",
       "requirements": "No minimum balance or monthly fee.",
       "details": "Variable APY.",
       "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
-      "effective": "2026-10-13",
-      "observedAt": "2026-10-13",
+      "effective": "2026-10-27",
+      "observedAt": "2026-10-27",
       "sources": [
         {
-          "label": "Official rate page (checked Oct 13, 2026)",
+          "label": "Official rate page (checked Oct 27, 2026)",
           "url": "https://www.americanexpress.com/en-us/banking/online-savings/account/"
         }
       ],
@@ -714,7 +714,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "American Express; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-13"
+      "verifiedAt": "2026-10-27"
     },
     {
       "id": "synchrony",

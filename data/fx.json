@@ -1,36 +1,36 @@
 {
- "fetched": "2026-10-26",
+ "fetched": "2026-10-27",
  "note": "Local currency per 1 USD. Official central-bank rate where reachable; see detail.",
  "rates": {
-  "KGS": 87.45,
+  "KGS": 87.4492,
   "UZS": 11843.737587,
   "KZT": 451.05,
-  "TRY": 49.7627,
+  "TRY": 49.7892,
   "NGN": 1367.1057,
   "ARS": 1541.0,
   "BRL": 5.5007,
-  "GEL": 2.5966,
-  "AMD": 360.88,
+  "GEL": 2.596,
+  "AMD": 360.93,
   "USD": 1
  },
  "detail": {
   "KGS": {
-   "rate": 87.45,
-   "date": "2026-10-27",
+   "rate": 87.4492,
+   "date": "2026-10-28",
    "source": "National Bank of the Kyrgyz Republic official",
    "url": "https://www.nbkr.kg/index1.jsp?item=1562&lang=ENG",
    "official": true
   },
   "KZT": {
    "rate": 451.05,
-   "date": "2026-10-26",
+   "date": "2026-10-27",
    "source": "National Bank of Kazakhstan official",
    "url": "https://nationalbank.kz/en/exchangerates/ezhednevnye-oficialnye-rynochnye-kursy-valyut",
    "official": true
   },
   "TRY": {
-   "rate": 49.7627,
-   "date": "2026-10-26",
+   "rate": 49.7892,
+   "date": "2026-10-27",
    "source": "Central Bank of Türkiye indicative (forex selling)",
    "url": "https://www.tcmb.gov.tr/kurlar/today.xml",
    "official": true
@@ -57,29 +57,29 @@
    "official": true
   },
   "GEL": {
-   "rate": 2.5966,
-   "date": "2026-10-27",
+   "rate": 2.596,
+   "date": "2026-10-28",
    "source": "National Bank of Georgia official",
    "url": "https://nbg.gov.ge/en/monetary-policy/currency",
    "official": true
   },
   "AMD": {
-   "rate": 360.88,
-   "date": "2026-10-26",
+   "rate": 360.93,
+   "date": "2026-10-27",
    "source": "Central Bank of Armenia official",
    "url": "https://www.cba.am/en/SitePages/ExchangeArchive.aspx",
    "official": true
   },
   "USD": {
    "rate": 1,
-   "date": "2026-10-26",
+   "date": "2026-10-27",
    "source": "USD",
    "url": "",
    "official": true
   },
   "UZS": {
    "rate": 11843.737587,
-   "date": "2026-10-26",
+   "date": "2026-10-27",
    "source": "open.er-api.com (market aggregate; official source unreachable)",
    "url": "https://open.er-api.com/v6/latest/USD",
    "official": false
