@@ -4,7 +4,7 @@ from datetime import date
 BASE = 'https://getmoneybeast.com'
 # (path, served file) — only composed, public pages; builder source pages redirect and stay out.
 PAGES = [('/', 'index.html'), ('/best-hysa', 'best-hysa.html'), ('/best-nofee-cards', 'best-nofee-cards.html'), ('/pay-property-tax-credit-card', 'pay-property-tax-credit-card.html'), ('/tbills-vs-savings-california', 'tbills-vs-savings-california.html'), ('/markets', 'markets.html'), ('/cards', 'cards.html'),
-         ('/sponsor', 'sponsor.html'), ('/disclosure', 'disclosure.html'), ('/privacy', 'privacy.html')]
+         ('/guides', 'guides.html'), ('/sponsor', 'sponsor.html'), ('/disclosure', 'disclosure.html'), ('/privacy', 'privacy.html')]
 
 
 def write(D, today=None):

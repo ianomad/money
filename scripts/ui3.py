@@ -79,8 +79,8 @@ EARN_JS = r'''<script>(()=>{const i=document.getElementById("earn-amt");if(!i)re
 from datetime import date as _date
 def ui4(h):
     if '<main' not in h or 'class="trust"' in h: return h
-    path = re.search(r'<link rel="canonical" href="[^"]*?(/[a-z]*)"', h)
-    rates = 'data-view="us"' in h; cards = 'class="calc"' in h
+    path = re.search(r'<link rel="canonical" href="https://[^/"]+(/[a-z-]*)(?:\.html)?"', h)
+    rates = 'data-view="us"' in h; cards = 'class="calc"' in h and bool(path) and path.group(1).startswith('/cards')  # was matching World's .calc sections -> stray card calculator on World
     today = _date.today().strftime('%b %-d, %Y')
     src = {True: 'Rates checked by hand against each bank’s own page'}.get(rates) or ('Card terms checked against issuer pages' if cards else 'Data from FRED (Fed, Treasury, EIA, Freddie Mac), BLS and CoinGecko')
     h = re.sub(r'(<main[^>]*>)', r'\1' + f'<p class="trust"><span><b>●</b> Updated {today}</span><span>{src}</span><span>No sponsored rankings</span></p>', h, count=1)
@@ -88,7 +88,7 @@ def ui4(h):
         rows = re.findall(r'<article id="(provider-[^"]+)" class="provider-row"[^>]*data-base="([\d.]+)" data-top="([\d.]+)"', h)
         if rows:
             tb = max(rows, key=lambda r: float(r[2]))[0]; bb = max(rows, key=lambda r: float(r[1]))[0]
-            for pid, lab in ((tb, 'Highest rate'), (bb, 'Best with no conditions')):
+            for pid, lab in ((tb, 'Highest advertised rate'), (bb, 'Highest standard rate')):
                 h = re.sub(rf'(<article id="{pid}".*?</h3>)', lambda m: m.group(1) + f'<span class="badge">{lab}</span>', h, count=1, flags=re.S)
         r = re.search(r'class="share-rate">([\d.]+)%', h)
         if r:
@@ -148,3 +148,8 @@ def ogtags(h):
     return h.replace('</head>', tags + '</head>', 1)
 _fin5 = finalize
 def finalize(h): return ogtags(_fin5(h))
+
+# ---------- theme (revamp Oct 26 2026): one design system + consistent header/nav/footer on every served page ----------
+from theme import apply as _theme
+_fin6 = finalize
+def finalize(h): return _theme(_fin6(h))

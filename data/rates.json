@@ -35,7 +35,8 @@
         "status": "conditional",
         "label": "FDIC · Conditional",
         "summary": "Pass-through coverage through partner banks; sweep program conditions apply."
-      }
+      },
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "wealthfront",
@@ -101,7 +102,8 @@
         "status": "bank",
         "label": "FDIC · Bank deposit",
         "summary": "Goldman Sachs Bank USA; standard coverage limits apply."
-      }
+      },
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "ally",
@@ -217,7 +219,8 @@
         "status": "bank",
         "label": "FDIC · Bank deposit",
         "summary": "Morgan Stanley Private Bank; enhanced coverage program conditions apply."
-      }
+      },
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "robinhood",
@@ -252,7 +255,8 @@
         "status": "mixed",
         "label": "FDIC · Mixed coverage",
         "summary": "Swept bank cash is eligible. Brokerage-held cash and options collateral are not FDIC insured."
-      }
+      },
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "aave",
@@ -289,7 +293,8 @@
           "label": "Protocol risks",
           "url": "https://www.aave.com/docs/resources/risks"
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-09"
     },
     {
       "id": "barclays",
@@ -348,7 +353,8 @@
           "label": "Official rates & account terms",
           "url": "https://www.axosbank.com/personal/bank/axos-one"
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "sofi",
@@ -383,7 +389,8 @@
           "label": "Alternative new-customer promotion",
           "url": "https://www.sofi.com/banking/"
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "peak",
@@ -411,7 +418,8 @@
           "url": "https://www.peak.bank/peak-bank/savings"
         }
       ],
-      "baseLabel": "New accounts · below $500k"
+      "baseLabel": "New accounts · below $500k",
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "pibank",
@@ -438,7 +446,8 @@
           "label": "Official rates & account terms",
           "url": "https://www.pibank.com/pibank-savings/"
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "newtek",
@@ -466,7 +475,8 @@
           "url": "https://www.newtekbank.com/personal/high-yield-savings/"
         }
       ],
-      "baseLabel": "Existing accounts"
+      "baseLabel": "Existing accounts",
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "cit",
@@ -498,7 +508,8 @@
           "url": "https://www.cit.com/cit-bank/platinum-savings"
         }
       ],
-      "baseLabel": "$5,000+ balance"
+      "baseLabel": "$5,000+ balance",
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "varo",
@@ -525,7 +536,8 @@
           "label": "Official rates & account terms",
           "url": "https://www.varomoney.com/savings-account/"
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "elevault",
@@ -556,7 +568,8 @@
           "label": "Account agreement & eligibility",
           "url": "https://www.elevault.app/legal"
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "everbank",
@@ -584,7 +597,8 @@
           "url": "https://www.everbank.com/banking/performance-savings"
         }
       ],
-      "baseLabel": "New accounts"
+      "baseLabel": "New accounts",
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "happen",
@@ -612,7 +626,8 @@
           "label": "Official rates & account terms",
           "url": "https://www.happen.com/personal-banking/savings/high-yield-savings"
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "openbank",
@@ -640,7 +655,8 @@
           "label": "Official rate & boost terms",
           "url": "https://www.openbank.us/banking/high-yield-savings-account"
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "capitalone",
@@ -668,7 +684,8 @@
         "status": "bank",
         "label": "FDIC · Bank deposit",
         "summary": "Capital One; standard coverage limits apply."
-      }
+      },
+      "verifiedAt": "2026-10-13"
     },
     {
       "id": "amex",
@@ -696,7 +713,8 @@
         "status": "bank",
         "label": "FDIC · Bank deposit",
         "summary": "American Express; standard coverage limits apply."
-      }
+      },
+      "verifiedAt": "2026-10-13"
     },
     {
       "id": "synchrony",
@@ -724,7 +742,8 @@
         "status": "bank",
         "label": "FDIC · Bank deposit",
         "summary": "Synchrony; standard coverage limits apply."
-      }
+      },
+      "verifiedAt": "2026-10-13"
     },
     {
       "id": "citizens",
@@ -752,7 +771,8 @@
         "status": "bank",
         "label": "FDIC · Bank deposit",
         "summary": "Citizens Access; standard coverage limits apply."
-      }
+      },
+      "verifiedAt": "2026-10-13"
     },
     {
       "id": "wellsfargo",
@@ -780,7 +800,8 @@
         "status": "bank",
         "label": "FDIC · Bank deposit",
         "summary": "Wells Fargo; standard coverage limits apply."
-      }
+      },
+      "verifiedAt": "2026-10-13"
     },
     {
       "id": "chime",
@@ -808,7 +829,8 @@
         "status": "conditional",
         "label": "FDIC · Pass-through",
         "summary": "Chime; standard coverage limits apply."
-      }
+      },
+      "verifiedAt": "2026-10-13"
     },
     {
       "id": "betterment",
@@ -836,7 +858,8 @@
         "status": "conditional",
         "label": "FDIC · Pass-through",
         "summary": "Betterment; standard coverage limits apply."
-      }
+      },
+      "verifiedAt": "2026-10-25"
     }
   ]
 }

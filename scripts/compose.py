@@ -60,9 +60,11 @@ TUCK_CSS = '''<style>.tuck{margin:1.2rem 0;border:1px solid rgba(127,127,127,.3)
 sv, wd = rd('savings.html'), rd('world.html')
 svm, wdm = main(sv), main(wd)
 hero = sec(svm, 'hero')
+hero = re.sub(r'<p class="eyebrow"><span class="dot"></span> THE YIELD TRACKER / USD</p><h1>.*?</h1>', '', hero, count=1, flags=re.S)  # one h1 per page
 crypto_ids = re.findall(r'id="provider-([^"]+)"', sec(svm, 'crypto-rates'))
 for cid in crypto_ids: hero = hero.replace(f'href="#provider-{cid}"', f'href="/markets#provider-{cid}"')
 rates = sec(svm, 'rates')
+rates = rates.replace('aria-label="Compare provider yields">', 'aria-labelledby="all-h"><h2 id="all-h" class="sec-h">Every account we track</h2><p class="hint">Listed by advertised top rate, which often needs conditions. The calculator above ranks by what you would actually earn.</p>', 1)
 rates = rates.replace(sec(svm, 'crypto-rates'), '', 1)
 rates = re.sub(r'<div class="filters" role="group".*?</div>', '', rates, count=1, flags=re.S)  # one-row controls
 rates = rates.replace('<div class="rows">', '<div class="rows collapsed">', 1)
@@ -107,10 +109,18 @@ stable = ('<span id="stablecoins"></span>' + tuck(digest('stable-top', f"STABLEC
     [(r['protocol'], r['chain'], f"{r['apy']:.2f}%", f"{r['coin']} · {tvl(r['tvl'])} in pool") for r in dp]),
     f"Stablecoin yields: top {dp[0]['apy']:.2f}% (Aave, Maple, Sky, Ethena…), not FDIC insured"))
 tabs = '<div class="view-tabs" role="tablist"><a href="/" data-view="us" role="tab"><span>US savings</span></a><a href="/#world" data-view="world" role="tab"><span>World deposits</span></a></div>'
-rates_head = ('<section class="pagehead"><p class="eyebrow">RATES / WHERE YOUR CASH EARNS MOST</p><h1>Get paid more for <em>money you keep.</em></h1>'
-  '<p class="lead">For anyone with cash sitting in a bank. <b>US savings</b> compares insured US accounts, checked by hand. <b>World deposits</b> shows what banks abroad pay, and the currency risk that comes with it.</p>'
-  '<p class="lead guides" style="margin-top:.6em;font-size:.95em">Quick answers: <a href="/best-hysa">best no-strings savings</a> · <a href="/tbills-vs-savings-california">T-bills vs savings in California</a> · <a href="/best-nofee-cards">best no-fee cash-back cards</a> · <a href="/pay-property-tax-credit-card">paying property tax by card</a></p></section>')
-body = (pages2.CSS + rates_head + tabs + f'<div id="view-us">{hero}{rates}{stable}{method}{pages2.sources_fold("rates")}<a class="back-top" href="#rates" aria-label="Back to filters">↑ Filters</a></div>'
+rates_head = ('<section class="pagehead"><p class="eyebrow">Savings rates · checked by hand</p><h1>Where should your <em>cash</em> go?</h1>'
+  '<p class="lead">Compare US savings accounts by what they would actually pay you, or see what banks abroad pay and the currency risk that comes with it.</p>'
+  '<nav class="tasks" aria-label="Start here">'
+  '<a class="task" href="#calc"><b>Compare savings</b><span>US accounts, insured, checked by hand</span><i>Calculator ↓</i></a>'
+  '<a class="task" href="/#world"><b>Banks abroad</b><span>Higher rates, currency risk</span><i>World →</i></a>'
+  '<a class="task" href="/cards"><b>Pick a credit card</b><span>Value after fees, for your spending</span><i>Cards →</i></a>'
+  '<a class="task" href="/markets"><b>Today’s numbers</b><span>Mortgage, gas, stocks, the Fed</span><i>Markets →</i></a>'
+  '</nav></section>')
+import savings as _sv
+_svD, _svP = _sv.dataset()
+for _p in _svP: print('WARN rate-terms:', _p)
+body = (pages2.CSS + rates_head + tabs + f'<div id="view-us">{_sv.render(_svD)}{rates}{stable}{method}{pages2.sources_fold("rates")}<a class="back-top" href="#rates" aria-label="Back to filters">↑ Filters</a></div>'
         + f'<div id="view-world" class="wrap" hidden><span id="world"></span>{world_hero}{world_rest}</div>' + show_js)
 desc = re.search(r'<meta name="description" content="([^"]*)"', sv).group(1)
 # ---------- lazy helpers (perf) ----------
@@ -221,6 +231,8 @@ build_article_proptax.write(page, finalize, lazyimg, rd, D, DIGEST_CSS, UI_CSS)
 import build_article_tbills
 build_article_tbills.write(page, finalize, lazyimg, rd, D, DIGEST_CSS, UI_CSS)
 import build_seo
+import build_guides
+build_guides.write(page, finalize, lazyimg, rd, D, DIGEST_CSS, UI_CSS)
 build_seo.write(D)
 print('Composed index.html, markets.html, cards.html, sponsor.html, disclosure.html, privacy.html, best-hysa.html, best-nofee-cards.html, robots.txt, sitemap.xml')
 
