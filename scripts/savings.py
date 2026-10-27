@@ -5,6 +5,7 @@ from datetime import date
 from pathlib import Path
 from html import escape as e
 ROOT = Path(__file__).resolve().parents[1]
+import os as _os; from pathlib import Path as _Path; DATA = _Path(_os.environ.get('MB_DATA') or ROOT / 'data')  # tests point MB_DATA at a frozen snapshot
 STALE_DAYS = 30
 NEEDS = [('new', 'I’m opening a new account', True), ('dd', 'I can set up direct deposit', False),
          ('fee', 'I’d pay a membership fee', False), ('referral', 'I have a referral link', False),
@@ -69,7 +70,7 @@ def spec_rates(spec):
     return [spec] if isinstance(spec, (int, float)) else [r for _, r in spec['tiers']]
 
 def dataset(today=None):
-    rj = json.loads((ROOT / 'data/rates.json').read_text()); tj = json.loads((ROOT / 'data/rate-terms.json').read_text())['terms']
+    rj = json.loads((DATA / 'rates.json').read_text()); tj = json.loads((DATA / 'rate-terms.json').read_text())['terms']
     today = today or date.today().isoformat(); provs = []; problems = []
     for p in rj['providers']:
         if p['category'] != 'cash': continue

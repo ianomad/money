@@ -1,0 +1,598 @@
+{
+ "_about": "Structured terms behind each US cash offer in rates.json, transcribed from that file's requirements/details text (which is checked against provider pages). Rates are APY %. A rate is a number or {tiers:[[upTo, apy], ...], split:bool}: split=true means each slice of the balance earns its own rate (a cap), split=false means the whole balance earns the rate of the tier it falls in. upTo null = no limit; a last tier with a number means terms above it are not published. needs: new=new customer, dd=direct deposit, fee=paid membership, referral=referral link, activity=recurring deposits/activity rules. promo.months or promo.until (offer end) limits the promo; promo.maxBal = promo not available above this balance. textHash = hash of the rates.json requirements+details this was transcribed from (scripts/check_data.py flags drift).",
+ "terms": {
+  "x-money": {
+   "note": "No interest for New York residents.",
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 4.0
+    },
+    {
+     "label": "With $1,000+ direct deposit every 34 days",
+     "needs": [
+      "dd"
+     ],
+     "rate": 6.0
+    },
+    {
+     "label": "With X Premium+ (about $395/yr)",
+     "needs": [
+      "fee"
+     ],
+     "rate": 6.0,
+     "feeYr": 395
+    }
+   ],
+   "textHash": "71f2357596"
+  },
+  "wealthfront": {
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 3.55
+    },
+    {
+     "label": "Recurring-deposit boost (+0.25, needs a funded investing account and $1,000/mo direct deposit or $2,500 recurring deposits)",
+     "needs": [
+      "activity"
+     ],
+     "rate": 3.8
+    },
+    {
+     "label": "Referral boost for 3 months on up to $150,000, plus recurring-deposit boost",
+     "needs": [
+      "referral",
+      "activity"
+     ],
+     "promo": {
+      "rate": {
+       "tiers": [
+        [
+         150000,
+         4.55
+        ],
+        [
+         null,
+         3.8
+        ]
+       ],
+       "split": true
+      },
+      "months": 3
+     },
+     "rate": 3.8
+    }
+   ],
+   "textHash": "d068007c1b"
+  },
+  "marcus": {
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 3.5
+    },
+    {
+     "label": "Referral boost: +1.00 point for 3 months",
+     "needs": [
+      "referral",
+      "new"
+     ],
+     "promo": {
+      "rate": 4.5,
+      "months": 3
+     },
+     "rate": 3.5
+    }
+   ],
+   "textHash": "bab781ee53"
+  },
+  "ally": {
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 3.1
+    }
+   ],
+   "textHash": "a5dacb6e92"
+  },
+  "etrade": {
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 3.75
+    },
+    {
+     "label": "New-account promo: 4.25% for 6 months (open by Jan 10, 2027)",
+     "needs": [
+      "new"
+     ],
+     "promo": {
+      "rate": 4.25,
+      "months": 6,
+      "openBy": "2027-01-10"
+     },
+     "rate": 3.75
+    }
+   ],
+   "textHash": "48d8554fec"
+  },
+  "barclays": {
+   "note": "Published tiers stop at $1,000,000.",
+   "paths": [
+    {
+     "label": "Balance tiers",
+     "needs": [],
+     "rate": {
+      "tiers": [
+       [
+        249999.99,
+        3.5
+       ],
+       [
+        1000000,
+        3.65
+       ]
+      ],
+      "split": false
+     }
+    }
+   ],
+   "textHash": "6b09887df7"
+  },
+  "axos": {
+   "paths": [
+    {
+     "label": "Without qualifying activity",
+     "needs": [],
+     "rate": 1.0
+    },
+    {
+     "label": "With qualifying direct deposits and checking balance each month",
+     "needs": [
+      "dd"
+     ],
+     "rate": {
+      "tiers": [
+       [
+        249999.99,
+        4.21
+       ],
+       [
+        null,
+        3.5
+       ]
+      ],
+      "split": false
+     }
+    },
+    {
+     "label": "New-customer promo: 5.00% on the first $49,999.99 for 6 statement cycles (open Oct 1-31)",
+     "needs": [
+      "dd",
+      "new"
+     ],
+     "promo": {
+      "rate": {
+       "tiers": [
+        [
+         49999.99,
+         5.0
+        ],
+        [
+         null,
+         4.21
+        ]
+       ],
+       "split": true
+      },
+      "months": 6,
+      "openBy": "2026-10-31",
+      "maxBal": 249999.99
+     },
+     "rate": {
+      "tiers": [
+       [
+        249999.99,
+        4.21
+       ],
+       [
+        null,
+        3.5
+       ]
+      ],
+      "split": false
+     }
+    }
+   ],
+   "textHash": "b69c723ec6"
+  },
+  "sofi": {
+   "paths": [
+    {
+     "label": "No direct deposit, no Plus",
+     "needs": [],
+     "rate": 0.8
+    },
+    {
+     "label": "With direct deposit or qualifying deposits",
+     "needs": [
+      "dd"
+     ],
+     "rate": 3.3
+    },
+    {
+     "label": "New-member boost: 4.40% for up to 6 months with direct deposit",
+     "needs": [
+      "dd",
+      "new"
+     ],
+     "promo": {
+      "rate": 4.4,
+      "months": 6
+     },
+     "rate": 3.3
+    },
+    {
+     "label": "SoFi Plus ($10/month): 4.70% on the first $20,000, 3.30% above",
+     "needs": [
+      "fee"
+     ],
+     "feeYr": 120,
+     "rate": {
+      "tiers": [
+       [
+        20000,
+        4.7
+       ],
+       [
+        null,
+        3.3
+       ]
+      ],
+      "split": true
+     }
+    }
+   ],
+   "textHash": "fc3f4a861b"
+  },
+  "peak": {
+   "minOpen": 100,
+   "paths": [
+    {
+     "label": "New-account rate",
+     "needs": [
+      "new"
+     ],
+     "rate": {
+      "tiers": [
+       [
+        499999.99,
+        4.27
+       ],
+       [
+        null,
+        3.4
+       ]
+      ],
+      "split": false
+     }
+    }
+   ],
+   "textHash": "0d9ff2f28a"
+  },
+  "pibank": {
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 4.4
+    }
+   ],
+   "textHash": "9aca9973cc"
+  },
+  "newtek": {
+   "status": "paused",
+   "paths": [
+    {
+     "label": "Published rate (not taking new applications)",
+     "needs": [],
+     "rate": 4.2
+    }
+   ],
+   "textHash": "1448f38eb1"
+  },
+  "cit": {
+   "minOpen": 100,
+   "paths": [
+    {
+     "label": "Standard rate (3.75% at $5,000+, 0.25% below)",
+     "needs": [],
+     "rate": {
+      "tiers": [
+       [
+        4999.99,
+        0.25
+       ],
+       [
+        null,
+        3.75
+       ]
+      ],
+      "split": false
+     }
+    },
+    {
+     "label": "BOOST50 promo: +0.50 point for 6 months",
+     "needs": [
+      "new"
+     ],
+     "promo": {
+      "rate": {
+       "tiers": [
+        [
+         4999.99,
+         0.75
+        ],
+        [
+         null,
+         4.25
+        ]
+       ],
+       "split": false
+      },
+      "months": 6
+     },
+     "rate": {
+      "tiers": [
+       [
+        4999.99,
+        0.25
+       ],
+       [
+        null,
+        3.75
+       ]
+      ],
+      "split": false
+     }
+    }
+   ],
+   "textHash": "cd89a2545d"
+  },
+  "varo": {
+   "note": "You qualify in one month to earn the rate the next month.",
+   "paths": [
+    {
+     "label": "Without qualifying",
+     "needs": [],
+     "rate": 1.0
+    },
+    {
+     "label": "With $1,000+ direct deposits: 3.75% on the first $5,000",
+     "needs": [
+      "dd"
+     ],
+     "rate": {
+      "tiers": [
+       [
+        5000,
+        3.75
+       ],
+       [
+        null,
+        1.0
+       ]
+      ],
+      "split": true
+     }
+    }
+   ],
+   "textHash": "6ade7af43b"
+  },
+  "elevault": {
+   "paths": [
+    {
+     "label": "Standard rate (balances above $500,000 earn nothing)",
+     "needs": [],
+     "rate": {
+      "tiers": [
+       [
+        500000,
+        4.34
+       ],
+       [
+        null,
+        0
+       ]
+      ],
+      "split": true
+     }
+    }
+   ],
+   "textHash": "2ebefcb06a"
+  },
+  "everbank": {
+   "paths": [
+    {
+     "label": "New-account rate",
+     "needs": [
+      "new"
+     ],
+     "rate": 4.2
+    }
+   ],
+   "textHash": "9ba2c5e47e"
+  },
+  "happen": {
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 3.0
+    },
+    {
+     "label": "New account: LevelUp rate until the first evaluation (about 2 cycles), then standard",
+     "needs": [
+      "new"
+     ],
+     "promo": {
+      "rate": 4.2,
+      "months": 2
+     },
+     "rate": 3.0
+    },
+    {
+     "label": "LevelUp: deposit $250+ every statement cycle",
+     "needs": [
+      "activity"
+     ],
+     "rate": 4.2
+    }
+   ],
+   "textHash": "00af658d50"
+  },
+  "openbank": {
+   "minOpen": 500,
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 4.0
+    },
+    {
+     "label": "New-customer boost: 4.35% for 6 months",
+     "needs": [
+      "new"
+     ],
+     "promo": {
+      "rate": 4.35,
+      "months": 6
+     },
+     "rate": 4.0
+    }
+   ],
+   "textHash": "f53eb1190b"
+  },
+  "capitalone": {
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 3.1
+    }
+   ],
+   "textHash": "3b4d0bc9a0"
+  },
+  "amex": {
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 3.1
+    }
+   ],
+   "textHash": "fb32c04ab9"
+  },
+  "synchrony": {
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 3.55
+    }
+   ],
+   "textHash": "513af00a7d"
+  },
+  "citizens": {
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 2.8
+    }
+   ],
+   "textHash": "a06660b6bd"
+  },
+  "wellsfargo": {
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 0.01
+    }
+   ],
+   "textHash": "11073d7a78"
+  },
+  "chime": {
+   "note": "4.00% needs Chime Prime status; the criteria for Prime are not verified here, so it is not counted.",
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 1.0
+    },
+    {
+     "label": "Chime Plus with qualifying direct deposit",
+     "needs": [
+      "dd"
+     ],
+     "rate": 3.0
+    }
+   ],
+   "textHash": "7e48ca5d63"
+  },
+  "robinhood": {
+   "note": "Brokerage cash sweep, not a bank account.",
+   "paths": [
+    {
+     "label": "Robinhood Gold ($5/month)",
+     "needs": [
+      "fee"
+     ],
+     "feeYr": 60,
+     "rate": 3.6
+    }
+   ],
+   "textHash": "920f5f84dc"
+  },
+  "betterment": {
+   "paths": [
+    {
+     "label": "Standard rate",
+     "needs": [],
+     "rate": 3.5
+    },
+    {
+     "label": "New-customer boost: 4.25% on up to $1M through Feb 15, 2027",
+     "needs": [
+      "new"
+     ],
+     "promo": {
+      "rate": {
+       "tiers": [
+        [
+         1000000,
+         4.25
+        ],
+        [
+         null,
+         3.5
+        ]
+       ],
+       "split": true
+      },
+      "until": "2027-02-15"
+     },
+     "rate": 3.5
+    }
+   ],
+   "textHash": "cb4b342bfe"
+  }
+ }
+}

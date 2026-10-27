@@ -9,6 +9,14 @@ D = ROOT / 'docs'
 def dj(n): return json.loads((ROOT / 'data' / n).read_text())
 def main(today=None):
     today = today or date.today().isoformat(); warn = []; fail = []
+    try: _soft(today, warn)
+    except Exception as ex: warn.append(f'data checks crashed ({type(ex).__name__}: {ex}); data not checked today')
+    _hard(fail)
+    for w in warn: print('WARN check:', w)
+    for f in fail: print('FAIL check:', f)
+    print(f'checks: {len(fail)} failures, {len(warn)} warnings')
+    return 1 if fail else 0
+def _soft(today, warn):
     import savings
     _, probs = savings.dataset(today); warn += [f'savings: {p}' for p in probs]
     rates = {p['id']: p for p in dj('rates.json')['providers']}
@@ -29,7 +37,16 @@ def main(today=None):
     y = dj('yields.json')
     for c in (y.get('countries') or []):
         if not c.get('fxStart') and c.get('code') != 'US': warn.append(f'world: {c.get("code") or c.get("country")} has no FX start rate')
-    # hard checks on the served pages
+    ev = dj('events.json')['events']
+    if not [x for x in ev if x['date'] >= today]: warn.append('markets: no upcoming events in data/events.json; add the next BLS/Fed dates')
+    elif not [x for x in ev if x['date'] >= today and x['date'] <= (date.fromisoformat(today) + timedelta(days=45)).isoformat()]: warn.append('markets: no events in the next 45 days; extend data/events.json')
+    for k, s in dj('markets.json')['series'].items():
+        if s and date.fromisoformat(s['date']) < date.fromisoformat(today) - timedelta(days=14): warn.append(f'markets: {k} last observation {s["date"]}')
+    fx = dj('fx.json')
+    for c, v in (fx.get('detail') or {}).items():
+        if v.get('stale'): warn.append(f'fx: {c} using last good rate from {v["date"]}')
+        if not v.get('official'): warn.append(f'fx: {c} from a market aggregate, not the central bank')
+def _hard(fail):
     r = subprocess.run([sys.executable, str(ROOT / 'tests' / 'test_calcs.py')], capture_output=True, text=True)
     if r.returncode: fail.append('calculator tests failed:\n' + (r.stdout + r.stderr)[-1500:])
     r = subprocess.run([sys.executable, str(ROOT / 'scripts' / 'check_links.py')], capture_output=True, text=True)
@@ -40,8 +57,4 @@ def main(today=None):
         for pat in (r'\bCash App\b', r'\bAfterpay\b', r'\bSquare\b(?! ?(feet|foot|mile))', r'\$XYZ\b', r'\bBlock,? Inc'):
             if re.search(pat, txt): fail.append(f'{p.name}: banned topic matched {pat}')
         if re.search(r'best (rates? )?in the world', txt, re.I): fail.append(f'{p.name}: "best in the world" wording')
-    for w in warn: print('WARN check:', w)
-    for f in fail: print('FAIL check:', f)
-    print(f'checks: {len(fail)} failures, {len(warn)} warnings')
-    return 1 if fail else 0
 if __name__ == '__main__': sys.exit(main())

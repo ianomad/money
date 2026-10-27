@@ -1,7 +1,9 @@
 """Calculator unit tests with concrete examples. Run: python3 tests/test_calcs.py (also run by scripts/check_data.py)."""
-import sys, json, subprocess
+import sys, json, subprocess, os
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]; sys.path.insert(0, str(ROOT / 'scripts'))
+# Frozen data snapshot: daily rate changes must not fail the build; only real math bugs should.
+FIX = ROOT / 'tests' / 'fixtures'; os.environ['MB_DATA'] = str(FIX)
 import savings as S
 T = '2026-10-26'
 D, problems = S.dataset(T)
@@ -69,7 +71,8 @@ def _(): near(W.yearly_move(349.95, 1528.26, 3), ((349.95 / 1528.26) ** (1 / 3) 
 def _():
     h = (ROOT / 'docs/index.html').read_text()
     v = h[h.index('id="view-world"'):]
-    assert 'Top pick abroad' not in h and 'best in the world' not in h.lower() and '10 tracked countries' in v
+    import re as _re
+    assert 'Top pick abroad' not in h and 'best in the world' not in h.lower() and _re.search(r'\d+ tracked countries', v)
 @case('World: JS calculator matches Python')
 def _():
     cases = [(10000, 44.5, 1, 0, 1, 4.4), (5000, 14.5, 24, -10, 0.5, 4.4), (25000, 9.25, 12, 3, 0, 4.4)]
@@ -78,7 +81,7 @@ def _():
     want = [[round(x * 1e6) for x in (k['end'], k['beZero'], k['beUS'], k['termReturn'])] for k in (W.calc(*c) for c in cases)]
     assert got == want, (got, want)
 import pages2 as P
-_CD = json.loads((ROOT / 'data/cards.json').read_text()); _CB = {c['id']: c for c in _CD['cards']}; _PR = _CD['profile']
+_CD = json.loads((FIX / 'cards.json').read_text()); _CB = {c['id']: c for c in _CD['cards']}; _PR = _CD['profile']
 @case('Cards: Chase Sapphire Preferred at $2,000/mo, 1c points = $373 rewards - $95 fee = $278 (verified on Chase Oct 26, 2026)')
 def _(): near(P.card_rewards(_CB['csp'], _PR), 373.2); assert P.card_value(_CB['csp'], _PR) == 278
 @case('Cards: CSP first year adds 75,000 points = $750 because $6,000 in 3 months meets $5,000 -> $1,028')

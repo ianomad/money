@@ -5,6 +5,7 @@ from datetime import date
 from pathlib import Path
 from html import escape as e
 ROOT = Path(__file__).resolve().parents[1]
+import os as _os; from pathlib import Path as _Path; DATA = _Path(_os.environ.get('MB_DATA') or ROOT / 'data')  # tests point MB_DATA at a frozen snapshot
 
 def calc(a, r, t, fx, c, us):
     conv = (1 - c / 100) ** 2; g = 1 + r / 100 * t / 12; u = 1 + us / 100 * t / 12
@@ -22,7 +23,7 @@ def term_months(term):
     return min(n, 36) if m.group(3).startswith('mo') else n
 
 def dataset():
-    yd = json.loads((ROOT / 'data/yields.json').read_text()); fx = json.loads((ROOT / 'data/fx.json').read_text())
+    yd = json.loads((DATA / 'yields.json').read_text()); fx = json.loads((DATA / 'fx.json').read_text())
     today = fx['fetched']; rows = []
     for c in yd['countries']:
         p = max(c['products'], key=lambda x: x['rate']); now = fx['rates'].get(c['currency'])
@@ -33,17 +34,21 @@ def dataset():
         elif c['currency'] == 'USD': mv = tot = 0.0
         lim = c.get('insuranceLimit')
         rows.append({'code': c['code'], 'name': c['name'], 'cur': c['currency'], 'featured': bool(c.get('featured')), 'banks': len(c['products']),
-                     'rate': p['rate'], 'bank': p['bank'], 'product': p['product'], 'term': p['term'], 'months': term_months(p['term']),
+                     'fxd': (fx.get('detail') or {}).get(c['currency']), 'rate': p['rate'], 'bank': p['bank'], 'product': p['product'], 'term': p['term'], 'months': term_months(p['term']),
                      'verified': p.get('verified') or yd['checkedAt'], 'src': p.get('source'), 'fxNow': now, 'fxStart': s, 'fxTotal': tot, 'move': mv,
                      'est': est12(p['rate'], mv) if mv is not None else None, 'ins': c['insurance'],
                      'insLocal': lim, 'insUSD': (lim['amount'] / now if lim and now else None)})
-    return {'today': today, 'fxSource': fx['source'], 'checkedAt': yd['checkedAt'], 'rows': rows}
+    return {'today': today, 'checkedAt': yd['checkedAt'], 'rows': rows}
 
 def pct(x, sign=False): return ('−' if x < 0 else ('+' if sign and x > 0 else '')) + f'{abs(x):.1f}%'
 def row(r):
     ins = (f"{r['insLocal']['amount']:,.0f} {r['insLocal']['currency']}" + (f" (≈${r['insUSD']:,.0f})" if r['cur'] != 'USD' else '')) if r['insLocal'] else '<span class="chip warn">Limit not verified</span>'
     fxs = (f"{pct(r['fxTotal'], True)} since {fd(r['fxStart']['date'])} <small>({pct(r['move'], True)}/yr)</small>" if r['fxStart'] else ('—' if r['cur'] == 'USD' else '<span class="chip warn">No FX history</span>'))
     est = pct(r['est'], True) if r['est'] is not None else '—'
+    d = r.get('fxd')
+    if d and r['cur'] != 'USD':
+        lab = 'official' if d.get('official') else 'market rate, not official'
+        fxs += f'<small>Today {r["fxNow"]:,.4g} per $ · <a href="{e(d["url"])}" target="_blank" rel="noopener">{lab}</a>{" · " + fd(d["date"]) if d.get("stale") else ""}</small>'
     src = f' · <a href="{e(r["src"])}" target="_blank" rel="noopener">Source ↗</a>' if r['src'] else ''
     return (f'<tr data-rate="{r["rate"]}" data-est="{r["est"] if r["est"] is not None else -999}"><th scope="row">{e(r["name"])}<small>{r["banks"]} bank{"s" if r["banks"] > 1 else ""} tracked</small></th>'
             f'<td data-l="Top rate we track"><b>{r["rate"]:g}%</b><small>{e(r["bank"])} · {e(r["term"])} · {r["cur"]}</small></td><td data-l="Currency vs $">{fxs}</td><td data-l="Est. 12-month USD result*"><b>{est}</b></td><td data-l="Deposit insurance">{ins}</td>'
@@ -70,7 +75,7 @@ def render(D, us_rate, us_name):
             f'<p class="hint" id="wc-why">Sorted by the bank’s advertised rate in local money. Switch to see a dollar estimate that includes the currency.</p>'
             f'<div class="tw"><table class="wtable"><thead><tr><th scope="col">Country</th><th scope="col">Top rate we track</th><th scope="col">Currency vs $</th><th scope="col">Est. 12-month USD result*</th><th scope="col">Deposit insurance</th><th scope="col">Checked</th></tr></thead><tbody id="wc-body">{table}</tbody></table></div>'
             f'<p class="assume">*A what-if, not a forecast: the headline rate for 12 months (rolled over at the same rate), then converted at a rate that moved the same amount per year as it did since Oct 12, 2023. Before tax and conversion costs. Past currency moves don’t predict future ones, and a steady stretch doesn’t make a currency safe. '
-            f'Start rates from each central bank (links per country below); today’s rates from <a href="{e(D["fxSource"])}" target="_blank" rel="noopener">open.er-api.com</a>, {fd(D["today"])}. Insurance limits in local money with an approximate dollar value at today’s rate; deposit rates checked {fd(D["checkedAt"])}.</p></section>'
+            f'Start rates from each central bank (links per country below); today’s rates from each central bank where we can reach it (otherwise a market rate, labelled in the table), {fd(D["today"])}. Insurance limits in local money with an approximate dollar value at today’s rate; deposit rates checked {fd(D["checkedAt"])}.</p></section>'
             f'<section class="tool" id="world-calc" aria-labelledby="wcalc-h"><p class="eyebrow">Dollar calculator</p><h2 id="wcalc-h">What would you have in dollars?</h2>'
             f'<p class="hint">Change the currency move to see how much a fall can cost. The break-even tells you how far the currency can fall before you’d have done better keeping dollars.</p>'
             f'<form class="fields" id="wc-form" onsubmit="return false"><label>Country<select id="wc-c">{opts}</select></label>'

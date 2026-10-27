@@ -5,6 +5,9 @@ from pathlib import Path
 from html import escape as e
 from datetime import date
 ROOT = Path(__file__).resolve().parents[1]
+try:  # today's FX from central banks; on any failure the last good fx.json is kept
+    import sys as _s; _s.path.insert(0, str(ROOT / 'scripts')); import fetch_fx; fetch_fx.main()
+except Exception as _ex: print('WARN fx: fetch skipped:', _ex)
 data = json.loads((ROOT / 'data/rates.json').read_text())
 providers = data['providers']
 icons = json.loads((ROOT / 'data/provider-icons.json').read_text())

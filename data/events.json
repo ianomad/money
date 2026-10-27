@@ -1,0 +1,15 @@
+{
+ "checkedAt": "2026-10-26",
+ "note": "Dates and times from the official BLS release schedule and the Federal Reserve FOMC calendar. Times are US Eastern.",
+ "calendars": {"BLS": "https://www.bls.gov/schedule/2026/home.htm", "Federal Reserve": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"},
+ "events": [
+  {"date": "2026-10-28", "time": "14:00", "name": "Fed rate decision", "why": "Savings rates and credit card APRs tend to follow the Fed's rate.", "src": "Federal Reserve"},
+  {"date": "2026-10-30", "time": "08:30", "name": "Wage costs (Employment Cost Index, Q3)", "why": "One of the inputs the Fed watches on inflation.", "src": "BLS"},
+  {"date": "2026-11-06", "time": "08:30", "name": "Jobs report (October)", "why": "Hiring and unemployment; a big surprise can move loan rates the same day.", "src": "BLS"},
+  {"date": "2026-11-10", "time": "08:30", "name": "Inflation report (CPI, October)", "why": "How fast prices rose. It feeds into the Fed's next decision.", "src": "BLS"},
+  {"date": "2026-11-13", "time": "08:30", "name": "Producer prices (PPI, October)", "why": "Prices businesses pay; sometimes an early hint for store prices.", "src": "BLS"},
+  {"date": "2026-12-04", "time": "08:30", "name": "Jobs report (November)", "why": "The last jobs report before the December Fed meeting.", "src": "BLS"},
+  {"date": "2026-12-09", "time": "14:00", "name": "Fed rate decision and projections", "why": "Includes the Fed's own forecasts for rates next year.", "src": "Federal Reserve"},
+  {"date": "2026-12-10", "time": "08:30", "name": "Inflation report (CPI, November)", "why": "How fast prices rose in November.", "src": "BLS"}
+ ]
+}

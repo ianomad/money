@@ -324,3 +324,10 @@ fieldset.toggles{border:0;padding:0;min-width:0}fieldset.toggles legend{font-siz
 .calc .g2{grid-template-columns:1fr 2fr;align-items:end}.calc label.tg{flex-direction:row;align-items:center;gap:8px;min-height:44px;color:var(--ink)}.calc label.tg input{width:18px;height:18px}
 @media(max-width:640px){.ctable.cards-t{display:table;overflow:visible}.cards-t td{padding:10px 4px}}
 .site-header details.menu{position:static}.menu:not([open]) .menu-panel{display:none}
+@media(max-width:430px){.tabs-m{gap:2px;padding:0 8px 8px}.tabs-m a{flex:1 1 auto;padding:0 8px;font-size:14.5px;min-height:44px}}
+@media(max-width:350px){.tabs-m{padding:0 4px 8px}.tabs-m a{padding:0 5px;font-size:13.5px}}
+.mhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 4px;font-size:14px;color:var(--muted)}
+figure.spk{grid-column:1/-1;margin:8px 0 0;color:var(--gold)}figure.spk svg{display:block;width:100%;height:64px}
+figure.spk figcaption{display:flex;justify-content:space-between;gap:8px;font:11.5px var(--mono);color:var(--muted);margin-top:2px}
+.mrow .src{font:12px var(--sans);color:var(--muted)}.mrow .src a{display:inline-block;padding:7px 2px;margin:-7px 0}.mrow .src .chip{margin-right:4px}
+.ev small{color:var(--muted);font-family:var(--mono);font-size:12px}.ev a{display:inline-block;padding:6px 0}
