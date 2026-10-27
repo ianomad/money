@@ -1,6 +1,6 @@
 (() => {
   // Exclude local development and deployment previews.
-  if (window.location.hostname !== 'money.ilyusha.xyz') return;
+  if (window.location.hostname !== 'getmoneybeast.com') return;
 
   const measurementId = 'G-7WGRRRQQRB';
   window.dataLayer = window.dataLayer || [];

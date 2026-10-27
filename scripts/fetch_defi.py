@@ -3,7 +3,7 @@ import json, urllib.request, datetime, pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OK = {'aave-v3':'Aave v3','sky-lending':'Sky','spark-savings':'Spark','compound-v3':'Compound v3','morpho-blue':'Morpho','morpho-v1':'Morpho','maple':'Maple','ethena-usde':'Ethena'}
 COINS = {'USDC','USDT','DAI','USDS','SUSDS','USDE','SUSDE','GHO','SGHO','PYUSD','USDG','FRAX','RLUSD','USDT0','SYRUPUSDC','SYRUPUSDT'}
-req = urllib.request.Request('https://yields.llama.fi/pools', headers={'User-Agent':'money.ilyusha.xyz'})
+req = urllib.request.Request('https://yields.llama.fi/pools', headers={'User-Agent':'getmoneybeast.com'})
 pools = json.load(urllib.request.urlopen(req, timeout=60))['data']
 rows = []
 for p in pools:

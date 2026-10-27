@@ -65,7 +65,7 @@
    "name": "Citi Double Cash",
    "rate": 2,
    "source": "docs/cards.html data-everyday",
-   "url": "https://money.ilyusha.xyz/cards.html",
+   "url": "https://getmoneybeast.com/cards.html",
    "checked": "2026-10-25"
   },
   "fdicCategories": {
@@ -177,7 +177,7 @@
   {
    "idea": "Quarterly 5% card category stacking",
    "why": "Caps around $1,500 per quarter ($75 at 5%) are noise next to five-figure annual gaps on large cash balances.",
-   "url": "https://money.ilyusha.xyz/cards.html"
+   "url": "https://getmoneybeast.com/cards.html"
   },
   {
    "idea": "Tax-free municipal money market funds",

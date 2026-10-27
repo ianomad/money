@@ -45,7 +45,7 @@ def topcard(eyebrow, number, who, catch, date, facts=(), cta=None, bars=None, ca
     f = f'<p class="tc-facts">{f}</p>' if f else ''
     c = f'<a class="tc-cta" href="{e(cta[1])}">{e(cta[0])} →</a>' if cta else ''
     out = (f'<div class="tc"><section class="share-card"><p class="eyebrow">{e(eyebrow)}</p><p class="share-rate">{e(number)}</p>'
-           f'<p class="share-who">{e(who)}</p><p class="share-catch">{e(catch)}</p>{f}<p class="share-date">{e(date)} · money.ilyusha.xyz</p>{c}</section>')
+           f'<p class="share-who">{e(who)}</p><p class="share-catch">{e(catch)}</p>{f}<p class="share-date">{e(date)} · getmoneybeast.com</p>{c}</section>')
     if bars: out += barchart(bars, caption)
     return out + '</div>'
 def barchart(bars, caption):

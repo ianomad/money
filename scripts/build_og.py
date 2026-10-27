@@ -106,7 +106,7 @@ def render(s, path):
         im.paste(ic, (M, 56), mask); x0 = M + 72
     except Exception: x0 = M
     d.text((x0, 84), 'Money', font=F(serif_b, 44), fill=INK, anchor='lm')
-    d.text((W-M, 84), 'money.ilyusha.xyz', font=F(mono, 26), fill=MUTED, anchor='rm')
+    d.text((W-M, 84), 'getmoneybeast.com', font=F(mono, 26), fill=MUTED, anchor='rm')
     d.line((M, 132, W-M, 132), fill=LINE, width=2)
     # eyebrow
     d.text((M, 178), s['eyebrow'].upper(), font=F(mono, 28), fill=GOLD, anchor='lm')

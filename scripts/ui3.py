@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 D = Path(__file__).resolve().parents[1]/'docs'
 GA = 'G-7WGRRRQQRB'
-BEACON = ('<script>addEventListener("load",function(){if(location.hostname!=="money.ilyusha.xyz"||navigator.doNotTrack==="1")return;'
+BEACON = ('<script>addEventListener("load",function(){if(location.hostname!=="getmoneybeast.com"||navigator.doNotTrack==="1")return;'
  'var k="mb_cid",c;try{c=localStorage.getItem(k)||(Math.random()*1e9|0)+"."+(Date.now()/1e3|0);localStorage.setItem(k,c)}catch(e){c=(Math.random()*1e9|0)+".1"}'
  'var p=new URLSearchParams({v:"2",tid:"'+GA+'",cid:c,en:"page_view",_s:"1",sid:String(Date.now()/1e3|0),seg:"1",dl:location.origin+location.pathname,dr:document.referrer.split(/[?#]/)[0],dt:document.title,npa:"1"});'
  'navigator.sendBeacon?navigator.sendBeacon("https://www.google-analytics.com/g/collect?"+p):fetch("https://www.google-analytics.com/g/collect?"+p,{method:"POST",mode:"no-cors",keepalive:true})})</script>')
@@ -54,7 +54,7 @@ def finalize(h):
     h = re.sub(r'<link rel="stylesheet" href="/?styles\.css[^"]*">', lambda m: '<style>'+css+'</style>', h, count=1)
     # Standard gtag.js via /analytics.js (host-gated, async gtag). Strip any old beacon or duplicate tag, then add exactly one.
     h = h.replace(BEACON, '')
-    h = re.sub(r'<script>addEventListener\("load",function\(\)\{if\(location\.hostname!=="money\.ilyusha\.xyz".*?</script>', '', h, flags=re.S)
+    h = re.sub(r'<script>addEventListener\("load",function\(\)\{if\(location\.hostname!=="[^"]+".*?</script>', '', h, flags=re.S)
     tag = '<script src="/analytics.js" defer></script>'
     h = re.sub(r'<script src="/?analytics\.js[^"]*"[^>]*></script>', '', h)
     h = h.replace('</head>', tag + '</head>', 1) if '</head>' in h else h
@@ -126,18 +126,18 @@ _fin4 = finalize
 def finalize(h): return xfollow(_fin4(h))
 
 # ---------- Share cards (Oct 25 2026): large og:image / twitter card on every served page; images from scripts/build_og.py ----------
-SITE = 'https://money.ilyusha.xyz'
+SITE = 'https://getmoneybeast.com'
 OG_PAGES = {'/': 'home', '/markets': 'markets', '/cards': 'cards', '/cards.html': 'cards', '/best-hysa': 'best-hysa',
             '/best-nofee-cards': 'best-nofee-cards', '/tbills-vs-savings-california': 'tbills-vs-savings-california',
             '/pay-property-tax-credit-card': 'pay-property-tax-credit-card'}
 def ogtags(h):
     """Idempotent: strips old og:image*/twitter:* tags and writes one fresh set. Unknown pages use the home card."""
     if '</head>' not in h: return h
-    m = re.search(r'<link rel="canonical" href="https://money\.ilyusha\.xyz(/[^"]*)"', h)
+    m = re.search(r'<link rel="canonical" href="https://(?:money\.ilyusha\.xyz|getmoneybeast\.com)(/[^"]*)"', h)
     name = OG_PAGES.get(m.group(1) if m else '/', 'home')
     try:
         import json; alt = json.loads((D/'og'/'meta.json').read_text())[name]['alt']
-    except Exception: alt = 'Money, an independent tracker of savings rates, markets and cards at money.ilyusha.xyz'
+    except Exception: alt = 'Money, an independent tracker of savings rates, markets and cards at getmoneybeast.com'
     alt = alt.replace('&', '&amp;').replace('"', '&quot;').replace('<', '&lt;')
     h = re.sub(r'<meta (?:property="og:image[^"]*"|name="twitter:[^"]*")[^>]*>', '', h)
     img = f'{SITE}/og/{name}.png'

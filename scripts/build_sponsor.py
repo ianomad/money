@@ -3,7 +3,7 @@ from pathlib import Path
 
 BODY = """<p class="trust"><span><b>●</b> Display sponsorship</span><span>Rankings stay unpaid</span><span>Finance advertisers only</span></p><section class="pagehead"><p class="eyebrow">SPONSOR / DISPLAY ONLY</p>
 <h1>Reach people who are <em>moving their cash.</em></h1>
-<p class="lead">Money is a hand-checked tracker of savings rates, cards, and markets at <b>money.ilyusha.xyz</b>. Editorial rankings stay unpaid. Sponsorship is a separate display slot, never a better rank.</p></section>
+<p class="lead">Money is a hand-checked tracker of savings rates, cards, and markets at <b>getmoneybeast.com</b>. Editorial rankings stay unpaid. Sponsorship is a separate display slot, never a better rank.</p></section>
 <section class="digest" id="sponsor-who">
 <p class="eyebrow"><span class="dot"></span> WHO SHOWS UP</p>
 <h2 class="takeaway">Readers comparing where idle cash earns more, and what the day's rates mean for them.</h2>
@@ -18,7 +18,7 @@ BODY = """<p class="trust"><span><b>●</b> Display sponsorship</span><span>Rank
 <li>If another sponsor is already booked, yours starts when that week ends.</li>
 </ul>
 <p><b>Starting rate:</b> $200 per week. Goes up $50 after every sold week. First three weeks are at the starter price.</p>
-<p><a href="mailto:dev@ilyusha.xyz?subject=Money%20sponsorship%20inquiry&amp;body=Hi%20%E2%80%94%20I%27d%20like%20to%20sponsor%20money.ilyusha.xyz.%0A%0ACompany%3A%0AWebsite%3A%0APitch%20(max%20~40%20chars)%3A%0APreferred%20week%3A%0A">Email to book a week ↗</a></p>
+<p><a href="mailto:dev@ilyusha.xyz?subject=Money%20sponsorship%20inquiry&amp;body=Hi%20%E2%80%94%20I%27d%20like%20to%20sponsor%20getmoneybeast.com.%0A%0ACompany%3A%0AWebsite%3A%0APitch%20(max%20~40%20chars)%3A%0APreferred%20week%3A%0A">Email to book a week ↗</a></p>
 </section>
 <section class="digest" id="sponsor-rules">
 <p class="eyebrow"><span class="dot"></span> GUARDRAILS</p>
@@ -29,8 +29,8 @@ BODY = """<p class="trust"><span><b>●</b> Display sponsorship</span><span>Rank
 
 def write(page, finalize, lazyimg, rd, D, DIGEST_CSS, UI_CSS):
     sp = page(
-        "Sponsor Money — money.ilyusha.xyz",
-        "Display sponsorship on money.ilyusha.xyz. Rankings stay unpaid; one-week sponsor bar on Rates, Markets, and Cards.",
+        "Sponsor Money — getmoneybeast.com",
+        "Display sponsorship on getmoneybeast.com. Rankings stay unpaid; one-week sponsor bar on Rates, Markets, and Cards.",
         "/sponsor",
         "x",
         BODY,

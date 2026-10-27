@@ -259,7 +259,7 @@ def build(root):
             '<span>No sponsored rankings</span></p>'
             + head + card + prof_s + flat_s + cat_s + fee_s + pick_s + foot)
     mon = date.fromisoformat(cj['checkedAt']).strftime('%b %Y')
-    title = f'Best no-fee cash-back cards ({mon}) — money.ilyusha.xyz'
+    title = f'Best no-fee cash-back cards ({mon}) — getmoneybeast.com'
     desc = (f'Flat {_pct(flat_rate)} no-fee cards pay about {_usd(flat_net)}/yr on a ${spend_lbl} spend mix. '
             + (f'{rh["name"]} (${rh_fee:,.0f}/yr, {_pct(rh_rate)}) nets {_usd(rh_net)}. ' if rh else '')
             + 'Category cards only win with heavy dining/grocery spend. Hand-checked, no sponsored rankings.')

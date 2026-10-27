@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://money.ilyusha.xyz/sitemap.xml
+Sitemap: https://getmoneybeast.com/sitemap.xml

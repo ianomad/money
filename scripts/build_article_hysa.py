@@ -167,7 +167,7 @@ def build(root):
             '<p><a href="/">See the full Rates table →</a> · <a href="/disclosure">How this site makes money</a>. No links on this page pay us, and rankings are by rate, never by payout.</p></section>')
     body = ('<p class="trust"><span><b>●</b> Checked ' + e(checked) + '</span><span>Plain rates vs catches</span><span>No sponsored rankings</span></p>'
             + head + card + gap + plain_s + catch_s + pick_s + foot)
-    title = f'Best no-strings high-yield savings rates ({date.fromisoformat(rj["checkedAt"]).strftime("%b %Y")}) — money.ilyusha.xyz'
+    title = f'Best no-strings high-yield savings rates ({date.fromisoformat(rj["checkedAt"]).strftime("%b %Y")}) — getmoneybeast.com'
     desc = (f'{top["name"]} pays {_pct(top["base"])} with no conditions'
             + (f' vs the {_pct(nat)} national average' if nat is not None else '')
             + '. Hand-checked US savings rates with no strings, and the catches behind 5%+ headlines.')

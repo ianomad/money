@@ -2,7 +2,7 @@
 
 DISCLOSURE = """<section class="pagehead"><p class="eyebrow">ADVERTISER DISCLOSURE</p>
 <h1>How Money <em>makes money.</em></h1>
-<p class="lead">Money (money.ilyusha.xyz) is independent and reader-supported. This page explains affiliate links and sponsorships.</p></section>
+<p class="lead">Money (getmoneybeast.com) is independent and reader-supported. This page explains affiliate links and sponsorships.</p></section>
 <section class="digest" id="affiliate">
 <p class="eyebrow"><span class="dot"></span> AFFILIATE LINKS</p>
 <h2 class="takeaway">Some links may earn us a commission, at no cost to you.</h2>
@@ -26,7 +26,7 @@ DISCLOSURE = """<section class="pagehead"><p class="eyebrow">ADVERTISER DISCLOSU
 
 PRIVACY = """<section class="pagehead"><p class="eyebrow">PRIVACY POLICY</p>
 <h1>What we collect, <em>and what we don't.</em></h1>
-<p class="lead">Last updated: October 14, 2026. This policy covers money.ilyusha.xyz ("Money", "we").</p></section>
+<p class="lead">Last updated: October 14, 2026. This policy covers getmoneybeast.com ("Money", "we").</p></section>
 <section class="digest" id="collect">
 <p class="eyebrow"><span class="dot"></span> WHAT WE COLLECT</p>
 <h2 class="takeaway">No accounts, no sign-ups, no email lists.</h2>
@@ -51,11 +51,11 @@ PRIVACY = """<section class="pagehead"><p class="eyebrow">PRIVACY POLICY</p>
 
 def write(page, finalize, lazyimg, rd, D, DIGEST_CSS, UI_CSS):
     for fn, title, desc, path, body in (
-        ("disclosure.html", "Advertiser Disclosure — money.ilyusha.xyz",
-         "How money.ilyusha.xyz is funded: affiliate links and labeled sponsorships. Rankings are never paid.",
+        ("disclosure.html", "Advertiser Disclosure — getmoneybeast.com",
+         "How getmoneybeast.com is funded: affiliate links and labeled sponsorships. Rankings are never paid.",
          "/disclosure", DISCLOSURE),
-        ("privacy.html", "Privacy Policy — money.ilyusha.xyz",
-         "Privacy policy for money.ilyusha.xyz: analytics, cookies, affiliate tracking, and your choices.",
+        ("privacy.html", "Privacy Policy — getmoneybeast.com",
+         "Privacy policy for getmoneybeast.com: analytics, cookies, affiliate tracking, and your choices.",
          "/privacy", PRIVACY),
     ):
         (D / fn).write_text(finalize(lazyimg(page(title, desc, path, "x", body, DIGEST_CSS + UI_CSS))))
