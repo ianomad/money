@@ -52,6 +52,31 @@ def _():
     got = json.loads(subprocess.run(['node', '-e', js], capture_output=True, text=True, check=True).stdout)
     want = [[[x['id'], round(x['net'] * 100)] for x in S.run(D, b, o, T)['rows']] for b in bals for o in opts]
     assert got == want, 'JS/Python mismatch'
+import world as W
+@case('World: annual rate is not the term return: 44.5% for 1 month = 3.7% over the term')
+def _(): near(W.calc(10000, 44.5, 1, 0, 0, 4.4)['termReturn'], 44.5 / 12)
+@case('World: 1% conversion each way, no FX move: Turkey $10,000, 1 month = $10,164')
+def _(): near(W.calc(10000, 44.5, 1, 0, 1, 4.4)['end'], 10000 * 0.99 ** 2 * (1 + 0.445 / 12))
+@case('World: currency falls 10%: KGS 14.5% for 24 months, no costs = $11,610')
+def _(): near(W.calc(10000, 14.5, 24, -10, 0, 4.4)['end'], 11610)
+@case('World: break-even vs keeping dollars: 14.5% for 24 months, no costs = currency can fall 22.5%')
+def _(): near(W.calc(10000, 14.5, 24, 0, 0, 4.4)['beZero'], (1 / 1.29 - 1) * 100); assert abs(W.calc(10000, 14.5, 24, 0, 0, 4.4)['beZero'] + 22.48) < 0.01
+@case('World: break-even vs US savings at 4.4% for 24 months = currency can fall 15.7%')
+def _(): near(W.calc(10000, 14.5, 24, 0, 0, 4.4)['beUS'], (1.088 / 1.29 - 1) * 100)
+@case('World: yearly currency move: 349.95 -> 1528.26 ARS per $ over 3 years = about -38.8%/yr')
+def _(): near(W.yearly_move(349.95, 1528.26, 3), ((349.95 / 1528.26) ** (1 / 3) - 1) * 100)
+@case('World: no country is labelled best; 10 tracked countries stated')
+def _():
+    h = (ROOT / 'docs/index.html').read_text()
+    v = h[h.index('id="view-world"'):]
+    assert 'Top pick abroad' not in h and 'best in the world' not in h.lower() and '10 tracked countries' in v
+@case('World: JS calculator matches Python')
+def _():
+    cases = [(10000, 44.5, 1, 0, 1, 4.4), (5000, 14.5, 24, -10, 0.5, 4.4), (25000, 9.25, 12, 3, 0, 4.4)]
+    js = (ROOT / 'scripts/world_calc.js').read_text() + f"\nconsole.log(JSON.stringify({json.dumps(cases)}.map(c=>{{const k=MBWorld.calc(...c);return [k.end,k.beZero,k.beUS,k.termReturn].map(x=>Math.round(x*1e6))}})))"
+    got = json.loads(subprocess.run(['node', '-e', js], capture_output=True, text=True, check=True).stdout)
+    want = [[round(x * 1e6) for x in (k['end'], k['beZero'], k['beUS'], k['termReturn'])] for k in (W.calc(*c) for c in cases)]
+    assert got == want, (got, want)
 def main():
     bad = 0
     for n, f in CASES:

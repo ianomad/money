@@ -41,17 +41,17 @@ def specs():
         try: out[name] = fn()
         except Exception as ex:
             print(f'og: {name} fell back to headline ({ex!r})')
-            out[name] = dict(eyebrow='MONEY', big='', line=_h1(page), alt=f'Money: {_h1(page)}')
+            out[name] = dict(eyebrow='MONEY BEAST', big='', line=_h1(page), alt=f'Money Beast: {_h1(page)}')
     def home():
         top, nat = _plain_top()
         line = f'{top["name"]} pays it with no conditions.' + (f' The US average is {pct(nat)}.' if nat is not None else '')
-        return dict(eyebrow='Top no-strings savings rate', big=pct(top['base']), line=line,
-                    alt=f'Top no-strings savings rate: {top["name"]} {pct(top["base"])}' + (f' vs the {pct(nat)} US average' if nat is not None else ''))
+        return dict(eyebrow='Top no-strings rate we track', big=pct(top['base']), line=line,
+                    alt=f'Top no-strings savings rate we track: {top["name"]} {pct(top["base"])}' + (f' vs the {pct(nat)} US average' if nat is not None else ''))
     def hysa():
         top, nat = _plain_top()
         if nat is None: raise ValueError('no national average')
         a, b = 10000*top['base']/100, 10000*nat/100
-        return dict(eyebrow='Best no-strings savings', big=f'${a:,.0f}/yr', line=f'on $10,000 at {top["name"]}’s {pct(top["base"])}, vs ${b:,.0f} at the {pct(nat)} US average.',
+        return dict(eyebrow='No-strings savings, compared', big=f'${a:,.0f}/yr', line=f'on $10,000 at {top["name"]}’s {pct(top["base"])}, vs ${b:,.0f} at the {pct(nat)} US average.',
                     alt=f'$10,000 earns ${a:,.0f} a year at {top["name"]} ({pct(top["base"])}) vs ${b:,.0f} at the {pct(nat)} US average savings rate')
     def markets():
         mo = dj('markets.json')['series']['mortgage']

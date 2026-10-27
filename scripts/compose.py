@@ -81,21 +81,13 @@ best.sort(key=lambda t: -t[1]['rate'])
 kg = next(((c, pr) for c, pr in best if c.get('featured')), best[0])
 fx = dj('fx.json')['rates']; kc, kp = kg
 fxs = kc.get('fxStart'); fxm = (fxs['rate']/fx[kc['currency']]-1)*100 if fxs and fx.get(kc['currency']) else None
-world_card = topcard('Top pick abroad · steady currency', f"{kp['rate']:g}%", f"{kp['bank']} · {kc['name']}",
-    f"{kp['product']}, {kp['term']}, paid in {kc['currency']}. Main risk: if the {kc['currency']} falls against the dollar, it eats the extra interest.",
-    f"Verified {kp.get('verified', yd['checkedAt'])}",
-    [('Insured', kc['insurance'].split('(')[0].strip() + (f" (≈${1e6/fx['KGS']:,.0f})" if kc['currency']=='KGS' and '1,000,000' in kc['insurance'] else '')), ('Min', kp.get('min','')), ('Currency', kc['currency'])] + ([(f"{kc['currency']} vs $ since {fxs['date'][:4]}", f"{fxm:+.1f}%")] if fxm is not None else []),
-    ('See how foreigners open accounts', '#world-more'),
-    [(c['name'], pr['rate'], f"{pr['rate']:g}%", '#world-top') for c, pr in best[:6]], 'Best deposit rate by country')
-world_hero = digest('world-top', 'WORLD / BANK DEPOSITS ABROAD',
-    'Banks abroad pay far more than US savings, but in their own currency, so a falling currency can wipe out the extra interest.',
-    world_card,
-    ('Country', 'Best rate', 'Bank, term, currency'),
-    [(c['name'], pr['bank'], f"{pr['rate']:g}%", f"{pr['product']} · {pr['term']} · {pr['currency']}") for c, pr in best])
-world_rest = '<span id="world-more"></span>' + tuck(wdm[wdm.index(sec(wdm, 'hero')) + len(sec(wdm, 'hero')):], 'Bank-by-bank details, the $500k Kyrgyzstan example, and how foreigners open accounts')
+import world as _world
+_pl = sorted([p for p in dj('rates.json')['providers'] if p.get('category') == 'cash' and p.get('base') is not None and p.get('boost') is None and p['fdic']['status'] == 'bank' and 'paused' not in (p.get('rateLabel') or '').lower()], key=lambda p: -p['base'])[0]
+world_hero = _world.render(_world.dataset(), _pl['base'], _pl['name'])
+world_rest = '<span id="world-more"></span>' + tuck(wdm[wdm.index(sec(wdm, 'hero')) + len(sec(wdm, 'hero')):], 'Bank-by-bank details, how foreigners open accounts, and a look back at Kyrgyzstan')
 show_js = '''<script>(()=>{const r=document.querySelector('#rates .rows'),b=document.getElementById('show-all');if(b)b.onclick=()=>{r.classList.remove('collapsed');b.remove()};
 const ex=()=>{if(b&&b.isConnected){r.classList.remove('collapsed');b.remove()}};const q=document.getElementById('search');q&&q.addEventListener('input',ex);['coverage','minimum','sort'].forEach(i=>{const e=document.getElementById(i);e&&e.addEventListener('change',ex)});if(new URLSearchParams(location.search).toString())ex();
-const tabs=[...document.querySelectorAll('.view-tabs a')];function show(v){document.getElementById('view-us').hidden=v==='world';document.getElementById('view-world').hidden=v!=='world';tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.view===v)))}
+const tabs=[...document.querySelectorAll('.view-tabs a')];function show(v){document.querySelectorAll('.mainnav a,.tabs-m a').forEach(a=>{const w=a.getAttribute('href')==='/#world',s=a.getAttribute('href')==='/';if(w||s){if((v==='world')===w)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')}});document.getElementById('view-us').hidden=v==='world';document.getElementById('view-world').hidden=v!=='world';tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.view===v)))}
 const want=()=>{const h=location.hash.slice(1);return (h==='world'||document.getElementById(h)?.closest('#view-world'))?'world':'us'};tabs.forEach(t=>t.onclick=e=>{e.preventDefault();history.replaceState(null,'',t.dataset.view==='world'?'#world':location.pathname+location.search);show(t.dataset.view)});
 window.addEventListener('hashchange',()=>show(want()));show(want());const h=location.hash.slice(1);if(h&&h!=='world'){const el=document.getElementById(h);if(el){if(el.tagName==='DETAILS')el.open=true;el.scrollIntoView()}}})();</script>'''
 

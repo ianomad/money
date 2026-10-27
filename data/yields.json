@@ -2,66 +2,441 @@
   "checkedAt": "2026-10-26",
   "note": "Bank-level deposit products, hand-verified against bank pages or named rate trackers. Rates are annual, before tax. Foreigner/non-resident access marked 'confirm' was NOT verified on the bank page; ask the bank before you travel or wire.",
   "countries": [
-    {"code":"KG","name":"Kyrgyzstan","currency":"KGS","featured":true,
-     "insurance":"Up to 1,000,000 som per depositor (Deposit Protection Agency, per bank pages)",
-     "fxStart":{"date":"2023-10-12","rate":88.92,"source":"https://www.nbkr.kg/index1.jsp?item=1562&lang=ENG&valuta_id=15","label":"NBKR official USD/KGS"},
-     "products":[
-      {"bank":"Capital Bank","product":"Kapital Standard term deposit","currency":"KGS","rate":14.5,"rateNote":"24–36 mo; bank states effective up to 14.37%","term":"24–36 mo","min":"1,000 KGS / 50 USD","usdOption":"USD 2.0% (36 mo)","access":"Branch (confirm non-resident rules)","source":"https://capitalbank.kg/depozit-standart","verified":"2026-10-25"},
-      {"bank":"MBANK","product":"Term deposit online (app)","currency":"KGS","rate":14.1,"rateNote":"18 mo offer from Oct 14, 2026; 12.5% at 24–36 mo","term":"18 mo","min":"1,000 KGS / 100 USD","usdOption":"USD 3.0% (up to 12 mo)","access":"MBANK app; residents and non-residents per the bank listing (confirm)","source":"https://mbank.kg/news/mbank-zapustil-vygodnoe-predlozhenie-po-depozitam","verified":"2026-10-25"},
-      {"bank":"BAKAI Bank","product":"Online deposit (app)","currency":"KGS","rate":14.0,"term":"24 mo","min":"1,000 KGS","usdOption":"USD up to 2.0% (36 mo)","access":"Opened in the BAKAI app by existing clients; becoming a client means a branch visit with passport (confirm)","source":"https://banks.kg/bank/bakai/deposits/160","verified":"2026-10-25"},
-      {"bank":"Aiyl Bank (ABank)","product":"Kench term deposit","currency":"KGS","rate":14.0,"rateNote":"effective up to 14.66%","term":"36 mo","min":"1,000 KGS / 20 USD","usdOption":"USD effective up to 2.01%","access":"Branch (confirm non-resident rules)","source":"https://banks.kg/bank/ab/deposits/99","verified":"2026-10-25"},
-      {"bank":"DemirBank","product":"Standard time deposit (online)","currency":"KGS","rate":13.5,"term":"24–36 mo","min":"2,500 KGS online / 5,000 KGS branch","usdOption":"USD 3.5% (36 mo, online)","access":"Branch or internet/mobile banking once a client (confirm non-resident rules)","source":"https://www.demirbank.kg/en/retail/deposits-and-investments/term-deposit","verified":"2026-10-25"},
-      {"bank":"FINCA Bank","product":"Term deposit","currency":"KGS","rate":13.5,"rateNote":"effective up to 14.37%","term":"24–36 mo","min":"7,000 KGS","usdOption":"USD effective up to 2.02%","access":"Branch (confirm)","source":"https://fincabank.kg/wp-content/uploads/sites/6/2024/07/prilozhenie_1_srochnye-depozity_obnovlen_25.05.26_kg.pdf","verified":"2026-10-25"},
-      {"bank":"KICB","product":"Time deposit","currency":"KGS","rate":13.0,"term":"36 mo","min":"10,000 KGS / 100 USD","usdOption":"USD 2.0% (24 mo)","access":"Branch (confirm)","source":"https://www.kicb.net/en/private/retail-deposits/time_dep_en/srochnyy-depozit/","verified":"2026-10-12"},
-      {"bank":"Optima Bank","product":"Optimal Income (USD)","currency":"USD","rate":3.5,"term":"18 mo","min":"see bank","usdOption":"new rates from Oct 12, 2026","access":"Branch (confirm)","source":"https://vip.optimabank.kg/ru/news/ob-izmenenii-uslovij-po-srocnym-depozitam-v-dollarah-ssa-usd","verified":"2026-10-12"}
-     ]},
-    {"code":"UZ","name":"Uzbekistan","currency":"UZS",
-     "insurance":"Up to 200 million soum per depositor per bank (Deposit Guarantee Agency, Law ZRU-1031)",
-     "products":[
-      {"bank":"AVO Bank","product":"AVO Deposit (app)","currency":"UZS","rate":20.05,"rateNote":"up to 22% with monthly compounding","term":"12 mo","min":"100,000 UZS for full rate","access":"Fully online in the app (non-resident eligibility: confirm)","source":"https://moniq.uz/en/investments/deposits/avo-bank/avo-vklad","verified":"2026-10-25"},
-      {"bank":"ANORBANK","product":"Term deposit","currency":"UZS","rate":20.0,"term":"24 mo","min":"see bank","access":"App/branch (confirm)","source":"https://sogdium.com/en/finance/vklady-v-bankah-uzbekistana-procenty-2026","verified":"2026-09-23"}
-     ]},
-    {"code":"KZ","name":"Kazakhstan","currency":"KZT",
-     "insurance":"Up to 10 million tenge for tenge savings deposits (KDIF; limits differ by deposit type)",
-     "products":[
-      {"bank":"Kaspi Bank","product":"Savings Kaspi Deposit","currency":"KZT","rate":18.0,"rateNote":"effective, from Oct 2, 2026","term":"3 mo","min":"100,000 KZT","access":"Kaspi app; needs Kazakh IIN (confirm)","source":"https://guide.kaspi.kz/client/ru/cumulative_deposit/conditions/q19622","verified":"2026-10-26"},
-      {"bank":"Halyk Bank","product":"Universal","currency":"KZT","rate":14.32,"rateNote":"15.3% effective (6 mo)","term":"6–12 mo","min":"1,000 KZT","usdOption":"USD/EUR 0.98% (12 mo)","access":"Branch/app (confirm)","source":"https://profinance.kz/deposits/khalyk-srochnyy","verified":"2026-10-25"}
-     ]},
-    {"code":"TR","name":"Turkey","currency":"TRY",
-     "fxStart":{"date":"2023-10-12","rate":27.748,"source":"https://api.frankfurter.app/2023-10-12?from=USD&to=TRY","label":"ECB reference via Frankfurter"},
-     "insurance":"TMSF covers up to a set lira amount per person per bank (check current limit)",
-     "products":[
-      {"bank":"Türk Ticaret Bankası","product":"Salkım Hesap","currency":"TRY","rate":44.5,"rateNote":"90-day welcome rate; first 100k TRY earns no interest; 17.5% withholding","term":"32 days","min":"see bank","access":"Needs Turkish tax number (confirm)","source":"https://www.hangikredi.com/yatirim-araclari/mevduat-faiz-oranlari/turk-ticaret-bankasi","verified":"2026-10-26"},
-      {"bank":"Alternatifbank","product":"Time deposit","currency":"TRY","rate":44.0,"term":"32 days","min":"100,000 TRY tier","access":"Needs Turkish tax number (confirm)","source":"https://yatirimci.ai/en/time-deposit","verified":"2026-10-25"},
-      {"bank":"ON Dijital","product":"Time deposit","currency":"TRY","rate":41.5,"term":"181–365 days","min":"100,000 TRY tier","access":"Digital (confirm)","source":"https://yatirimci.ai/en/time-deposit","verified":"2026-10-25"}
-     ]},
-    {"code":"NG","name":"Nigeria","currency":"NGN","insurance":"NDIC per-depositor limit (check current figure)",
-     "products":[
-      {"bank":"Ecobank Nigeria","product":"Fixed deposit (CBN-reported avg)","currency":"NGN","rate":22.4,"term":"varies","min":"see bank","access":"Needs BVN (confirm)","source":"https://www.checkinvestng.com/fixed-deposit-rates","verified":"2026-10-25"}
-     ]},
-    {"code":"AR","name":"Argentina","currency":"ARS","insurance":"SEDESA guarantee up to a set peso amount (check current limit)",
-     "products":[
-      {"bank":"Banco de la Nación","product":"Plazo fijo online (TNA)","currency":"ARS","rate":19.25,"term":"30 days","min":"see bank","access":"Needs CUIL/CUIT and local account","source":"https://bna.com.ar/home/informacionalusuariofinanciero","verified":"2026-10-25"}
-     ]},
-    {"code":"BR","name":"Brazil","currency":"BRL",
-     "fxStart":{"date":"2023-10-12","rate":5.0479,"source":"https://api.frankfurter.app/2023-10-12?from=USD&to=BRL","label":"ECB reference via Frankfurter"},
-     "insurance":"FGC up to R$250,000 per CPF per institution",
-     "products":[
-      {"bank":"Nubank","product":"Caixinha (100% of CDI)","currency":"BRL","rate":13.65,"rateNote":"gross; income tax on yield","term":"daily liquidity","min":"none","access":"Needs CPF (confirm)","source":"https://www.patrimo.app/materiais/guia-renda-fixa-pos-selic-2026","verified":"2026-10-25"}
-     ]},
-    {"code":"GE","name":"Georgia","currency":"GEL","insurance":"Up to GEL 50,000 per depositor per bank, non-residents included",
-     "products":[
-      {"bank":"Bank of Georgia","product":"Term deposit","currency":"GEL","rate":9.25,"rateNote":"effective, as of Aug 2026","term":"12 mo","min":"see bank","access":"Non-residents can open (in person; confirm)","source":"https://bauer-group.ge/en/knowledge/banking/georgia-deposit-rates/","verified":"2026-10-25"},
-      {"bank":"TBC Bank","product":"Term deposit","currency":"GEL","rate":8.85,"rateNote":"effective, as of Aug 2026","term":"12 mo","min":"see bank","access":"Non-residents can open (in person; confirm)","source":"https://bauer-group.ge/en/knowledge/banking/georgia-deposit-rates/","verified":"2026-10-25"}
-     ]},
-    {"code":"AM","name":"Armenia","currency":"AMD","insurance":"Deposit Guarantee Fund of Armenia (check current limit)",
-     "products":[
-      {"bank":"Ameriabank","product":"Ameria Deposit","currency":"AMD","rate":9.2,"term":"550–730 days","min":"see bank","access":"Branch (confirm)","source":"https://ameriabank.am/userfiles/file/Deposit_saving_terms_for_PP_eng.pdf","verified":"2026-10-25"},
-      {"bank":"Ardshinbank","product":"Standard deposit","currency":"AMD","rate":9.0,"term":"550–730 days","min":"see bank","access":"Branch (confirm)","source":"https://ardshinbank.am/api/files/documents/Deposit-en-04-02-2026.pdf","verified":"2026-10-25"}
-     ]},
-    {"code":"US","name":"United States (baseline)","currency":"USD","insurance":"FDIC $250,000 per depositor per bank per ownership category",
-     "products":[
-      {"bank":"Peak Bank","product":"High-yield savings","currency":"USD","rate":4.27,"term":"no term","min":"see bank","access":"Online, US residents","source":"https://www.peak.bank/peak-bank/savings","verified":"2026-10-25"}
-     ]}
+    {
+      "code": "KG",
+      "name": "Kyrgyzstan",
+      "currency": "KGS",
+      "featured": true,
+      "insurance": "Up to 1,000,000 som per depositor (Deposit Protection Agency, per bank pages)",
+      "fxStart": {
+        "date": "2023-10-12",
+        "rate": 88.92,
+        "source": "https://www.nbkr.kg/index1.jsp?item=1562&lang=ENG&valuta_id=15",
+        "label": "NBKR official USD/KGS"
+      },
+      "products": [
+        {
+          "bank": "Capital Bank",
+          "product": "Kapital Standard term deposit",
+          "currency": "KGS",
+          "rate": 14.5,
+          "rateNote": "24–36 mo; bank states effective up to 14.37%",
+          "term": "24–36 mo",
+          "min": "1,000 KGS / 50 USD",
+          "usdOption": "USD 2.0% (36 mo)",
+          "access": "Branch (confirm non-resident rules)",
+          "source": "https://capitalbank.kg/depozit-standart",
+          "verified": "2026-10-25"
+        },
+        {
+          "bank": "MBANK",
+          "product": "Term deposit online (app)",
+          "currency": "KGS",
+          "rate": 14.1,
+          "rateNote": "18 mo offer from Oct 14, 2026; 12.5% at 24–36 mo",
+          "term": "18 mo",
+          "min": "1,000 KGS / 100 USD",
+          "usdOption": "USD 3.0% (up to 12 mo)",
+          "access": "MBANK app; residents and non-residents per the bank listing (confirm)",
+          "source": "https://mbank.kg/news/mbank-zapustil-vygodnoe-predlozhenie-po-depozitam",
+          "verified": "2026-10-25"
+        },
+        {
+          "bank": "BAKAI Bank",
+          "product": "Online deposit (app)",
+          "currency": "KGS",
+          "rate": 14.0,
+          "term": "24 mo",
+          "min": "1,000 KGS",
+          "usdOption": "USD up to 2.0% (36 mo)",
+          "access": "Opened in the BAKAI app by existing clients; becoming a client means a branch visit with passport (confirm)",
+          "source": "https://banks.kg/bank/bakai/deposits/160",
+          "verified": "2026-10-25"
+        },
+        {
+          "bank": "Aiyl Bank (ABank)",
+          "product": "Kench term deposit",
+          "currency": "KGS",
+          "rate": 14.0,
+          "rateNote": "effective up to 14.66%",
+          "term": "36 mo",
+          "min": "1,000 KGS / 20 USD",
+          "usdOption": "USD effective up to 2.01%",
+          "access": "Branch (confirm non-resident rules)",
+          "source": "https://banks.kg/bank/ab/deposits/99",
+          "verified": "2026-10-25"
+        },
+        {
+          "bank": "DemirBank",
+          "product": "Standard time deposit (online)",
+          "currency": "KGS",
+          "rate": 13.5,
+          "term": "24–36 mo",
+          "min": "2,500 KGS online / 5,000 KGS branch",
+          "usdOption": "USD 3.5% (36 mo, online)",
+          "access": "Branch or internet/mobile banking once a client (confirm non-resident rules)",
+          "source": "https://www.demirbank.kg/en/retail/deposits-and-investments/term-deposit",
+          "verified": "2026-10-25"
+        },
+        {
+          "bank": "FINCA Bank",
+          "product": "Term deposit",
+          "currency": "KGS",
+          "rate": 13.5,
+          "rateNote": "effective up to 14.37%",
+          "term": "24–36 mo",
+          "min": "7,000 KGS",
+          "usdOption": "USD effective up to 2.02%",
+          "access": "Branch (confirm)",
+          "source": "https://fincabank.kg/wp-content/uploads/sites/6/2024/07/prilozhenie_1_srochnye-depozity_obnovlen_25.05.26_kg.pdf",
+          "verified": "2026-10-25"
+        },
+        {
+          "bank": "KICB",
+          "product": "Time deposit",
+          "currency": "KGS",
+          "rate": 13.0,
+          "term": "36 mo",
+          "min": "10,000 KGS / 100 USD",
+          "usdOption": "USD 2.0% (24 mo)",
+          "access": "Branch (confirm)",
+          "source": "https://www.kicb.net/en/private/retail-deposits/time_dep_en/srochnyy-depozit/",
+          "verified": "2026-10-12"
+        },
+        {
+          "bank": "Optima Bank",
+          "product": "Optimal Income (USD)",
+          "currency": "USD",
+          "rate": 3.5,
+          "term": "18 mo",
+          "min": "see bank",
+          "usdOption": "new rates from Oct 12, 2026",
+          "access": "Branch (confirm)",
+          "source": "https://vip.optimabank.kg/ru/news/ob-izmenenii-uslovij-po-srocnym-depozitam-v-dollarah-ssa-usd",
+          "verified": "2026-10-12"
+        }
+      ],
+      "insuranceLimit": {
+        "amount": 1000000,
+        "currency": "KGS"
+      }
+    },
+    {
+      "code": "UZ",
+      "name": "Uzbekistan",
+      "currency": "UZS",
+      "insurance": "Up to 200 million soum per depositor per bank (Deposit Guarantee Agency, Law ZRU-1031)",
+      "products": [
+        {
+          "bank": "AVO Bank",
+          "product": "AVO Deposit (app)",
+          "currency": "UZS",
+          "rate": 20.05,
+          "rateNote": "up to 22% with monthly compounding",
+          "term": "12 mo",
+          "min": "100,000 UZS for full rate",
+          "access": "Fully online in the app (non-resident eligibility: confirm)",
+          "source": "https://moniq.uz/en/investments/deposits/avo-bank/avo-vklad",
+          "verified": "2026-10-25"
+        },
+        {
+          "bank": "ANORBANK",
+          "product": "Term deposit",
+          "currency": "UZS",
+          "rate": 20.0,
+          "term": "24 mo",
+          "min": "see bank",
+          "access": "App/branch (confirm)",
+          "source": "https://sogdium.com/en/finance/vklady-v-bankah-uzbekistana-procenty-2026",
+          "verified": "2026-09-23"
+        }
+      ],
+      "fxStart": {
+        "date": "2023-10-12",
+        "rate": 12216.09,
+        "source": "https://bank.uz/currency/archive/12-10-2023",
+        "label": "CBU official USD/UZS (via bank.uz archive)"
+      },
+      "insuranceLimit": {
+        "amount": 200000000,
+        "currency": "UZS"
+      }
+    },
+    {
+      "code": "KZ",
+      "name": "Kazakhstan",
+      "currency": "KZT",
+      "insurance": "Up to 10 million tenge for tenge savings deposits (KDIF; limits differ by deposit type)",
+      "products": [
+        {
+          "bank": "Kaspi Bank",
+          "product": "Savings Kaspi Deposit",
+          "currency": "KZT",
+          "rate": 18.0,
+          "rateNote": "effective, from Oct 2, 2026",
+          "term": "3 mo",
+          "min": "100,000 KZT",
+          "access": "Kaspi app; needs Kazakh IIN (confirm)",
+          "source": "https://guide.kaspi.kz/client/ru/cumulative_deposit/conditions/q19622",
+          "verified": "2026-10-26"
+        },
+        {
+          "bank": "Halyk Bank",
+          "product": "Universal",
+          "currency": "KZT",
+          "rate": 14.32,
+          "rateNote": "15.3% effective (6 mo)",
+          "term": "6–12 mo",
+          "min": "1,000 KZT",
+          "usdOption": "USD/EUR 0.98% (12 mo)",
+          "access": "Branch/app (confirm)",
+          "source": "https://profinance.kz/deposits/khalyk-srochnyy",
+          "verified": "2026-10-25"
+        }
+      ],
+      "fxStart": {
+        "date": "2023-10-12",
+        "rate": 476.78,
+        "source": "https://nationalbank.kz/rss/get_rates.cfm?fdate=12.10.2023",
+        "label": "National Bank of Kazakhstan official USD/KZT"
+      },
+      "insuranceLimit": {
+        "amount": 10000000,
+        "currency": "KZT"
+      }
+    },
+    {
+      "code": "TR",
+      "name": "Turkey",
+      "currency": "TRY",
+      "fxStart": {
+        "date": "2023-10-12",
+        "rate": 27.748,
+        "source": "https://api.frankfurter.app/2023-10-12?from=USD&to=TRY",
+        "label": "ECB reference via Frankfurter"
+      },
+      "insurance": "TMSF covers up to a set lira amount per person per bank (check current limit)",
+      "products": [
+        {
+          "bank": "Türk Ticaret Bankası",
+          "product": "Salkım Hesap",
+          "currency": "TRY",
+          "rate": 44.5,
+          "rateNote": "90-day welcome rate; first 100k TRY earns no interest; 17.5% withholding",
+          "term": "32 days",
+          "min": "see bank",
+          "access": "Needs Turkish tax number (confirm)",
+          "source": "https://www.hangikredi.com/yatirim-araclari/mevduat-faiz-oranlari/turk-ticaret-bankasi",
+          "verified": "2026-10-26"
+        },
+        {
+          "bank": "Alternatifbank",
+          "product": "Time deposit",
+          "currency": "TRY",
+          "rate": 44.0,
+          "term": "32 days",
+          "min": "100,000 TRY tier",
+          "access": "Needs Turkish tax number (confirm)",
+          "source": "https://yatirimci.ai/en/time-deposit",
+          "verified": "2026-10-25"
+        },
+        {
+          "bank": "ON Dijital",
+          "product": "Time deposit",
+          "currency": "TRY",
+          "rate": 41.5,
+          "term": "181–365 days",
+          "min": "100,000 TRY tier",
+          "access": "Digital (confirm)",
+          "source": "https://yatirimci.ai/en/time-deposit",
+          "verified": "2026-10-25"
+        }
+      ],
+      "insuranceLimit": null
+    },
+    {
+      "code": "NG",
+      "name": "Nigeria",
+      "currency": "NGN",
+      "insurance": "NDIC per-depositor limit (check current figure)",
+      "products": [
+        {
+          "bank": "Ecobank Nigeria",
+          "product": "Fixed deposit (CBN-reported avg)",
+          "currency": "NGN",
+          "rate": 22.4,
+          "term": "varies",
+          "min": "see bank",
+          "access": "Needs BVN (confirm)",
+          "source": "https://www.checkinvestng.com/fixed-deposit-rates",
+          "verified": "2026-10-25"
+        }
+      ],
+      "fxStart": {
+        "date": "2023-10-12",
+        "rate": 770.008,
+        "source": "https://www.cbn.gov.ng/rates/ExchRateByCurrency.html",
+        "label": "CBN official central USD/NGN"
+      },
+      "insuranceLimit": null
+    },
+    {
+      "code": "AR",
+      "name": "Argentina",
+      "currency": "ARS",
+      "insurance": "SEDESA guarantee up to a set peso amount (check current limit)",
+      "products": [
+        {
+          "bank": "Banco de la Nación",
+          "product": "Plazo fijo online (TNA)",
+          "currency": "ARS",
+          "rate": 19.25,
+          "term": "30 days",
+          "min": "see bank",
+          "access": "Needs CUIL/CUIT and local account",
+          "source": "https://bna.com.ar/home/informacionalusuariofinanciero",
+          "verified": "2026-10-25"
+        }
+      ],
+      "fxStart": {
+        "date": "2023-10-12",
+        "rate": 349.95,
+        "source": "https://api.bcra.gob.ar/estadisticascambiarias/v1.0/Cotizaciones/USD?fechadesde=2023-10-12&fechahasta=2023-10-12",
+        "label": "BCRA official USD/ARS"
+      },
+      "insuranceLimit": null
+    },
+    {
+      "code": "BR",
+      "name": "Brazil",
+      "currency": "BRL",
+      "fxStart": {
+        "date": "2023-10-12",
+        "rate": 5.0479,
+        "source": "https://api.frankfurter.app/2023-10-12?from=USD&to=BRL",
+        "label": "ECB reference via Frankfurter"
+      },
+      "insurance": "FGC up to R$250,000 per CPF per institution",
+      "products": [
+        {
+          "bank": "Nubank",
+          "product": "Caixinha (100% of CDI)",
+          "currency": "BRL",
+          "rate": 13.65,
+          "rateNote": "gross; income tax on yield",
+          "term": "daily liquidity",
+          "min": "none",
+          "access": "Needs CPF (confirm)",
+          "source": "https://www.patrimo.app/materiais/guia-renda-fixa-pos-selic-2026",
+          "verified": "2026-10-25"
+        }
+      ],
+      "insuranceLimit": {
+        "amount": 250000,
+        "currency": "BRL"
+      }
+    },
+    {
+      "code": "GE",
+      "name": "Georgia",
+      "currency": "GEL",
+      "insurance": "Up to GEL 50,000 per depositor per bank, non-residents included",
+      "products": [
+        {
+          "bank": "Bank of Georgia",
+          "product": "Term deposit",
+          "currency": "GEL",
+          "rate": 9.25,
+          "rateNote": "effective, as of Aug 2026",
+          "term": "12 mo",
+          "min": "see bank",
+          "access": "Non-residents can open (in person; confirm)",
+          "source": "https://bauer-group.ge/en/knowledge/banking/georgia-deposit-rates/",
+          "verified": "2026-10-25"
+        },
+        {
+          "bank": "TBC Bank",
+          "product": "Term deposit",
+          "currency": "GEL",
+          "rate": 8.85,
+          "rateNote": "effective, as of Aug 2026",
+          "term": "12 mo",
+          "min": "see bank",
+          "access": "Non-residents can open (in person; confirm)",
+          "source": "https://bauer-group.ge/en/knowledge/banking/georgia-deposit-rates/",
+          "verified": "2026-10-25"
+        }
+      ],
+      "fxStart": {
+        "date": "2023-10-12",
+        "rate": 2.696,
+        "source": "https://nbg.gov.ge/gw/api/ct/monetarypolicy/currencies/en/json/?currencies=USD&date=2023-10-12",
+        "label": "National Bank of Georgia official USD/GEL"
+      },
+      "insuranceLimit": {
+        "amount": 50000,
+        "currency": "GEL"
+      }
+    },
+    {
+      "code": "AM",
+      "name": "Armenia",
+      "currency": "AMD",
+      "insurance": "Deposit Guarantee Fund of Armenia (check current limit)",
+      "products": [
+        {
+          "bank": "Ameriabank",
+          "product": "Ameria Deposit",
+          "currency": "AMD",
+          "rate": 9.2,
+          "term": "550–730 days",
+          "min": "see bank",
+          "access": "Branch (confirm)",
+          "source": "https://ameriabank.am/userfiles/file/Deposit_saving_terms_for_PP_eng.pdf",
+          "verified": "2026-10-25"
+        },
+        {
+          "bank": "Ardshinbank",
+          "product": "Standard deposit",
+          "currency": "AMD",
+          "rate": 9.0,
+          "term": "550–730 days",
+          "min": "see bank",
+          "access": "Branch (confirm)",
+          "source": "https://ardshinbank.am/api/files/documents/Deposit-en-04-02-2026.pdf",
+          "verified": "2026-10-25"
+        }
+      ],
+      "fxStart": {
+        "date": "2023-10-12",
+        "rate": 397.71,
+        "source": "https://api.cba.am/exchangerates.asmx",
+        "label": "Central Bank of Armenia official USD/AMD"
+      },
+      "insuranceLimit": null
+    },
+    {
+      "code": "US",
+      "name": "United States (baseline)",
+      "currency": "USD",
+      "insurance": "FDIC $250,000 per depositor per bank per ownership category",
+      "products": [
+        {
+          "bank": "Peak Bank",
+          "product": "High-yield savings",
+          "currency": "USD",
+          "rate": 4.27,
+          "term": "no term",
+          "min": "see bank",
+          "access": "Online, US residents",
+          "source": "https://www.peak.bank/peak-bank/savings",
+          "verified": "2026-10-25"
+        }
+      ],
+      "insuranceLimit": {
+        "amount": 250000,
+        "currency": "USD"
+      }
+    }
   ]
 }
