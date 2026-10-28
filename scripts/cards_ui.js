@@ -7,5 +7,8 @@ var V={};CARDS.forEach(function(c){var rw=MBCards.rewards(c,p,cpp),bn=fy?MBCards
 r.querySelector('[data-m]').textContent='Rewards '+$(x.rw)+' − fee $'+x.c.fee.toLocaleString('en-US')+(fy?' + bonus '+$(x.bn):'')+' = '+$(x.v)+(fy?' in year one':'/yr');return[x.v,r]}).sort(function(a,b){return b[0]-a[0]}).forEach(function(x){T.appendChild(x[1])});
 var all=CARDS.map(function(c){return V[c.id]});function best(f){return all.filter(f).sort(function(a,b){return b.v-a.v})[0]}
 document.querySelectorAll('[data-pick]').forEach(function(el){var k=el.dataset.pick,x=k==='top'?best(function(){return true}):k==='nofee'?best(function(x){return x.c.fee===0}):k==='travel'?best(function(x){return x.c.type==='travel'}):V[k];
-el.querySelector('h3').textContent=x.c.name;el.querySelector('.v').textContent=$(x.v)+(fy?' yr 1':'/yr')})}
+el.querySelector('h3').textContent=x.c.name;el.querySelector('.v').textContent=$(x.v)+(fy?' yr 1':'/yr');var fe=el.querySelector('.fee');if(fe)fe.textContent=x.c.fee?'$'+x.c.fee.toLocaleString('en-US')+' annual fee, counted':'No annual fee'});
+document.querySelectorAll('[data-tot]').forEach(function(e){e.textContent=$(tot)});document.querySelectorAll('[data-cpp]').forEach(function(e){e.textContent=cpp});
+var B=document.getElementById('cc-bars');if(B){var t5=all.slice().sort(function(a,b){return b.v-a.v}).slice(0,5),mx=Math.max.apply(null,t5.map(function(x){return Math.abs(x.v)}))||1;
+B.querySelector('.fbars').innerHTML=t5.map(function(x,i){return '<li class="'+(i?'':'hi')+(x.v<0?' neg':'')+'"><span class="l">'+x.c.name.replace(/[&<>]/g,'')+'</span><span class="b"><i style="--w:'+Math.max(2,Math.abs(x.v)/mx*100).toFixed(1)+'%"></i></span><b>'+$(x.v)+'</b></li>'}).join('')}}
 I.concat([CP]).forEach(function(i){i.oninput=u});FY.onchange=u;u()})();

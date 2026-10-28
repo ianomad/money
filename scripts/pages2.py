@@ -58,7 +58,28 @@ def cards_body():
         if r == 'nofee': return max((c for c in cs if c['fee'] == 0), key=lambda c: c['val'])
         if r == 'travel': return max((c for c in cs if c['type'] == 'travel'), key=lambda c: c['val'])
         return by[r]
-    ph = ''.join(f'<div class="pick" data-pick="{r}"><span class="who">{e(w)}</span><h3>{e(pick_for(r)["name"])}</h3><span class="v">${pick_for(r)["val"]:,}/yr</span><p>{e(t)}</p></div>' for r, w, t in rules)
+    import feed as F
+    total = sum(prof.values())
+    calc = ('<div class="calc" id="card-calc"><b>Monthly spending</b> <span class="tot">(<span id="calc-tot"></span>, no rent)</span><div class="g">'
+        + ''.join(f'<label>{l}<input name="{k}" inputmode="decimal" value="{prof[k]}"></label>' for k, l in CATS) + '</div>'
+        + f'<div class="g g2"><label>Points value (¢)<input id="cpp" inputmode="decimal" value="{pv*100:g}"></label>'
+        + '<label class="tg"><input type="checkbox" id="fy"> Add signup bonus (year 1)</label></div>'
+        + '<p class="tot" id="calc-note">Showing an ongoing year: rewards minus the annual fee. Points are counted at 1¢ unless you change it.</p></div>')
+    fee_s = lambda c: f'${c["fee"]:,} annual fee, counted' if c['fee'] else 'No annual fee'
+    short = {'top': None, 'nofee': 'Costs nothing to keep', 'travel': 'Rewards only; credits and lounges not counted',
+             'bcp': '6% groceries on the first $6,000/yr; pair with a 2% card', 'sv': '3% dining, groceries, streaming', 'bb': 'Earns on rent with no fee; rent not in the numbers'}
+    t0 = pick_for('top')
+    hero = (f'<article class="fc dark hero" data-pick="top"><p class="fc-k">Your best card · <span data-tot>${total:,}</span>/mo spending</p>'
+            f'<p class="fc-big"><span class="v">${t0["val"]:,}/yr</span></p><h3 class="fc-line">{e(t0["name"])}</h3>'
+            f'<p class="fc-catch"><span><span class="fee">{fee_s(t0)}</span> · points at <span data-cpp>{pv*100:g}</span>¢ · no signup bonus</span></p>'
+            f'<p class="fc-foot">Terms checked {fdate(d["checkedAt"])}</p>'
+            f'<div class="cc-bars" id="cc-bars">' + F.bars([(e(c['name']), c['val'], f'${c["val"]:,}', i == 0) for i, c in enumerate(rk[:5])], 'Top 5 for this spending, $ a year after fees') + '</div>'
+            f'<details class="i act" id="cc-adjust"><summary>Adjust spending</summary><div class="dbody">{calc}</div></details>'
+            f'<div class="fc-act"><a class="btn" href="#cc-all" data-open="cc-all">All {len(cs)} cards ranked</a></div></article>')
+    alts = [F.card(e(w), f'<span class="v">${pick_for(r)["val"]:,}/yr</span>', '', catch=f'<span class="fee">{fee_s(pick_for(r))}</span> · {e(short[r])}',
+                   attrs=f' data-pick="{r}"').replace('<p class="fc-big">', f'<h3 class="fc-line nm">{e(pick_for(r)["name"])}</h3><p class="fc-big">', 1)
+            for r, w, t in rules if r != 'top']
+    how_picks = ''.join(f'<p><b>{e(w)}:</b> {e(t)}</p>' for r, w, t in rules)
     def bon_txt(c):
         b = c.get('bonusTerms')
         if not c.get('bonus'): return ''
@@ -69,25 +90,18 @@ def cards_body():
         return f'<small class="chk">{"Re-checked" if v else "List checked"} {fdate(v or d["checkedAt"])} · <a href="{e(c["url"])}" rel="nofollow noopener">Issuer page ↗</a></small>'
     rows = ''.join(f'<tr class="{"neg" if c["val"]<0 else ""}" data-id="{c["id"]}"><td><b>{e(c["name"])}</b>{" <span class=\"chip\">points</span>" if c.get("points") else ""}<small>{e(c["earnText"])}</small>'
         + f'<small class="math" data-m>Rewards ${c["rw"]:,} − fee ${c["fee"]:,} = ${c["val"]:,}/yr</small>'
-        + bon_txt(c) + (f'<small>Perks (not counted): {e(c["perks"])}</small>' if c.get('perks') else '') + (f'<small>{e(c["note"])}</small>' if c.get('note') else '') + chk(c)
+        + '<details class="i"><summary>Details</summary><div class="dbody">' + bon_txt(c) + (f'<small>Perks (not counted): {e(c["perks"])}</small>' if c.get('perks') else '') + (f'<small>{e(c["note"])}</small>' if c.get('note') else '') + chk(c) + '</div></details>'
         + f'</td><td class="hide">{"$0" if not c["fee"] else "$"+str(c["fee"])}<small>{e(c.get("feeNote",""))}</small></td><td class="n" data-v>${c["val"]:,}</td></tr>' for c in rk)
     js = 'const CARDS=' + json.dumps([{k: c.get(k) for k in ('id','name','type','earn','cap','fee','points','bonusTerms')} for c in cs]) + ';'
     js += (ROOT/'scripts'/'cards_calc.js').read_text() + (ROOT/'scripts'/'cards_ui.js').read_text()
-    calc = ('<div class="calc" id="card-calc"><b>Your monthly spending</b> <span class="tot">(total <span id="calc-tot"></span>, not counting rent)</span><div class="g">'
-        + ''.join(f'<label>{l}<input name="{k}" inputmode="decimal" value="{prof[k]}"></label>' for k, l in CATS) + '</div>'
-        + f'<div class="g g2"><label>Points worth (¢ each)<input id="cpp" inputmode="decimal" value="{pv*100:g}"></label>'
-        + '<label class="tg"><input type="checkbox" id="fy"> Include first-year signup bonus</label></div>'
-        + '<p class="tot" id="calc-note">Showing an ongoing year: rewards minus the annual fee. Points are counted at 1¢ unless you change it.</p></div>')
-    total = sum(prof.values())
-    return (CSS + '<section class="pagehead"><p class="eyebrow">CARDS · COMPARED BY THE MATH</p><h1>Which card pays you <em>the most?</em></h1>'
-        f'<p class="lead">For someone spending ${total:,} a month, here is what each card is worth in a year after its fee. Change the numbers to match your spending; every row shows its math.</p></section>'
-        f'{calc}<h2 class="sec-h">Picks</h2><div class="picks">{ph}</div>'
-        f'<h2 class="sec-h">All {len(cs)} cards, ranked</h2>'
-        f'<table class="ctable cards-t"><thead><tr><th>Card · how it earns</th><th class="hide">Fee</th><th style="text-align:right">Value/yr</th></tr></thead><tbody>{rows}</tbody></table>'
-        f'<details class="tuck" open><summary>How we count the value</summary><p>{e(d["assumption"])}</p><p>Default spending: ' + ', '.join(f'{l.lower()} ${prof[k]}' for k, l in CATS)
+    return (CSS + F.head('Which card pays you <em>the most?</em>', 'Yearly value after fees, for your spending.')
+        + f'<div class="feed">{hero}</div>' + F.swipe(alts, 'Alternatives for different spending', 'If you spend <em>differently</em>')
+        + f'<details class="i big" id="cc-all"><summary>All {len(cs)} cards, ranked</summary><div class="dbody">'
+        f'<table class="ctable cards-t"><thead><tr><th>Card · how it earns</th><th class="hide">Fee</th><th style="text-align:right">Value/yr</th></tr></thead><tbody>{rows}</tbody></table></div></details>'
+        f'<details class="i big"><summary>How it works</summary><div class="dbody"><p>{e(d["assumption"])}</p><p>Default spending: ' + ', '.join(f'{l.lower()} ${prof[k]}' for k, l in CATS)
         + '. An ongoing year leaves signup bonuses out, since they pay once. Turn on the first-year switch to add a bonus, counted only if your spending over its window meets the requirement. Caps are applied (Amex Gold, Blue Cash Preferred and Everyday, Altitude Go). Rotating 5% categories (Discover) and portal-only rates (5x Chase Travel and similar) are not counted. Rent cards are compared on everyday spend.</p>'
-        + f'<p>Card terms were checked against issuer pages on {fdate(d["checkedAt"])}; cards marked "Re-checked" were checked again later. Terms change often, so confirm on the issuer page before you apply.</p></details>'
-        + f'<script>{js}</script>')
+        + f'<p>Card terms were checked against issuer pages on {fdate(d["checkedAt"])}; cards marked "Re-checked" were checked again later. Terms change often, so confirm on the issuer page before you apply.</p>{how_picks}</div></details>'
+        + f'<script>{js}</script>' + F.JS)
 
 # ---------- markets ----------
 def fmt_ch(v, prev, unit, nd=2):

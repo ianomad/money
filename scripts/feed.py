@@ -5,7 +5,7 @@ from html import escape as e
 def card(kicker, big, line='', catch='', foot='', viz='', actions='', cls='', unit='', attrs=''):
     return (f'<article class="fc {cls}"{attrs}><p class="fc-k">{kicker}</p><p class="fc-big">{big}{f"<small>{unit}</small>" if unit else ""}</p>'
             + (f'<p class="fc-line">{line}</p>' if line else '') + viz
-            + (f'<p class="fc-catch">{catch}</p>' if catch else '') + (f'<p class="fc-foot">{foot}</p>' if foot else '') + actions + '</article>')
+            + (f'<p class="fc-catch"><span>{catch}</span></p>' if catch else '') + (f'<p class="fc-foot">{foot}</p>' if foot else '') + actions + '</article>')
 
 def swipe(cards, label, title=''):
     n = len(cards)
