@@ -170,7 +170,7 @@ def markets_top():
     mv, sz = move('mortgage')
     p_now, p_y1 = pay(mo['value']), pay(mo['y1'])
     tool = (f'<div class="mk-loan"><label for="mk-loan-amt">Your loan ($)</label><input id="mk-loan-amt" type="number" inputmode="numeric" min="10000" step="10000" value="{LOAN}" data-loan data-r="{mo["value"]}" data-r1="{mo["y1"]}" aria-describedby="mk-loan-out">'
-            f'<p id="mk-loan-out" aria-live="polite" data-loan-out>About <b>${p_now:,.0f}/mo</b> at {mo["value"]:.2f}%, vs ${p_y1:,.0f} at {mo["y1"]:.2f}% a year ago.</p></div>')
+            f'<p id="mk-loan-out" aria-live="polite" data-loan-out>Change the amount to see your payment now and at last year’s {mo["y1"]:.2f}%.</p></div>')
     cards['mortgage'] = (card('mortgage', '30-year mortgage rate', f"{mo['value']:.2f}", '%', mv,
         f"About <b>${p_now:,.0f}/mo</b> on a ${LOAN:,} loan. That is ${p_now-p_y1:+,.0f} vs a year ago." .replace('$+', '+$').replace('$-', '−$'),
         f"Principal and interest only, 30 years fixed. Taxes, insurance and PMI add more, and your quote depends on credit and down payment.",
@@ -232,7 +232,7 @@ def markets_top():
     def brow(n, k):
         lab, val, why, src = BR[k]; mt, d = mvtxt(k)
         return (f'<li><a href="#m-{k}" class="mk-b"><span class="n" aria-hidden="true">{n}</span><span class="t"><span class="h"><b>{e(lab)}</b> <b class="v">{e(val)}</b></span>'
-                f'<span class="w">{e(why)}</span><span class="s"><span class="mv {d}">{mt} in 30 days</span> {e(src)} · {short(m[k]["date"])}{" · may be out of date" if stale(k) else ""}</span></span>'
+                f'<span class="w">{e(why)}</span><span class="s"><span class="mv {d}">{mt + " in 30 days" if d != "flat" else "No change in 30 days"}</span> {e(src)} · {short(m[k]["date"])}{" · may be out of date" if stale(k) else ""}</span></span>'
                 '<span class="go" aria-hidden="true">›</span></a></li>')
     newest = max(m[k]['date'] for k in m)
     head = ('<section class="fhead mk-head"><p class="fc-k">Markets · today in 30 seconds</p><h1>What matters for <em>your money.</em></h1></section>'
