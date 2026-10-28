@@ -107,7 +107,7 @@ _h_c1, _h_sw = _feeds.home_extras()
 import savings as _sv
 _svD, _svP = _sv.dataset()
 for _p in _svP: print('WARN rate-terms:', _p)
-rates_tuck = _F.more(f'Every account we track ({ncash}): advertised rates and conditions', rates, cls='i big', id_='all-accounts')
+rates_tuck = _F.more(f'Advertised rates table ({ncash}): conditions and sources', rates, cls='i big', id_='all-accounts')
 body = (pages2.CSS + _F.CSS + rates_head + tabs + f'<div id="view-us">{_sv.render(_svD)}<div class="feed">{_h_c1}</div>{_h_sw}{_feeds.teasers()}{rates_tuck}{stable}{method}{pages2.sources_fold("rates")}</div>'
         + f'<div id="view-world" class="wrap" hidden><span id="world"></span>{world_hero}{world_rest}</div>' + show_js + _F.JS)
 desc = re.search(r'<meta name="description" content="([^"]*)"', sv).group(1)

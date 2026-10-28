@@ -34,7 +34,7 @@ def home_extras(amount=10000):
     for p in boosted:
         src = p['sources'][0]['url'] if p.get('sources') else None
         cs.append(F.card(e(p['name']), f'{float(p["boost"]):.2f}%', (f'otherwise {float(p["base"]):.2f}%' if p.get('base') else 'headline rate') + f' · {e(p["fdic"]["label"])}',
-                         catch=e(first_clause(p.get('requirements') or 'Conditions apply')),
+                         catch=('<ul class="cl">' + ''.join(f'<li>{e(c)}</li>' for c in p['catches']) + '</ul>') if p.get('catches') else e(p.get('requirements') or 'Conditions apply'),
                          foot=(f'Checked {fd(p["verifiedAt"])}' if p.get('verifiedAt') else 'Check date not recorded')
                          + (f' · <a href="{e(src)}" target="_blank" rel="noopener">Source ↗</a>' if src else '')))
     sw = F.swipe(cs, 'Higher headline rates and their catches', 'Higher rates come with <em>catches</em>')

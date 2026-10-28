@@ -110,18 +110,26 @@ def card(r, P, b, i):
             f'<details class="i"><summary>Details</summary><p class="how">{e(v["product"])} · {how}</p><p class="how">{math_} on {money(b)} ≈ {r["net"] / b * 100:.2f}% over 12 months.{(" " + after) if after else ""}</p>'
             f'<p class="meta"><span class="chip {cls}">{ins}</span><span>{chk}{src}</span></p></details></li>')
 
-def pick_html(top, P, b):
-    if not top: return f'<p class="fc-k">Top savings rate</p><p class="fc-big">—</p><p class="fc-line">No account matches these options.</p><p class="fc-catch">Try fewer options under Calculate.</p>'
-    v = P[top['id']]; ins = INS[v['fdic']][0]
+def _pct(r, b): return f'{r["net"] / b * 100:.2f}%'
+def _yr1(r): return bool(r['promoMonths'] or r['fee'])
+def pick_html(tops, P, b):
+    if not tops: return '<p class="fc-k">Top savings rate</p><p class="fc-big">—</p><p class="fc-line">No account matches these options.</p><p class="fc-catch"><span>Try fewer options.</span></p>'
+    top = tops[0]; v = P[top['id']]; ins = INS[v['fdic']][0]
     needs = ', '.join(NEED_TXT[n] for n in top['needs'] if n != 'new')
     cond = ('Needs ' + needs) if needs else 'No conditions'
     promo = f' · promo rate for {top["promoMonths"]:.0f} of 12 months' if top['promoMonths'] else ''
     fee = f' · after {money(top["fee"])} fees' if top['fee'] else ''
     chk = f"checked {fmt_date(v['verifiedAt'])}" if v['verifiedAt'] else 'check date not recorded'
-    yr1 = bool(top['promoMonths'] or top['fee'])
-    return (f'<p class="fc-k">Top savings rate{" · no strings" if not needs else ""}</p><p class="fc-big">{top["net"] / b * 100:.2f}%<small>{" yr 1" if yr1 else " APY"}</small></p>'
+    yr1 = _yr1(top)
+    def li(r, i):
+        nd = ', '.join(NEED_TXT[n] for n in r['needs'] if n != 'new')
+        return (f'<li{" class=on" if i == 0 else ""}><span class="rk">{i + 1}</span><span class="nm">{e(P[r["id"]]["name"])}<small>{("Needs " + nd) if nd else "No conditions"}</small></span>'
+                f'<b>{_pct(r, b)}<small>{" yr 1" if _yr1(r) else " APY"}</small></b></li>')
+    return (f'<p class="fc-k">Top savings rate{" · no strings" if not needs else ""}</p><p class="fc-big">{_pct(top, b)}<small>{" yr 1" if yr1 else " APY"}</small></p>'
             f'<p class="fc-line"><b>{e(v["name"])}</b>{" · first-year rate" + fee if yr1 else ""}</p>'
-            f'<p class="fc-catch">{cond}{promo} · {ins} · rate is variable, {chk}</p>')
+            f'<p class="fc-catch"><span>{cond}{promo} · {ins} · rate is variable, {chk}</span></p>'
+            f'<ol class="top3" aria-label="Top 3 for your options">{"".join(li(r, i) for i, r in enumerate(tops[:3]))}</ol>'
+            )
 
 def render(D, b=10000):
     opt = {k: d for k, _, d in NEEDS}; res = run(D, b, opt, D['today']); P = {v['id']: v for v in D['providers']}
@@ -134,17 +142,17 @@ def render(D, b=10000):
     rows = ''.join(card(r, P, b, i + 1) for i, r in enumerate(res['rows']))
     data = json.dumps({'today': D['today'], 'providers': D['providers']}, separators=(',', ':'), ensure_ascii=False).replace('</', '<\\/')
     js = (ROOT / 'scripts/savings_calc.js').read_text() + (ROOT / 'scripts/savings_ui.js').read_text()
-    return (f'<section class="tool feed" id="calc" aria-labelledby="calc-h"><h2 id="calc-h" class="sr">What your savings could earn</h2>'
-            f'<article class="fc dark hero"><div id="sv-pick" aria-live="polite">{pick_html(top[0] if top else None, P, b)}</div>'
-            f'<details class="i act" id="sv-adjust"><summary>Calculate</summary><div class="dbody">'
-            f'<form class="sv-form" id="sv-form" onsubmit="return false"><label class="bal">Balance<span class="dollar"><input id="sv-bal" name="bal" inputmode="decimal" autocomplete="off" value="{b:,}" aria-describedby="sv-bal-err"></span></label>'
-            f'<p class="err" id="sv-bal-err" hidden>Enter an amount between $1 and $10,000,000.</p>'
+    return (f'<section class="tool feed" id="calc" aria-labelledby="calc-h"><h2 id="calc-h" class="sr">Top savings rates</h2>'
+            f'<article class="fc dark hero"><div id="sv-pick" aria-live="polite">{pick_html(top, P, b)}</div>'
+            f'<form class="sv-form" id="sv-form" onsubmit="return false"><label class="balq">Your balance<span class="dollar"><input id="sv-bal" name="bal" inputmode="decimal" autocomplete="off" value="{b:,}" aria-describedby="sv-bal-err sv-earn"></span></label>'
+            + (f'<p class="fc-earn" id="sv-earn" aria-live="polite">≈ <b>{money(top[0]["net"])}</b> in year one at {e(P[top[0]["id"]]["name"])}, before tax</p>' if top else '<p class="fc-earn" id="sv-earn" aria-live="polite"></p>') +
+            ''
+            + f'<p class="err" id="sv-bal-err" hidden>Enter an amount between $1 and $10,000,000.</p>'
             f'<div class="pills" role="group" aria-label="Options">{quick}</div>'
-            f'<details class="i"><summary>More options</summary><fieldset class="toggles"><legend class="sr">More options</legend>{moreo}</fieldset></details></form></div></details>'
-            f'<div class="fc-act"><a class="btn" href="#sv-all" data-open="sv-all">All {len(res["rows"])} accounts ranked</a></div></article>'
-            f'<details class="i" id="sv-all"><summary>All accounts, ranked for this amount</summary><div class="dbody"><ol class="res-list collapsed" id="sv-list">{rows}</ol>'
-            f'<button class="show-all" id="sv-more" type="button">Show all {len(res["rows"])}</button></div></details>'
-            f'<details class="i"><summary>How it works</summary><div class="dbody"><p>A first-year estimate for your balance. Short promos count only for the months they last, then the regular rate. Fees come off the top.</p>'
+            f'<details class="i" id="sv-adjust"><summary>More options</summary><fieldset class="toggles"><legend class="sr">More options</legend>{moreo}</fieldset></details></form></article>'
+            f'<details class="i big" id="sv-all"><summary>See all {len(res["rows"])} accounts, ranked</summary><div class="dbody"><ol class="res-list collapsed" id="sv-list">{rows}</ol>'
+            f'<button class="show-all" id="sv-more" type="button">Show all {len(res["rows"])}</button>'
+            f'<h3 class="fh">How it works</h3><p>A first-year estimate for your balance. Short promos count only for the months they last, then the regular rate. Fees come off the top.</p>'
             f'<p>Balance stays the same for 12 months; rates stay where providers publish them today (they are variable); each rate is APY spread evenly by month; before tax. '
             f'Promos that end on a set date count only until that date. Accounts with an unrecorded or old check date are shown but never put first. Rates checked against provider pages; list checked {fmt_date(D["checkedAt"])}.</p>'
             f'<p class="note" id="sv-skip">{skipped_txt(res, P)}</p></div></details>'
