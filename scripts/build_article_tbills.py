@@ -52,7 +52,7 @@ def build(root):
 
     win = gap > 0
     lead = (f'Treasury bill interest is exempt from California income tax; savings interest is not. '
-            f'In the {MAIN:g}% bracket, the best plain savings rate we track ({_p(sav)}, {e(top["name"])}) keeps {_p(kept)} after state tax, '
+            f'In the {MAIN:g}% bracket, the highest plain savings rate we track ({_p(sav)}, {e(top["name"])}) keeps {_p(kept)} after state tax, '
             f'while a {nice_term} T-bill at {_p(bill)} keeps all of it. '
             + (f'That is {_usd(AMTS[0] * gap / 100)} a year more per {_usd(AMTS[0])}, and a savings account would need about {_p(need)} to match.'
                if win else f'Savings still edges ahead by {_usd(-AMTS[0] * gap / 100)} a year per {_usd(AMTS[0])}.'))

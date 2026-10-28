@@ -153,7 +153,7 @@ def build():
         return bal * (T['y26'] - after) / 100
     win = {a: tbill_win(a) for a in amounts}
     out.append(dict(pay=win[amounts[-1]], tag='Tax',
-        head=f'In California, 26-week T-bills beat the best plain savings rate by <em>{money(win[amounts[-1]])} a year</em> on {money(amounts[-1])} after state tax.',
+        head=f'In California, 26-week T-bills beat the highest plain savings rate by <em>{money(win[amounts[-1]])} a year</em> on {money(amounts[-1])} after state tax.',
         body=f'Treasury bill interest is exempt from state and local income tax; savings interest is not. At California\'s {ca["rate"]:.1f}% bracket, '
              f'the {pct(T["y26"])} 26-week bill is worth {pct(teq)} in taxable-savings terms, while {e(fit["name"])}\'s {pct(fit["base"])} keeps only {pct(after)} after state tax.',
         ex=f'Yields on {nice(T["date"])}: 4-week {pct(T["y4"])} · 13-week {pct(T["y13"])} · 26-week {pct(T["y26"])}<br>'

@@ -324,7 +324,7 @@ fieldset.toggles{border:0;padding:0;min-width:0}fieldset.toggles legend{font-siz
 .site-header details.menu{position:static}.menu:not([open]) .menu-panel{display:none}
 .mhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 4px;font-size:14px;color:var(--muted)}
 figure.spk{grid-column:1/-1;margin:8px 0 0;color:var(--gold)}figure.spk svg{display:block;width:100%;height:64px}
-figure.spk figcaption{display:flex;justify-content:space-between;gap:8px;font:11.5px var(--mono);color:var(--muted);margin-top:2px}
+figure.spk figcaption{display:flex;justify-content:space-between;gap:8px;font:12px var(--mono);color:var(--muted);margin-top:2px}
 .mrow .src{font:12px var(--sans);color:var(--muted)}.mrow .src a{display:inline-block;padding:7px 2px;margin:-7px 0}.mrow .src .chip{margin-right:4px}
 .ev small{color:var(--muted);font-family:var(--mono);font-size:12px}.ev a{display:inline-block;padding:6px 0}
 
@@ -388,11 +388,11 @@ details.i>summary{color:var(--ink)}
 .mk-head{padding-bottom:0}.mk-head h1{margin:2px 0 0}
 .mk-brief{margin:12px 0 0}.mk-brief ol{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:18px;background:var(--card);overflow:hidden}
 .mk-brief li+li{border-top:1px solid var(--line)}
-.mk-b{display:grid;grid-template-columns:28px minmax(0,1fr) 16px;gap:10px;align-items:center;padding:12px 14px;min-height:64px;color:var(--ink);text-decoration:none}
+.mk-b{display:grid;grid-template-columns:minmax(0,1fr) 14px;gap:8px;align-items:center;padding:10px 14px;min-height:56px;color:var(--ink);text-decoration:none}
 .mk-b:hover{background:var(--sunk)}.mk-b:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
 .mk-b .n{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--gold-soft);color:var(--gold);font:700 14px var(--serif);align-self:start;margin-top:2px}
-.mk-b .t{display:flex;flex-direction:column;gap:3px;min-width:0}.mk-b .h{display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-size:16px}
-.mk-b .h .v{font:600 20px var(--serif);font-variant-numeric:tabular-nums;white-space:nowrap}.mk-b .w{font-size:14.5px;line-height:1.35}
+.mk-b .t{display:flex;flex-direction:column;gap:2px;min-width:0}.mk-b .h{display:flex;gap:8px;align-items:baseline;font-size:16px}.mk-b .h>b:first-child{margin-right:auto}.mk-b .h .mv{margin:0;padding:1px 7px;font-size:12px;white-space:nowrap;align-self:center}
+.mk-b .h .v{font:600 20px var(--serif);font-variant-numeric:tabular-nums;white-space:nowrap}.mk-b .w{font-size:14px;line-height:1.35;color:var(--muted)}
 .mk-b .s{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}.mk-b .s .mv{margin:0;padding:2px 8px;font-size:12px}
 .mk-b .go{color:var(--muted);font-size:22px}
 .mk-note{font-size:12.5px;color:var(--muted);margin:8px 2px 0}
@@ -470,3 +470,5 @@ details.amt>summary::after{content:"";margin-left:8px;width:7px;height:7px;borde
 .tag-s{font-size:12px}
 main .chip,main .badge{font-size:12px}
 .terms details>summary{min-height:44px}main .fdic-badge,main .mobile-label{font-size:12px}
+@media(max-width:350px){.mk-b .w{font-size:13px}.mk-b{padding:10px 12px}}
+.mk-b .w time{white-space:nowrap}

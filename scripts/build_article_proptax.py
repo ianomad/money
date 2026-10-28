@@ -157,7 +157,7 @@ def build(root):
         c3 = ('<section class="digest" id="float"><p class="eyebrow"><span class="dot"></span> CASE 3 · YOUR CASH EARNS INTEREST A FEW WEEKS LONGER</p>'
               f'<h2 class="takeaway">The float is real but small: {_usd(floats[0])}–{_usd(floats[1])} on {_usd(BILL)}, enough to turn a {_pct(flat_rate)} card from a small loss into about break-even.</h2>'
               f'<p>Paying by card on the due date means the cash leaves your account at the statement due date instead, roughly {FLOAT_DAYS[0]}–{FLOAT_DAYS[1]} days later depending on when your statement closes. '
-              f'At the best plain savings rate we track ({_pct(top["base"])}, {e(top["name"])}), that is {_usd(floats[0])}–{_usd(floats[1])} of extra interest. '
+              f'At the highest plain savings rate we track ({_pct(top["base"])}, {e(top["name"])}), that is {_usd(floats[0])}–{_usd(floats[1])} of extra interest. '
               f'Added to a flat {_pct(flat_rate)} card in {e(hi_c["county"])} ({_sgn(flat_net)}), you land around {_sgn(flat_net + floats[0])} to {_sgn(flat_net + floats[1])}: basically a wash for the hassle. '
               'If you would carry the balance even one month, card interest wipes out every case on this page.</p></section>')
 

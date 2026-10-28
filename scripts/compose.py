@@ -87,7 +87,7 @@ world_hero = _world.render(_world.dataset(), _pl['base'], _pl['name'])
 world_rest = '<span id="world-more"></span>' + tuck(wdm[wdm.index(sec(wdm, 'hero')) + len(sec(wdm, 'hero')):], 'Bank-by-bank details, how foreigners open accounts, and a look back at Kyrgyzstan')
 show_js = '''<script>(()=>{const r=document.querySelector('#rates .rows'),b=document.getElementById('show-all');if(b)b.onclick=()=>{r.classList.remove('collapsed');b.remove()};
 const ex=()=>{if(b&&b.isConnected){r.classList.remove('collapsed');b.remove()}};const q=document.getElementById('search');q&&q.addEventListener('input',ex);['coverage','minimum','sort'].forEach(i=>{const e=document.getElementById(i);e&&e.addEventListener('change',ex)});if(new URLSearchParams(location.search).toString())ex();
-const tabs=[...document.querySelectorAll('.view-tabs a')];function show(v){document.querySelectorAll('.mainnav a,.tabs-m a').forEach(a=>{const w=a.getAttribute('href')==='/#world',s=a.getAttribute('href')==='/';if(w||s){if((v==='world')===w)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')}});document.getElementById('view-us').hidden=v==='world';document.getElementById('view-world').hidden=v!=='world';tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.view===v)))}
+const tabs=[...document.querySelectorAll('.view-tabs a')];function show(v){document.querySelectorAll('.mainnav a,.tabs-m a').forEach(a=>{const w=a.getAttribute('href')==='/#world',s=a.getAttribute('href')==='/';if(w||s){if((v==='world')===w)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')}});document.getElementById('view-us').hidden=v==='world';const rh=document.getElementById('rates-head');if(rh)rh.hidden=v==='world';document.getElementById('view-world').hidden=v!=='world';tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.view===v)))}
 const want=()=>{const h=location.hash.slice(1);return (h==='world'||document.getElementById(h)?.closest('#view-world'))?'world':'us'};tabs.forEach(t=>t.onclick=e=>{e.preventDefault();history.replaceState(null,'',t.dataset.view==='world'?'#world':location.pathname+location.search);show(t.dataset.view)});
 window.addEventListener('hashchange',()=>show(want()));show(want());const h=location.hash.slice(1);if(h&&h!=='world'){const el=document.getElementById(h);if(el){let d=el.tagName==='DETAILS'?el:el.closest('details');while(d){d.open=true;d=d.parentElement&&d.parentElement.closest('details')}el.scrollIntoView()}}})();</script>'''
 
@@ -102,7 +102,7 @@ stable = ('<span id="stablecoins"></span>' + tuck(digest('stable-top', f"STABLEC
     f"Stablecoin yields: top {dp[0]['apy']:.2f}% (Aave, Maple, Sky, Ethena…), not FDIC insured"))
 tabs = '<div class="view-tabs" role="tablist"><a href="/" data-view="us" role="tab"><span>US savings</span></a><a href="/#world" data-view="world" role="tab"><span>World deposits</span></a></div>'
 import feed as _F, feeds as _feeds
-rates_head = _F.head('Where should your <em>cash</em> go?', 'Top savings rates, checked by hand.')
+rates_head = _F.head('Where should your <em>cash</em> go?', 'Top savings rates, checked by hand.').replace('<section class="fhead"', '<section class="fhead" id="rates-head"', 1)
 _h_c1, _h_sw = _feeds.home_extras()
 import history as _hist; _hist.update()
 import savings as _sv

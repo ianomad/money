@@ -48,7 +48,7 @@ def cards_body():
     rk = sorted(cs, key=lambda c: -c['val'])
     by = {c['id']: c for c in cs}
     rules = [('top', 'Highest value for this spending', 'Yearly rewards minus the annual fee, for the spending below. Changes as you type.'),
-             ('nofee', 'Highest with no annual fee', 'The best card here that costs nothing to keep.'),
+             ('nofee', 'Highest with no annual fee', 'The top-value card here that costs nothing to keep.'),
              ('travel', 'Highest-value travel card', 'Of the travel cards, the one worth the most on rewards alone. Credits and perks are not counted; lounge access only comes with the pricier cards.'),
              ('bcp', 'Big on groceries', 'Our pick: 6% at US supermarkets on the first $6,000 a year. Pair it with a 2% card for everything else.'),
              ('sv', 'Eat out a lot', 'Our pick: 3% on dining, groceries and streaming with no annual fee.'),
@@ -72,7 +72,7 @@ def cards_body():
              'bcp': 'Suits big grocery spenders: 6% on the first $6,000/yr; pair with a 2% card', 'sv': 'Suits people who eat out: 3% dining, groceries, streaming',
              'bb': 'Suits renters: earns on rent with no fee; rent not in the numbers'}
     t0 = pick_for('top')
-    hero = (f'<article class="fc dark hero" data-pick="top"><p class="fc-k"><span data-who>Best for</span> <span data-tot>${total:,}</span>/month</p>'
+    hero = (f'<article class="fc dark hero" data-pick="top"><p class="fc-k"><span data-who>Top card at</span> <span data-tot>${total:,}</span>/month</p>'
             f'<p class="fc-big"><span class="v">${t0["val"]:,}/yr</span></p><h3 class="fc-line">{e(t0["name"])}</h3>'
             f'<p class="fc-catch"><span><span class="fee">{fee_s(t0)}</span> · points at <span data-cpp>{pv*100:g}</span>¢ · no signup bonus</span></p>'
             f'<p class="fc-foot">Terms checked {fdate(d["checkedAt"])}</p>'
@@ -218,25 +218,28 @@ def markets_top():
         s_ = m[k]; pct = k in ('oil', 'sp500', 'dollar'); v = (s_['value']/s_['m1']-1)*100 if pct else s_['value']-s_['m1']
         a = '▲' if v > 0 else '▼' if v < 0 else '■'
         return (f"{a} {abs(v):.1f}%" if pct else f"{a} ${abs(v):.2f}" if k == 'gas' else f"{a} {abs(v):.2f} pts"), ('up' if v > 0 else 'down' if v < 0 else 'flat')
+    k_ = lambda v: f"${v/1000:,.0f}k"
     BR = {
-     'mortgage': ('Mortgage rate', f"{mo['value']:.2f}%", f"About ${p_now:,.0f}/mo on a ${LOAN:,} loan, {'+' if p_now >= p_y1 else '−'}${abs(p_now-p_y1):,.0f} vs a year ago.", 'Freddie Mac'),
-     'gas': ('Gas', f"${gas['value']:.2f}/gal", f"A 15-gallon fill-up is about ${gas['value']*15:.0f}, vs ${gas['y1']*15:.0f} a year ago.", 'EIA'),
-     'fed': ('Fed funds rate', f"{fed['value']:.2f}%", 'Savings rates follow it.' + (f" Best no-strings savings we track: {top['base']:g}%." if top else ''), 'Federal Reserve'),
-     'oil': ('Oil', f"${oil['value']:.0f}/bbl", f"{yoy(oil):+.0f}% in a year. Pump prices often follow weeks later.", 'EIA'),
-     'sp500': ('S&P 500', f"{sp['value']:,.0f}", f"{yoy(sp):+.0f}% in a year, the index many 401(k) funds track.", 'S&P DJI'),
-     't10': ('10-year Treasury', f"{t10['value']:.2f}%", 'Mortgage rates tend to follow it.', 'US Treasury'),
-     'dollar': ('US dollar', f"{dl['value']:.1f}", 'A stronger dollar makes trips abroad cheaper.', 'Federal Reserve'),
+     'mortgage': ('Mortgage rate', f"{mo['value']:.2f}%", f"{'+' if p_now >= p_y1 else '−'}${abs(p_now-p_y1):,.0f}/mo on {k_(LOAN)} vs a year ago", 'Freddie Mac'),
+     'gas': ('Gas', f"${gas['value']:.2f}/gal", f"Fill-up ${gas['value']*15:.0f}, vs ${gas['y1']*15:.0f} a year ago", 'EIA'),
+     'fed': ('Fed funds rate', f"{fed['value']:.2f}%", (f"Savings track it (top {top['base']:g}%)" if top else 'Savings rates track it'), 'Federal Reserve'),
+     'oil': ('Oil', f"${oil['value']:.0f}/bbl", f"{yoy(oil):+.0f}% in a year; pump prices follow", 'EIA'),
+     'sp500': ('S&P 500', f"{sp['value']:,.0f}", f"{yoy(sp):+.0f}% in a year; many 401(k)s track it", 'S&P DJI'),
+     't10': ('10-year Treasury', f"{t10['value']:.2f}%", 'Mortgage rates tend to follow it', 'US Treasury'),
+     'dollar': ('US dollar', f"{dl['value']:.1f}", 'Stronger dollar, cheaper trips abroad', 'Federal Reserve'),
     }
     def brow(n, k):
         lab, val, why, src = BR[k]; mt, d = mvtxt(k)
-        return (f'<li><a href="#m-{k}" class="mk-b"><span class="n" aria-hidden="true">{n}</span><span class="t"><span class="h"><b>{e(lab)}</b> <b class="v">{e(val)}</b></span>'
-                f'<span class="w">{e(why)}</span><span class="s"><span class="mv {d}">{mt + " in 30 days" if d != "flat" else "No change in 30 days"}</span> {e(src)} · {short(m[k]["date"])}{" · may be out of date" if stale(k) else ""}</span></span>'
+        say = {'up': 'up', 'down': 'down', 'flat': 'unchanged'}[d]
+        return (f'<li><a href="#m-{k}" class="mk-b"><span class="t"><span class="h"><b>{e(lab)}</b> <b class="v">{e(val)}</b>'
+                f'<span class="mv {d}" title="30-day change">{e(mt.replace(" pts", "")) if d != "flat" else "■ 0"}<span class="sr">{" points" if mt.endswith(" pts") else ""} {say} in 30 days</span></span></span>'
+                f'<span class="w">{e(why)} · <time datetime="{m[k]["date"]}">{short(m[k]["date"])}</time>{" · may be out of date" if stale(k) else ""}<span class="sr">, {e(src)}</span></span></span>'
                 '<span class="go" aria-hidden="true">›</span></a></li>')
     newest = max(m[k]['date'] for k in m)
     head = ('<section class="fhead mk-head"><p class="fc-k">Markets · today in 30 seconds</p><h1>What matters for <em>your money.</em></h1></section>'
             '<section class="mk-brief" aria-labelledby="mk-brief-h"><h2 id="mk-brief-h" class="sr">Top 3 for your wallet</h2><ol>'
             + ''.join(brow(i + 1, k) for i, k in enumerate(order[:3])) + '</ol>'
-            f'<p class="mk-note">Ranked by how much they touch household budgets, not by size of move. Tap one for its chart and catch. Latest data {fd(newest)}.</p></section>')
+            f'<p class="mk-note">▲▼ = change in 30 days. Tap a row for its chart, source and catch. Latest data {fd(newest)}.</p></section>')
     seg = ('<div class="seg mseg" role="group" aria-label="Chart period">' + ''.join(f'<button type="button" data-mp="{p}" aria-pressed="{str(p == "1y").lower()}">{l}</button>' for p, l in (('3m', '3M'), ('1y', '1Y'), ('5y', '5Y'))) + '</div>')
     ej = dj('events.json')
     def tm(t):
