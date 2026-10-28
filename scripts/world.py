@@ -82,26 +82,28 @@ def render(D, us_rate, us_name):
         return 'No currency history on file' if r['cur'] != 'USD' else 'US dollars: no currency risk'
     def ins_s(r):
         return (f"Insured to {r['insLocal']['amount']:,.0f} {r['insLocal']['currency']}" + (f" (≈${r['insUSD']:,.0f})" if r['cur'] != 'USD' else '')) if r['insLocal'] else 'Insurance limit not verified'
-    def bars3(r, a=10000):
-        k = calc(a, r['rate'], 12, 0, 1, us_rate); items = [('Currency steady', k['end'] - a, money_s(k['end'] - a), True)]
+    def bars3(r, a=10000, fall=False):
+        k = calc(a, r['rate'], 12, 0, 1, us_rate); u = lambda x: (x - a) / a * 100
+        items = [('Currency steady', u(k['end']), pct(u(k['end']), True), True)]
         if r['move'] is not None and r['cur'] != 'USD':
-            items.append((f"Past pace {pct(r['move'], True)}/yr", k['scen'](r['move']) - a, money_s(k['scen'](r['move']) - a), False))
-        items.append((f'US savings {us_rate:g}%', k['usEnd'] - a, money_s(k['usEnd'] - a), False))
-        return F.bars(items, f'<span class="tag-s">Scenarios</span>{money(a)}, 12 months, in dollars. Not forecasts.')
+            items.append((f"Past pace {pct(r['move'], True)}/yr", u(k['scen'](r['move'])), pct(u(k['scen'](r['move'])), True), False))
+        if fall: items.append(('Currency falls 20%', u(k['scen'](-20)), pct(u(k['scen'](-20)), True), False))
+        items.append(('US savings', u(k['usEnd']), pct(u(k['usEnd']), True), False))
+        return F.bars(items, '<span class="tag-s">Scenarios</span>≈ 12-month return in US dollars, after 1% FX cost each way. Not forecasts.')
     hero = F.card('Top rate abroad', f'{e(top["name"])}: {top["rate"]:g}%', f'{e(top["bank"])} · paid in {e(top["cur"])}',
                   viz=bars3(top), catch=fxline(top) + '. Past moves don’t predict future ones.',
                   foot=f'Checked {fd(top["verified"])} · FX {fd(D["today"])}', cls='dark',
-                  actions='<div class="fc-act"><a class="btn pri" href="#wc-adjust" data-open="wc-adjust">Change amount</a></div>')
+                  actions='<div class="fc-act"><a class="btn pri" href="#wc-adjust" data-open="wc-adjust">Calculate</a></div>')
     dr = []
     for r in by_rate:
         if r['cur'] == 'USD' or r['move'] is None: continue
-        k = calc(10000, r['rate'], 12, 0, 1, us_rate); v = k['scen'](r['move']) - 10000
-        dr.append((f'{e(r["name"])} {r["rate"]:g}%', v, money_s(v), False))
-    kus = calc(10000, us_rate, 12, 0, 1, us_rate); dr.append((f'US savings {us_rate:g}%', kus['usEnd'] - 10000, money_s(kus['usEnd'] - 10000), True))
-    drag = F.card('Currency drag · $10,000, 12 months', 'Past pace', 'If each currency keeps moving as it has since 2023',
-                  viz=F.bars(dr, '<span class="tag-s">Scenarios</span>gain or loss after 12 months. Not forecasts.'),
+        k = calc(10000, r['rate'], 12, 0, 1, us_rate); v = (k['scen'](r['move']) - 10000) / 100
+        dr.append((f'{e(r["name"])} {r["rate"]:g}%', v, pct(v, True), False))
+    kus = calc(10000, us_rate, 12, 0, 1, us_rate); vu = (kus['usEnd'] - 10000) / 100; dr.append((f'US savings {us_rate:g}%', vu, pct(vu, True), True))
+    drag = F.card('Currency drag', 'Rate vs USD return', 'If each currency keeps moving as it has since 2023',
+                  viz=F.bars(dr, '<span class="tag-s">Scenarios</span>≈ 12-month return in US dollars, after FX costs. Not forecasts.'),
                   catch='A high rate can still lose dollars', cls='drag')
-    swc = [F.card(e(r['name']), f'{r["rate"]:g}%', f'{e(r["bank"])} · {e(r["term"])}', viz=scen_bars(r),
+    swc = [F.card(e(r['name']), f'{r["rate"]:g}%', f'{e(r["bank"])} · {e(r["term"])}', viz=bars3(r, fall=True),
                   catch=fxline(r), foot=f'{ins_s(r)} · checked {fd(r["verified"])}') for r in by_rate[1:] if r['cur'] != 'USD']
     how = (f'<p>This covers {len(R)} tracked countries, not the whole world. The highest headline rate here is {e(top["name"])} at {top["rate"]:g}% ({e(top["term"])}).</p>{feat}'
            f'<p>Scenario bars: the headline rate for 12 months as simple interest, converted to local money and back with a 1% cost each way, under the currency move shown. '
@@ -116,7 +118,7 @@ def render(D, us_rate, us_name):
             f'<div class="tw"><table class="wtable"><thead><tr><th scope="col">Country</th><th scope="col">Top rate we track</th><th scope="col">Currency vs $</th><th scope="col">Est. 12-month USD result*</th><th scope="col">Deposit insurance</th><th scope="col">Checked</th></tr></thead><tbody id="wc-body">{table}</tbody></table></div>'
             f'<p class="assume">*A what-if, not a forecast: the headline rate for 12 months as simple interest, then converted at a rate that moved the same amount per year as it did since Oct 12, 2023. Before tax and conversion costs. Past currency moves don’t predict future ones, and a steady stretch doesn’t make a currency safe. '
             f'Start rates from each central bank (links per country below); today’s rates from each central bank where we can reach it (otherwise a market rate, labelled in the table), {fd(D["today"])}. Insurance limits in local money with an approximate dollar value at today’s rate; deposit rates checked {fd(D["checkedAt"])}.</p></section></div></details>'
-            f'<details class="i big" id="wc-adjust"><summary>Run your own scenario</summary><div class="dbody">'
+            f'<details class="i big" id="wc-adjust"><summary>Calculate</summary><div class="dbody">'
             f'<section class="tool" id="world-calc" aria-labelledby="wcalc-h"><h2 id="wcalc-h" class="sr">What would you have in dollars?</h2>'
             f'<form class="fields" id="wc-form" onsubmit="return false"><label>Country<select id="wc-c">{opts}</select></label>'
             f'<label>Amount ($)<input id="wc-a" inputmode="decimal" value="10,000"></label><label>Rate, %/yr<input id="wc-r" inputmode="decimal" value="{t0["rate"]:g}"></label>'

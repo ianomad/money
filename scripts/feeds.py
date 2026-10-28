@@ -23,11 +23,9 @@ def home_extras(amount=10000):
     rj = dj('rates.json'); top = plain_top(); tb = float(top['base'])
     nat = dj('insights.json')['inputs']['fdicNational']
     wf = next((p for p in rj['providers'] if p['id'] == 'wellsfargo'), None)
-    items = [(f'{e(top["name"])} {tb:.2f}%', amount * tb / 100, m(amount * tb / 100), True),
-             (f'US average {nat["savings"]:.2f}%', amount * nat['savings'] / 100, m(amount * nat['savings'] / 100), False)]
-    if wf: items.append((f'{e(wf["name"])} {float(wf["base"]):.2f}%', amount * float(wf['base']) / 100, m(amount * float(wf['base']) / 100), False))
-    gap = amount * (tb - nat['savings']) / 100
-    c1 = F.card(f'Same {m(amount)}, one year', m(gap), f'more at {e(top["name"])} than at the average US savings rate', viz=F.bars(items, 'Interest in one year, before tax'),
+    items = [(e(top["name"]), tb, f'{tb:.2f}%', True), ('US average', nat['savings'], f'{nat["savings"]:.2f}%', False)]
+    if wf: items.append((e(wf["name"]), float(wf['base']), f'{float(wf["base"]):.2f}%', False))
+    c1 = F.card('Plain savings vs the US average', f'{tb / nat["savings"]:.0f}×', f'{tb:.2f}% at {e(top["name"])} vs {nat["savings"]:.2f}% average', unit=' the average rate', viz=F.bars(items, 'APY, no conditions'),
                 catch=f'{e(top["name"])} has no promo or membership; its rate can change anytime',
                 foot=f'US average: <a href="{e(nat["url"])}" target="_blank" rel="noopener">FDIC national rate</a>, as of {fd(nat["asOf"])} · {e(top["name"])} checked {fd(top.get("verifiedAt") or rj["checkedAt"])}')
     boosted = sorted([p for p in rj['providers'] if p.get('category') == 'cash' and p.get('boost') and 'paused' not in (p.get('requirements') or '').lower()],

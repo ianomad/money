@@ -106,20 +106,21 @@ def card(r, P, b, i):
     src = f' · <a href="{e(v["src"])}" target="_blank" rel="noopener">Source ↗</a>' if v['src'] else ''
     chk = f"Checked {fmt_date(v['verifiedAt'])}" if v['verifiedAt'] else 'Check date not recorded'
     return (f'<li class="res{" stale" if v["flags"] else ""}"><div class="rtop"><span class="rk">{i}</span><div><b class="nm">{e(v["name"])}</b>'
-            f'<span class="pd">{r["net"] / b * 100:.2f}%{(" · needs " + needs) if needs else ""}</span>{chips}</div><div class="amt"><b>{money(r["net"])}</b><span>1st year</span></div></div>'
+            f'<span class="pd">{("Needs " + needs) if needs else "No conditions"}</span>{chips}</div><div class="amt"><b>{r["net"] / b * 100:.2f}%</b><span>{"yr 1" if (r["promoMonths"] or r["fee"]) else "APY"}</span></div></div>'
             f'<details class="i"><summary>Details</summary><p class="how">{e(v["product"])} · {how}</p><p class="how">{math_} on {money(b)} ≈ {r["net"] / b * 100:.2f}% over 12 months.{(" " + after) if after else ""}</p>'
             f'<p class="meta"><span class="chip {cls}">{ins}</span><span>{chk}{src}</span></p></details></li>')
 
 def pick_html(top, P, b):
-    if not top: return f'<p class="fc-k">Your {money(b)} could earn</p><p class="fc-big">—</p><p class="fc-line">No account matches these options.</p><p class="fc-catch">Try fewer options under Change amount.</p>'
+    if not top: return f'<p class="fc-k">Top savings rate</p><p class="fc-big">—</p><p class="fc-line">No account matches these options.</p><p class="fc-catch">Try fewer options under Calculate.</p>'
     v = P[top['id']]; ins = INS[v['fdic']][0]
     needs = ', '.join(NEED_TXT[n] for n in top['needs'] if n != 'new')
     cond = ('Needs ' + needs) if needs else 'No conditions'
     promo = f' · promo rate for {top["promoMonths"]:.0f} of 12 months' if top['promoMonths'] else ''
     fee = f' · after {money(top["fee"])} fees' if top['fee'] else ''
     chk = f"checked {fmt_date(v['verifiedAt'])}" if v['verifiedAt'] else 'check date not recorded'
-    return (f'<p class="fc-k">Your {money(b)} could earn</p><p class="fc-big">{money(top["net"])}<small>/year</small></p>'
-            f'<p class="fc-line">at <b>{e(v["name"])}</b> · {top["net"] / b * 100:.2f}% in year one{fee}</p>'
+    yr1 = bool(top['promoMonths'] or top['fee'])
+    return (f'<p class="fc-k">Top savings rate{" · no strings" if not needs else ""}</p><p class="fc-big">{top["net"] / b * 100:.2f}%<small>{" yr 1" if yr1 else " APY"}</small></p>'
+            f'<p class="fc-line"><b>{e(v["name"])}</b>{" · first-year rate" + fee if yr1 else ""}</p>'
             f'<p class="fc-catch">{cond}{promo} · {ins} · rate is variable, {chk}</p>')
 
 def render(D, b=10000):
@@ -135,7 +136,7 @@ def render(D, b=10000):
     js = (ROOT / 'scripts/savings_calc.js').read_text() + (ROOT / 'scripts/savings_ui.js').read_text()
     return (f'<section class="tool feed" id="calc" aria-labelledby="calc-h"><h2 id="calc-h" class="sr">What your savings could earn</h2>'
             f'<article class="fc dark hero"><div id="sv-pick" aria-live="polite">{pick_html(top[0] if top else None, P, b)}</div>'
-            f'<details class="i act" id="sv-adjust"><summary>Change amount</summary><div class="dbody">'
+            f'<details class="i act" id="sv-adjust"><summary>Calculate</summary><div class="dbody">'
             f'<form class="sv-form" id="sv-form" onsubmit="return false"><label class="bal">Balance<span class="dollar"><input id="sv-bal" name="bal" inputmode="decimal" autocomplete="off" value="{b:,}" aria-describedby="sv-bal-err"></span></label>'
             f'<p class="err" id="sv-bal-err" hidden>Enter an amount between $1 and $10,000,000.</p>'
             f'<div class="pills" role="group" aria-label="Options">{quick}</div>'

@@ -413,3 +413,4 @@ details.i>summary{color:var(--ink)}
 .pagehead details.i .lead{margin:0}.digest>details.i{margin-top:6px}
 a.fc.gcard{display:block;color:var(--ink);text-decoration:none}a.fc.gcard:hover{border-color:var(--gold)}a.fc.gcard .fc-big{font-size:clamp(34px,10vw,48px)}
 @media(min-width:760px){.gfeed{grid-template-columns:1fr 1fr}}.fc-act.tools{flex-wrap:wrap}
+.fc.drag .fc-big{font-size:clamp(28px,8vw,36px)}

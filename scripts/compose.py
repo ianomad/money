@@ -102,7 +102,7 @@ stable = ('<span id="stablecoins"></span>' + tuck(digest('stable-top', f"STABLEC
     f"Stablecoin yields: top {dp[0]['apy']:.2f}% (Aave, Maple, Sky, Ethena…), not FDIC insured"))
 tabs = '<div class="view-tabs" role="tablist"><a href="/" data-view="us" role="tab"><span>US savings</span></a><a href="/#world" data-view="world" role="tab"><span>World deposits</span></a></div>'
 import feed as _F, feeds as _feeds
-rates_head = _F.head('Where should your <em>cash</em> go?', 'What your savings could earn, checked by hand.')
+rates_head = _F.head('Where should your <em>cash</em> go?', 'Top savings rates, checked by hand.')
 _h_c1, _h_sw = _feeds.home_extras()
 import savings as _sv
 _svD, _svP = _sv.dataset()
