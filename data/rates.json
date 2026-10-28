@@ -161,7 +161,8 @@
         "status": "none",
         "label": "Not FDIC insured",
         "summary": "USDC is a crypto asset, not an insured bank deposit."
-      }
+      },
+      "verifiedAt": "2026-10-28"
     },
     {
       "id": "kraken",
@@ -266,7 +267,7 @@
       "kind": "DeFi lending · Aave V4",
       "symbol": "A",
       "color": "#7365b7",
-      "base": 3.8,
+      "base": 4.09,
       "boost": null,
       "baseLabel": "Market snapshot",
       "rateLabel": "Variable deposit APY",
