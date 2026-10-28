@@ -104,6 +104,7 @@ tabs = '<div class="view-tabs" role="tablist"><a href="/" data-view="us" role="t
 import feed as _F, feeds as _feeds
 rates_head = _F.head('Where should your <em>cash</em> go?', 'Top savings rates, checked by hand.')
 _h_c1, _h_sw = _feeds.home_extras()
+import history as _hist; _hist.update()
 import savings as _sv
 _svD, _svP = _sv.dataset()
 for _p in _svP: print('WARN rate-terms:', _p)

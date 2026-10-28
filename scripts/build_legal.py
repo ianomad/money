@@ -45,7 +45,7 @@ PRIVACY = """<section class="pagehead"><p class="eyebrow">PRIVACY POLICY</p>
 <section class="digest" id="collect">
 <p class="eyebrow"><span class="dot"></span> WHAT WE COLLECT</p>
 <h2 class="takeaway">No accounts, no sign-ups, no email lists.</h2>
-<p>We use Google Analytics 4 to measure aggregate usage such as pages viewed, referrer, device and browser type, and approximate region. Our hosting provider (Cloudflare) processes standard request logs to deliver and secure the site. If you email us, we receive your email address and message.</p>
+<p>We use Google Analytics 4 to measure aggregate usage such as pages viewed, referrer, device and browser type, and approximate region. Our hosting provider (Cloudflare) processes standard request logs to deliver and secure the site. If you email us, we receive your email address and message. If you pick briefing topics or enter your bank’s rate, those settings and your last-visit date are saved only in your own browser’s local storage; they are never sent to us, and the Reset button on the home page clears them.</p>
 </section>
 <section class="digest" id="cookies">
 <p class="eyebrow"><span class="dot"></span> COOKIES &amp; AFFILIATE TRACKING</p>

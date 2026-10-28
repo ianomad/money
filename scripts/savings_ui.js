@@ -25,9 +25,10 @@ function go(){var b=parseFloat(bal.value.replace(/[$,\s]/g,''));var bad=!(b>=1&&
   +'<ol class="top3" aria-label="Top 3 for your options">'+tops.slice(0,3).map(function(r,i){var n=nds(r);return '<li'+(i?'':' class=on')+'><span class="rk">'+(i+1)+'</span><span class="nm">'+h(P[r.id].name)+'<small>'+(n?'Needs '+n:'No conditions')+'</small></span><b>'+pc(r)+'<small>'+(y1(r)?' yr 1':' APY')+'</small></b></li>'}).join('')+'</ol>'
 })()
  :'<p class="fc-k">Top savings rate</p><p class="fc-big">—</p><p class="fc-line">No account matches these options.</p><p class="fc-catch"><span>Try fewer options.</span></p>';
- var ea=document.getElementById('sv-earn');if(ea)ea.innerHTML=top?'≈ <b>'+m(top.net)+'</b> in year one at '+h(P[top.id].name)+', before tax':'';
+ var ea=document.getElementById('sv-earn'),me=document.getElementById('sv-my'),mr=document.getElementById('sv-my-err'),mv=me&&me.value.trim()!==''?parseFloat(me.value.replace(/[%\s]/g,'')):NaN,mbad=me&&me.value.trim()!==''&&!(mv>=0&&mv<=30);if(mr){mr.hidden=!mbad;me.setAttribute('aria-invalid',!!mbad)}if(ea)ea.innerHTML=!top?'':(mv>=0&&mv<=30)?(function(){var d=top.net-b*mv/100;return d>0.5?'≈ <b>'+m(d)+' more</b> in year one at '+h(P[top.id].name)+' than at your '+mv+'%, on '+m(b)+', before tax':'Your '+mv+'% already matches or beats '+h(P[top.id].name)+' for year one'})():'≈ <b>'+m(top.net)+'</b> in year one at '+h(P[top.id].name)+', before tax';try{var S=JSON.parse(localStorage.getItem('mb.v1'))||{};if(me&&(me.value.trim()||S.sv)){S.sv={bal:bal.value,my:me.value};if(!me.value.trim())delete S.sv;localStorage.setItem('mb.v1',JSON.stringify(S))}}catch(e){}
  list.innerHTML=R.rows.map(function(r,i){return card(r,b,i+1)}).join('');more.textContent='Show all '+R.rows.length;more.hidden=R.rows.length<=5;
  skip.textContent=R.skipped.length?'Not counted: '+R.skipped.map(function(s){return P[s.id].name+' ('+s.why+')'}).join('; ')+'.':''}
+try{var S0=(JSON.parse(localStorage.getItem('mb.v1'))||{}).sv;if(S0&&document.getElementById('sv-my')){bal.value=S0.bal;document.getElementById('sv-my').value=S0.my}}catch(e){}
 f.addEventListener('input',go);f.addEventListener('change',go);
 more.addEventListener('click',function(){var c=list.classList.toggle('collapsed');more.textContent=c?'Show all '+list.children.length:'Show fewer'});
 go()})();

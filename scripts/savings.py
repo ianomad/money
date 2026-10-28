@@ -145,11 +145,12 @@ def render(D, b=10000):
     return (f'<section class="tool feed" id="calc" aria-labelledby="calc-h"><h2 id="calc-h" class="sr">Top savings rates</h2>'
             f'<article class="fc dark hero"><div id="sv-pick" aria-live="polite">{pick_html(top, P, b)}</div>'
             f'<form class="sv-form" id="sv-form" onsubmit="return false"><label class="balq">Your balance<span class="dollar"><input id="sv-bal" name="bal" inputmode="decimal" autocomplete="off" value="{b:,}" aria-describedby="sv-bal-err sv-earn"></span></label>'
+            f'<label class="balq myq">Your bank’s APY<span class="pctin"><input id="sv-my" name="my" inputmode="decimal" autocomplete="off" placeholder="optional" aria-describedby="sv-my-err sv-earn"><i aria-hidden="true">%</i></span></label><p class="err" id="sv-my-err" hidden>Enter a rate between 0 and 30%.</p>'
             + (f'<p class="fc-earn" id="sv-earn" aria-live="polite">≈ <b>{money(top[0]["net"])}</b> in year one at {e(P[top[0]["id"]]["name"])}, before tax</p>' if top else '<p class="fc-earn" id="sv-earn" aria-live="polite"></p>') +
             ''
             + f'<p class="err" id="sv-bal-err" hidden>Enter an amount between $1 and $10,000,000.</p>'
             f'<div class="pills" role="group" aria-label="Options">{quick}</div>'
-            f'<details class="i" id="sv-adjust"><summary>More options</summary><fieldset class="toggles"><legend class="sr">More options</legend>{moreo}</fieldset></details></form></article>'
+            f'<details class="i" id="sv-adjust"><summary>More options</summary><fieldset class="toggles"><legend class="sr">More options</legend>{moreo}</fieldset></details></form><p class="fc-act"><button type="button" class="lnk share" data-share>Share this rate</button></p></article>'
             f'<details class="i big" id="sv-all"><summary>See all {len(res["rows"])} accounts, ranked</summary><div class="dbody"><ol class="res-list collapsed" id="sv-list">{rows}</ol>'
             f'<button class="show-all" id="sv-more" type="button">Show all {len(res["rows"])}</button>'
             f'<h3 class="fh">How it works</h3><p>A first-year estimate for your balance. Short promos count only for the months they last, then the regular rate. Fees come off the top.</p>'

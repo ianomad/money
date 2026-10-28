@@ -163,3 +163,7 @@ def finalize(h): return _seo(_fin7(h))
 from tldr import apply as _tldr
 _fin8 = finalize
 def finalize(h): return _tldr(_fin8(h))
+
+import briefing as _brief
+_fin9 = finalize
+def finalize(h): return _brief.apply(_fin9(h))
