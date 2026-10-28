@@ -17,11 +17,20 @@ def write(page, finalize, lazyimg, rd, D, DIGEST_CSS, UI_CSS):
         h = (D / fn).read_text() if (D / fn).exists() else ''
         m = re.search(r'"dateModified":\s*"([^"]+)"', h) or re.search(r'<time[^>]*datetime="([^"]+)"', h)
         return m.group(1)[:10] if m else ''
-    li = ''.join(f'<li><a href="{u}"><span class="tag">{t}</span><b>{n}</b><span>{d}</span></a></li>' for u, t, n, d in GUIDES)
-    tl = ''.join(f'<li><a href="{u}"><b>{n}</b><span>{d}</span></a></li>' for u, n, d in TOOLS)
-    body = ('<section class="pagehead"><p class="eyebrow">Guides</p><h1>Plain answers to <em>money questions.</em></h1>'
-            '<p class="lead">Short guides with the math shown, plus the tools they use. Every number links back to where it came from.</p></section>'
-            f'<section aria-labelledby="g-h"><h2 id="g-h" class="sec-h">Guides</h2><ul class="guides-list">{li}</ul></section>'
-            f'<section aria-labelledby="t-h"><h2 id="t-h" class="sec-h">Tools</h2><ul class="guides-list">{tl}</ul></section>'
-            '<p class="hint">Something wrong or missing? <a href="mailto:dev@ilyusha.xyz?subject=Money%20Beast%20correction">Suggest a correction ↗</a></p>')
+    import feed as F
+    def hook(fn):
+        h = (D / fn).read_text() if (D / fn).exists() else ''
+        g = lambda c: (lambda m: re.sub(r'<[^>]+>', '', m.group(1)).strip() if m else '')(re.search(rf'<p class="{c}">(.*?)</p>', h, re.S))
+        return g('share-rate'), g('share-who')
+    cards, bul = [], []
+    for u, t, n, d in GUIDES:
+        big, who = hook(u.strip('/') + '.html')
+        if big and len(bul) < 3: bul.append(f'<li>{n}: <b>{big}</b> · {who}</li>')
+        cards.append(f'<a class="fc gcard" href="{u}"><p class="fc-k">{t}</p><p class="fc-big">{big or n}</p><p class="fc-line"><b>{n}</b>{" · " + who if big else ""}</p><p class="fc-foot">Read the guide →</p></a>')
+    tl = ''.join(f'<a class="btn" href="{u}">{n}</a>' for u, n, d in TOOLS)
+    body = (F.head('Plain answers to <em>money questions.</em>', 'The math shown. Sources linked.')
+            + (f'<article class="fc tldr"><p class="fc-k">TL;DR</p><ul>{"".join(bul)}</ul></article>' if len(bul) == 3 else '')
+            + f'<section aria-labelledby="g-h"><h2 id="g-h" class="fh">Guides</h2><div class="feed gfeed">{"".join(cards)}</div></section>'
+            + f'<section aria-labelledby="t-h"><h2 id="t-h" class="fh">Tools</h2><div class="fc-act tools">{tl}</div></section>'
+            + '<p class="hint"><a href="mailto:dev@ilyusha.xyz?subject=Money%20Beast%20correction">Suggest a correction ↗</a></p>')
     (D / 'guides.html').write_text(finalize(lazyimg(page('Guides — Money Beast', 'Plain-English money guides with the math shown: savings, T-bills, no-fee cards and property tax by card.', '/guides', 'x', body, DIGEST_CSS + UI_CSS))))

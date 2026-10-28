@@ -158,3 +158,8 @@ def finalize(h): return _theme(_fin6(h))
 from seo_meta import apply as _seo
 _fin7 = finalize
 def finalize(h): return _seo(_fin7(h))
+
+# ---------- Guides TL;DR + Details (Oct 27 2026 stories pass) ----------
+from tldr import apply as _tldr
+_fin8 = finalize
+def finalize(h): return _tldr(_fin8(h))
