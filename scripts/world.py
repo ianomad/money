@@ -69,26 +69,51 @@ def render(D, us_rate, us_name):
     data = json.dumps({'rows': [{k: r[k] for k in ('code', 'name', 'cur', 'rate', 'months', 'move', 'term')} for r in R], 'us': us_rate}, separators=(',', ':'), ensure_ascii=False)
     js = (ROOT / 'scripts/world_calc.js').read_text() + (ROOT / 'scripts/world_ui.js').read_text()
     table = ''.join(row(r) for r in by_rate)
-    return (f'<section class="pagehead" id="world-top"><p class="eyebrow">Banks abroad · {len(R)} tracked countries</p><h2 class="h1like">Higher rates abroad come with <em>currency risk.</em></h2>'
-            f'<p class="lead">Banks in some countries pay far more than US savings, but in their own currency. If that currency falls against the dollar, it can wipe out the extra interest, or more.</p>'
-            f'<p class="hint">This covers the {len(R)} countries we track, not the whole world. The highest headline rate here is {e(top["name"])} at {top["rate"]:g}% ({e(top["term"])}).</p>{feat}</section>'
-            f'<section class="tool" id="world-compare" aria-labelledby="wc-h"><h2 id="wc-h">Compare the {len(R)} countries</h2>'
+    import feed as F
+    def scen_bars(r, a=10000):
+        k = calc(a, r['rate'], 12, 0, 1, us_rate); items = [('Currency steady', k['end'] - a, money_s(k['end'] - a), True)]
+        if r['move'] is not None and r['cur'] != 'USD':
+            items.append((f"Past pace {pct(r['move'], True)}/yr", k['scen'](r['move']) - a, money_s(k['scen'](r['move']) - a), False))
+        items.append(('Currency falls 20%', k['scen'](-20) - a, money_s(k['scen'](-20) - a), False))
+        items.append((f'US savings {us_rate:g}%', k['usEnd'] - a, money_s(k['usEnd'] - a), False))
+        return F.bars(items, f'<span class="tag-s">Scenarios</span>gain or loss on {money(a)} after 12 months, in dollars. Not forecasts.')
+    def fxline(r):
+        if r['fxStart'] and r['cur'] != 'USD': return f"The {e(r['cur'])} moved {pct(r['fxTotal'], True)} vs the dollar since {fd(r['fxStart']['date'])}"
+        return 'No currency history on file' if r['cur'] != 'USD' else 'US dollars: no currency risk'
+    def ins_s(r):
+        return (f"Insured to {r['insLocal']['amount']:,.0f} {r['insLocal']['currency']}" + (f" (≈${r['insUSD']:,.0f})" if r['cur'] != 'USD' else '')) if r['insLocal'] else 'Insurance limit not verified'
+    hero = F.card(f'Highest rate we track abroad · {e(top["name"])}', f'{top["rate"]:g}%', f'{e(top["bank"])} · {e(top["term"])} · paid in {e(top["cur"])}',
+                  viz=scen_bars(top), catch=fxline(top) + '. Past moves don’t predict future ones.',
+                  foot=f'Rate checked {fd(top["verified"])} · exchange rate {fd(D["today"])}', cls='dark',
+                  actions='<div class="fc-act"><a class="btn pri" href="#wc-adjust" data-open="wc-adjust">Change amount</a><a class="btn" href="#wc-all" data-open="wc-all">All 10 in a table</a></div>')
+    swc = [F.card(e(r['name']), f'{r["rate"]:g}%', f'{e(r["bank"])} · {e(r["term"])}', viz=scen_bars(r),
+                  catch=fxline(r), foot=f'{ins_s(r)} · checked {fd(r["verified"])}') for r in by_rate[1:] if r['cur'] != 'USD']
+    how = (f'<p>This covers the {len(R)} countries we track, not the whole world. The highest headline rate here is {e(top["name"])} at {top["rate"]:g}% ({e(top["term"])}).</p>{feat}'
+           f'<p>Scenario bars: the headline rate for 12 months as simple interest, converted to local money and back with a 1% cost each way, under the currency move shown. '
+           f'“Past pace” uses the average yearly move since each country’s start date. These are what-ifs, not forecasts.</p>')
+    return (f'<section class="fhead" id="world-top"><h2 class="h1like">Higher rates abroad come with <em>currency risk.</em></h2><p class="sub">{len(R)} tracked countries. Dollar scenarios, not forecasts.</p></section>'
+            f'<div class="feed">{hero}</div>'
+            + F.swipe(swc, 'Other countries, by headline rate', 'The other countries') +
+            f'<details class="i big" id="wc-all"><summary>Compare all {len(R)} in a table</summary><div class="dbody">'
+            f'<section class="tool" id="world-compare" aria-labelledby="wc-h"><h2 id="wc-h" class="sr">Compare the {len(R)} countries</h2>'
             f'<div class="seg" role="group" aria-label="Sort by"><button type="button" data-wsort="rate" aria-pressed="true">Headline rate</button><button type="button" data-wsort="est" aria-pressed="false">Estimated USD result</button></div>'
             f'<p class="hint" id="wc-why">Sorted by the bank’s advertised rate in local money. Switch to see a dollar estimate that includes the currency.</p>'
             f'<div class="tw"><table class="wtable"><thead><tr><th scope="col">Country</th><th scope="col">Top rate we track</th><th scope="col">Currency vs $</th><th scope="col">Est. 12-month USD result*</th><th scope="col">Deposit insurance</th><th scope="col">Checked</th></tr></thead><tbody id="wc-body">{table}</tbody></table></div>'
             f'<p class="assume">*A what-if, not a forecast: the headline rate for 12 months (rolled over at the same rate), then converted at a rate that moved the same amount per year as it did since Oct 12, 2023. Before tax and conversion costs. Past currency moves don’t predict future ones, and a steady stretch doesn’t make a currency safe. '
-            f'Start rates from each central bank (links per country below); today’s rates from each central bank where we can reach it (otherwise a market rate, labelled in the table), {fd(D["today"])}. Insurance limits in local money with an approximate dollar value at today’s rate; deposit rates checked {fd(D["checkedAt"])}.</p></section>'
-            f'<section class="tool" id="world-calc" aria-labelledby="wcalc-h"><p class="eyebrow">Dollar calculator</p><h2 id="wcalc-h">What would you have in dollars?</h2>'
-            f'<p class="hint">Change the currency move to see how much a fall can cost. The break-even tells you how far the currency can fall before you’d have done better keeping dollars.</p>'
+            f'Start rates from each central bank (links per country below); today’s rates from each central bank where we can reach it (otherwise a market rate, labelled in the table), {fd(D["today"])}. Insurance limits in local money with an approximate dollar value at today’s rate; deposit rates checked {fd(D["checkedAt"])}.</p></section></div></details>'
+            f'<details class="i big" id="wc-adjust"><summary>Run your own scenario</summary><div class="dbody">'
+            f'<section class="tool" id="world-calc" aria-labelledby="wcalc-h"><h2 id="wcalc-h" class="sr">What would you have in dollars?</h2>'
             f'<form class="fields" id="wc-form" onsubmit="return false"><label>Country<select id="wc-c">{opts}</select></label>'
-            f'<label>Amount in dollars<input id="wc-a" inputmode="decimal" value="10,000"></label><label>Local rate, % a year<input id="wc-r" inputmode="decimal" value="{t0["rate"]:g}"></label>'
-            f'<label>Term, months<input id="wc-t" inputmode="numeric" value="{t0["months"]}"></label><label>Currency move over the term, %<input id="wc-fx" inputmode="decimal" value="0" aria-describedby="wc-fx-h"></label>'
-            f'<label>Conversion cost each way, %<input id="wc-cost" inputmode="decimal" value="1"></label></form><p class="hint" id="wc-fx-h">Negative = the local currency falls against the dollar. The 1% conversion cost is our assumption; ask your bank for its real spread.</p>'
+            f'<label>Amount ($)<input id="wc-a" inputmode="decimal" value="10,000"></label><label>Rate, %/yr<input id="wc-r" inputmode="decimal" value="{t0["rate"]:g}"></label>'
+            f'<label>Months<input id="wc-t" inputmode="numeric" value="{t0["months"]}"></label><label>Currency move, %<input id="wc-fx" inputmode="decimal" value="0" aria-describedby="wc-fx-h"></label>'
+            f'<label>FX cost each way, %<input id="wc-cost" inputmode="decimal" value="1"></label></form><p class="hint" id="wc-fx-h">Negative = the local currency falls. The 1% FX cost is our assumption.</p>'
             f'<p class="err" id="wc-err" hidden>Check the numbers: amount above $0, rate 0–100%, term 1–60 months, move above −100%.</p>'
             f'<div class="results" id="wc-out" aria-live="polite">{wout(c0, 10000, t0, us_rate, us_name, 0)}</div>'
             f'<p class="assume"><b>Assumptions.</b> Simple interest paid at the end of the term (no compounding inside the deposit); the rate is annual, so a 3-month deposit earns a quarter of it. Money converted to local currency at the start and back to dollars at the end. US comparison: {e(us_name)} at {us_rate:g}%, held for the same term. Before tax; US taxpayers owe US tax on foreign interest and may need to file FBAR/FATCA reports.</p>'
-            f'<script id="wc-data" type="application/json">{data}</script><script>{js}</script></section>')
+            f'<script id="wc-data" type="application/json">{data}</script><script>{js}</script></section></div></details>'
+            + F.more('How it works', how))
 
+def money_s(x): return ('−$' if x < 0 else '+$') + f'{abs(x):,.0f}'
 def money(x): return f'${x:,.0f}'
 def wout(c, a, r, us, us_name, fx):
     s = lambda m: c['scen'](m)

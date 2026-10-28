@@ -89,7 +89,7 @@ show_js = '''<script>(()=>{const r=document.querySelector('#rates .rows'),b=docu
 const ex=()=>{if(b&&b.isConnected){r.classList.remove('collapsed');b.remove()}};const q=document.getElementById('search');q&&q.addEventListener('input',ex);['coverage','minimum','sort'].forEach(i=>{const e=document.getElementById(i);e&&e.addEventListener('change',ex)});if(new URLSearchParams(location.search).toString())ex();
 const tabs=[...document.querySelectorAll('.view-tabs a')];function show(v){document.querySelectorAll('.mainnav a,.tabs-m a').forEach(a=>{const w=a.getAttribute('href')==='/#world',s=a.getAttribute('href')==='/';if(w||s){if((v==='world')===w)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')}});document.getElementById('view-us').hidden=v==='world';document.getElementById('view-world').hidden=v!=='world';tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.view===v)))}
 const want=()=>{const h=location.hash.slice(1);return (h==='world'||document.getElementById(h)?.closest('#view-world'))?'world':'us'};tabs.forEach(t=>t.onclick=e=>{e.preventDefault();history.replaceState(null,'',t.dataset.view==='world'?'#world':location.pathname+location.search);show(t.dataset.view)});
-window.addEventListener('hashchange',()=>show(want()));show(want());const h=location.hash.slice(1);if(h&&h!=='world'){const el=document.getElementById(h);if(el){if(el.tagName==='DETAILS')el.open=true;el.scrollIntoView()}}})();</script>'''
+window.addEventListener('hashchange',()=>show(want()));show(want());const h=location.hash.slice(1);if(h&&h!=='world'){const el=document.getElementById(h);if(el){let d=el.tagName==='DETAILS'?el:el.closest('details');while(d){d.open=true;d=d.parentElement&&d.parentElement.closest('details')}el.scrollIntoView()}}})();</script>'''
 
 dj_defi = dj('defi.json'); dp = dj_defi['pools']
 def tvl(v): return f'${v/1e9:.1f}B' if v>=1e9 else f'${v/1e6:.0f}M'
@@ -101,19 +101,15 @@ stable = ('<span id="stablecoins"></span>' + tuck(digest('stable-top', f"STABLEC
     [(r['protocol'], r['chain'], f"{r['apy']:.2f}%", f"{r['coin']} · {tvl(r['tvl'])} in pool") for r in dp]),
     f"Stablecoin yields: top {dp[0]['apy']:.2f}% (Aave, Maple, Sky, Ethena…), not FDIC insured"))
 tabs = '<div class="view-tabs" role="tablist"><a href="/" data-view="us" role="tab"><span>US savings</span></a><a href="/#world" data-view="world" role="tab"><span>World deposits</span></a></div>'
-rates_head = ('<section class="pagehead"><p class="eyebrow">Savings rates · checked by hand</p><h1>Where should your <em>cash</em> go?</h1>'
-  '<p class="lead">Compare US savings accounts by what they would actually pay you, or see what banks abroad pay and the currency risk that comes with it.</p>'
-  '<nav class="tasks" aria-label="Start here">'
-  '<a class="task" href="#calc"><b>Compare savings</b><span>US accounts, insured, checked by hand</span><i>Calculator ↓</i></a>'
-  '<a class="task" href="/#world"><b>Banks abroad</b><span>Higher rates, currency risk</span><i>World →</i></a>'
-  '<a class="task" href="/cards"><b>Pick a credit card</b><span>Value after fees, for your spending</span><i>Cards →</i></a>'
-  '<a class="task" href="/markets"><b>Today’s numbers</b><span>Mortgage, gas, stocks, the Fed</span><i>Markets →</i></a>'
-  '</nav></section>')
+import feed as _F, feeds as _feeds
+rates_head = _F.head('Where should your <em>cash</em> go?', 'What your savings could earn, checked by hand.')
+_h_c1, _h_sw = _feeds.home_extras()
 import savings as _sv
 _svD, _svP = _sv.dataset()
 for _p in _svP: print('WARN rate-terms:', _p)
-body = (pages2.CSS + rates_head + tabs + f'<div id="view-us">{_sv.render(_svD)}{rates}{stable}{method}{pages2.sources_fold("rates")}<a class="back-top" href="#rates" aria-label="Back to filters">↑ Filters</a></div>'
-        + f'<div id="view-world" class="wrap" hidden><span id="world"></span>{world_hero}{world_rest}</div>' + show_js)
+rates_tuck = _F.more(f'Every account we track ({ncash}): advertised rates and conditions', rates, cls='i big', id_='all-accounts')
+body = (pages2.CSS + _F.CSS + rates_head + tabs + f'<div id="view-us">{_sv.render(_svD)}<div class="feed">{_h_c1}</div>{_h_sw}{_feeds.teasers()}{rates_tuck}{stable}{method}{pages2.sources_fold("rates")}</div>'
+        + f'<div id="view-world" class="wrap" hidden><span id="world"></span>{world_hero}{world_rest}</div>' + show_js + _F.JS)
 desc = re.search(r'<meta name="description" content="([^"]*)"', sv).group(1)
 # ---------- lazy helpers (perf) ----------
 (D/'frag').mkdir(exist_ok=True)

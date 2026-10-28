@@ -10,14 +10,17 @@ function card(r,b,i){var v=P[r.id],ins=INS[v.fdic],pm=r.promoMonths,needs=r.need
  var after=pm?' After the promo ends: about '+m(r.ongoing-r.fee)+'/yr at today’s rate.':'';
  var chips=v.flags.map(function(f){return '<span class="chip warn">'+h(f[1])+'</span>'}).join('');
  var src=v.src?' · <a href="'+h(v.src)+'" target="_blank" rel="noopener">Source ↗</a>':'';
- var chk=v.verifiedAt?'Checked '+fd(v.verifiedAt):'Check date not recorded';
- return '<li class="res'+(v.flags.length?' stale':'')+'"><div class="rtop"><span class="rk">'+i+'</span><div><b class="nm">'+h(v.name)+'</b><span class="pd">'+h(v.product)+'</span></div><div class="amt"><b>'+m(r.net)+'</b><span>first year</span></div></div>'
- +'<p class="how">'+h(r.label)+(needs?' · needs '+needs:'')+'</p><p class="how">'+mt+' on '+m(b)+' ≈ '+(r.net/b*100).toFixed(2)+'% over 12 months.'+after+'</p>'
- +'<p class="meta"><span class="chip '+ins[1]+'">'+ins[0]+'</span>'+chips+'<span>'+chk+src+'</span></p></li>'}
+ var chk=v.verifiedAt?'Checked '+fd(v.verifiedAt):'Check date not recorded';var pc=(r.net/b*100).toFixed(2)+'%';
+ return '<li class="res'+(v.flags.length?' stale':'')+'"><div class="rtop"><span class="rk">'+i+'</span><div><b class="nm">'+h(v.name)+'</b><span class="pd">'+pc+(needs?' · needs '+needs:'')+'</span>'+chips+'</div><div class="amt"><b>'+m(r.net)+'</b><span>1st year</span></div></div>'
+ +'<details class="i"><summary>Details</summary><p class="how">'+h(v.product)+' · '+h(r.label)+'</p><p class="how">'+mt+' on '+m(b)+' ≈ '+pc+' over 12 months.'+after+'</p>'
+ +'<p class="meta"><span class="chip '+ins[1]+'">'+ins[0]+'</span><span>'+chk+src+'</span></p></details></li>'}
 function go(){var b=parseFloat(bal.value.replace(/[$,\s]/g,''));var bad=!(b>=1&&b<=1e7);err.hidden=!bad;bal.setAttribute('aria-invalid',bad);if(bad)return;
  var o={};f.querySelectorAll('input[type=checkbox]').forEach(function(c){o[c.name]=c.checked});
  var R=MBCalc.run(D,b,o,D.today),top=R.rows.filter(function(r){return r.rankable})[0];
- pick.innerHTML=top?'For '+m(b)+' with these choices, <b>'+h(P[top.id].name)+'</b> pays the most over a year: about <b>'+m(top.net)+'</b>.':'No account matches these choices. Try unchecking a filter.';
+ pick.innerHTML=top?(function(){var v=P[top.id],nd=top.needs.filter(function(n){return n!=='new'}).map(function(n){return NT[n]}).join(', ');
+  return '<p class="fc-k">Your '+m(b)+' could earn</p><p class="fc-big">'+m(top.net)+'<small>/year</small></p><p class="fc-line">at <b>'+h(v.name)+'</b> · '+(top.net/b*100).toFixed(2)+'% in year one'+(top.fee?' · after '+m(top.fee)+' fees':'')+'</p>'
+  +'<p class="fc-catch">'+(nd?'Needs '+nd:'No conditions')+(top.promoMonths?' · promo rate for '+Math.round(top.promoMonths)+' of 12 months':'')+' · '+INS[v.fdic][0]+' · rate is variable, '+(v.verifiedAt?'checked '+fd(v.verifiedAt):'check date not recorded')+'</p>'})()
+ :'<p class="fc-k">Your '+m(b)+' could earn</p><p class="fc-big">—</p><p class="fc-line">No account matches these options.</p><p class="fc-catch">Try fewer options under Change amount.</p>';
  list.innerHTML=R.rows.map(function(r,i){return card(r,b,i+1)}).join('');more.textContent='Show all '+R.rows.length;more.hidden=R.rows.length<=5;
  skip.textContent=R.skipped.length?'Not counted: '+R.skipped.map(function(s){return P[s.id].name+' ('+s.why+')'}).join('; ')+'.':''}
 f.addEventListener('input',go);f.addEventListener('change',go);

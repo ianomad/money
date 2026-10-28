@@ -95,6 +95,7 @@ def dataset(today=None):
 def fmt_date(s): return date.fromisoformat(s).strftime('%b %-d, %Y') if s else ''
 def money(x): return f"${x:,.0f}"
 
+QUICK = ('dd', 'bankOnly')  # shown as pills; the rest sit under "More options" with their defaults
 def card(r, P, b, i):
     v = P[r['id']]; ins, cls = INS[v['fdic']]
     pm = r['promoMonths']; how = e(r['label'])
@@ -105,29 +106,47 @@ def card(r, P, b, i):
     src = f' · <a href="{e(v["src"])}" target="_blank" rel="noopener">Source ↗</a>' if v['src'] else ''
     chk = f"Checked {fmt_date(v['verifiedAt'])}" if v['verifiedAt'] else 'Check date not recorded'
     return (f'<li class="res{" stale" if v["flags"] else ""}"><div class="rtop"><span class="rk">{i}</span><div><b class="nm">{e(v["name"])}</b>'
-            f'<span class="pd">{e(v["product"])}</span></div><div class="amt"><b>{money(r["net"])}</b><span>first year</span></div></div>'
-            f'<p class="how">{how}{(" · needs " + needs) if needs else ""}</p><p class="how">{math_} on {money(b)} ≈ {r["net"] / b * 100:.2f}% over 12 months.{(" " + after) if after else ""}</p>'
-            f'<p class="meta"><span class="chip {cls}">{ins}</span>{chips}<span>{chk}{src}</span></p></li>')
+            f'<span class="pd">{r["net"] / b * 100:.2f}%{(" · needs " + needs) if needs else ""}</span>{chips}</div><div class="amt"><b>{money(r["net"])}</b><span>1st year</span></div></div>'
+            f'<details class="i"><summary>Details</summary><p class="how">{e(v["product"])} · {how}</p><p class="how">{math_} on {money(b)} ≈ {r["net"] / b * 100:.2f}% over 12 months.{(" " + after) if after else ""}</p>'
+            f'<p class="meta"><span class="chip {cls}">{ins}</span><span>{chk}{src}</span></p></details></li>')
+
+def pick_html(top, P, b):
+    if not top: return f'<p class="fc-k">Your {money(b)} could earn</p><p class="fc-big">—</p><p class="fc-line">No account matches these options.</p><p class="fc-catch">Try fewer options under Change amount.</p>'
+    v = P[top['id']]; ins = INS[v['fdic']][0]
+    needs = ', '.join(NEED_TXT[n] for n in top['needs'] if n != 'new')
+    cond = ('Needs ' + needs) if needs else 'No conditions'
+    promo = f' · promo rate for {top["promoMonths"]:.0f} of 12 months' if top['promoMonths'] else ''
+    fee = f' · after {money(top["fee"])} fees' if top['fee'] else ''
+    chk = f"checked {fmt_date(v['verifiedAt'])}" if v['verifiedAt'] else 'check date not recorded'
+    return (f'<p class="fc-k">Your {money(b)} could earn</p><p class="fc-big">{money(top["net"])}<small>/year</small></p>'
+            f'<p class="fc-line">at <b>{e(v["name"])}</b> · {top["net"] / b * 100:.2f}% in year one{fee}</p>'
+            f'<p class="fc-catch">{cond}{promo} · {ins} · rate is variable, {chk}</p>')
 
 def render(D, b=10000):
     opt = {k: d for k, _, d in NEEDS}; res = run(D, b, opt, D['today']); P = {v['id']: v for v in D['providers']}
     top = [r for r in res['rows'] if r['rankable']]
-    tb = ''.join(f'<label><input type="checkbox" name="{k}"{" checked" if d else ""}> {t}</label>' for k, t, d in NEEDS)
-    fb = ''.join(f'<label><input type="checkbox" name="{k}"> {t}</label>' for k, t in FILTERS)
-    lead = top[0] if top else None
-    pick = (f'<p class="pick-line" id="sv-pick">For {money(b)} with these choices, <b>{e(P[lead["id"]]["name"])}</b> pays the most over a year: about <b>{money(lead["net"])}</b>.</p>' if lead else '<p class="pick-line" id="sv-pick">No account matches these choices.</p>')
+    allt = {k: (t, d) for k, t, d in NEEDS}; allt.update({k: (t, False) for k, t in FILTERS})
+    SHORT = {'dd': 'Direct deposit OK', 'bankOnly': 'FDIC banks only'}
+    cb = lambda k, cls='': f'<label class="{cls}"><input type="checkbox" name="{k}"{" checked" if allt[k][1] else ""}> {SHORT.get(k) if cls else allt[k][0]}</label>'
+    quick = ''.join(cb(k, 'pill') for k in QUICK)
+    moreo = ''.join(cb(k) for k in [k for k, _, _ in NEEDS] + [k for k, _ in FILTERS] if k not in QUICK)
     rows = ''.join(card(r, P, b, i + 1) for i, r in enumerate(res['rows']))
     data = json.dumps({'today': D['today'], 'providers': D['providers']}, separators=(',', ':'), ensure_ascii=False).replace('</', '<\\/')
     js = (ROOT / 'scripts/savings_calc.js').read_text() + (ROOT / 'scripts/savings_ui.js').read_text()
-    return (f'<section class="tool" id="calc" aria-labelledby="calc-h"><p class="eyebrow">Earnings calculator</p><h2 id="calc-h">What would you actually earn?</h2>'
-            f'<p class="hint">A first-year estimate for your balance. Short promos count only for the months they last, then the regular rate. Fees come off the top.</p>'
-            f'<form class="sv-form" id="sv-form" onsubmit="return false"><label class="bal">Your balance<span class="dollar"><input id="sv-bal" name="bal" inputmode="decimal" autocomplete="off" value="{b:,}" aria-describedby="sv-bal-err"></span></label>'
+    return (f'<section class="tool feed" id="calc" aria-labelledby="calc-h"><h2 id="calc-h" class="sr">What your savings could earn</h2>'
+            f'<article class="fc dark hero"><div id="sv-pick" aria-live="polite">{pick_html(top[0] if top else None, P, b)}</div>'
+            f'<details class="i act" id="sv-adjust"><summary>Change amount</summary><div class="dbody">'
+            f'<form class="sv-form" id="sv-form" onsubmit="return false"><label class="bal">Balance<span class="dollar"><input id="sv-bal" name="bal" inputmode="decimal" autocomplete="off" value="{b:,}" aria-describedby="sv-bal-err"></span></label>'
             f'<p class="err" id="sv-bal-err" hidden>Enter an amount between $1 and $10,000,000.</p>'
-            f'<fieldset class="toggles"><legend>What you’re willing to do</legend>{tb}</fieldset><fieldset class="toggles"><legend>Filters</legend>{fb}</fieldset></form>'
-            f'<div class="results" id="sv-out" aria-live="polite">{pick}<ol class="res-list collapsed" id="sv-list">{rows}</ol>'
-            f'<button class="show-all" id="sv-more" type="button">Show all {len(res["rows"])}</button><p class="note" id="sv-skip">{skipped_txt(res, P)}</p></div>'
-            f'<p class="assume"><b>How this is worked out.</b> Balance stays the same for 12 months; rates stay where providers publish them today (they are variable); each rate is APY spread evenly by month; before tax. '
+            f'<div class="pills" role="group" aria-label="Options">{quick}</div>'
+            f'<details class="i"><summary>More options</summary><fieldset class="toggles"><legend class="sr">More options</legend>{moreo}</fieldset></details></form></div></details>'
+            f'<div class="fc-act"><a class="btn" href="#sv-all" data-open="sv-all">All {len(res["rows"])} accounts ranked</a></div></article>'
+            f'<details class="i" id="sv-all"><summary>All accounts, ranked for this amount</summary><div class="dbody"><ol class="res-list collapsed" id="sv-list">{rows}</ol>'
+            f'<button class="show-all" id="sv-more" type="button">Show all {len(res["rows"])}</button></div></details>'
+            f'<details class="i"><summary>How it works</summary><div class="dbody"><p>A first-year estimate for your balance. Short promos count only for the months they last, then the regular rate. Fees come off the top.</p>'
+            f'<p>Balance stays the same for 12 months; rates stay where providers publish them today (they are variable); each rate is APY spread evenly by month; before tax. '
             f'Promos that end on a set date count only until that date. Accounts with an unrecorded or old check date are shown but never put first. Rates checked against provider pages; list checked {fmt_date(D["checkedAt"])}.</p>'
+            f'<p class="note" id="sv-skip">{skipped_txt(res, P)}</p></div></details>'
             f'<script id="sv-data" type="application/json">{data}</script><script>{js}</script></section>')
 
 def skipped_txt(res, P):
