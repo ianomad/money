@@ -1,5 +1,5 @@
 """Content v2: Cards comparison, Markets 'what it means for you', sourcing folds."""
-import json, html as H
+import json, re, html as H
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 import os as _os; from pathlib import Path as _Path; DATA = _Path(_os.environ.get('MB_DATA') or ROOT / 'data')  # tests point MB_DATA at a frozen snapshot
@@ -65,18 +65,23 @@ def cards_body():
         + f'<div class="g g2"><label>Points value (¢)<input id="cpp" inputmode="decimal" value="{pv*100:g}"></label>'
         + '<label class="tg"><input type="checkbox" id="fy"> Add signup bonus (year 1)</label></div>'
         + '<p class="tot" id="calc-note">Showing an ongoing year: rewards minus the annual fee. Points are counted at 1¢ unless you change it.</p></div>')
-    fee_s = lambda c: f'${c["fee"]:,} annual fee, counted' if c['fee'] else 'No annual fee'
-    short = {'top': None, 'nofee': 'Costs nothing to keep', 'travel': 'Rewards only; credits and lounges not counted',
-             'bcp': '6% groceries on the first $6,000/yr; pair with a 2% card', 'sv': '3% dining, groceries, streaming', 'bb': 'Earns on rent with no fee; rent not in the numbers'}
+    def fee_s(c):
+        if not c['fee']: return 'No annual fee'
+        if re.search(r'membership|needs', c.get('feeNote') or '', re.I): return f'${c["fee"]:,}/yr membership (not a card fee), counted'
+        return f'${c["fee"]:,} annual fee, counted'
+    short = {'top': None, 'nofee': 'Suits you if you want nothing to pay or track',
+             'travel': 'Suits frequent travellers; travel credits, lounges and perks not counted',
+             'bcp': 'Suits big grocery spenders: 6% on the first $6,000/yr; pair with a 2% card', 'sv': 'Suits people who eat out: 3% dining, groceries, streaming',
+             'bb': 'Suits renters: earns on rent with no fee; rent not in the numbers'}
     t0 = pick_for('top')
-    hero = (f'<article class="fc dark hero" data-pick="top"><p class="fc-k">Your best card · <span data-tot>${total:,}</span>/mo spending</p>'
+    hero = (f'<article class="fc dark hero" data-pick="top"><p class="fc-k"><span data-who>Best for</span> <span data-tot>${total:,}</span>/month</p>'
             f'<p class="fc-big"><span class="v">${t0["val"]:,}/yr</span></p><h3 class="fc-line">{e(t0["name"])}</h3>'
             f'<p class="fc-catch"><span><span class="fee">{fee_s(t0)}</span> · points at <span data-cpp>{pv*100:g}</span>¢ · no signup bonus</span></p>'
             f'<p class="fc-foot">Terms checked {fdate(d["checkedAt"])}</p>'
             f'<div class="cc-bars" id="cc-bars">' + F.bars([(e(c['name']), c['val'], f'${c["val"]:,}', i == 0) for i, c in enumerate(rk[:5])], 'Top 5 for this spending, $ a year after fees') + '</div>'
             f'<details class="i act" id="cc-adjust"><summary>Adjust spending</summary><div class="dbody">{calc}</div></details>'
-            f'<div class="fc-act"><a class="btn" href="#cc-all" data-open="cc-all">All {len(cs)} cards ranked</a></div></article>')
-    alts = [F.card(e(w), f'<span class="v">${pick_for(r)["val"]:,}/yr</span>', '', catch=f'<span class="fee">{fee_s(pick_for(r))}</span> · {e(short[r])}',
+            '</article>')
+    alts = [F.card(e(w), f'<span class="v">${pick_for(r)["val"]:,}/yr</span>', line=e(short[r]), catch=f'<span class="fee">{fee_s(pick_for(r))}</span>' + (' · perks not counted' if pick_for(r).get('perks') and r != 'travel' else ''),
                    attrs=f' data-pick="{r}"').replace('<p class="fc-big">', f'<h3 class="fc-line nm">{e(pick_for(r)["name"])}</h3><p class="fc-big">', 1)
             for r, w, t in rules if r != 'top']
     how_picks = ''.join(f'<p><b>{e(w)}:</b> {e(t)}</p>' for r, w, t in rules)
@@ -92,7 +97,7 @@ def cards_body():
         + f'<small class="math" data-m>Rewards ${c["rw"]:,} − fee ${c["fee"]:,} = ${c["val"]:,}/yr</small>'
         + '<details class="i"><summary>Details</summary><div class="dbody">' + bon_txt(c) + (f'<small>Perks (not counted): {e(c["perks"])}</small>' if c.get('perks') else '') + (f'<small>{e(c["note"])}</small>' if c.get('note') else '') + chk(c) + '</div></details>'
         + f'</td><td class="hide">{"$0" if not c["fee"] else "$"+str(c["fee"])}<small>{e(c.get("feeNote",""))}</small></td><td class="n" data-v>${c["val"]:,}</td></tr>' for c in rk)
-    js = 'const CARDS=' + json.dumps([{k: c.get(k) for k in ('id','name','type','earn','cap','fee','points','bonusTerms')} for c in cs]) + ';'
+    js = 'const CARDS=' + json.dumps([{k: c.get(k) for k in ('id','name','type','earn','cap','fee','points','bonusTerms','feeNote')} for c in cs]) + ';'
     js += (ROOT/'scripts'/'cards_calc.js').read_text() + (ROOT/'scripts'/'cards_ui.js').read_text()
     return (CSS + F.head('Which card pays you <em>the most?</em>', 'Yearly value after fees, for your spending.')
         + f'<div class="feed">{hero}</div>' + F.swipe(alts, 'Alternatives for different spending', 'If you spend <em>differently</em>')
@@ -150,10 +155,11 @@ def markets_top():
         sid = m[k]['id']; st = stale(k)
         return ((f'<span class="chip warn">May be out of date</span> ' if st else '') + f'{e(freq)} · as of <b>{fd(m[k]["date"])}</b> · {e(src)} via '
                 f'<a href="{FRED}{sid}" target="_blank" rel="noopener">FRED {sid} ↗</a>')
+    METH = []
     def how(body):
-        return f'<details class="i"><summary>How it works</summary><div class="dbody">{body}</div></details>'
+        METH.append(body); return ''
     def card(k, kicker, big, unit, mv, line, catch, ft, viz='', extra='', cls=''):
-        return (f'<article class="fc mk {cls}" id="m-{k}"><p class="fc-k">{kicker}</p><p class="fc-big">{big}{f"<small>{unit}</small>" if unit else ""}</p>{mv}'
+        return (f'<article class="fc mk {cls}" id="m-{k}" tabindex="-1" aria-label="{e(kicker)}"><p class="fc-k">{kicker}</p><p class="fc-big">{big}{f"<small>{unit}</small>" if unit else ""}</p>{mv}'
                 f'<p class="fc-line">{line}</p>{viz}<p class="fc-catch">{catch}</p><p class="fc-foot">{ft}</p>{extra}</article>')
     mo, t10, sp, dl, oil, gas, fed = (m[k] for k in ('mortgage','t10','sp500','dollar','oil','gas','fed'))
     btc = sorted(cj['coins'], key=lambda c: c['market_cap_rank'])[0]
@@ -163,8 +169,8 @@ def markets_top():
     # mortgage: hero card, payment on a typical loan, change-amount tool
     mv, sz = move('mortgage')
     p_now, p_y1 = pay(mo['value']), pay(mo['y1'])
-    tool = (f'<details class="i act mk-loan"><summary>Change loan amount</summary><div class="dbody"><label>Loan amount ($)<input type="number" inputmode="numeric" min="10000" step="10000" value="{LOAN}" data-loan data-r="{mo["value"]}" data-r1="{mo["y1"]}"></label>'
-            f'<p aria-live="polite" data-loan-out>About <b>${p_now:,.0f}/mo</b> at {mo["value"]:.2f}%, vs ${p_y1:,.0f} at {mo["y1"]:.2f}% a year ago.</p></div></details>')
+    tool = (f'<div class="mk-loan"><label for="mk-loan-amt">Your loan ($)</label><input id="mk-loan-amt" type="number" inputmode="numeric" min="10000" step="10000" value="{LOAN}" data-loan data-r="{mo["value"]}" data-r1="{mo["y1"]}" aria-describedby="mk-loan-out">'
+            f'<p id="mk-loan-out" aria-live="polite" data-loan-out>About <b>${p_now:,.0f}/mo</b> at {mo["value"]:.2f}%, vs ${p_y1:,.0f} at {mo["y1"]:.2f}% a year ago.</p></div>')
     cards['mortgage'] = (card('mortgage', '30-year mortgage rate', f"{mo['value']:.2f}", '%', mv,
         f"About <b>${p_now:,.0f}/mo</b> on a ${LOAN:,} loan. That is ${p_now-p_y1:+,.0f} vs a year ago." .replace('$+', '+$').replace('$-', '−$'),
         f"Principal and interest only, 30 years fixed. Taxes, insurance and PMI add more, and your quote depends on credit and down payment.",
@@ -201,25 +207,38 @@ def markets_top():
         'Savings held in other currencies are worth fewer dollars when it rises.', foot('dollar', 'Daily, published weekly', 'Federal Reserve'), chart('dollar', lambda v: f'{v:.0f}', 'US dollar index'),
         '<p class="fc-act"><a class="btn" href="/#world">See currency risk abroad</a></p>' + how('<p>Nominal broad dollar index against major trade partners’ currencies (Jan 2006 = 100).</p>')), sz)
     b24 = btc['price_change_percentage_24h']
-    cards['btc'] = (f'<article class="fc mk" id="m-btc"><p class="fc-k">Bitcoin</p><p class="fc-big">${btc["current_price"]:,.0f}</p>'
+    cards['btc'] = (f'<article class="fc mk" id="m-btc" tabindex="-1" aria-label="Bitcoin"><p class="fc-k">Bitcoin</p><p class="fc-big">${btc["current_price"]:,.0f}</p>'
         f'<span class="mv {"up" if b24 > 0 else "down"}"><span aria-hidden="true">{"▲" if b24 > 0 else "▼"}</span> {"Up" if b24 > 0 else "Down"} {abs(b24):.1f}% in 24 hours</span>'
         '<p class="fc-line">The biggest crypto coin. Most others move with it.</p><p class="fc-catch">Prices swing widely, and it is not insured like a bank account.</p>'
         f'<p class="fc-foot">Snapshot, not live · taken <b>{bt:%b %-d, %-I:%M %p} PT</b> · <a href="https://www.coingecko.com/en/coins/bitcoin" target="_blank" rel="noopener">CoinGecko ↗</a></p>'
-        '<p class="fc-act"><a class="btn" href="#crypto" data-open="crypto">All top 20 coins</a></p></article>', abs(b24))
-    # order: mortgage first, then by size of the 30-day move (biggest first); bitcoin last
-    rest = sorted((k for k in cards if k not in ('mortgage', 'btc')), key=lambda k: -cards[k][1])
-    order = ['mortgage'] + rest + ['btc']
-    names = {'mortgage': 'Mortgage', 'gas': 'Gas', 'oil': 'Oil', 'fed': 'Fed funds', 't10': '10-year yield', 'sp500': 'S&P 500', 'dollar': 'Dollar'}
+        '</article>', abs(b24))
+    # consumer relevance, not size of move: borrowing, the pump, savings first; a series older than 14 days drops to the end
+    PRI = ['mortgage', 'gas', 'fed', 'oil', 'sp500', 't10', 'dollar']
+    order = sorted(PRI, key=lambda k: (stale(k), PRI.index(k))) + ['btc']
+    short = lambda d: dt.date.fromisoformat(d).strftime('%b %-d')
     def mvtxt(k):
-        s = m[k]; pct = k in ('oil', 'sp500', 'dollar')
-        v = (s['value']/s['m1']-1)*100 if pct else s['value']-s['m1']
-        return f"{'▲' if v > 0 else '▼' if v < 0 else '■'} {abs(v):.1f}%" if pct else (f"{'▲' if v > 0 else '▼' if v < 0 else '■'} ${abs(v):.2f}" if k == 'gas' else f"{'▲' if v > 0 else '▼' if v < 0 else '■'} {abs(v):.2f} pts")
-    top3 = sorted(names, key=lambda k: -cards[k][1])[:3]
+        s_ = m[k]; pct = k in ('oil', 'sp500', 'dollar'); v = (s_['value']/s_['m1']-1)*100 if pct else s_['value']-s_['m1']
+        a = '▲' if v > 0 else '▼' if v < 0 else '■'
+        return (f"{a} {abs(v):.1f}%" if pct else f"{a} ${abs(v):.2f}" if k == 'gas' else f"{a} {abs(v):.2f} pts"), ('up' if v > 0 else 'down' if v < 0 else 'flat')
+    BR = {
+     'mortgage': ('Mortgage rate', f"{mo['value']:.2f}%", f"About ${p_now:,.0f}/mo on a ${LOAN:,} loan, {'+' if p_now >= p_y1 else '−'}${abs(p_now-p_y1):,.0f} vs a year ago.", 'Freddie Mac'),
+     'gas': ('Gas', f"${gas['value']:.2f}/gal", f"A 15-gallon fill-up is about ${gas['value']*15:.0f}, vs ${gas['y1']*15:.0f} a year ago.", 'EIA'),
+     'fed': ('Fed funds rate', f"{fed['value']:.2f}%", 'Savings rates follow it.' + (f" Best no-strings savings we track: {top['base']:g}%." if top else ''), 'Federal Reserve'),
+     'oil': ('Oil', f"${oil['value']:.0f}/bbl", f"{yoy(oil):+.0f}% in a year. Pump prices often follow weeks later.", 'EIA'),
+     'sp500': ('S&P 500', f"{sp['value']:,.0f}", f"{yoy(sp):+.0f}% in a year, the index many 401(k) funds track.", 'S&P DJI'),
+     't10': ('10-year Treasury', f"{t10['value']:.2f}%", 'Mortgage rates tend to follow it.', 'US Treasury'),
+     'dollar': ('US dollar', f"{dl['value']:.1f}", 'A stronger dollar makes trips abroad cheaper.', 'Federal Reserve'),
+    }
+    def brow(n, k):
+        lab, val, why, src = BR[k]; mt, d = mvtxt(k)
+        return (f'<li><a href="#m-{k}" class="mk-b"><span class="n" aria-hidden="true">{n}</span><span class="t"><span class="h"><b>{e(lab)}</b> <b class="v">{e(val)}</b></span>'
+                f'<span class="w">{e(why)}</span><span class="s"><span class="mv {d}">{mt} in 30 days</span> {e(src)} · {short(m[k]["date"])}{" · may be out of date" if stale(k) else ""}</span></span>'
+                '<span class="go" aria-hidden="true">›</span></a></li>')
     newest = max(m[k]['date'] for k in m)
-    jump = ''.join(f'<a href="#m-{k}"><span>{names[k]}</span><b>{mvtxt(k)}</b></a>' for k in top3)
-    head = ('<section class="fhead mk-head"><p class="fc-k">Markets · today in 30 seconds</p><h1>What moved <em>your money.</em></h1>'
-            f'<p class="sub">Biggest moves in the last 30 days, each with what it means and the catch. Latest data {fd(newest)}.</p></section>'
-            f'<nav class="mk-top" aria-label="Biggest moves">{jump}</nav>')
+    head = ('<section class="fhead mk-head"><p class="fc-k">Markets · today in 30 seconds</p><h1>What matters for <em>your money.</em></h1></section>'
+            '<section class="mk-brief" aria-labelledby="mk-brief-h"><h2 id="mk-brief-h" class="sr">Top 3 for your wallet</h2><ol>'
+            + ''.join(brow(i + 1, k) for i, k in enumerate(order[:3])) + '</ol>'
+            f'<p class="mk-note">Ranked by how much they touch household budgets, not by size of move. Tap one for its chart and catch. Latest data {fd(newest)}.</p></section>')
     seg = ('<div class="seg mseg" role="group" aria-label="Chart period">' + ''.join(f'<button type="button" data-mp="{p}" aria-pressed="{str(p == "1y").lower()}">{l}</button>' for p, l in (('3m', '3M'), ('1y', '1Y'), ('5y', '5Y'))) + '</div>')
     ej = dj('events.json')
     def tm(t):
@@ -233,13 +252,14 @@ def markets_top():
           "document.querySelectorAll('figure.spk').forEach(f=>f.hidden=f.dataset.p!==b.dataset.mp)});"
           "const i=document.querySelector('[data-loan]'),o=document.querySelector('[data-loan-out]');if(i&&o){const P=(r,a)=>a*(r/1200)/(1-Math.pow(1+r/1200,-360)),f=n=>'$'+Math.round(n).toLocaleString('en-US');"
           "i.addEventListener('input',()=>{const a=+i.value;if(!(a>0))return;const r=+i.dataset.r,r1=+i.dataset.r1;o.innerHTML='About <b>'+f(P(r,a))+'/mo</b> at '+r.toFixed(2)+'%, vs '+f(P(r1,a))+' at '+r1.toFixed(2)+'% a year ago.'})}"
-          "document.querySelectorAll('[data-open]').forEach(a=>a.addEventListener('click',ev=>{const t=document.getElementById(a.dataset.open),d=t&&t.closest('details');if(t){ev.preventDefault();if(d)d.open=true;t.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}}))})()</script>")
-    return (head + f'<div class="mhead"><span>Charts</span>{seg}</div>'
+          "document.querySelectorAll('.mk-b').forEach(a=>a.addEventListener('click',()=>{const t=document.querySelector(a.getAttribute('href'));t&&setTimeout(()=>t.focus({preventScroll:true}),0)}));document.querySelectorAll('[data-open]').forEach(a=>a.addEventListener('click',ev=>{const t=document.getElementById(a.dataset.open),d=t&&t.closest('details');if(t){ev.preventDefault();if(d)d.open=true;t.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}}))})()</script>")
+    return (head + f'<div class="mhead"><h2 class="fh">All the numbers</h2><span class="sr">Chart period</span>{seg}</div>'
         + '<div class="feed mk-feed">' + ''.join(cards[k][0] for k in order) + '</div>'
         + '<section class="fc mk-watch" id="watch"><p class="fc-k">Coming up</p><h2 class="fh">Dates that can move these numbers</h2><ul class="ev mk-ev">' + ev + '</ul>'
-        + how(f'<p>{e(ej["note"])} Checked {fd(ej["checkedAt"])}. Official calendars: <a href="{ej["calendars"]["BLS"]}" target="_blank" rel="noopener">BLS ↗</a> · <a href="{ej["calendars"]["Federal Reserve"]}" target="_blank" rel="noopener">Federal Reserve ↗</a></p>'
-              '<p>Figures refresh every morning from FRED (Federal Reserve Bank of St. Louis), which republishes Freddie Mac, EIA, Treasury, Federal Reserve and S&amp;P data. Most lag by a day or more; weekly series lag by up to a week. Bitcoin is a CoinGecko snapshot. Charts show the period you pick above.</p>')
-        + '</section>' + js)
+        + f'<p class="fc-foot">{e(ej["note"])} Checked {fd(ej["checkedAt"])} · <a href="{ej["calendars"]["BLS"]}" target="_blank" rel="noopener">BLS calendar ↗</a> · <a href="{ej["calendars"]["Federal Reserve"]}" target="_blank" rel="noopener">Fed calendar ↗</a></p></section>'
+        + '<details class="i big mk-how" id="how"><summary>How these numbers work</summary><div class="dbody">'
+        + '<p>Figures refresh every morning from FRED (Federal Reserve Bank of St. Louis), which republishes Freddie Mac, EIA, Treasury, Federal Reserve and S&amp;P data. Most lag by a day or more; weekly series by up to a week. A number older than 14 days is marked “may be out of date”. The 30-day change compares the latest reading with the one about a month earlier. Bitcoin is a CoinGecko snapshot.</p>'
+        + ''.join(METH) + '</div></details>' + js)
 
 # ---------- sourcing fold ----------
 def sources_fold(kind):
