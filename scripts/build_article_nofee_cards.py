@@ -261,7 +261,7 @@ def build(root):
     mon = date.fromisoformat(cj['checkedAt']).strftime('%b %Y')
     title = f'Best no-fee cash-back cards ({mon}) — getmoneybeast.com'
     desc = (f'Flat {_pct(flat_rate)} no-fee cards pay about {_usd(flat_net)}/yr on a ${spend_lbl} spend mix. '
-            + (f'{rh["name"]} (${rh_fee:,.0f}/yr, {_pct(rh_rate)}) nets {_usd(rh_net)}. ' if rh else '')
+            + (f'{rh["name"]} (3% + ${rh_fee:,.0f}/yr Gold membership) nets {_usd(rh_net)}. '.replace('3%', _pct(rh_rate)) if rh else '')
             + 'Category cards only win with heavy dining/grocery spend. Hand-checked, no sponsored rankings.')
     return title, desc, body
 

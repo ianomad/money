@@ -66,9 +66,7 @@ def cards_body():
         + '<label class="tg"><input type="checkbox" id="fy"> Add signup bonus (year 1)</label></div>'
         + '<p class="tot" id="calc-note">Showing an ongoing year: rewards minus the annual fee. Points are counted at 1¢ unless you change it.</p></div>')
     def fee_s(c):
-        if not c['fee']: return 'No annual fee'
-        if re.search(r'membership|needs', c.get('feeNote') or '', re.I): return f'${c["fee"]:,}/yr membership (not a card fee), counted'
-        return f'${c["fee"]:,} annual fee, counted'
+        import facts; return facts.card_cost(c, counted=True)
     short = {'top': None, 'nofee': 'Suits you if you want nothing to pay or track',
              'travel': 'Suits frequent travellers; travel credits, lounges and perks not counted',
              'bcp': 'Suits big grocery spenders: 6% on the first $6,000/yr; pair with a 2% card', 'sv': 'Suits people who eat out: 3% dining, groceries, streaming',

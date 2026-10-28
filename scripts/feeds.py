@@ -52,8 +52,9 @@ def teasers():
     d = dj('cards.json'); prof = d['profile']; pv = d['pointValue']
     for x in d['cards']: x['val'] = pages2.card_value(x, prof, pv)
     b = max(d['cards'], key=lambda x: x['val']); sp = sum(v for k, v in prof.items() if isinstance(v, (int, float)) and k != 'rent')
-    cc = F.card('Best card for your spending', f'${b["val"]:,}', f'a year from {e(b["name"])}', unit='/yr',
-                catch=f'After its ${b["fee"]:,} annual fee · assumes ${sp:,}/mo of spending',
+    import facts
+    cc = F.card(f'Top card at ${sp:,}/mo of spending', f'${b["val"]:,}', f'a year from {e(b["name"])}', unit='/yr',
+                catch=f'After the {e(facts.card_cost(b))}' if b.get('fee') else 'No annual fee',
                 actions='<div class="fc-act"><a class="btn" href="/cards">Adjust spending →</a></div>')
     mk = dj('markets.json')['series']['mortgage']; ch = mk['value'] - mk['m1']
     mc = F.card('30-year mortgage', f'{mk["value"]:.2f}%', f'{"+" if ch >= 0 else "−"}{abs(ch):.2f} pts in a month', catch=f'Weekly average as of {fd(mk["date"])}',

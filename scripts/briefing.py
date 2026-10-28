@@ -60,7 +60,9 @@ def apply(h):
     if 'id="sv-pick"' not in h or 'id="brief"' in h: return h
     sec = render()
     if not sec: return h
-    i = h.find('</article>', h.find('id="sv-pick"'))
-    if i < 0: return h
-    h = h[:i + 10] + sec + h[i + 10:]
+    if '<!--brief-->' in h: h = h.replace('<!--brief-->', sec, 1)
+    else:
+        i = h.find('</article>', h.find('id="sv-pick"'))
+        if i < 0: return h
+        h = h[:i + 10] + sec + h[i + 10:]
     return h.replace('</body>', JS + '</body>', 1)

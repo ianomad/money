@@ -34,7 +34,22 @@ def header(cur):
             f'<nav class="mainnav" aria-label="Main">{_links(NAV, cur)}</nav>'
             f'<div class="hact"><a class="xfollow" href="{X_URL}" target="_blank" rel="noopener" data-x-follow="header">Follow on X ↗</a>'
             f'<details class="menu"><summary aria-label="All pages"><span class="bars" aria-hidden="true"></span>Menu</summary><div class="menu-panel"><nav class="menu-grid" aria-label="All pages">{groups}</nav></div></details></div></div>'
-            f'<nav class="tabs-m" aria-label="Sections">{_links(NAV, cur)}</nav></header>')
+            '</header>')
+
+ICON = {'savings': '<path d="M4 10h16v9H4zM7 10V7a5 5 0 0 1 10 0v3"/>', 'world': '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c3 3 3 14 0 17M12 3.5c-3 3-3 14 0 17"/>',
+        'cards': '<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h4"/>', 'markets': '<path d="M3 18l5-6 4 3 7-9"/><path d="M15 6h4v4"/>'}
+
+def bnav(cur):
+    """Mobile bottom navigation (CSS shows it under 820px only; desktop keeps the top nav)."""
+    return ('<nav class="tabs-m bnav" aria-label="Sections">' + ''.join(
+        f'<a href="{h}"{" aria-current=\"page\"" if k == cur else ""}><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">{ICON[k]}</svg><span>{l}</span></a>'
+        for l, h, k in NAV if k in ICON) + '</nav>')
+
+BNAV_JS = ('<script>(()=>{const n=document.querySelector(".bnav"),v=window.visualViewport;if(!n)return;'
+           'const t=e=>{const f=document.activeElement,txt=!!(f&&f.matches("input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=button]),textarea"));n.classList.toggle("kb",txt||(v&&innerHeight-v.height>120));'
+           'if(txt&&e&&e.type==="resize"){const r=f.getBoundingClientRect(),h=v?v.height:innerHeight;if(r.top<0||r.bottom>h)f.scrollIntoView({block:"center"})}};'
+           'addEventListener("resize",t);'
+           'document.addEventListener("focusin",t);document.addEventListener("focusout",()=>setTimeout(t,50));v&&v.addEventListener("resize",t)})()</script>')
 
 def footer(note):
     groups = ''.join(f'<div><h2>{g}</h2>' + ''.join(f'<a href="{h}">{l}</a>' for l, h in items) + '</div>' for g, items in GROUPS)
@@ -70,6 +85,8 @@ def apply(h):
         note = nm.group(1) if nm else 'General information, not financial advice. Rates and terms change; confirm with the provider before you move money.'
         h = h[:fm.start()] + footer(note) + h[fm.end():]
     if MENU_JS not in h: h = h.replace('</body>', MENU_JS + '</body>', 1)
+    h = re.sub(r'<nav class="tabs-m bnav".*?</nav>', '', h, flags=re.S)
+    h = h.replace('</body>', bnav(cur) + ('' if BNAV_JS in h else BNAV_JS) + '</body>', 1)
     # 3. trust line only on data pages, and one per page
     if path not in DATA_PAGES: h = re.sub(r'<p class="trust">.*?</p>', '', h, count=1, flags=re.S)
     # 4. brand in titles

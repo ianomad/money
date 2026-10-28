@@ -88,7 +88,7 @@ def dataset(today=None):
                 flags.append(['mismatch', f'Calculator terms don’t match the listed {k} rate; recheck']); problems.append(f"{p['id']}: {k} {p[k]} not in rate-terms paths")
         src = p['sources'][0] if p['sources'] else None
         provs.append({'id': p['id'], 'name': p['name'], 'product': p['product'], 'fdic': p['fdic']['status'], 'verifiedAt': va,
-                      'effective': p.get('effective'), 'src': src['url'] if src else None, 'srcLabel': src['label'] if src else None,
+                      'effective': p.get('effective'), 'src': src['url'] if src else None, 'srcLabel': src['label'] if src else None, 'catches': p.get('catches'), 'req': p.get('requirements'),
                       'terms': T, 'flags': flags, 'note': T.get('note')})
     return {'today': today, 'checkedAt': rj['checkedAt'], 'providers': provs}, problems
 
@@ -112,24 +112,34 @@ def card(r, P, b, i):
 
 def _pct(r, b): return f'{r["net"] / b * 100:.2f}%'
 def _yr1(r): return bool(r['promoMonths'] or r['fee'])
+def _cond(r, P):
+    v = P[r['id']]; nd = ', '.join(NEED_TXT[n] for n in r['needs'] if n != 'new')
+    if v.get('catches') and (nd or r['promoMonths']): return ' · '.join(c for c in v['catches'] if not c.lower().startswith('no monthly fee'))
+    if nd and v.get('req'): return v['req'].rstrip('.') + (f' · promo rate for {r["promoMonths"]:.0f} of 12 months' if r['promoMonths'] else '')
+    return (('Needs ' + nd) if nd else 'No conditions') + (f' · promo rate for {r["promoMonths"]:.0f} of 12 months' if r['promoMonths'] else '')
+
 def pick_html(tops, P, b):
-    if not tops: return '<p class="fc-k">Top savings rate</p><p class="fc-big">—</p><p class="fc-line">No account matches these options.</p><p class="fc-catch"><span>Try fewer options.</span></p>'
+    """Hero: the rate is the headline; provider; essential catch. Earnings line lives outside (#sv-earn)."""
+    if not tops: return '<p class="fc-k">Top savings rate</p><p class="fc-big">—</p><p class="fc-line">No account matches these options.</p><p class="fc-catch"><span>Try fewer options in Personalize.</span></p>'
     top = tops[0]; v = P[top['id']]; ins = INS[v['fdic']][0]
-    needs = ', '.join(NEED_TXT[n] for n in top['needs'] if n != 'new')
-    cond = ('Needs ' + needs) if needs else 'No conditions'
-    promo = f' · promo rate for {top["promoMonths"]:.0f} of 12 months' if top['promoMonths'] else ''
+    needs = any(n != 'new' for n in top['needs'])
     fee = f' · after {money(top["fee"])} fees' if top['fee'] else ''
     chk = f"checked {fmt_date(v['verifiedAt'])}" if v['verifiedAt'] else 'check date not recorded'
     yr1 = _yr1(top)
-    def li(r, i):
-        nd = ', '.join(NEED_TXT[n] for n in r['needs'] if n != 'new')
-        return (f'<li{" class=on" if i == 0 else ""}><span class="rk">{i + 1}</span><span class="nm">{e(P[r["id"]]["name"])}<small>{("Needs " + nd) if nd else "No conditions"}</small></span>'
-                f'<b>{_pct(r, b)}<small>{" yr 1" if _yr1(r) else " APY"}</small></b></li>')
     return (f'<p class="fc-k">Top savings rate{" · no strings" if not needs else ""}</p><p class="fc-big">{_pct(top, b)}<small>{" yr 1" if yr1 else " APY"}</small></p>'
             f'<p class="fc-line"><b>{e(v["name"])}</b>{" · first-year rate" + fee if yr1 else ""}</p>'
-            f'<p class="fc-catch"><span>{cond}{promo} · {ins} · rate is variable, {chk}</span></p>'
-            f'<ol class="top3" aria-label="Top 3 for your options">{"".join(li(r, i) for i, r in enumerate(tops[:3]))}</ol>'
-            )
+            f'<p class="fc-catch"><span>{e(_cond(top, P))} · {ins} · variable, {chk}</span></p>')
+
+def top3_html(tops, P, b):
+    if not tops: return ''
+    mx = max(float(_pct(r, b).rstrip('%')) for r in tops[:3]) or 1
+    def li(r, i):
+        nd = ', '.join(NEED_TXT[n] for n in r['needs'] if n != 'new'); pc = _pct(r, b)
+        pm = f' · promo {r["promoMonths"]:.0f} of 12 mo' if r['promoMonths'] else ''
+        return (f'<li><span class="rk">{i + 1}</span><span class="nm">{e(P[r["id"]]["name"])}<small>{("Needs " + nd) if nd else "No conditions"}{pm}</small>'
+                f'<i class="t3b" style="--w:{float(pc.rstrip("%")) / mx * 100:.0f}%" aria-hidden="true"></i></span>'
+                f'<b>{pc}<small>{" yr 1" if _yr1(r) else " APY"}</small></b></li>')
+    return ''.join(li(r, i) for i, r in enumerate(tops[:3]))
 
 def render(D, b=10000):
     opt = {k: d for k, _, d in NEEDS}; res = run(D, b, opt, D['today']); P = {v['id']: v for v in D['providers']}
@@ -142,15 +152,23 @@ def render(D, b=10000):
     rows = ''.join(card(r, P, b, i + 1) for i, r in enumerate(res['rows']))
     data = json.dumps({'today': D['today'], 'providers': D['providers']}, separators=(',', ':'), ensure_ascii=False).replace('</', '<\\/')
     js = (ROOT / 'scripts/savings_calc.js').read_text() + (ROOT / 'scripts/savings_ui.js').read_text()
+    earn = (f'≈ <b>{money(top[0]["net"])}</b> in year one on {money(b)} at {e(P[top[0]["id"]]["name"])}, before tax') if top else ''
     return (f'<section class="tool feed" id="calc" aria-labelledby="calc-h"><h2 id="calc-h" class="sr">Top savings rates</h2>'
+            f'<form class="sv-form" id="sv-form" onsubmit="return false">'
             f'<article class="fc dark hero"><div id="sv-pick" aria-live="polite">{pick_html(top, P, b)}</div>'
-            f'<form class="sv-form" id="sv-form" onsubmit="return false"><label class="balq">Your balance<span class="dollar"><input id="sv-bal" name="bal" inputmode="decimal" autocomplete="off" value="{b:,}" aria-describedby="sv-bal-err sv-earn"></span></label>'
-            f'<label class="balq myq">Your bank’s APY<span class="pctin"><input id="sv-my" name="my" inputmode="decimal" autocomplete="off" placeholder="optional" aria-describedby="sv-my-err sv-earn"><i aria-hidden="true">%</i></span></label><p class="err" id="sv-my-err" hidden>Enter a rate between 0 and 30%.</p>'
-            + (f'<p class="fc-earn" id="sv-earn" aria-live="polite">≈ <b>{money(top[0]["net"])}</b> in year one at {e(P[top[0]["id"]]["name"])}, before tax</p>' if top else '<p class="fc-earn" id="sv-earn" aria-live="polite"></p>') +
-            ''
-            + f'<p class="err" id="sv-bal-err" hidden>Enter an amount between $1 and $10,000,000.</p>'
-            f'<div class="pills" role="group" aria-label="Options">{quick}</div>'
-            f'<details class="i" id="sv-adjust"><summary>More options</summary><fieldset class="toggles"><legend class="sr">More options</legend>{moreo}</fieldset></details></form><p class="fc-act"><button type="button" class="lnk share" data-share>Share this rate</button></p></article>'
+            f'<p class="fc-earn" id="sv-earn" aria-live="polite">{earn}</p>'
+            f'<div class="hrow"><details class="amt" id="sv-amt"><summary class="btn">Change amount</summary><label class="balq">Your balance<span class="dollar"><input id="sv-bal" name="bal" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" value="{b:,}" aria-describedby="sv-bal-err sv-earn"></span></label>'
+            f'<p class="err" id="sv-bal-err" hidden>Enter an amount between $1 and $10,000,000.</p></details>'
+            f'<button type="button" class="lnk share" data-share>Share</button></div></article>'
+            f'<section class="fc top3s" aria-labelledby="t3h"><h2 id="t3h" class="fc-k"><span id="sv-t3k">Top 3 · no strings</span></h2>'
+            f'<ol class="top3" id="sv-top3" aria-label="Top 3 savings rates">{top3_html(top, P, b)}</ol>'
+            f'<p class="fc-act"><a class="btn" href="#sv-all" data-open="sv-all">See all {len(res["rows"])}, ranked</a></p></section>'
+            f'<details class="i big" id="sv-adjust"><summary>Personalize</summary><div class="dbody">'
+            f'<p class="note">Change these and every rate above re-ranks for you. Nothing leaves this browser.</p>'
+            f'<div class="pills" role="group" aria-label="Quick options">{quick}</div>'
+            f'<fieldset class="toggles"><legend class="sr">More options</legend>{moreo}</fieldset>'
+            f'<label class="balq myq">Compare with my bank: its APY<span class="pctin"><input id="sv-my" name="my" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="e.g. 0.40" aria-describedby="sv-my-err sv-earn"><i aria-hidden="true">%</i></span></label>'
+            f'<p class="err" id="sv-my-err" hidden>Enter a rate between 0 and 30%.</p></div></details></form><!--brief-->'
             f'<details class="i big" id="sv-all"><summary>See all {len(res["rows"])} accounts, ranked</summary><div class="dbody"><ol class="res-list collapsed" id="sv-list">{rows}</ol>'
             f'<button class="show-all" id="sv-more" type="button">Show all {len(res["rows"])}</button>'
             f'<h3 class="fh">How it works</h3><p>A first-year estimate for your balance. Short promos count only for the months they last, then the regular rate. Fees come off the top.</p>'
