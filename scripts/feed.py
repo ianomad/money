@@ -31,9 +31,11 @@ def head(h, sub, tag='h1'):
 
 CSS = ''  # styles live in scripts/theme.css (theme.apply strips inline <style> layers)
 
-JS = '''<script>(()=>{document.querySelectorAll('[data-swipe]').forEach(s=>{const t=s.querySelector('.sw-track'),it=[...t.children],d=[...s.querySelectorAll('.dots i')],bs=s.querySelectorAll('.sw-b'),pos=s.querySelector('[data-pos]');
-const idx=()=>{let b=0,bd=1e9;it.forEach((c,i)=>{const x=Math.abs(c.offsetLeft-t.offsetLeft-t.scrollLeft);if(x<bd){bd=x;b=i}});return t.scrollLeft+t.clientWidth>=t.scrollWidth-4?it.length-1:b};
-const up=()=>{const i=idx();d.forEach((x,j)=>x.classList.toggle('on',j===i));bs[0].disabled=t.scrollLeft<4;bs[1].disabled=t.scrollLeft+t.clientWidth>=t.scrollWidth-4;if(pos)pos.textContent=(i+1)+' of '+it.length};
-bs.forEach(b=>b.onclick=()=>{const i=Math.max(0,Math.min(it.length-1,idx()+ +b.dataset.d));t.scrollTo({left:it[i].offsetLeft-t.offsetLeft,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})});
-t.addEventListener('scroll',()=>requestAnimationFrame(up),{passive:true});t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();bs[e.key==='ArrowRight'?1:0].click()}});up()});
-document.querySelectorAll('[data-open]').forEach(a=>a.addEventListener('click',e=>{const d=document.getElementById(a.dataset.open);if(d){e.preventDefault();d.open=true;d.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});const f=d.querySelector('input,select');f&&setTimeout(()=>f.focus({preventScroll:true}),350)}}))})();</script>'''
+JS = '''<script>(()=>{const rm=()=>matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';document.querySelectorAll('[data-swipe]').forEach(s=>{const t=s.querySelector('.sw-track'),it=[...t.children],d=[...s.querySelectorAll('.dots i')],bs=s.querySelectorAll('.sw-b'),pos=s.querySelector('[data-pos]'),nav=s.querySelector('.sw-nav');
+const vis=()=>{const r=t.getBoundingClientRect();return it.map(c=>{const b=c.getBoundingClientRect();return Math.min(b.right,r.right)-Math.max(b.left,r.left)>=b.width*.6})};
+const up=()=>{const v=vis();let f=v.indexOf(true),l=v.lastIndexOf(true);if(f<0){f=l=0}d.forEach((x,j)=>x.classList.toggle('on',j>=f&&j<=l));const end=t.scrollLeft+t.clientWidth>=t.scrollWidth-4;bs[0].disabled=t.scrollLeft<4;bs[1].disabled=end;if(nav)nav.hidden=t.scrollWidth<=t.clientWidth+4;if(pos)pos.textContent=(f===l?(f+1):(f+1)+'–'+(l+1))+' of '+it.length;return[f,l]};
+const go=i=>{i=Math.max(0,Math.min(it.length-1,i));t.scrollTo({left:t.scrollLeft+it[i].getBoundingClientRect().left-t.getBoundingClientRect().left-2,behavior:rm()})};
+bs.forEach(b=>b.onclick=()=>{const[f,l]=up(),n=l-f+1;go(+b.dataset.d>0?l+1:f-n)});
+let q=0;t.addEventListener('scroll',()=>{if(!q){q=1;requestAnimationFrame(()=>{q=0;up()})}},{passive:true});addEventListener('resize',up);s.addEventListener('toggle',up,true);
+t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();bs[e.key==='ArrowRight'?1:0].click()}});up()});
+document.querySelectorAll('[data-open]').forEach(a=>a.addEventListener('click',e=>{const d=document.getElementById(a.dataset.open);if(d){e.preventDefault();d.open=true;d.scrollIntoView({block:'start',behavior:rm()});const f=d.querySelector('input,select');f&&setTimeout(()=>f.focus({preventScroll:true}),350)}}))})();</script>'''
