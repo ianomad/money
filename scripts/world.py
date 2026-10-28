@@ -82,14 +82,18 @@ def render(D, us_rate, us_name):
         return 'No currency history on file' if r['cur'] != 'USD' else 'US dollars: no currency risk'
     def ins_s(r):
         return (f"Insured to {r['insLocal']['amount']:,.0f} {r['insLocal']['currency']}" + (f" (≈${r['insUSD']:,.0f})" if r['cur'] != 'USD' else '')) if r['insLocal'] else 'Insurance limit not verified'
-    def bars3(r, a=10000, fall=False):
+    def bars3(r, a=10000, fall=True):
         k = calc(a, r['rate'], 12, 0, 1, us_rate); u = lambda x: (x - a) / a * 100
-        items = [('Currency steady', u(k['end']), pct(u(k['end']), True), True)]
+        items = [('Currency flat', u(k['end']), pct(u(k['end']), True), True)]
+        if fall:
+            items.append(('Falls 10%', u(k['scen'](-10)), pct(u(k['scen'](-10)), True), False))
+            items.append(('Falls 30%', u(k['scen'](-30)), pct(u(k['scen'](-30)), True), False))
         if r['move'] is not None and r['cur'] != 'USD':
             items.append((f"Past pace {pct(r['move'], True)}/yr", u(k['scen'](r['move'])), pct(u(k['scen'](r['move'])), True), False))
-        if fall: items.append(('Currency falls 20%', u(k['scen'](-20)), pct(u(k['scen'](-20)), True), False))
         items.append(('US savings', u(k['usEnd']), pct(u(k['usEnd']), True), False))
-        return F.bars(items, '<span class="tag-s">Scenarios</span>≈ 12-month return in US dollars, after 1% FX cost each way. Not forecasts.')
+        renew = (f'<p class="renew">Assumes this deposit ({e(r["term"])}) is renewed at {r["rate"]:g}% for 12 months. Not guaranteed.</p>'
+                 if r['months'] < 12 else '')
+        return F.bars(items, '<span class="tag-s">Scenarios</span>Return in US dollars over 12 months, after a 1% conversion cost each way. Not forecasts.') + renew
     hero = F.card('Top rate abroad', f'{e(top["name"])}: {top["rate"]:g}%', f'{e(top["bank"])} · paid in {e(top["cur"])}',
                   viz=bars3(top), catch=fxline(top) + '. Past moves don’t predict future ones.',
                   foot=f'Checked {fd(top["verified"])} · FX {fd(D["today"])}', cls='dark',
@@ -103,15 +107,14 @@ def render(D, us_rate, us_name):
     drag = F.card('Currency drag', 'Rate vs USD return', 'If each currency keeps moving as it has since 2023',
                   viz=F.bars(dr, '<span class="tag-s">Scenarios</span>≈ 12-month return in US dollars, after FX costs. Not forecasts.'),
                   catch='A high rate can still lose dollars', cls='drag')
-    swc = [F.card(e(r['name']), f'{r["rate"]:g}%', f'{e(r["bank"])} · {e(r["term"])}', viz=bars3(r, fall=True),
+    swc = [F.card(e(r['name']), f'{r["rate"]:g}%', f'{e(r["bank"])} · {e(r["term"])}', viz=bars3(r),
                   catch=fxline(r), foot=f'{ins_s(r)} · checked {fd(r["verified"])}') for r in by_rate[1:] if r['cur'] != 'USD']
     how = (f'<p>This covers {len(R)} tracked countries, not the whole world. The highest headline rate here is {e(top["name"])} at {top["rate"]:g}% ({e(top["term"])}).</p>{feat}'
            f'<p>Scenario bars: the headline rate for 12 months as simple interest, converted to local money and back with a 1% cost each way, under the currency move shown. '
            f'“Past pace” uses the average yearly move since each country’s start date. These are what-ifs, not forecasts.</p>')
     return (f'<section class="fhead" id="world-top"><h2 class="h1like">High rates abroad, <em>currency risk.</em></h2><p class="sub">Dollar scenarios, not forecasts.</p></section>'
             f'<div class="feed">{hero}{drag}</div>'
-            + F.more('Country by country', F.swipe(swc, 'Other countries, by headline rate', ''), cls='i big') +
-            f'<details class="i big" id="wc-all"><summary>Compare all {len(R)} in a table</summary><div class="dbody">'
+            + f'<details class="i big" id="wc-all"><summary>All {len(R)} countries: cards and table</summary><div class="dbody">' + F.swipe(swc, 'Other countries, by headline rate', '') +
             f'<section class="tool" id="world-compare" aria-labelledby="wc-h"><h2 id="wc-h" class="sr">Compare the {len(R)} countries</h2>'
             f'<div class="seg" role="group" aria-label="Sort by"><button type="button" data-wsort="rate" aria-pressed="true">Headline rate</button><button type="button" data-wsort="est" aria-pressed="false">Estimated USD result</button></div>'
             f'<p class="hint" id="wc-why">Sorted by the bank’s advertised rate in local money. Switch to see a dollar estimate that includes the currency.</p>'

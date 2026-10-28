@@ -408,9 +408,9 @@ details.i>summary{color:var(--ink)}
 .fc.mk .fc-big{font-size:clamp(40px,12vw,58px)}.fc.mk .fc-line{font-size:16px;margin-top:6px}.fc.mk .fc-catch{margin-top:10px}
 .mk .fc-line b{font-variant-numeric:tabular-nums}
 .mk figure.spk{margin:10px 0 0}.mk figure.spk svg{height:52px}.fc.dark figure.spk{color:#e9cf8a}.fc.dark figure.spk figcaption{color:rgba(250,247,240,.6)}
-.mk .fc-foot{margin-top:8px}.mk .fc-foot b{font-weight:600;color:var(--ink)}.fc.dark .fc-foot b{color:#faf7f0}.mk .fc-foot a{display:inline-block;padding:10px 0;margin:-8px 0}.mk .fc-foot .chip{margin:0 4px 0 0}
+.mk .fc-foot{margin-top:8px}.mk .fc-foot b{font-weight:600;color:var(--ink)}.fc.dark .fc-foot b{color:#faf7f0}.mk .fc-foot a,.mk-watch .fc-foot a{display:inline-block;padding:12px 0;margin:-10px 0}.mk .fc-foot .chip{margin:0 4px 0 0}
 .mk .fc-act{margin-top:8px}
-.mk-loan{display:grid;grid-template-columns:auto minmax(0,9em);align-items:center;gap:6px 10px;margin-top:10px;font-size:13.5px}.mk-loan input{font:600 17px var(--serif);width:100%;box-sizing:border-box;min-height:44px}
+.mk-loan{display:grid;grid-template-columns:auto minmax(0,9em);justify-content:start;align-items:center;gap:6px 10px;margin-top:10px;font-size:13.5px}.mk-loan input{font:600 17px var(--serif);width:100%;box-sizing:border-box;min-height:44px}
 .mk-loan p{grid-column:1/-1;margin:0;font-size:14px}.fc.dark .mk-loan label{color:rgba(250,247,240,.8)}
 .fc.dark .mk-loan input{background:#faf7f0;color:#151515;border-color:transparent}.fc.dark .mk-loan p b{color:#e9cf8a}
 .mk-watch{margin:12px 0 0}.mk-ev{margin:4px 0 0}.mk-ev li{grid-template-columns:3.2em 1fr;gap:12px;font-size:15px;line-height:1.4}.mk-ev li:last-child{border-bottom:0}
@@ -430,3 +430,5 @@ details.i>summary{color:var(--ink)}
 .fc-catch>span{display:block;min-width:0}
 .fc.dark .sv-form .pills{display:flex;flex-wrap:wrap;gap:8px}.fc.dark .sv-form .pills label{margin:0}
 .top3 .rk{width:auto;height:auto;background:none;border:0;display:inline;padding:0;color:#e9cf8a;font:600 13px var(--mono)}
+.renew{margin:8px 0 0;font-size:13px;line-height:1.35;padding:6px 10px;border-left:3px solid var(--gold);background:rgba(184,145,58,.10);border-radius:0 8px 8px 0}.fc.dark .renew{color:#faf7f0;background:rgba(233,207,138,.12)}
+.fc.drag .fc-big{font-size:clamp(28px,8vw,36px)}
