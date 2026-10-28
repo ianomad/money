@@ -116,72 +116,130 @@ def spark(pts, w=320, h=64, label='chart'):
     xy = ' '.join(f'{i * w / (len(pts) - 1):.1f},{4 + (hi - v) / rg * (h - 8):.1f}' for i, (_, v) in enumerate(pts))
     return f'<svg viewBox="0 0 {w} {h}" preserveAspectRatio="none" role="img" aria-label="{e(label)}"><polyline fill="none" stroke="currentColor" stroke-width="1.6" vector-effect="non-scaling-stroke" points="{xy}"/></svg>'
 def markets_top():
+    """Markets 'Today in 30 seconds' feed: one card per number (big figure, why it matters, the catch, date + source), sparkline, How it works.
+    Every figure comes from data/markets.json, markets-history.json, rates.json, crypto.json, events.json."""
     import datetime as dt
     m = dj('markets.json')['series']; r = dj('rates.json'); cj = dj('crypto.json')
     try: H = dj('markets-history.json')
     except Exception: H = {}
+    today_d = dt.date.today(); today = today_d.isoformat()
     top = max((p for p in r['providers'] if p.get('category') == 'cash'), key=lambda p: float(p.get('base') or 0), default=None)
-    pay = lambda rate: 400000*(rate/1200)/(1-(1+rate/1200)**-360)
+    LOAN = 400000
+    pay = lambda rate, amt=LOAN: amt*(rate/1200)/(1-(1+rate/1200)**-360)
     fd = lambda d: dt.date.fromisoformat(d).strftime('%b %-d, %Y')
-    def chg(k, unit, pct=False, nd=2):
-        s = m[k]; d0 = (dt.date.fromisoformat(s['date']) - dt.timedelta(days=30)).strftime('%b %-d')
-        v = (s['value']/s['m1']-1)*100 if pct else s['value']-s['m1']
-        return f"{'+' if v >= 0 else '−'}{abs(v):.{1 if pct else nd}f}{'%' if pct else unit} since {d0}"
     sf = lambda d, p: dt.date.fromisoformat(d).strftime('%b %-d' if p == '3m' else '%b %Y')
+    stale = lambda k: dt.date.fromisoformat(m[k]['date']) < today_d - dt.timedelta(days=14)
     def chart(k, fmt, n=''):
         pts = H.get(k) or []
-        if not pts: return '<p class="nochart">No history available.</p>'
+        if not pts: return ''
         end = dt.date.fromisoformat(pts[-1][0]); out = ''
         for p, days in (('3m', 92), ('1y', 366), ('5y', 1830)):
             sub = [(d, v) for d, v in pts if dt.date.fromisoformat(d) >= end - dt.timedelta(days=days)]
             if len(sub) < 3: continue
             lo, hi = min(v for _, v in sub), max(v for _, v in sub)
-            out += (f'<figure class="spk" data-p="{p}"{"" if p == "1y" else " hidden"}>{spark(sub, label=f'{n}: {fmt(sub[0][1])} on {fd(sub[0][0])}, {fmt(sub[-1][1])} on {fd(sub[-1][0])}, range {fmt(lo)} to {fmt(hi)}')}<figcaption><span>{sf(sub[0][0], p)}</span>'
+            out += (f'<figure class="spk" data-p="{p}"{"" if p == "1y" else " hidden"}>{spark(sub, label=f"{n}: {fmt(sub[0][1])} on {fd(sub[0][0])}, {fmt(sub[-1][1])} on {fd(sub[-1][0])}, range {fmt(lo)} to {fmt(hi)}")}<figcaption><span>{sf(sub[0][0], p)}</span>'
                     f'<span>{fmt(lo)} – {fmt(hi)}</span><span>{sf(sub[-1][0], p)}</span></figcaption></figure>')
         return out
+    def move(k, pct=False, unit=' pts', nd=2, money=False):
+        """30-day change pill: arrow + amount, relative to the m1 value in markets.json."""
+        s = m[k]; v = (s['value']/s['m1']-1)*100 if pct else s['value']-s['m1']
+        amt = f"{abs(v):.1f}%" if pct else (f"${abs(v):.{nd}f}" if money else f"{abs(v):.{nd}f}{unit}")
+        d = 'up' if v > 0 else 'down' if v < 0 else 'flat'
+        return f'<span class="mv {d}"><span aria-hidden="true">{"▲" if v > 0 else "▼" if v < 0 else "■"}</span> {"Up" if v > 0 else "Down" if v < 0 else "Flat"} {amt} in 30 days</span>', abs((s['value']/s['m1']-1)*100)
+    def foot(k, freq, src):
+        sid = m[k]['id']; st = stale(k)
+        return ((f'<span class="chip warn">May be out of date</span> ' if st else '') + f'{e(freq)} · as of <b>{fd(m[k]["date"])}</b> · {e(src)} via '
+                f'<a href="{FRED}{sid}" target="_blank" rel="noopener">FRED {sid} ↗</a>')
+    def how(body):
+        return f'<details class="i"><summary>How it works</summary><div class="dbody">{body}</div></details>'
+    def card(k, kicker, big, unit, mv, line, catch, ft, viz='', extra='', cls=''):
+        return (f'<article class="fc mk {cls}" id="m-{k}"><p class="fc-k">{kicker}</p><p class="fc-big">{big}{f"<small>{unit}</small>" if unit else ""}</p>{mv}'
+                f'<p class="fc-line">{line}</p>{viz}<p class="fc-catch">{catch}</p><p class="fc-foot">{ft}</p>{extra}</article>')
     mo, t10, sp, dl, oil, gas, fed = (m[k] for k in ('mortgage','t10','sp500','dollar','oil','gas','fed'))
     btc = sorted(cj['coins'], key=lambda c: c['market_cap_rank'])[0]
     bt = dt.datetime.fromisoformat(cj['fetchedAt'].replace('Z', '+00:00')).astimezone(dt.timezone(dt.timedelta(hours=-7)))
-    P = lambda nd, u='%': (lambda v: f'{v:.{nd}f}{u}')
-    items = [
-     ('mortgage', '30-year mortgage rate', f"{mo['value']:.2f}%", 'Weekly average', chg('mortgage', ' pts'),
-      f"On a $400,000 loan that is about ${pay(mo['value']):,.0f}/mo in principal and interest, vs ${pay(mo['y1']):,.0f} at last year's {mo['y1']:.2f}%.", 'Freddie Mac survey', P(2)),
-     ('t10', '10-year Treasury yield', f"{t10['value']:.2f}%", 'Daily, market close', chg('t10', ' pts'),
-      'Mortgage rates tend to move with this yield, so it is an early sign of where they are heading.', 'US Treasury', P(2)),
-     ('fed', 'Fed funds rate (effective)', f"{fed['value']:.2f}%", 'Daily, prior business day', chg('fed', ' pts'),
-      'Online savings rates usually follow it, often with a lag.' + (f" The top no-strings savings rate we track is {top['base']:g}% ({top['name']})." if top else ''), 'Federal Reserve', P(2)),
-     ('gas', 'Gas, US average (regular)', f"${gas['value']:.2f}/gal", 'Weekly average', chg('gas', '', nd=2).replace('+', '+$', 1).replace('−', '−$', 1),
-      f"A 15-gallon fill-up is about ${gas['value']*15:.0f}, vs ${gas['y1']*15:.0f} a year ago.", 'EIA', lambda v: f'${v:.2f}'),
-     ('oil', 'Oil (WTI crude)', f"${oil['value']:.2f}/barrel", 'Daily, published with a lag', chg('oil', '', pct=True),
-      f"{(oil['value']/oil['y1']-1)*100:+.0f}% from a year ago. Pump prices often follow oil, usually weeks later and not one for one.", 'EIA', lambda v: f'${v:.0f}'),
-     ('sp500', 'S&P 500 index', f"{sp['value']:,.0f}", 'Daily close', chg('sp500', '', pct=True),
-      f"{(sp['value']/sp['y1']-1)*100:+.0f}% over a year, not counting dividends. Many 401(k) index funds track it.", 'S&P Dow Jones Indices', lambda v: f'{v:,.0f}'),
-     ('dollar', 'US dollar index (vs. trade partners)', f"{dl['value']:.1f}", 'Daily, published weekly', chg('dollar', '', pct=True),
-      'A stronger dollar makes trips abroad and imports cheaper, and savings held in other currencies worth fewer dollars.', 'Federal Reserve', lambda v: f'{v:.0f}'),
-    ]
-    rows = ''
-    for k, n, v, freq, c, t, s, fmt in items:
-        sid = m[k]['id']
-        rows += (f'<article class="mrow"><h3>{e(n)}</h3><span class="v">{e(v)}</span><span class="ch">{e(c)}</span>'
-                 f'<p>{e(t)}</p>{chart(k, fmt, n)}<p class="src"><span class="chip">{e(freq)}</span> As of {fd(m[k]["date"])} · {e(s)} via <a href="{FRED}{sid}" target="_blank" rel="noopener">FRED {sid} ↗</a></p></article>')
-    rows += (f'<article class="mrow"><h3>Bitcoin</h3><span class="v">${btc["current_price"]:,.0f}</span><span class="ch">{btc["price_change_percentage_24h"]:+.1f}% in 24h</span>'
-             '<p>Prices swing widely, and it is not insured like a bank account.</p>'
-             f'<p class="src"><span class="chip">Snapshot, not live</span> Taken {bt:%b %-d, %-I:%M %p} PT · <a href="https://www.coingecko.com/en/coins/bitcoin" target="_blank" rel="noopener">CoinGecko ↗</a></p></article>')
-    ej = dj('events.json'); today = dt.date.today().isoformat()
+    yoy = lambda s: (s['value']/s['y1']-1)*100
+    cards = {}
+    # mortgage: hero card, payment on a typical loan, change-amount tool
+    mv, sz = move('mortgage')
+    p_now, p_y1 = pay(mo['value']), pay(mo['y1'])
+    tool = (f'<details class="i act mk-loan"><summary>Change loan amount</summary><div class="dbody"><label>Loan amount ($)<input type="number" inputmode="numeric" min="10000" step="10000" value="{LOAN}" data-loan data-r="{mo["value"]}" data-r1="{mo["y1"]}"></label>'
+            f'<p aria-live="polite" data-loan-out>About <b>${p_now:,.0f}/mo</b> at {mo["value"]:.2f}%, vs ${p_y1:,.0f} at {mo["y1"]:.2f}% a year ago.</p></div></details>')
+    cards['mortgage'] = (card('mortgage', '30-year mortgage rate', f"{mo['value']:.2f}", '%', mv,
+        f"About <b>${p_now:,.0f}/mo</b> on a ${LOAN:,} loan. That is ${p_now-p_y1:+,.0f} vs a year ago." .replace('$+', '+$').replace('$-', '−$'),
+        f"Principal and interest only, 30 years fixed. Taxes, insurance and PMI add more, and your quote depends on credit and down payment.",
+        foot('mortgage', 'Weekly average', 'Freddie Mac'), chart('mortgage', lambda v: f'{v:.2f}%', '30-year mortgage rate'),
+        tool + how(f'<p>Freddie Mac’s weekly survey average for a 30-year fixed loan. The monthly figure is the standard amortization formula on ${LOAN:,} over 360 months at {mo["value"]:.2f}%; a year ago the survey read {mo["y1"]:.2f}%.</p>'), 'dark'), sz)
+    mv, sz = move('gas', money=True)
+    cards['gas'] = (card('gas', 'Gas, US average (regular)', f"${gas['value']:.2f}", '/gal', mv,
+        f"A 15-gallon fill-up is about <b>${gas['value']*15:.0f}</b>, vs ${gas['y1']*15:.0f} a year ago.",
+        'National average. Your state can be far above or below it.', foot('gas', 'Weekly average', 'EIA'), chart('gas', lambda v: f'${v:.2f}', 'Gas price'),
+        how(f'<p>EIA weekly retail price for regular gasoline, all US formulations. Fill-up = 15 gallons × the average price ({fd(gas["date"])}) and × the price a year earlier (${gas["y1"]:.2f}).</p>')), sz)
+    mv, sz = move('oil', pct=True)
+    cards['oil'] = (card('oil', 'Oil (WTI crude)', f"${oil['value']:.0f}", '/barrel', mv,
+        f"<b>{yoy(oil):+.0f}%</b> from a year ago. Pump prices often follow oil weeks later.",
+        'Not one for one: refining, taxes and season move gas prices too. Published with a lag.', foot('oil', 'Daily', 'EIA'), chart('oil', lambda v: f'${v:.0f}', 'Oil price'),
+        how(f'<p>West Texas Intermediate spot price, ${oil["value"]:.2f} a barrel on {fd(oil["date"])}, vs ${oil["y1"]:.2f} a year earlier.</p>')), sz)
+    mv, sz = move('fed')
+    cards['fed'] = (card('fed', 'Fed funds rate (effective)', f"{fed['value']:.2f}", '%', mv,
+        'Savings rates usually follow it.' + (f" Top no-strings savings rate we track: <b>{top['base']:g}%</b> ({e(top['name'])})." if top else ''),
+        'When the Fed cuts, savings rates tend to drop, often with a lag. Many top rates come with conditions.', foot('fed', 'Daily, prior business day', 'Federal Reserve'), chart('fed', lambda v: f'{v:.2f}%', 'Fed funds rate'),
+        '<p class="fc-act"><a class="btn" href="/">Compare savings rates</a></p>' + how('<p>Effective federal funds rate from the New York Fed. The savings figure is the highest base rate among the cash accounts on our Savings page, from each provider’s own site.</p>')), sz)
+    mv, sz = move('t10')
+    cards['t10'] = (card('t10', '10-year Treasury yield', f"{t10['value']:.2f}", '%', mv,
+        'Mortgage rates tend to move with this yield, so it hints where they head next.',
+        'A signal, not a promise. The gap between the two changes over time.', foot('t10', 'Daily, market close', 'US Treasury'), chart('t10', lambda v: f'{v:.2f}%', '10-year Treasury yield'),
+        how(f'<p>Market yield on 10-year US Treasury notes, constant maturity. A year ago it was {t10["y1"]:.2f}%.</p>')), sz)
+    mv, sz = move('sp500', pct=True)
+    cards['sp500'] = (card('sp500', 'S&P 500 index', f"{sp['value']:,.0f}", '', mv,
+        f"<b>{yoy(sp):+.0f}%</b> over a year. Many 401(k) index funds track it.",
+        'Excludes dividends. Past moves do not predict the next ones.', foot('sp500', 'Daily close', 'S&P Dow Jones Indices'), chart('sp500', lambda v: f'{v:,.0f}', 'S&P 500'),
+        how(f'<p>Index level at the close on {fd(sp["date"])}, vs {sp["y1"]:,.0f} a year earlier. Price only, no dividends.</p>')), sz)
+    mv, sz = move('dollar', pct=True)
+    cards['dollar'] = (card('dollar', 'US dollar index', f"{dl['value']:.1f}", '', mv,
+        f"<b>{yoy(dl):+.1f}%</b> in a year. A stronger dollar makes trips abroad and imports cheaper.",
+        'Savings held in other currencies are worth fewer dollars when it rises.', foot('dollar', 'Daily, published weekly', 'Federal Reserve'), chart('dollar', lambda v: f'{v:.0f}', 'US dollar index'),
+        '<p class="fc-act"><a class="btn" href="/#world">See currency risk abroad</a></p>' + how('<p>Nominal broad dollar index against major trade partners’ currencies (Jan 2006 = 100).</p>')), sz)
+    b24 = btc['price_change_percentage_24h']
+    cards['btc'] = (f'<article class="fc mk" id="m-btc"><p class="fc-k">Bitcoin</p><p class="fc-big">${btc["current_price"]:,.0f}</p>'
+        f'<span class="mv {"up" if b24 > 0 else "down"}"><span aria-hidden="true">{"▲" if b24 > 0 else "▼"}</span> {"Up" if b24 > 0 else "Down"} {abs(b24):.1f}% in 24 hours</span>'
+        '<p class="fc-line">The biggest crypto coin. Most others move with it.</p><p class="fc-catch">Prices swing widely, and it is not insured like a bank account.</p>'
+        f'<p class="fc-foot">Snapshot, not live · taken <b>{bt:%b %-d, %-I:%M %p} PT</b> · <a href="https://www.coingecko.com/en/coins/bitcoin" target="_blank" rel="noopener">CoinGecko ↗</a></p>'
+        '<p class="fc-act"><a class="btn" href="#crypto" data-open="crypto">All top 20 coins</a></p></article>', abs(b24))
+    # order: mortgage first, then by size of the 30-day move (biggest first); bitcoin last
+    rest = sorted((k for k in cards if k not in ('mortgage', 'btc')), key=lambda k: -cards[k][1])
+    order = ['mortgage'] + rest + ['btc']
+    names = {'mortgage': 'Mortgage', 'gas': 'Gas', 'oil': 'Oil', 'fed': 'Fed funds', 't10': '10-year yield', 'sp500': 'S&P 500', 'dollar': 'Dollar'}
+    def mvtxt(k):
+        s = m[k]; pct = k in ('oil', 'sp500', 'dollar')
+        v = (s['value']/s['m1']-1)*100 if pct else s['value']-s['m1']
+        return f"{'▲' if v > 0 else '▼' if v < 0 else '■'} {abs(v):.1f}%" if pct else (f"{'▲' if v > 0 else '▼' if v < 0 else '■'} ${abs(v):.2f}" if k == 'gas' else f"{'▲' if v > 0 else '▼' if v < 0 else '■'} {abs(v):.2f} pts")
+    top3 = sorted(names, key=lambda k: -cards[k][1])[:3]
+    newest = max(m[k]['date'] for k in m)
+    jump = ''.join(f'<a href="#m-{k}"><span>{names[k]}</span><b>{mvtxt(k)}</b></a>' for k in top3)
+    head = ('<section class="fhead mk-head"><p class="fc-k">Markets · today in 30 seconds</p><h1>What moved <em>your money.</em></h1>'
+            f'<p class="sub">Biggest moves in the last 30 days, each with what it means and the catch. Latest data {fd(newest)}.</p></section>'
+            f'<nav class="mk-top" aria-label="Biggest moves">{jump}</nav>')
+    seg = ('<div class="seg mseg" role="group" aria-label="Chart period">' + ''.join(f'<button type="button" data-mp="{p}" aria-pressed="{str(p == "1y").lower()}">{l}</button>' for p, l in (('3m', '3M'), ('1y', '1Y'), ('5y', '5Y'))) + '</div>')
+    ej = dj('events.json')
     def tm(t):
         h, mi = map(int, t.split(':')); a = dt.datetime(2000, 1, 1, h, mi); b = a - dt.timedelta(hours=3)
-        return f"{a:%-I:%M %p} ET ({b:%-I:%M %p} PT)"
-    ev = ''.join(f'<li><b>{dt.date.fromisoformat(x["date"]).strftime("%a %b %-d")}</b><span><strong>{e(x["name"])}</strong> <small>{tm(x["time"])}</small><br>{e(x["why"])} '
-                 f'<a href="{e(ej["calendars"][x["src"]])}" target="_blank" rel="noopener">{e(x["src"])} calendar ↗</a></span></li>' for x in ej['events'] if x['date'] >= today)
+        return f"{a:%-I:%M %p} ET · {b:%-I:%M %p} PT"
+    up = [x for x in ej['events'] if x['date'] >= today]
+    ev = ''.join(f'<li><span class="d"><b>{dt.date.fromisoformat(x["date"]).strftime("%b")}</b>{dt.date.fromisoformat(x["date"]).day}</span><span><strong>{e(x["name"])}</strong> <small>{dt.date.fromisoformat(x["date"]).strftime("%a")} · {tm(x["time"])}</small><br>{e(x["why"])} '
+                 f'<a href="{e(ej["calendars"][x["src"]])}" target="_blank" rel="noopener">{e(x["src"])} ↗</a></span></li>' for x in up[:6])
     if not ev: ev = '<li><span>No upcoming dates loaded. See the official calendars below.</span></li>'
-    seg = ('<div class="seg mseg" role="group" aria-label="Chart period">' + ''.join(f'<button type="button" data-mp="{p}" aria-pressed="{str(p == "1y").lower()}">{l}</button>' for p, l in (('3m', '3 months'), ('1y', '1 year'), ('5y', '5 years'))) + '</div>')
-    js = ("<script>document.querySelectorAll('[data-mp]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-mp]').forEach(x=>x.setAttribute('aria-pressed',x===b));"
-          "document.querySelectorAll('figure.spk').forEach(f=>f.hidden=f.dataset.p!==b.dataset.mp)})</script>")
-    return (CSS + '<section class="pagehead"><p class="eyebrow">MARKETS · WHAT IT MEANS FOR YOU</p><h1>The numbers that hit <em>your wallet.</em></h1>'
-        '<p class="lead">Loan rates, savings rates, gas and stocks, each with its date, source and how often it updates. Refreshed every morning; most figures lag by a day or more.</p></section>'
-        + f'<div class="mhead"><span>Charts:</span>{seg}</div>' + rows
-        + '<section class="digest" id="watch"><p class="eyebrow">WHAT TO WATCH</p><h2>Coming up</h2><ul class="ev">' + ev + '</ul>'
-        + f'<p class="fine">{e(ej["note"])} Checked {fd(ej["checkedAt"])}. Official calendars: <a href="{ej["calendars"]["BLS"]}" target="_blank" rel="noopener">BLS ↗</a> · <a href="{ej["calendars"]["Federal Reserve"]}" target="_blank" rel="noopener">Federal Reserve ↗</a></p></section>' + js)
+    js = ("<script>(()=>{document.querySelectorAll('[data-mp]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-mp]').forEach(x=>x.setAttribute('aria-pressed',x===b));"
+          "document.querySelectorAll('figure.spk').forEach(f=>f.hidden=f.dataset.p!==b.dataset.mp)});"
+          "const i=document.querySelector('[data-loan]'),o=document.querySelector('[data-loan-out]');if(i&&o){const P=(r,a)=>a*(r/1200)/(1-Math.pow(1+r/1200,-360)),f=n=>'$'+Math.round(n).toLocaleString('en-US');"
+          "i.addEventListener('input',()=>{const a=+i.value;if(!(a>0))return;const r=+i.dataset.r,r1=+i.dataset.r1;o.innerHTML='About <b>'+f(P(r,a))+'/mo</b> at '+r.toFixed(2)+'%, vs '+f(P(r1,a))+' at '+r1.toFixed(2)+'% a year ago.'})}"
+          "document.querySelectorAll('[data-open]').forEach(a=>a.addEventListener('click',ev=>{const t=document.getElementById(a.dataset.open),d=t&&t.closest('details');if(t){ev.preventDefault();if(d)d.open=true;t.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}}))})()</script>")
+    return (head + f'<div class="mhead"><span>Charts</span>{seg}</div>'
+        + '<div class="feed mk-feed">' + ''.join(cards[k][0] for k in order) + '</div>'
+        + '<section class="fc mk-watch" id="watch"><p class="fc-k">Coming up</p><h2 class="fh">Dates that can move these numbers</h2><ul class="ev mk-ev">' + ev + '</ul>'
+        + how(f'<p>{e(ej["note"])} Checked {fd(ej["checkedAt"])}. Official calendars: <a href="{ej["calendars"]["BLS"]}" target="_blank" rel="noopener">BLS ↗</a> · <a href="{ej["calendars"]["Federal Reserve"]}" target="_blank" rel="noopener">Federal Reserve ↗</a></p>'
+              '<p>Figures refresh every morning from FRED (Federal Reserve Bank of St. Louis), which republishes Freddie Mac, EIA, Treasury, Federal Reserve and S&amp;P data. Most lag by a day or more; weekly series lag by up to a week. Bitcoin is a CoinGecko snapshot. Charts show the period you pick above.</p>')
+        + '</section>' + js)
 
 # ---------- sourcing fold ----------
 def sources_fold(kind):
