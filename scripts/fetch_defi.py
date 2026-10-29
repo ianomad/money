@@ -21,6 +21,15 @@ aave = next((r for r in rows if r['project']=='aave-v3' and r['chain']=='Ethereu
 if aave:
     rp = ROOT/'data/rates.json'; d = json.loads(rp.read_text())
     for pr in d['providers']:
-        if pr['id']=='aave': pr['base'] = aave['apy']
+        if pr['id']=='aave':
+            pr['base'] = aave['apy']
+            now = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
+            pr['observedAt'] = now; pr['verifiedAt'] = datetime.date.today().isoformat()
+            pr['product'] = 'USDC · Ethereum (Aave v3)'; pr['kind'] = 'DeFi lending · Aave v3'
+            pr['details'] = (f"Deposit APY for the Aave v3 USDC pool on Ethereum as reported by DefiLlama at {now}. "
+                "This is one USDC market, not a protocol-wide rate. Rates change with how much of the pool is borrowed and can fall quickly; "
+                "other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity.")
+            src = {'label': 'DefiLlama pool data (refreshed daily)', 'url': 'https://defillama.com/yields/pool/' + aave['pool']}
+            pr['sources'] = [src] + [x for x in pr.get('sources', []) if 'defillama' not in x['url'] and 'pro.aave.com' not in x['url']]
     rp.write_text(json.dumps(d, indent=2, ensure_ascii=False) + '\n')
 print(f"defi: {len(rows)} pools; top {rows[0]['protocol']} {rows[0]['coin']} {rows[0]['apy']}%" if rows else 'defi: none')

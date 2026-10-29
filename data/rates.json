@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-27",
+  "checkedAt": "2026-10-29",
   "changeNote": "Oct 25: Openbank raised its standard rate to 4.00% (4.35% with the new-customer boost), CIT's boost is now 4.25% with code BOOST50, and SoFi Plus pays 4.70% on the first $20,000. Pibank's 4.40% is still the top plain rate. Rechecked Peak, Pibank, Newtek, Elevault, EverBank, Axos, E*TRADE, Marcus, Betterment, Happen, Varo, Robinhood, X Money: unchanged.",
   "providers": [
     {
@@ -221,7 +221,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Morgan Stanley Private Bank; enhanced coverage program conditions apply."
       },
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-29"
     },
     {
       "id": "robinhood",
@@ -257,23 +257,23 @@
         "label": "FDIC · Mixed coverage",
         "summary": "Swept bank cash is eligible. Brokerage-held cash and options collateral are not FDIC insured."
       },
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-29"
     },
     {
       "id": "aave",
       "name": "Aave",
-      "product": "USDC · Ethereum Core / Main",
+      "product": "USDC · Ethereum (Aave v3)",
       "category": "crypto",
-      "kind": "DeFi lending · Aave V4",
+      "kind": "DeFi lending · Aave v3",
       "symbol": "A",
       "color": "#7365b7",
-      "base": 4.09,
+      "base": 4.25,
       "boost": null,
       "baseLabel": "Market snapshot",
       "rateLabel": "Variable deposit APY",
-      "observedAt": "2026-10-09 14:34 UTC",
+      "observedAt": "2026-10-29 13:44 UTC",
       "requirements": "Supply USDC to the Ethereum Core / Main market. Requires a compatible wallet and ETH for network fees.",
-      "details": "Deposit APY reported by Aave’s public API (the data behind Aave Pro) at 2026-10-09 14:34 UTC. This is one USDC market, not a protocol-wide rate. At this snapshot about 84% of the market’s supplied USDC was borrowed, which is what pushed the deposit rate up; it can fall quickly as borrowers repay or new deposits arrive. Rates change with market utilisation and governance parameters; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity and, if borrowing, collateral requirements.",
+      "details": "Deposit APY for the Aave v3 USDC pool on Ethereum as reported by DefiLlama at 2026-10-29 13:44 UTC. This is one USDC market, not a protocol-wide rate. Rates change with how much of the pool is borrowed and can fall quickly; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity.",
       "protection": "No FDIC deposit insurance. Smart-contract, oracle, liquidity, and stablecoin depegging risks apply. Borrowing against supplied assets also introduces liquidation risk.",
       "effective": null,
       "fdic": {
@@ -283,8 +283,8 @@
       },
       "sources": [
         {
-          "label": "USDC market & current deposit APY",
-          "url": "https://pro.aave.com/explore/reserve/ethereum/core/main/USDC"
+          "label": "DefiLlama pool data (refreshed daily)",
+          "url": "https://defillama.com/yields/pool/aa70268e-4b52-42bf-a116-608b370f9501"
         },
         {
           "label": "How supplying works",
@@ -295,7 +295,7 @@
           "url": "https://www.aave.com/docs/resources/risks"
         }
       ],
-      "verifiedAt": "2026-10-09"
+      "verifiedAt": "2026-10-29"
     },
     {
       "id": "barclays",
@@ -428,7 +428,7 @@
         }
       ],
       "baseLabel": "New accounts · below $500k",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-29"
     },
     {
       "id": "pibank",
@@ -518,7 +518,7 @@
         }
       ],
       "baseLabel": "$5,000+ balance",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-29"
     },
     {
       "id": "varo",
@@ -546,7 +546,7 @@
           "url": "https://www.varomoney.com/savings-account/"
         }
       ],
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-29"
     },
     {
       "id": "elevault",
@@ -636,7 +636,7 @@
           "url": "https://www.happen.com/personal-banking/savings/high-yield-savings"
         }
       ],
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-29"
     },
     {
       "id": "openbank",
@@ -665,7 +665,7 @@
           "url": "https://www.openbank.us/banking/high-yield-savings-account"
         }
       ],
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-29"
     },
     {
       "id": "capitalone",
@@ -856,10 +856,10 @@
       "details": "Variable APY; swept to partner banks (up to $8M joint coverage per Betterment).",
       "protection": "Pass-through FDIC insurance through partner banks; conditions apply.",
       "effective": "2026-10-13",
-      "observedAt": "2026-10-13",
+      "observedAt": "2026-10-29",
       "sources": [
         {
-          "label": "Official rate page (checked Oct 13, 2026)",
+          "label": "Official rate page (checked Oct 29, 2026)",
           "url": "https://www.betterment.com/cash-reserve"
         }
       ],
@@ -868,7 +868,7 @@
         "label": "FDIC · Pass-through",
         "summary": "Betterment; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-29"
     }
   ]
 }
