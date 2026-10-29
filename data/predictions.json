@@ -1,0 +1,11 @@
+{
+  "note": "Public predictions posted by @MoneyBeastHQ on X and graded in public. Source of truth: the grade posts linked below. Update when a call is graded; misses stay listed.",
+  "updated": "2026-10-29",
+  "calls": [
+    {"made": "2026-10-12", "call": "JPMorgan Q3 adjusted EPS beats $5.94", "result": "miss", "actual": "$5.75", "grade": "https://x.com/MoneyBeastHQ/status/2110060728266731668"},
+    {"made": "2026-10-12", "call": "September CPI at or under 3.6% a year", "result": "miss", "actual": "3.7%", "grade": "https://x.com/MoneyBeastHQ/status/2110350101369762168"},
+    {"made": "2026-10-12", "call": "TSMC Q3 EPS beats $4.45", "result": "hit", "actual": "$4.60", "grade": "https://x.com/MoneyBeastHQ/status/2110695007652827150"},
+    {"made": "2026-10-26", "call": "Fed holds at 3.75–4.00% on Oct 28", "result": "hit", "actual": "held, 10–2 vote", "grade": "https://x.com/MoneyBeastHQ/status/2115855110186451140"},
+    {"made": "2026-10-26", "call": "Microsoft FQ1 EPS beats $4.71", "result": "hit", "actual": "$4.89", "grade": "https://x.com/MoneyBeastHQ/status/2115855110186451140"}
+  ]
+}

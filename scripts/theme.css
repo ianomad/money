@@ -472,3 +472,19 @@ main .chip,main .badge{font-size:12px}
 .terms details>summary{min-height:44px}main .fdic-badge,main .mobile-label{font-size:12px}
 @media(max-width:350px){.mk-b .w{font-size:13px}.mk-b{padding:10px 12px}}
 .mk-b .w time{white-space:nowrap}
+/* agent home (Oct 29 2026) */
+.fhead .agent{font-size:14px;color:var(--muted);margin:8px 0 0;max-width:52ch}.fhead .agent b{color:var(--ink);font-weight:650}
+.rng{margin:14px 0 0}.rng label{display:flex;justify-content:space-between;font-size:14px;color:rgba(250,247,240,.8)}.rng output{font-weight:650;color:#faf7f0;font-variant-numeric:tabular-nums}
+.rng input[type=range]{width:100%;min-height:36px;accent-color:#e9cf8a;margin:2px 0 0;padding:0;border:0;background:none}
+.ytag,.otag{display:inline-block;font:600 11px/1.3 var(--mono);letter-spacing:.05em;text-transform:uppercase;margin:10px 0 0}.ytag{color:#e9cf8a}
+.otag{color:var(--muted);background:var(--sunk);border-radius:99px;padding:3px 8px;margin:0 0 8px}
+#sv-vs .fbars{margin-top:6px}
+.opps{margin:20px 0 8px}.opps .hint{font-size:14px;color:var(--muted);margin:0 0 12px}
+.opp-grid{display:grid;gap:12px}@media(min-width:760px){.opp-grid{grid-template-columns:1fr 1fr}}
+.fc.opp .fc-big{font-size:clamp(38px,11vw,52px)}.fc.opp .fc-line{font-size:15.5px;margin-top:6px}.fc.opp .why{font-size:14.5px;line-height:1.45;margin:10px 0 0}.fc.opp .why b{font-weight:650}
+.fc.opp .fbars-u{font-size:12px}
+.proof{margin:16px 0}.proof .rec{font-size:17px;margin:0 0 4px}.proof .rec b{font-family:var(--serif);font-size:20px}
+.pl{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:6px}.pl li{display:flex;gap:10px;align-items:center;font-size:14.5px;color:var(--ink)}
+.pl .pk{flex:none;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;font-weight:700;font-size:13px}.pl .hit .pk{background:var(--green-soft);color:var(--green)}.pl .miss .pk{background:var(--red-soft);color:var(--red)}
+.pl .pc{flex:1;min-width:0}.pl small{display:block;color:var(--muted);font-size:13px}.pl a{flex:none;display:inline-flex;align-items:center;min-height:32px;font-size:13.5px}
+.otag.dk{background:rgba(233,207,138,.16);color:#e9cf8a;margin:0 0 10px}
