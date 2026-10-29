@@ -34,7 +34,7 @@ def header(cur):
             '<a class="brand" href="/" aria-label="Money Beast home"><img src="/favicon.svg?v=6" width="32" height="32" alt="" class="brand-mark"><span class="bn">Money <b>Beast</b></span></a>'
             f'<nav class="mainnav" aria-label="Main">{_links(NAV, cur)}</nav>'
             f'<div class="hact"><a class="xfollow" href="{X_URL}" target="_blank" rel="noopener" data-x-follow="header" aria-label="Follow @MoneyBeastHQ on X">{XSVG}<span>Follow<span class="xf-long"> on X</span></span></a>'
-            f'<details class="menu"><summary aria-label="All pages"><span class="bars" aria-hidden="true"></span>Menu</summary><div class="menu-panel"><nav class="menu-grid" aria-label="All pages">{groups}</nav></div></details></div></div>'
+            f'<details class="menu"><summary aria-label="All pages"><span class="bars" aria-hidden="true"></span><span class="mt">Menu</span></summary><div class="menu-panel"><nav class="menu-grid" aria-label="All pages">{groups}</nav></div></details></div></div>'
             '</header>')
 
 ICON = {'savings': '<path d="M4 10h16v9H4zM7 10V7a5 5 0 0 1 10 0v3"/>', 'world': '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c3 3 3 14 0 17M12 3.5c-3 3-3 14 0 17"/>',
@@ -90,6 +90,10 @@ def apply(h):
     h = h.replace('</body>', bnav(cur) + ('' if BNAV_JS in h else BNAV_JS) + '</body>', 1)
     # 3. trust line only on data pages, and one per page
     if path not in DATA_PAGES: h = re.sub(r'<p class="trust">.*?</p>', '', h, count=1, flags=re.S)
+    # 3b. minimal home fold (Oct 29 2026): move the 'Updated' trust line from the top of <main> to the marker below the hero
+    if '<!--trust-->' in h:
+        tm = re.search(r'<p class="trust">.*?</p>', h, re.S)
+        if tm: h = h[:tm.start()] + h[tm.end():]; h = h.replace('<!--trust-->', tm.group(0), 1)
     # 4. brand in titles
     h = re.sub(r'<title>Money — ', '<title>Money Beast — ', h)
     h = re.sub(r'(<meta property="og:title" content=")Money — ', r'\1Money Beast — ', h)

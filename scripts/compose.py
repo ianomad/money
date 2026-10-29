@@ -102,22 +102,29 @@ stable = ('<span id="stablecoins"></span>' + tuck(digest('stable-top', f"STABLEC
     f"Stablecoin yields: top {dp[0]['apy']:.2f}% (Aave, Maple, Sky, Ethena…), not FDIC insured"))
 tabs = '<div class="view-tabs" role="tablist"><a href="/" data-view="us" role="tab"><span>US savings</span></a><a href="/#world" data-view="world" role="tab"><span>World deposits</span></a></div>'
 import feed as _F, feeds as _feeds
-rates_head = _F.head('Your money could be doing <em>more.</em>', 'Money Beast finds opportunities to earn more, save money, and stay ahead.').replace('</p></section>', '</p><p class="agent"><b>A money agent that watches for opportunities</b> in public savings rates, card rewards and markets, so you can act on them. It doesn’t connect to your accounts.</p>' + __import__('pitch').hero_cta() + '</section>', 1).replace('<section class="fhead"', '<section class="fhead" id="rates-head"', 1)
+rates_head = _F.head('Your money could be doing <em>more.</em>', 'Money Beast finds the best public rates and deals.').replace('<section class="fhead"', '<section class="fhead home-h" id="rates-head"', 1)
 _h_c1, _h_sw = _feeds.home_extras()
 import history as _hist; _hist.update()
 import savings as _sv
 _svD, _svP = _sv.dataset()
 for _p in _svP: print('WARN rate-terms:', _p)
+HOME_JS = '<script>document.addEventListener("DOMContentLoaded",()=>{const n=document.querySelector(".bnav");if(!n)return;const f=()=>n.classList.toggle("pre",scrollY<200);f();addEventListener("scroll",f,{passive:true})})</script>'
 rates_tuck = _F.more(f'Advertised rates table ({ncash}): conditions and sources', rates, cls='i big', id_='all-accounts')
 import pitch as _pitch
 _pt = _feeds.plain_top()
 _svh = _sv.render(_svD)
 _em = re.search(r'(<p class="fc-earn" id="sv-earn"[^>]*>≈ <b>\$([\d,]+)</b> in year one on \$[\d,]+ at (.*?), before tax</p>)', _svh)
-if _em: _svh = _svh.replace(_em.group(1), _pitch.hero_pre() + _em.group(1) + _pitch.hero_extras(float(_em.group(2).replace(',', '')), _em.group(3)), 1)
-_svh = _svh.replace('<article class="fc dark hero"><div id="sv-pick"', '<article class="fc dark hero"><p class="otag dk">Opportunity right now</p><div id="sv-pick"', 1)
+# minimal fold (Oct 29 2026): value card = pick + money line only; Follow CTA right under it; slider/bars/amount in a light card below
+_hm = re.search(r'<article class="fc dark hero">(<div id="sv-pick".*?</div>)(<p class="fc-earn" id="sv-earn"[^>]*>.*?</p>)(<div class="hrow">.*?</div>)</article>', _svh, re.S)
+assert _em and _hm, 'hero markup changed'
+_net = float(_em.group(2).replace(',', '')); _amt = 10000; _nr = _pitch.nat()['savings']
+_earn = f'<p class="fc-earn" id="sv-earn" aria-live="polite"><b>{_pitch.money(_amt)}</b> earns ≈ <b>{_pitch.money(_net)}</b> in year one vs {_pitch.money(_amt * _nr / 100)} at the US average, before tax</p>'
+_svh = _svh.replace(_hm.group(0), f'<article class="fc dark hero">{_hm.group(1)}{_earn}</article>' + _pitch.hero_cta()
+    + f'<div class="fc hcalc">{re.sub(r"<p class=.ytag.>.*?</p>", "", _pitch.hero_pre())}{_pitch.hero_extras(_net, _em.group(3))}{_hm.group(3)}</div>'
+    + '<div class="hnote"><!--trust--><p class="disc">Public data only. Money Beast doesn’t connect to your accounts.</p></div>' + tabs, 1)
 _svh = _svh.replace('<!--brief-->', _pitch.feed(_pt, world_hero) + '<!--brief-->', 1)
-body = (pages2.CSS + _F.CSS + rates_head + tabs + f'<div id="view-us">{_svh}{_h_sw}{rates_tuck}{stable}{method}{pages2.sources_fold("rates")}</div>'
-        + f'<div id="view-world" class="wrap" hidden><span id="world"></span>{world_hero}{world_rest}</div>' + show_js + _F.JS)
+body = (pages2.CSS + _F.CSS + rates_head + f'<div id="view-us">{_svh}{_h_sw}{rates_tuck}{stable}{method}{pages2.sources_fold("rates")}</div>'
+        + f'<div id="view-world" class="wrap" hidden>{tabs}<span id="world"></span>{world_hero}{world_rest}</div>' + show_js + _F.JS + HOME_JS)
 desc = re.search(r'<meta name="description" content="([^"]*)"', sv).group(1)
 # ---------- lazy helpers (perf) ----------
 (D/'frag').mkdir(exist_ok=True)

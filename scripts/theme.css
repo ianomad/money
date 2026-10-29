@@ -495,3 +495,16 @@ main .chip,main .badge{font-size:12px}
 .xcta-n{font-size:13.5px;color:var(--muted)}
 .proof .xrep{font-size:14.5px;color:var(--muted);margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line)}
 .proof .xrep a{display:inline-flex;align-items:center;gap:6px;min-height:32px;font-weight:650;color:var(--ink);text-underline-offset:3px}.proof .xrep a:hover{color:var(--gold)}
+/* minimal home fold (Oct 29 2026) */
+.menu .mt{display:none}.menu>summary{width:var(--tap);padding:0;justify-content:center}
+.home-h{padding:clamp(28px,6vw,56px) 0 0}.home-h h1{margin:0}.home-h .sub{margin:10px 0 0;font-size:17px;color:var(--muted)}
+#view-us .fc.dark.hero{margin-top:clamp(24px,5vw,36px);display:flex;flex-direction:column;padding:22px 22px 24px;max-width:620px}
+#view-us .hero>#sv-pick{display:contents}
+#view-us .hero .fc-k{order:1}#view-us .hero .fc-big{order:2;margin:2px 0 0}#view-us .hero .fc-line{order:3;margin:2px 0 0;font-size:17px}#view-us .hero #sv-earn{order:4;margin:14px 0 0;font-size:17px;line-height:1.45;color:#faf7f0}#view-us .hero .fc-catch{order:5}
+#view-us .hero .fc-catch{background:none;padding:0;margin:12px 0 0;font-size:13px;color:rgba(250,247,240,.62)}#view-us .hero .fc-catch::before{display:none}
+#view-us .hero #sv-earn b{color:#e9cf8a}
+#view-us .xcta{margin:18px 0 0}#view-us .xbtn{min-height:48px;font-size:16px}
+.hcalc{margin-top:clamp(40px,9vw,64px);max-width:620px}.hcalc .rng{margin:0}.hcalc .rng label{color:var(--muted)}.hcalc .rng output{color:var(--ink)}.hcalc .rng input[type=range]{accent-color:var(--gold)}
+.hcalc .ytag{color:var(--gold);margin:8px 0 0}.hcalc .hrow{margin-top:10px}
+.hnote{margin:14px 0 8px;max-width:620px}.hnote .trust{margin:0!important}.hnote .disc{font-size:13px;color:var(--muted);margin:4px 0 0}
+.bnav{transition:transform .2s ease}.bnav.pre{transform:translateY(110%)}

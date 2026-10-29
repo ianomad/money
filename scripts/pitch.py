@@ -89,5 +89,4 @@ def hero_extras(top_net_default, top_name, amount=10000):
 
 def hero_cta():
     """Hero 'Follow on X' call to action (Oct 29 2026: X is the only channel). No alerts, no monitoring implied."""
-    return (f'<div class="xcta"><a class="btn pri xbtn" href="{X_URL}" target="_blank" rel="noopener" data-x-follow="hero">{XSVG}Follow @MoneyBeastHQ on X</a>'
-            f'<span class="xcta-n">New opportunities and market calls, posted free on X.</span></div>')
+    return (f'<div class="xcta"><a class="btn pri xbtn" href="{X_URL}" target="_blank" rel="noopener" data-x-follow="hero">{XSVG}Follow @MoneyBeastHQ on X</a></div>')
