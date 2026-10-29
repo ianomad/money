@@ -69,7 +69,7 @@ def _(): near(W.calc(10000, 14.5, 24, 0, 0, 4.4)['beUS'], (1.088 / 1.29 - 1) * 1
 def _(): near(W.yearly_move(349.95, 1528.26, 3), ((349.95 / 1528.26) ** (1 / 3) - 1) * 100)
 @case('World: no country is labelled best; 10 tracked countries stated')
 def _():
-    h = (ROOT / 'docs/index.html').read_text()
+    h = (ROOT / 'docs/abroad.html').read_text() + (ROOT / 'docs/index.html').read_text()  # World moved to /abroad (Oct 29 2026)
     v = h[h.index('id="view-world"'):]
     import re as _re
     assert 'Top pick abroad' not in h and 'best in the world' not in h.lower() and _re.search(r'\d+ tracked countries', v)

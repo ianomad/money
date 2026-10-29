@@ -80,7 +80,7 @@ from datetime import date as _date
 def ui4(h):
     if '<main' not in h or 'class="trust"' in h: return h
     path = re.search(r'<link rel="canonical" href="https://[^/"]+(/[a-z-]*)(?:\.html)?"', h)
-    rates = 'data-view="us"' in h; cards = 'class="calc"' in h and bool(path) and path.group(1).startswith('/cards')  # was matching World's .calc sections -> stray card calculator on World
+    rates = 'data-view="us"' in h or 'id="sv-form"' in h; cards = 'class="calc"' in h and bool(path) and path.group(1).startswith('/cards')  # was matching World's .calc sections -> stray card calculator on World
     today = _date.today().strftime('%b %-d, %Y')
     src = {True: 'Rates checked by hand against each bank’s own page'}.get(rates) or ('Card terms checked against issuer pages' if cards else 'Data from FRED (Fed, Treasury, EIA, Freddie Mac), BLS and CoinGecko')
     h = re.sub(r'(<main[^>]*>)', r'\1' + f'<p class="trust"><span><b>●</b> Updated {today}</span><span>{src}</span><span>No sponsored rankings</span></p>', h, count=1)
@@ -127,7 +127,7 @@ def finalize(h): return xfollow(_fin4(h))
 
 # ---------- Share cards (Oct 25 2026): large og:image / twitter card on every served page; images from scripts/build_og.py ----------
 SITE = 'https://getmoneybeast.com'
-OG_PAGES = {'/': 'home', '/markets': 'markets', '/cards': 'cards', '/cards.html': 'cards', '/best-hysa': 'best-hysa',
+OG_PAGES = {'/': 'home', '/rates': 'home', '/abroad': 'home', '/changes': 'home', '/record': 'home', '/markets': 'markets', '/cards': 'cards', '/cards.html': 'cards', '/best-hysa': 'best-hysa',
             '/best-nofee-cards': 'best-nofee-cards', '/tbills-vs-savings-california': 'tbills-vs-savings-california',
             '/pay-property-tax-credit-card': 'pay-property-tax-credit-card'}
 def ogtags(h):

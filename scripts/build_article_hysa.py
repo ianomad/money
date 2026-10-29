@@ -88,7 +88,7 @@ def build(root):
         bars.append(('US average', nat, _pct(nat), '#gap'))
     bars += [(p['name'], p['base'], _pct(p['base']), '#plain') for p in brands if p['base'] < 1][:1]
     card = topcard('Top no-strings rate', _pct(top['base']), f'{top["name"]} · {top["product"]}', top['requirements'],
-                   f'Checked {checked}', [('Insured', 'FDIC · ' + _insurer(top))], ('Full rate table', '/'), bars,
+                   f'Checked {checked}', [('Insured', 'FDIC · ' + _insurer(top))], ('Full rate table', '/rates'), bars,
                    'Plain savings APY, no conditions')
 
     gap = ''

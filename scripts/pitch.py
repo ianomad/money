@@ -79,7 +79,7 @@ def proof():
             f'<p class="xrep">Get new opportunities and calls first: <a href="{X_URL}" target="_blank" rel="noopener" data-x-follow="record">{XSVG}Follow on X</a></p></section>')
 
 def hero_pre(amount=10000):
-    return (f'<div class="rng"><label for="sv-rng">Your balance <output id="sv-rng-o" for="sv-rng">{money(amount)}</output></label>'
+    return (f'<div class="rng"><label for="sv-rng">Example balance <span class="ed">· drag or type yours</span> <output id="sv-rng-o" for="sv-rng">{money(amount)}</output></label>'
             f'<input type="range" id="sv-rng" min="1000" max="100000" step="1000" value="{amount}" aria-describedby="sv-earn"></div>'
             f'<p class="ytag">Your estimate · based on your balance</p>')
 def hero_extras(top_net_default, top_name, amount=10000):

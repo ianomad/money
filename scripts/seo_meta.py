@@ -10,8 +10,14 @@ ORG = {'@type': 'Organization', 'name': 'Money Beast', 'url': SITE + '/', 'logo'
 ARTICLES = {'/best-hysa': '2026-10-15', '/best-nofee-cards': '2026-10-16',
             '/pay-property-tax-credit-card': '2026-10-20', '/tbills-vs-savings-california': '2026-10-21'}
 PAGES = {  # path: (title, description or None to keep, breadcrumb name)
-    '/': ('Money Beast: savings rates at home and abroad, checked daily',
-          'Compare plain US savings rates and the catches behind 5%+ headlines, plus deposit rates in 10 tracked countries shown in dollars. Dates and sources on every number.', None),
+    '/': ('Money Beast: better rates, smarter spending, opportunities worth catching',
+          'The best savings rate right now, card value after fees, market moves and deposit rates abroad, from public data checked by hand. Dates and sources on every number.', None),
+    '/rates': ('Savings rates ranked: plain rates and the catches | Money Beast',
+               'Compare plain US savings rates and the catches behind 5%+ headlines, with a calculator for your balance. Dates and sources on every number.', 'Savings'),
+    '/abroad': ('High deposit rates abroad, in dollars | Money Beast',
+                'Deposit rates in 10 tracked countries shown in dollars, with currency risk and break-even worked out. Dates and sources on every number.', 'World'),
+    '/changes': ('What changed: rates, cards and markets | Money Beast', None, 'Latest changes'),
+    '/record': ('Prediction record, graded in public | Money Beast', None, 'Prediction record'),
     '/markets': ('Markets today: mortgage rates, yields, gas, stocks | Money Beast', None, 'Markets'),
     '/cards': ('Cash-back card calculator: rewards minus fees | Money Beast',
                'See what each cash-back or rewards card nets you a year after its annual fee, using your own spending. Hand-checked terms, no sponsored rankings.', 'Cards'),
@@ -20,8 +26,8 @@ PAGES = {  # path: (title, description or None to keep, breadcrumb name)
     '/disclosure': ('How we check and rank | Money Beast', None, 'How we check'),
     '/privacy': ('Privacy policy | Money Beast', None, 'Privacy'),
 }
-RELATED = [('/', 'Savings calculator', 'What a rate pays on your balance'),
-           ('/#world', 'World view', 'Deposit rates abroad, in dollars'),
+RELATED = [('/rates', 'Savings calculator', 'What a rate pays on your balance'),
+           ('/abroad', 'World view', 'Deposit rates abroad, in dollars'),
            ('/cards', 'Card calculator', 'Rewards minus fees on your spending'),
            ('/markets', 'Markets', 'Rates, gas and stocks with dates'),
            ('/best-hysa', 'No-strings savings', 'Plain rates vs the catches'),

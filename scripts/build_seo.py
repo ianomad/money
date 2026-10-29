@@ -3,7 +3,7 @@ from datetime import date
 
 BASE = 'https://getmoneybeast.com'
 # (path, served file) — only composed, public pages; builder source pages redirect and stay out.
-PAGES = [('/', 'index.html'), ('/best-hysa', 'best-hysa.html'), ('/best-nofee-cards', 'best-nofee-cards.html'), ('/pay-property-tax-credit-card', 'pay-property-tax-credit-card.html'), ('/tbills-vs-savings-california', 'tbills-vs-savings-california.html'), ('/markets', 'markets.html'), ('/cards', 'cards.html'),
+PAGES = [('/', 'index.html'), ('/rates', 'rates.html'), ('/abroad', 'abroad.html'), ('/changes', 'changes.html'), ('/record', 'record.html'), ('/best-hysa', 'best-hysa.html'), ('/best-nofee-cards', 'best-nofee-cards.html'), ('/pay-property-tax-credit-card', 'pay-property-tax-credit-card.html'), ('/tbills-vs-savings-california', 'tbills-vs-savings-california.html'), ('/markets', 'markets.html'), ('/cards', 'cards.html'),
          ('/guides', 'guides.html'), ('/sponsor', 'sponsor.html'), ('/disclosure', 'disclosure.html'), ('/privacy', 'privacy.html')]
 
 

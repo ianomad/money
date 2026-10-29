@@ -5,19 +5,21 @@
 import re
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
+WORLD_IDS = {'world'}  # set by compose.py: anchors that moved from / to /abroad
 X_URL = 'https://x.com/intent/follow?screen_name=MoneyBeastHQ'
 XSVG = '<svg class="xlogo" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'
 CORR = 'mailto:dev@ilyusha.xyz?subject=Money%20Beast%20correction'
-NAV = [('Savings', '/', 'savings'), ('World', '/#world', 'world'), ('Cards', '/cards', 'cards'), ('Markets', '/markets', 'markets'), ('Guides', '/guides', 'guides')]
+NAV = [('Savings', '/rates', 'savings'), ('World', '/abroad', 'world'), ('Cards', '/cards', 'cards'), ('Markets', '/markets', 'markets'), ('Guides', '/guides', 'guides')]
 GROUPS = [
-    ('Savings & rates', [('US savings rates', '/'), ('Banks abroad (World)', '/#world'), ('Best no-strings savings', '/best-hysa'), ('T-bills vs savings (California)', '/tbills-vs-savings-california')]),
+    ('Overview', [('Home', '/'), ('Latest changes', '/changes'), ('Prediction record', '/record')]),
+    ('Savings & rates', [('US savings rates', '/rates'), ('Banks abroad (World)', '/abroad'), ('Best no-strings savings', '/best-hysa'), ('T-bills vs savings (California)', '/tbills-vs-savings-california')]),
     ('Cards & fees', [('Card calculator', '/cards'), ('Best no-fee cash-back cards', '/best-nofee-cards'), ('Paying property tax by card', '/pay-property-tax-credit-card')]),
     ('Markets', [('Today’s numbers', '/markets'), ('Dates to watch', '/markets#watch'), ('Crypto', '/markets#crypto'), ('World economy', '/markets#economy')]),
     ('About', [('How we check and rank', '/disclosure'), ('Sponsor', '/sponsor'), ('Privacy', '/privacy'), ('Suggest a correction ↗', CORR)]),
 ]
-SECTION = {'/': 'savings', '/cards': 'cards', '/cards.html': 'cards', '/markets': 'markets', '/guides': 'guides',
+SECTION = {'/': 'home', '/rates': 'savings', '/abroad': 'world', '/cards': 'cards', '/cards.html': 'cards', '/markets': 'markets', '/guides': 'guides',
            '/best-hysa': 'guides', '/best-nofee-cards': 'guides', '/pay-property-tax-credit-card': 'guides', '/tbills-vs-savings-california': 'guides'}
-DATA_PAGES = {'/', '/cards', '/cards.html', '/markets', '/best-hysa', '/best-nofee-cards', '/pay-property-tax-credit-card', '/tbills-vs-savings-california'}
+DATA_PAGES = {'/', '/rates', '/abroad', '/changes', '/cards', '/cards.html', '/markets', '/best-hysa', '/best-nofee-cards', '/pay-property-tax-credit-card', '/tbills-vs-savings-california'}
 
 def css():
     s = (HERE / 'theme.css').read_text()
@@ -38,13 +40,14 @@ def header(cur):
             '</header>')
 
 ICON = {'savings': '<path d="M4 10h16v9H4zM7 10V7a5 5 0 0 1 10 0v3"/>', 'world': '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c3 3 3 14 0 17M12 3.5c-3 3-3 14 0 17"/>',
+        'home': '<path d="M4 11l8-6.5 8 6.5"/><path d="M6.5 9.5V19h11V9.5"/>',
         'cards': '<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h4"/>', 'markets': '<path d="M3 18l5-6 4 3 7-9"/><path d="M15 6h4v4"/>'}
 
 def bnav(cur):
     """Mobile bottom navigation (CSS shows it under 820px only; desktop keeps the top nav)."""
     return ('<nav class="tabs-m bnav" aria-label="Sections">' + ''.join(
         f'<a href="{h}"{" aria-current=\"page\"" if k == cur else ""}><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">{ICON[k]}</svg><span>{l}</span></a>'
-        for l, h, k in NAV if k in ICON) + '</nav>')
+        for l, h, k in [('Home', '/', 'home')] + [x for x in NAV if x[2] in ('savings', 'cards', 'markets', 'world')]) + '</nav>')
 
 BNAV_JS = ('<script>(()=>{const n=document.querySelector(".bnav"),v=window.visualViewport;if(!n)return;'
            'const t=e=>{const f=document.activeElement,txt=!!(f&&f.matches("input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=button]),textarea"));n.classList.toggle("kb",txt||(v&&innerHeight-v.height>120));'
@@ -77,6 +80,8 @@ def apply(h):
     h = re.sub(r'<link rel="stylesheet"[^>]*>', '', h)
     h = h.replace('</head>', f'<style>{css()}</style></head>', 1)
     h = h.replace('<meta name="viewport" content="width=device-width, initial-scale=1">', '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#fbfaf6">', 1)
+    # 1b. old one-page anchors: /#world -> /abroad, other /#id -> /rates#id (Oct 29 2026 split of / into overview + sections)
+    h = re.sub(r'href="/#([\w-]+)"', lambda m: f'href="/abroad{"" if m.group(1) == "world" else "#" + m.group(1)}"' if m.group(1) in WORLD_IDS else f'href="/rates#{m.group(1)}"', h)
     # 2. chrome
     h = re.sub(r'<a class="skip-link"[^>]*>.*?</a>', '', h, flags=re.S)
     h = re.sub(r'<header\b[^>]*>.*?</header>', lambda _: header(cur), h, count=1, flags=re.S)

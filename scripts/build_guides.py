@@ -8,7 +8,7 @@ GUIDES = [
 ]
 TOOLS = [
     ('/#calc', 'Savings earnings calculator', 'What each US account would pay you in the first year, after promos, caps and fees.'),
-    ('/#world', 'Banks abroad', 'Deposit rates in 10 tracked countries, with the currency risk worked out in dollars.'),
+    ('/abroad', 'Banks abroad', 'Deposit rates in 10 tracked countries, with the currency risk worked out in dollars.'),
     ('/cards', 'Card calculator', 'Enter your spending and see what each card is worth after its fee.'),
     ('/markets', 'Today’s numbers', 'Mortgage rates, gas, stocks, the Fed and dates to watch.'),
 ]

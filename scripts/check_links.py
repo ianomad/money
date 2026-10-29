@@ -21,7 +21,7 @@ def target(path, R):
 def ids(f, cache={}):
     if f not in cache:
         h = f.read_text(errors='ignore'); s = set(re.findall(r'\bid="([^"]+)"', h)) | set(re.findall(r'\bname="([^"]+)"', h))
-        if f.name == 'index.html' or f.name == 'markets.html':  # lazy fragments are inserted into these pages
+        if f.name in ('index.html', 'markets.html', 'rates.html', 'abroad.html'):  # lazy fragments are inserted into these pages
             for fr in (D / 'frag').glob('*.html'): s |= set(re.findall(r'\bid="([^"]+)"', fr.read_text()))
         cache[f] = s
     return cache[f]

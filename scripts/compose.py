@@ -102,30 +102,13 @@ stable = ('<span id="stablecoins"></span>' + tuck(digest('stable-top', f"STABLEC
     f"Stablecoin yields: top {dp[0]['apy']:.2f}% (Aave, Maple, Sky, Ethena…), not FDIC insured"))
 tabs = '<div class="view-tabs" role="tablist"><a href="/" data-view="us" role="tab"><span>US savings</span></a><a href="/#world" data-view="world" role="tab"><span>World deposits</span></a></div>'
 import feed as _F, feeds as _feeds
-rates_head = _F.head('Your money could be doing <em>more.</em>', 'Money Beast finds the best public rates and deals.').replace('<section class="fhead"', '<section class="fhead home-h" id="rates-head"', 1)
 _h_c1, _h_sw = _feeds.home_extras()
 import history as _hist; _hist.update()
 import savings as _sv
 _svD, _svP = _sv.dataset()
 for _p in _svP: print('WARN rate-terms:', _p)
-HOME_JS = '<script>document.addEventListener("DOMContentLoaded",()=>{const n=document.querySelector(".bnav");if(!n)return;const f=()=>n.classList.toggle("pre",scrollY<200);f();addEventListener("scroll",f,{passive:true})})</script>'
 rates_tuck = _F.more(f'Advertised rates table ({ncash}): conditions and sources', rates, cls='i big', id_='all-accounts')
-import pitch as _pitch
-_pt = _feeds.plain_top()
-_svh = _sv.render(_svD)
-_em = re.search(r'(<p class="fc-earn" id="sv-earn"[^>]*>≈ <b>\$([\d,]+)</b> in year one on \$[\d,]+ at (.*?), before tax</p>)', _svh)
-# minimal fold (Oct 29 2026): value card = pick + money line only; Follow CTA right under it; slider/bars/amount in a light card below
-_hm = re.search(r'<article class="fc dark hero">(<div id="sv-pick".*?</div>)(<p class="fc-earn" id="sv-earn"[^>]*>.*?</p>)(<div class="hrow">.*?</div>)</article>', _svh, re.S)
-assert _em and _hm, 'hero markup changed'
-_net = float(_em.group(2).replace(',', '')); _amt = 10000; _nr = _pitch.nat()['savings']
-_earn = f'<p class="fc-earn" id="sv-earn" aria-live="polite"><b>{_pitch.money(_amt)}</b> earns ≈ <b>{_pitch.money(_net)}</b> in year one vs {_pitch.money(_amt * _nr / 100)} at the US average, before tax</p>'
-_svh = _svh.replace(_hm.group(0), f'<article class="fc dark hero">{_hm.group(1)}{_earn}</article>' + _pitch.hero_cta()
-    + f'<div class="fc hcalc">{re.sub(r"<p class=.ytag.>.*?</p>", "", _pitch.hero_pre())}{_pitch.hero_extras(_net, _em.group(3))}{_hm.group(3)}</div>'
-    + '<div class="hnote"><!--trust--><p class="disc">Public data only. Money Beast doesn’t connect to your accounts.</p></div>' + tabs, 1)
-_svh = _svh.replace('<!--brief-->', _pitch.feed(_pt, world_hero) + '<!--brief-->', 1)
-body = (pages2.CSS + _F.CSS + rates_head + f'<div id="view-us">{_svh}{_h_sw}{rates_tuck}{stable}{method}{pages2.sources_fold("rates")}</div>'
-        + f'<div id="view-world" class="wrap" hidden>{tabs}<span id="world"></span>{world_hero}{world_rest}</div>' + show_js + _F.JS + HOME_JS)
-desc = re.search(r'<meta name="description" content="([^"]*)"', sv).group(1)
+import pitch as _pitch, overview as _ov, theme as _theme
 # ---------- lazy helpers (perf) ----------
 (D/'frag').mkdir(exist_ok=True)
 def lazytuck(html, label, name):
@@ -135,11 +118,42 @@ LAZY_JS = '''<script>(()=>{const load=d=>{if(d.dataset.done)return Promise.resol
 def lazyimg(h):
     return re.sub(r'<img (?![^>]*loading=)(?![^>]*brand-mark)', '<img loading="lazy" ', h)
 
-idx = page('Money — rates at home and abroad', desc, '/', 'rates', body + DIGEST_JS, head_styles(wd) + DIGEST_CSS + UI_CSS, '<script src="/app.js" defer></script>')
-for asset in ('styles.css', 'app.js', 'analytics.js', 'favicon.svg'):
-    v = hashlib.sha256((D/asset).read_bytes()).hexdigest()[:10]
-    idx = idx.replace(f'"/{asset}"', f'"/{asset}?v={v}"')
-(D/'index.html').write_text(finalize(lazyimg(idx)))
+def _assets(h):
+    for asset in ('styles.css', 'app.js', 'analytics.js', 'favicon.svg'):
+        v = hashlib.sha256((D/asset).read_bytes()).hexdigest()[:10]
+        h = h.replace(f'"/{asset}"', f'"/{asset}?v={v}"')
+    return h
+# ---------- Savings section: /rates (Oct 29 2026 product brief; was the top half of /) ----------
+# Short answer first (best rate, example balance editable right on the card), then top 3, personalize, the full ranked list (open), table, method, sources.
+_svh = _sv.render(_svD)
+_em = re.search(r'(<p class="fc-earn" id="sv-earn"[^>]*>≈ <b>\$([\d,]+)</b> in year one on \$[\d,]+ at (.*?), before tax</p>)', _svh)
+assert _em, 'savings hero markup changed'
+_net = float(_em.group(2).replace(',', '')); _nr = _pitch.nat()['savings']
+_earn = f'<p class="fc-earn" id="sv-earn" aria-live="polite"><b>{_pitch.money(10000)}</b> earns ≈ <b>{_pitch.money(_net)}</b> in year one vs {_pitch.money(10000 * _nr / 100)} at the US average, before tax</p>'
+_svh = _svh.replace(_em.group(1), re.sub(r'<p class="ytag">.*?</p>', '', _pitch.hero_pre()) + _earn + _pitch.hero_extras(_net, _em.group(3)), 1)
+_svh = _svh.replace('<!--brief-->', '', 1).replace('<details class="i big" id="sv-all">', '<details class="i big" id="sv-all" open>', 1)
+rates_js = re.sub(r"const tabs=.*?document\.addEventListener\('DOMContentLoaded',\(\)=>show\(want\(\)\)\);", '', show_js, flags=re.S)
+assert 'const tabs' not in rates_js
+r_body = (pages2.CSS + _F.CSS + _F.head('Savings rates, <em>ranked.</em>', 'The best no-strings rate right now, then every account with its conditions.').replace('<section class="fhead"', '<section class="fhead sec-h"', 1)
+          + f'<div id="view-us">{_svh}<!--brief-->{_h_sw}{rates_tuck}{stable}{method}{pages2.sources_fold("rates")}</div>' + rates_js + _F.JS)
+desc = re.search(r'<meta name="description" content="([^"]*)"', sv).group(1)
+rp = page('Money — savings rates, ranked', desc, '/rates', 'rates', r_body + DIGEST_JS, head_styles(wd) + DIGEST_CSS + UI_CSS, '<script src="/app.js" defer></script>')
+# ---------- World section: /abroad (was /#world) ----------
+w_body = pages2.CSS + _F.CSS + f'<div id="view-world" class="wrap"><span id="world"></span>{world_hero}{world_rest}</div>' + _F.JS
+wdesc = re.search(r'<meta name="description" content="([^"]*)"', wd).group(1)
+wp = page('Money — high rates abroad, with currency risk', wdesc, '/abroad', 'rates', w_body + DIGEST_JS, head_styles(wd) + DIGEST_CSS + UI_CSS)
+_ids = lambda h: set(re.findall(r'\bid="([^"]+)"', h)) - {'top'}
+_theme.WORLD_IDS = _ids(w_body) | {'world'}
+# ---------- Overview: / ----------
+import datetime as _dt
+_home, _ev = _ov.home(world_hero, _dt.date.today().isoformat())
+(D/'rates.html').write_text(finalize(lazyimg(_assets(rp))))  # written first so its final ids feed the old-anchor redirect
+h_body = _ov.hash_redirect(_theme.WORLD_IDS, _ids((D/'rates.html').read_text()) - _theme.WORLD_IDS) + _home + _ov.HOME_JS
+idx = page('Money — better rates, smarter spending, opportunities worth catching', 'Money Beast is a money agent for better rates, smarter spending and opportunities worth catching: the best savings rate, card value, market moves and rates abroad, from public data checked by hand.', '/', 'rates', h_body)
+cp = page('Money — what changed', 'Every real change in the savings rates, cards, world deposit rates and markets Money Beast tracks, newest first, with sources.', '/changes', 'x', _ov.changes_page(_ev))
+pp = page('Money — prediction record', 'Money Beast predictions posted on X before the result and graded in public, misses included.', '/record', 'x', _ov.record_page())
+for _n, _h in (('index.html', idx), ('abroad.html', wp), ('changes.html', cp), ('record.html', pp)):
+    (D/_n).write_text(finalize(lazyimg(_assets(_h))))
 
 # ---------- Markets ----------
 dy, ins, cr, ec = rd('daily.html'), rd('insights.html'), rd('crypto.html'), rd('economy.html')
