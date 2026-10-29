@@ -102,7 +102,7 @@ stable = ('<span id="stablecoins"></span>' + tuck(digest('stable-top', f"STABLEC
     f"Stablecoin yields: top {dp[0]['apy']:.2f}% (Aave, Maple, Sky, Ethena…), not FDIC insured"))
 tabs = '<div class="view-tabs" role="tablist"><a href="/" data-view="us" role="tab"><span>US savings</span></a><a href="/#world" data-view="world" role="tab"><span>World deposits</span></a></div>'
 import feed as _F, feeds as _feeds
-rates_head = _F.head('Your money could be doing <em>more.</em>', 'Money Beast finds opportunities to earn more, save money, and stay ahead.').replace('</p></section>', '</p><p class="agent"><b>A money agent that watches for opportunities</b> in public savings rates, card rewards and markets, so you can act on them. It doesn’t connect to your accounts.</p></section>', 1).replace('<section class="fhead"', '<section class="fhead" id="rates-head"', 1)
+rates_head = _F.head('Your money could be doing <em>more.</em>', 'Money Beast finds opportunities to earn more, save money, and stay ahead.').replace('</p></section>', '</p><p class="agent"><b>A money agent that watches for opportunities</b> in public savings rates, card rewards and markets, so you can act on them. It doesn’t connect to your accounts.</p>' + __import__('pitch').hero_cta() + '</section>', 1).replace('<section class="fhead"', '<section class="fhead" id="rates-head"', 1)
 _h_c1, _h_sw = _feeds.home_extras()
 import history as _hist; _hist.update()
 import savings as _sv

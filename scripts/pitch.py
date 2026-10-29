@@ -6,7 +6,8 @@ from pathlib import Path
 from html import escape as e
 import feed as F
 ROOT = Path(__file__).resolve().parents[1]; DATA = ROOT / 'data'
-X_URL = 'https://x.com/MoneyBeastHQ'
+X_URL = 'https://x.com/intent/follow?screen_name=MoneyBeastHQ'
+XSVG = '<svg class="xlogo" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'
 EXCLUDE = re.compile(r'\b(block|\$?xyz|cash ?app|square|afterpay)\b', re.I)
 def dj(n): return json.loads((DATA / n).read_text())
 def money(x): return f'${x:,.0f}'
@@ -75,7 +76,7 @@ def proof():
     return (f'<section class="fc proof" id="record" aria-labelledby="rec-h"><p class="fc-k" id="rec-h">Predictions, graded in public</p>'
             f'<p class="rec"><b>{hits} right, {miss} wrong</b> so far. Misses stay on the record.</p>'
             f'<details class="i"><summary>See all {len(P)} calls</summary><ol class="pl">{lis}</ol></details>'
-            f'<div class="fc-act"><a class="btn pri" href="{X_URL}" target="_blank" rel="noopener" data-x-follow="record">Follow @MoneyBeastHQ on X ↗</a></div></section>')
+            f'<p class="xrep">Get new opportunities and calls first: <a href="{X_URL}" target="_blank" rel="noopener" data-x-follow="record">{XSVG}Follow on X</a></p></section>')
 
 def hero_pre(amount=10000):
     return (f'<div class="rng"><label for="sv-rng">Your balance <output id="sv-rng-o" for="sv-rng">{money(amount)}</output></label>'
@@ -85,3 +86,8 @@ def hero_extras(top_net_default, top_name, amount=10000):
     """Slider + 'your estimate vs US average' bars injected into the savings hero card (updated live by savings_ui.js)."""
     n = nat()['savings']; avg = amount * n / 100
     return (f'<div id="sv-vs" data-nat="{n}">' + F.bars([(e(top_name), top_net_default, money(top_net_default), True), ('US average', avg, money(avg), False)]) + '</div>')
+
+def hero_cta():
+    """Hero 'Follow on X' call to action (Oct 29 2026: X is the only channel). No alerts, no monitoring implied."""
+    return (f'<div class="xcta"><a class="btn pri xbtn" href="{X_URL}" target="_blank" rel="noopener" data-x-follow="hero">{XSVG}Follow @MoneyBeastHQ on X</a>'
+            f'<span class="xcta-n">New opportunities and market calls, posted free on X.</span></div>')

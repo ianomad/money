@@ -110,7 +110,7 @@ _fin3 = finalize
 def finalize(h): return ui4(_fin3(h))
 
 # ---------- X follow path (50-follower sprint, Oct 25 2026): header pill + footer line, GA4 'x_follow_click' via analytics.js ----------
-X_URL = 'https://x.com/MoneyBeastHQ'
+X_URL = 'https://x.com/intent/follow?screen_name=MoneyBeastHQ'
 X_CSS = ('<style id="xf-css">.xfollow{font:600 12px/1 var(--mono);letter-spacing:.3px;white-space:nowrap;border:1px solid var(--line);border-radius:99px;padding:7px 11px;color:var(--ink)!important;margin-left:auto}'
          '.xfollow:hover{border-color:var(--gold);color:var(--gold)!important}.xline{font-size:14px;color:var(--ink);margin:0}.xline a{font-weight:600}'
          '@media(max-width:340px){.xfollow .xf-long{display:none}.xfollow{padding:6px 9px;font-size:11px}}</style>')

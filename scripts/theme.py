@@ -5,7 +5,8 @@
 import re
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
-X_URL = 'https://x.com/MoneyBeastHQ'
+X_URL = 'https://x.com/intent/follow?screen_name=MoneyBeastHQ'
+XSVG = '<svg class="xlogo" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'
 CORR = 'mailto:dev@ilyusha.xyz?subject=Money%20Beast%20correction'
 NAV = [('Savings', '/', 'savings'), ('World', '/#world', 'world'), ('Cards', '/cards', 'cards'), ('Markets', '/markets', 'markets'), ('Guides', '/guides', 'guides')]
 GROUPS = [
@@ -32,7 +33,7 @@ def header(cur):
     return (f'<header class="site-header"><a class="skip-link" href="#top">Skip to content</a><div class="hbar">'
             '<a class="brand" href="/" aria-label="Money Beast home"><img src="/favicon.svg?v=6" width="32" height="32" alt="" class="brand-mark"><span class="bn">Money <b>Beast</b></span></a>'
             f'<nav class="mainnav" aria-label="Main">{_links(NAV, cur)}</nav>'
-            f'<div class="hact"><a class="xfollow" href="{X_URL}" target="_blank" rel="noopener" data-x-follow="header">Follow on X ↗</a>'
+            f'<div class="hact"><a class="xfollow" href="{X_URL}" target="_blank" rel="noopener" data-x-follow="header" aria-label="Follow @MoneyBeastHQ on X">{XSVG}<span>Follow<span class="xf-long"> on X</span></span></a>'
             f'<details class="menu"><summary aria-label="All pages"><span class="bars" aria-hidden="true"></span>Menu</summary><div class="menu-panel"><nav class="menu-grid" aria-label="All pages">{groups}</nav></div></details></div></div>'
             '</header>')
 
@@ -56,7 +57,7 @@ def footer(note):
     return ('<footer class="site-footer"><div>'
             f'<nav class="fgrid" aria-label="Footer">{groups}</nav>'
             f'<p class="fabout"><b>Money Beast</b> is an independent tracker of savings rates, cards and markets by <a href="https://ilyusha.xyz">Ilyusha ↗</a>. Rankings are never paid. '
-            f'Daily charts on X: <a class="xline" href="{X_URL}" target="_blank" rel="noopener" data-x-follow="footer">@MoneyBeastHQ ↗</a></p>'
+            f'New opportunities and market calls on X: <a class="xline" href="{X_URL}" target="_blank" rel="noopener" data-x-follow="footer">Follow @MoneyBeastHQ ↗</a></p>'
             f'<p class="fine">{note}</p></div></footer>')
 
 MENU_JS = ('<script>(()=>{const m=document.querySelector(".site-header .menu");if(!m)return;'
