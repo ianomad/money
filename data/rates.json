@@ -103,7 +103,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Goldman Sachs Bank USA; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-30"
     },
     {
       "id": "ally",
@@ -113,13 +113,13 @@
       "kind": "Bank",
       "symbol": "a",
       "color": "#683b65",
-      "base": 3.1,
+      "base": 3.2,
       "boost": null,
       "rateLabel": "Standard rate",
       "requirements": "No minimum opening deposit or monthly maintenance fee.",
       "details": "Variable APY, currently the same across all balance tiers. Certain withdrawals and transfers are limited to 10 per statement cycle; consult account terms.",
       "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
-      "effective": "2026-10-01",
+      "effective": "2026-10-29",
       "sources": [
         {
           "label": "Savings rate & terms",
@@ -130,7 +130,8 @@
         "status": "bank",
         "label": "FDIC · Bank deposit",
         "summary": "Ally Bank; standard coverage limits apply."
-      }
+      },
+      "verifiedAt": "2026-10-30"
     },
     {
       "id": "coinbase",
@@ -312,7 +313,7 @@
       "requirements": "3.50% below $250,000; 3.65% for $250,000–$1,000,000. No minimum to open or monthly maintenance fee.",
       "details": "Variable APY based on the tier containing your end-of-day balance. The published tiers stop at $1 million; confirm treatment of larger balances with Barclays. This is a balance-tier rate, not a temporary boost. The separate Barclays Online Savings account pays 3.20% APY as of September 11, 2026. Cash signup bonuses are excluded from this comparison.",
       "protection": "Barclays Bank Delaware is an FDIC member. The standard limit is $250,000 per depositor, per bank, per ownership category, including other deposits at the same bank. A higher APY balance tier does not increase insurance coverage; amounts above applicable limits may be uninsured.",
-      "effective": "2026-09-11",
+      "effective": "2026-10-07",
       "fdic": {
         "status": "bank",
         "label": "FDIC · Bank deposit",
@@ -327,7 +328,8 @@
           "label": "Separate Online Savings rate",
           "url": "https://banking.us.barclays/online-savings.html"
         }
-      ]
+      ],
+      "verifiedAt": "2026-10-30"
     },
     {
       "id": "axos",
@@ -399,7 +401,7 @@
           "url": "https://www.sofi.com/banking/"
         }
       ],
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-30"
     },
     {
       "id": "peak",
@@ -553,20 +555,20 @@
       "name": "Elevault",
       "product": "Elevault Portfolio",
       "category": "cash",
-      "kind": "Bank app · Southern Bancorp Bank",
+      "kind": "Bank app · Uplift Bank (formerly Southern Bancorp)",
       "symbol": "E",
       "color": "#38665a",
       "base": 4.34,
       "boost": null,
       "rateLabel": "Standard rate",
       "requirements": "No minimum deposit or fees. Interest is paid daily on balances up to $500,000; linked-account funding is capped at $2,500 a day.",
-      "details": "Variable APY of 4.34% (4.25% interest rate), which Elevault states is accurate as of May 5, 2026. Elevault is a product of Southern Bancorp. You must be a US resident aged 18 or older and scan a valid US driver’s license or state ID to enroll. You fund it by linking an account at another bank, and Elevault may close profiles left unfunded for 60 days. Balances above $500,000 do not earn interest. Elevault says VaultKeys (account and routing numbers it assigns to a Vault) let you move more than $2,500, with the sending bank setting the limit.",
-      "protection": "FDIC-insured deposits at Southern Bancorp Bank. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
+      "details": "Variable APY of 4.34% (4.25% interest rate), which Elevault states is accurate as of May 5, 2026. Elevault is a product of Uplift Bank, which was Southern Bancorp until its Oct 26, 2026 rename. You must be a US resident aged 18 or older and scan a valid US driver’s license or state ID to enroll. You fund it by linking an account at another bank, and Elevault may close profiles left unfunded for 60 days. Balances above $500,000 do not earn interest. Elevault says VaultKeys (account and routing numbers it assigns to a Vault) let you move more than $2,500, with the sending bank setting the limit.",
+      "protection": "FDIC-insured deposits at Uplift Bank (formerly Southern Bancorp Bank). The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
       "effective": "2026-05-05",
       "fdic": {
         "status": "bank",
         "label": "FDIC · Bank deposit",
-        "summary": "Southern Bancorp Bank; standard coverage and same-bank aggregation limits apply."
+        "summary": "Uplift Bank (formerly Southern Bancorp); standard coverage and same-bank aggregation limits apply."
       },
       "sources": [
         {
@@ -578,7 +580,7 @@
           "url": "https://www.elevault.app/legal"
         }
       ],
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-30"
     },
     {
       "id": "everbank",
@@ -675,17 +677,17 @@
       "kind": "Bank · Capital One, N.A.",
       "symbol": "C",
       "color": "#004977",
-      "base": 3.1,
+      "base": 3.2,
       "boost": null,
       "rateLabel": "Standard rate",
       "requirements": "No minimum, no monthly fee. Discover Online Savings now points to this account.",
-      "details": "Variable APY; same rate on all balances.",
+      "details": "Variable APY; same rate on all balances. Capital One lists the rate as effective as of Oct 29, 2026.",
       "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
-      "effective": "2026-10-13",
-      "observedAt": "2026-10-13",
+      "effective": "2026-10-29",
+      "observedAt": "2026-10-30",
       "sources": [
         {
-          "label": "Official rate page (checked Oct 13, 2026)",
+          "label": "Official rate page (checked Oct 30, 2026)",
           "url": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/"
         }
       ],
@@ -694,7 +696,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Capital One; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-13"
+      "verifiedAt": "2026-10-30"
     },
     {
       "id": "amex",
@@ -733,18 +735,18 @@
       "kind": "Bank · Synchrony Bank",
       "symbol": "S",
       "color": "#3b3b3b",
-      "base": 3.55,
+      "base": 3.75,
       "boost": null,
       "rateLabel": "Standard rate",
       "requirements": "No minimum deposit or balance, no monthly fee.",
-      "details": "Variable APY.",
+      "details": "Variable APY. Synchrony lists its APYs as accurate as of Oct 30, 2026.",
       "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
-      "effective": "2026-10-13",
-      "observedAt": "2026-10-13",
+      "effective": "2026-10-30",
+      "observedAt": "2026-10-30",
       "sources": [
         {
-          "label": "Official rate page (checked Oct 13, 2026)",
-          "url": "https://www.synchrony.com/banking/high-yield-savings"
+          "label": "Official rate page (checked Oct 30, 2026)",
+          "url": "https://www.synchrony.com/banking/products/high-yield-savings"
         }
       ],
       "fdic": {
@@ -752,7 +754,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Synchrony; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-13"
+      "verifiedAt": "2026-10-30"
     },
     {
       "id": "citizens",
@@ -766,13 +768,13 @@
       "boost": null,
       "rateLabel": "Standard rate",
       "requirements": "No fees; same rate on all balances.",
-      "details": "Variable APY. Bank lists the rate as accurate as of Jul 28, 2026.",
+      "details": "Variable APY. Bank lists the savings rate as accurate as of Jul 17, 2026.",
       "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
-      "effective": "2026-07-28",
-      "observedAt": "2026-10-13",
+      "effective": "2026-07-17",
+      "observedAt": "2026-10-30",
       "sources": [
         {
-          "label": "Official rate page (checked Oct 13, 2026)",
+          "label": "Official rate page (checked Oct 30, 2026)",
           "url": "https://www.citizensaccess.com/"
         }
       ],
@@ -781,7 +783,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Citizens Access; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-13"
+      "verifiedAt": "2026-10-30"
     },
     {
       "id": "wellsfargo",
@@ -795,13 +797,13 @@
       "boost": null,
       "rateLabel": "Standard rate",
       "requirements": "Big-bank benchmark: what most branch savings pay.",
-      "details": "Standard rate on all balances; rates can vary by location.",
+      "details": "Standard rate on all balances; rates can vary by location (Bay Area rates for Oct 24–30, 2026 checked).",
       "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
-      "effective": "2026-10-13",
-      "observedAt": "2026-10-13",
+      "effective": "2026-10-24",
+      "observedAt": "2026-10-30",
       "sources": [
         {
-          "label": "Official rate page (checked Oct 13, 2026)",
+          "label": "Official rate page (checked Oct 30, 2026)",
           "url": "https://www.wellsfargo.com/savings-cds/way2save/"
         }
       ],
@@ -810,7 +812,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Wells Fargo; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-13"
+      "verifiedAt": "2026-10-30"
     },
     {
       "id": "chime",
@@ -824,14 +826,14 @@
       "boost": 4.0,
       "rateLabel": "Conditional",
       "requirements": "4.00% as a Chime Prime member or 3.00% as Chime Plus, both need a qualifying direct deposit; 1.00% otherwise.",
-      "details": "Variable APY.",
+      "details": "Variable APY. Chime lists these APYs as effective as of Oct 6, 2026.",
       "protection": "Pass-through FDIC insurance through partner banks; conditions apply.",
-      "effective": "2026-10-13",
-      "observedAt": "2026-10-13",
+      "effective": "2026-10-06",
+      "observedAt": "2026-10-30",
       "sources": [
         {
-          "label": "Official rate page (checked Oct 13, 2026)",
-          "url": "https://www.chime.com/savings-account/"
+          "label": "Official rate page (checked Oct 30, 2026)",
+          "url": "https://www.chime.com/savings/high-yield-savings-account/"
         }
       ],
       "fdic": {
@@ -839,7 +841,7 @@
         "label": "FDIC · Pass-through",
         "summary": "Chime; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-13"
+      "verifiedAt": "2026-10-30"
     },
     {
       "id": "betterment",

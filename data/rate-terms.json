@@ -95,7 +95,7 @@
     {
      "label": "Standard rate",
      "needs": [],
-     "rate": 3.1
+     "rate": 3.2
     }
    ],
    "textHash": "a5dacb6e92"
@@ -415,7 +415,7 @@
      }
     }
    ],
-   "textHash": "2ebefcb06a"
+   "textHash": "b633909359"
   },
   "everbank": {
    "paths": [
@@ -484,10 +484,10 @@
     {
      "label": "Standard rate",
      "needs": [],
-     "rate": 3.1
+     "rate": 3.2
     }
    ],
-   "textHash": "3b4d0bc9a0"
+   "textHash": "712a14e918"
   },
   "amex": {
    "paths": [
@@ -504,10 +504,10 @@
     {
      "label": "Standard rate",
      "needs": [],
-     "rate": 3.55
+     "rate": 3.75
     }
    ],
-   "textHash": "513af00a7d"
+   "textHash": "c43a5560c2"
   },
   "citizens": {
    "paths": [
@@ -517,7 +517,7 @@
      "rate": 2.8
     }
    ],
-   "textHash": "a06660b6bd"
+   "textHash": "bd837dedff"
   },
   "wellsfargo": {
    "paths": [
@@ -527,7 +527,7 @@
      "rate": 0.01
     }
    ],
-   "textHash": "11073d7a78"
+   "textHash": "545dce797b"
   },
   "chime": {
    "note": "4.00% needs Chime Prime status; the criteria for Prime are not verified here, so it is not counted.",
@@ -545,7 +545,7 @@
      "rate": 3.0
     }
    ],
-   "textHash": "7e48ca5d63"
+   "textHash": "e89d746281"
   },
   "robinhood": {
    "note": "Brokerage cash sweep, not a bank account.",

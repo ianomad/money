@@ -174,7 +174,7 @@ def build():
              f'NCUA share insurance at federally insured credit unions uses the same {money(nc["single"])} standard per member-owner, per credit union, per ownership category.',
         ex=f'Partner A single: {money(fc["single"])} · Partner B single: {money(fc["single"])} · Joint: {money(fc["jointPerCoOwner"])} × 2 = {money(2 * fc["jointPerCoOwner"])} → {money(couple)} at one bank<br>'
            f'On {money(amounts[1])}: one ownership category is enough · On {money(amounts[2])}: need categories, a second bank/credit union, or both<br>'
-           f'{e(fit["name"])} is FDIC via Southern Bancorp; balances there aggregate with any other deposits at the same bank',
+           f'{e(fit["name"])} is FDIC via Uplift Bank (formerly Southern Bancorp); balances there aggregate with any other deposits at the same bank',
         catch='Fintech apps with pass-through coverage depend on partner-bank records. Balances at the same bank through different apps add together. NCUA covers federally insured credit unions only. Confirm title and beneficiary setup before relying on a category.',
         src=[(fc['source'], fc['url']), (nc['source'], nc['url']), ('FDIC, Understanding deposit insurance', 'https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance/')]))
 
