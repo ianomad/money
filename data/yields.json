@@ -95,13 +95,14 @@
           "bank": "KICB",
           "product": "Time deposit",
           "currency": "KGS",
-          "rate": 13.0,
+          "rate": 13.5,
           "term": "36 mo",
-          "min": "10,000 KGS / 100 USD",
-          "usdOption": "USD 2.0% (24 mo)",
+          "min": "10,000 KGS / 100 USD (max 10M KGS / 100k USD)",
+          "usdOption": "USD 3.0% (36 mo)",
           "access": "Branch (confirm)",
           "source": "https://www.kicb.net/en/private/retail-deposits/time_dep_en/srochnyy-depozit/",
-          "verified": "2026-10-12"
+          "verified": "2026-10-31",
+          "rateNote": "effective rate per bank table; 13.0% at 18–24 mo"
         },
         {
           "bank": "Optima Bank",
@@ -141,14 +142,15 @@
         },
         {
           "bank": "ANORBANK",
-          "product": "Term deposit",
+          "product": "Fursat deposit (online)",
           "currency": "UZS",
-          "rate": 20.0,
-          "term": "24 mo",
-          "min": "see bank",
-          "access": "App/branch (confirm)",
-          "source": "https://sogdium.com/en/finance/vklady-v-bankah-uzbekistana-procenty-2026",
-          "verified": "2026-09-23"
+          "rate": 21.0,
+          "term": "3 mo",
+          "min": "1,000,000 UZS",
+          "access": "Online in app; ANORBANK card holders only (non-resident eligibility: confirm)",
+          "source": "https://bank.uz/uz/deposit/fursat",
+          "verified": "2026-10-31",
+          "rateNote": "bank also lists Barqaror 22% (24 mo) on its site; date of that page not confirmed"
         }
       ],
       "fxStart": {
@@ -295,7 +297,7 @@
           "min": "see bank",
           "access": "Needs CUIL/CUIT and local account",
           "source": "https://bna.com.ar/home/informacionalusuariofinanciero",
-          "verified": "2026-10-25"
+          "verified": "2026-10-31"
         }
       ],
       "fxStart": {
@@ -393,7 +395,7 @@
           "min": "see bank",
           "access": "Branch (confirm)",
           "source": "https://ameriabank.am/userfiles/file/Deposit_saving_terms_for_PP_eng.pdf",
-          "verified": "2026-10-25"
+          "verified": "2026-10-31"
         },
         {
           "bank": "Ardshinbank",
@@ -404,7 +406,7 @@
           "min": "see bank",
           "access": "Branch (confirm)",
           "source": "https://ardshinbank.am/api/files/documents/Deposit-en-04-02-2026.pdf",
-          "verified": "2026-10-25"
+          "verified": "2026-10-31"
         }
       ],
       "fxStart": {

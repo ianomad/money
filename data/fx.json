@@ -1,14 +1,14 @@
 {
- "fetched": "2026-10-30",
+ "fetched": "2026-10-31",
  "note": "Local currency per 1 USD. Official central-bank rate where reachable; see detail.",
  "rates": {
   "KGS": 87.4487,
-  "UZS": 11986.508283,
-  "KZT": 453.71,
+  "UZS": 11994.641538,
+  "KZT": 453.87,
   "TRY": 49.8644,
-  "NGN": 1346.4108,
-  "ARS": 1539.0,
-  "BRL": 5.3744,
+  "NGN": 1345.7565,
+  "ARS": 1534.0,
+  "BRL": 5.4212,
   "GEL": 2.5992,
   "AMD": 360.14,
   "USD": 1
@@ -16,14 +16,14 @@
  "detail": {
   "KGS": {
    "rate": 87.4487,
-   "date": "2026-10-31",
+   "date": "2026-11-01",
    "source": "National Bank of the Kyrgyz Republic official",
    "url": "https://www.nbkr.kg/index1.jsp?item=1562&lang=ENG",
    "official": true
   },
   "KZT": {
-   "rate": 453.71,
-   "date": "2026-10-30",
+   "rate": 453.87,
+   "date": "2026-10-31",
    "source": "National Bank of Kazakhstan official",
    "url": "https://nationalbank.kz/en/exchangerates/ezhednevnye-oficialnye-rynochnye-kursy-valyut",
    "official": true
@@ -36,22 +36,22 @@
    "official": true
   },
   "NGN": {
-   "rate": 1346.4108,
-   "date": "2026-10-29",
+   "rate": 1345.7565,
+   "date": "2026-10-30",
    "source": "Central Bank of Nigeria central rate",
    "url": "https://www.cbn.gov.ng/rates/ExchRateByCurrency.html",
    "official": true
   },
   "ARS": {
-   "rate": 1539.0,
-   "date": "2026-10-29",
+   "rate": 1534.0,
+   "date": "2026-10-30",
    "source": "BCRA official (Com. A 3500)",
    "url": "https://www.bcra.gob.ar/PublicacionesEstadisticas/Tipos_de_cambios.asp",
    "official": true
   },
   "BRL": {
-   "rate": 5.3744,
-   "date": "2026-10-29",
+   "rate": 5.4212,
+   "date": "2026-10-30",
    "source": "Banco Central do Brasil PTAX (sell)",
    "url": "https://www.bcb.gov.br/estabilidadefinanceira/historicocotacoes",
    "official": true
@@ -72,14 +72,14 @@
   },
   "USD": {
    "rate": 1,
-   "date": "2026-10-30",
+   "date": "2026-10-31",
    "source": "USD",
    "url": "",
    "official": true
   },
   "UZS": {
-   "rate": 11986.508283,
-   "date": "2026-10-30",
+   "rate": 11994.641538,
+   "date": "2026-10-31",
    "source": "open.er-api.com (market aggregate; official source unreachable)",
    "url": "https://open.er-api.com/v6/latest/USD",
    "official": false

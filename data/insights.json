@@ -1,14 +1,14 @@
 {
- "checkedAt": "2026-10-30",
+ "checkedAt": "2026-10-31",
  "inputs": {
   "tbill": {
-   "date": "2026-10-29",
+   "date": "2026-10-30",
    "y4": 3.98,
-   "y13": 4.1,
-   "y26": 4.3,
+   "y13": 4.08,
+   "y26": 4.25,
    "source": "U.S. Treasury Daily Treasury Bill Rates (coupon-equivalent)",
    "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_bill_rates&field_tdr_date_value=2026",
-   "checked": "2026-10-30"
+   "checked": "2026-10-31"
   },
   "tbillTax": {
    "text": "Federal tax due on interest earned. No state or local taxes.",
@@ -31,7 +31,7 @@
    "asOf": "2026-10-19",
    "source": "FDIC National Rates and Rate Caps",
    "url": "https://www.fdic.gov/national-rates-and-rate-caps",
-   "checked": "2026-10-30"
+   "checked": "2026-10-31"
   },
   "fed": {
    "dff": 3.88,
@@ -43,13 +43,13 @@
    "checked": "2026-10-25"
   },
   "ibond": {
-   "composite": 4.26,
-   "fixed": 0.9,
-   "period": "May 1, 2026 to October 31, 2026",
+   "composite": 5.51,
+   "fixed": 1.4,
+   "period": "November 1, 2026 to April 30, 2027",
    "limit": 10000,
    "source": "TreasuryDirect, I bonds",
    "url": "https://www.treasurydirect.gov/savings-bonds/i-bonds/",
-   "checked": "2026-10-30"
+   "checked": "2026-10-31"
   },
   "discover": {
    "rate": 5,
@@ -130,7 +130,7 @@
    "navAsOf": "2026-10-06",
    "source": "Schwab Asset Management, SCHD fund page",
    "url": "https://www.schwabassetmanagement.com/products/schd",
-   "checked": "2026-10-30"
+   "checked": "2026-10-31"
   },
   "aapl": {
    "ticker": "AAPL",

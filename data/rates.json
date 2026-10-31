@@ -71,7 +71,8 @@
         "status": "conditional",
         "label": "FDIC · Conditional",
         "summary": "Applies to cash swept to program banks, subject to program conditions."
-      }
+      },
+      "verifiedAt": "2026-10-31"
     },
     {
       "id": "marcus",
@@ -190,7 +191,8 @@
         "status": "none",
         "label": "Not FDIC insured",
         "summary": "Stablecoin rewards are not covered by deposit insurance."
-      }
+      },
+      "verifiedAt": "2026-10-31"
     },
     {
       "id": "etrade",
@@ -268,13 +270,13 @@
       "kind": "DeFi lending · Aave v3",
       "symbol": "A",
       "color": "#7365b7",
-      "base": 4.25,
+      "base": 4.11,
       "boost": null,
       "baseLabel": "Market snapshot",
       "rateLabel": "Variable deposit APY",
-      "observedAt": "2026-10-29 13:44 UTC",
+      "observedAt": "2026-10-31 13:40 UTC",
       "requirements": "Supply USDC to the Ethereum Core / Main market. Requires a compatible wallet and ETH for network fees.",
-      "details": "Deposit APY for the Aave v3 USDC pool on Ethereum as reported by DefiLlama at 2026-10-29 13:44 UTC. This is one USDC market, not a protocol-wide rate. Rates change with how much of the pool is borrowed and can fall quickly; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity.",
+      "details": "Deposit APY for the Aave v3 USDC pool on Ethereum as reported by DefiLlama at 2026-10-31 13:40 UTC. This is one USDC market, not a protocol-wide rate. Rates change with how much of the pool is borrowed and can fall quickly; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity.",
       "protection": "No FDIC deposit insurance. Smart-contract, oracle, liquidity, and stablecoin depegging risks apply. Borrowing against supplied assets also introduces liquidation risk.",
       "effective": null,
       "fdic": {
@@ -296,7 +298,7 @@
           "url": "https://www.aave.com/docs/resources/risks"
         }
       ],
-      "verifiedAt": "2026-10-29"
+      "verifiedAt": "2026-10-31"
     },
     {
       "id": "barclays",
@@ -357,7 +359,7 @@
           "url": "https://www.axosbank.com/personal/bank/axos-one"
         }
       ],
-      "verifiedAt": "2026-10-27",
+      "verifiedAt": "2026-10-31",
       "catches": [
         "New customers only; the 5.00% lasts 6 statement cycles",
         "Every month by the 25th: $1,500+ direct deposits and a $1,500 average checking balance (or $5,000 and $5,000)",
@@ -458,7 +460,7 @@
           "url": "https://www.pibank.com/pibank-savings/"
         }
       ],
-      "verifiedAt": "2026-10-27"
+      "verifiedAt": "2026-10-31"
     },
     {
       "id": "newtek",
@@ -594,9 +596,9 @@
       "boost": null,
       "rateLabel": "New accounts · all balances",
       "requirements": "$0 to open. New-account APY of 4.20% on all balances; no monthly maintenance fee or minimum balance.",
-      "details": "Variable APY for new accounts only, which EverBank states is accurate as of October 2, 2026; it may not apply to existing accounts. Interest compounds daily. The account opens only online or by phone, not at EverBank financial centers. Fees may reduce earnings.",
+      "details": "Variable APY for new accounts only, which EverBank states is accurate as of October 30, 2026; it may not apply to existing accounts. Interest compounds daily. The account opens only online or by phone, not at EverBank financial centers. Fees may reduce earnings.",
       "protection": "FDIC-insured deposits at EverBank, N.A.. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
-      "effective": "2026-10-02",
+      "effective": "2026-10-30",
       "fdic": {
         "status": "bank",
         "label": "FDIC · Bank deposit",
@@ -609,7 +611,7 @@
         }
       ],
       "baseLabel": "New accounts",
-      "verifiedAt": "2026-10-27"
+      "verifiedAt": "2026-10-31"
     },
     {
       "id": "happen",
