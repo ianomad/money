@@ -76,7 +76,7 @@ def S_pay(P, rate, n=360):
     r = rate / 1200; return P * r / (1 - (1 + r) ** -n)
 
 # ---------- changes ----------
-TOPIC = {'savings': ('Savings', '/rates'), 'world': ('World', '/abroad'), 'cards': ('Cards', '/cards'), 'tbills': ('Markets', '/markets'), 'markets': ('Markets', '/markets')}
+TOPIC = {'savings': ('Savings', '/rates'), 'world': ('World', '/abroad'), 'cards': ('Cards', '/cards'), 'tbills': ('Markets', '/markets'), 'markets': ('Markets', '/markets'), 'ibond': ('Savings', '/rates#ibond')}
 MK = [('mortgage', '30-year mortgage rate', 0.05, 'pt'), ('t10', '10-year Treasury yield', 0.10, 'pt'), ('fed', 'Fed funds rate', 0.01, 'pt'),
       ('sp500', 'S&P 500', 2.0, 'pct'), ('oil', 'Oil (WTI)', 3.0, 'pct'), ('gas', 'US gas price', 2.0, 'pct'), ('dollar', 'US dollar index', 1.0, 'pct')]
 def market_moves():

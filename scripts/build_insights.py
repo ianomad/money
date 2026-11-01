@@ -43,7 +43,25 @@ def fetch():
     def ibond():
         t = text(i['ibond']['url'])
         m = re.search(r'Series I Savings Bonds ([0-9.]+)% This includes a fixed rate of ([0-9.]+)% For I bonds issued (.+? to .+?\d{4})', t)
-        i['ibond'].update(composite=float(m.group(1)), fixed=float(m.group(2)), period=m.group(3))
+        b = i['ibond']; comp, fixed, period = float(m.group(1)), float(m.group(2)), m.group(3)
+        if b.get('period') and b['period'] != period:  # new 6-month rate: keep the one it replaced
+            b['prev'] = {'composite': b['composite'], 'fixed': b['fixed'], 'period': b['period']}
+        b.update(composite=comp, fixed=fixed, period=period)
+        # buying rules, read off the same page each run; a rule that no longer matches is dropped, never guessed
+        rules = {'limit': (r'up to \$([0-9,]+) in electronic I bonds', lambda g: int(g[0].replace(',', ''))),
+                 'minHoldMonths': (r'cash in \(redeem\) your I bond after (\d+) months', lambda g: int(g[0])),
+                 'penalty': (r'in less than (\d+) years, you lose the last (\d+) months of interest', lambda g: {'years': int(g[0]), 'months': int(g[1])})}
+        for k, (pat, cv) in rules.items():
+            r = re.search(pat, t)
+            if r: b[k] = cv(r.groups())
+            else: b.pop(k, None); print(f'ibond: rule {k} not found on page, dropped')
+        # inflation part: the rates page shows how the composite is built
+        try:
+            rt = text(b['ratesUrl'])
+            r = re.search(r'Semiannual \(1/2 year\) inflation rate ([0-9.]+)%', rt)
+            if r and re.search(rf'Fixed rate {fixed:.2f}% Semiannual', rt): b['inflationSemi'] = float(r.group(1))
+            else: b.pop('inflationSemi', None); print('ibond: inflation part not matched, dropped')
+        except Exception as err: b.pop('inflationSemi', None); print(f'ibond: rates page failed ({err})')
     def discover():
         t = re.sub(r'<[^>]+>', ' ', CARDS.read_text())
         m = re.search(r'(\w{3}–\w{3} \d{4}): ([^.]+?), on up to \$([0-9,]+)', t)

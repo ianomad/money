@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]; DATA = ROOT / 'data'; HIST = DATA / 
 KEEP_DAYS = 180
 BANNED = re.compile(r'cash ?app|square|afterpay|\bblock\b|\$?xyz', re.I)  # never shown on the site
 
-def snap(rates, yields=None, cards=None, tbills=None):
+def snap(rates, yields=None, cards=None, tbills=None, insights=None):
     s = {'savings': {}, 'world': {}, 'cards': {}}
     for p in rates.get('providers', []):
         if p.get('category') != 'cash' or BANNED.search(p['id'] + ' ' + p['name']): continue
@@ -22,8 +22,16 @@ def snap(rates, yields=None, cards=None, tbills=None):
         s['cards'][c['id']] = [c['name'], c.get('fee'), c.get('earnText', ''), c.get('url', '')]
     if tbills and tbills.get('terms'):
         s['tbill'] = [tbills['terms'].get('13 Weeks'), tbills.get('date'), tbills.get('source', '')]
+    ib = ((insights or {}).get('inputs') or {}).get('ibond')
+    if ib and ib.get('composite') is not None:
+        s['ibond'] = [ib['composite'], ib.get('fixed'), ib.get('period', ''), ib.get('url', '')]
     return s
 
+def _short(per):
+    try:
+        a, z = per.split(' to '); f = lambda t: datetime.datetime.strptime(t, '%B %d, %Y').strftime('%b %-d, %Y')
+        return f'{f(a)} – {f(z)}'
+    except Exception: return per
 def pct(x): return f'{x:.2f}%' if x is not None else 'none'
 
 def diff(a, b, date):
@@ -56,6 +64,10 @@ def diff(a, b, date):
         ch = round(b['tbill'][0] - a['tbill'][0], 2)
         if abs(ch) >= 0.10:
             ev.append(dict(t='tbills', d=ch > 0, h=f'3-month T-bill yield {pct(a["tbill"][0])} → {pct(b["tbill"][0])}', a=b['tbill'][2]))
+    if a.get('ibond') and b.get('ibond') and a['ibond'][0] != b['ibond'][0]:
+        o, n = a['ibond'], b['ibond']; up = n[0] > o[0]
+        ev.append(dict(t='ibond', d=up, h=f'New I bond rate: {pct(o[0])} → {pct(n[0])}',
+                       w=f'For bonds bought {_short(n[2])}. Fixed part {pct(n[1])} (was {pct(o[1])}), kept for the life of the bond.', a=n[3]))
     for x in ev:
         x['date'] = date
         if x['t'] == 'savings' and top and 'w' not in x: x['w'] = f'Top plain rate now: {b["savings"][top][0]} at {pct(b["savings"][top][1])}'
@@ -66,7 +78,7 @@ def _load(p):
     except Exception: return None
 
 def current():
-    return snap(_load(DATA/'rates.json') or {}, _load(DATA/'yields.json'), _load(DATA/'cards.json'), _load(DATA/'tbills.json'))
+    return snap(_load(DATA/'rates.json') or {}, _load(DATA/'yields.json'), _load(DATA/'cards.json'), _load(DATA/'tbills.json'), _load(DATA/'insights.json'))
 
 def update(today=None):
     """Store today's snapshot (replacing an earlier one from today). Skipped when MB_DATA points elsewhere (tests)."""
@@ -93,7 +105,7 @@ def backfill():
     """Rebuild snapshots from the repo's own git history of the data files (last commit per day)."""
     def git(*a): return subprocess.run(['git', '-C', str(ROOT), *a], capture_output=True, text=True).stdout
     days = {}
-    for f in ('rates', 'yields', 'cards', 'tbills'):
+    for f in ('rates', 'yields', 'cards', 'tbills', 'insights'):
         for line in git('log', '--format=%H %ad', '--date=short', '--', f'data/{f}.json').splitlines():
             sha, d = line.split(); days.setdefault(d, {}).setdefault(f, sha)  # newest first → last commit of that day
     last = {}; snaps = []
@@ -101,7 +113,7 @@ def backfill():
         for f, sha in days[d].items():
             try: last[f] = json.loads(git('show', f'{sha}:data/{f}.json'))
             except Exception: pass
-        if 'rates' in last: snaps.append(dict(date=d, **snap(last['rates'], last.get('yields'), last.get('cards'), last.get('tbills'))))
+        if 'rates' in last: snaps.append(dict(date=d, **snap(last['rates'], last.get('yields'), last.get('cards'), last.get('tbills'), last.get('insights'))))
     HIST.write_text(json.dumps({'snapshots': snaps}, separators=(',', ':')) + '\n')
     return update()
 

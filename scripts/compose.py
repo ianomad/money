@@ -135,7 +135,7 @@ _svh = _svh.replace('<!--brief-->', '', 1).replace('<details class="i big" id="s
 rates_js = re.sub(r"const tabs=.*?document\.addEventListener\('DOMContentLoaded',\(\)=>show\(want\(\)\)\);", '', show_js, flags=re.S)
 assert 'const tabs' not in rates_js
 r_body = (pages2.CSS + _F.CSS + _F.head('Savings rates, <em>ranked.</em>', 'The best no-strings rate right now, then every account with its conditions.').replace('<section class="fhead"', '<section class="fhead sec-h"', 1)
-          + f'<div id="view-us">{_svh}<!--brief-->{_h_sw}{rates_tuck}{stable}{method}{pages2.sources_fold("rates")}</div>' + rates_js + _F.JS)
+          + f'<div id="view-us">{_svh}<!--brief-->{_feeds.ibond_card()}{_h_sw}{rates_tuck}{stable}{method}{pages2.sources_fold("rates")}</div>' + rates_js + _F.JS)
 desc = re.search(r'<meta name="description" content="([^"]*)"', sv).group(1)
 rp = page('Money — savings rates, ranked', desc, '/rates', 'rates', r_body + DIGEST_JS, head_styles(wd) + DIGEST_CSS + UI_CSS, '<script src="/app.js" defer></script>')
 # ---------- World section: /abroad (was /#world) ----------

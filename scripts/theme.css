@@ -483,6 +483,7 @@ main .chip,main .badge{font-size:12px}
 .opp-grid{display:grid;gap:12px}@media(min-width:760px){.opp-grid{grid-template-columns:1fr 1fr}}
 .fc.opp .fc-big{font-size:clamp(38px,11vw,52px)}.fc.opp .fc-line{font-size:15.5px;margin-top:6px}.fc.opp .why{font-size:14.5px;line-height:1.45;margin:10px 0 0}.fc.opp .why b{font-weight:650}
 .fc.opp .fbars-u{font-size:12px}
+.ib{margin:22px 0 8px}.ib .fc .why{font-size:14.5px;line-height:1.45;margin:10px 0 0}.ib .fc .why b{font-weight:650}.ib .fc .fc-line{font-size:15.5px;margin-top:6px}
 .proof{margin:16px 0}.proof .rec{font-size:17px;margin:0 0 4px}.proof .rec b{font-family:var(--serif);font-size:20px}
 .pl{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:6px}.pl li{display:flex;gap:10px;align-items:center;font-size:14.5px;color:var(--ink)}
 .pl .pk{flex:none;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;font-weight:700;font-size:13px}.pl .hit .pk{background:var(--green-soft);color:var(--green)}.pl .miss .pk{background:var(--red-soft);color:var(--red)}

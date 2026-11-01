@@ -60,3 +60,51 @@ def teasers():
     mc = F.card('30-year mortgage', f'{mk["value"]:.2f}%', f'{"+" if ch >= 0 else "−"}{abs(ch):.2f} pts in a month', catch=f'Weekly average as of {fd(mk["date"])}',
                 actions='<div class="fc-act"><a class="btn" href="/markets">Today in 30 seconds →</a></div>')
     return F.swipe([w, cc, mc], 'More from Money Beast', 'More in <em>30 seconds</em>')
+
+def ibond_card(amount=10000):
+    """Series I bond card for /rates (Nov 1 2026). Rate, fixed part, inflation part and buying rules all come from
+    data/insights.json -> inputs.ibond, which build_insights.py --fetch re-reads off TreasuryDirect every morning.
+    A rule the fetcher could not read is simply left out of the card."""
+    b = dj('insights.json')['inputs'].get('ibond') or {}
+    if b.get('composite') is None or b.get('fixed') is None: return ''
+    rj = dj('rates.json'); top = plain_top(); tb = float(top['base'])
+    promo = max((p for p in rj['providers'] if p.get('category') == 'cash' and p.get('boost') and p['fdic']['status'] == 'bank'
+                 and 'paused' not in (p.get('requirements') or '').lower()), key=lambda p: float(p['boost']), default=None)
+    tbl = dj('insights.json')['inputs'].get('tbill') or {}
+    c, fx = b['composite'], b['fixed']
+    rel = lambda v: 'more than' if c > v else ('less than' if c < v else 'the same as')
+    items = [('I bond', c, f'{c:.2f}%', True)]
+    if promo: items.append((e(promo['name']) + ' promo', float(promo['boost']), f'{float(promo["boost"]):.2f}%', False))
+    items.append((e(top['name']), tb, f'{tb:.2f}%', False))
+    if tbl.get('y26'): items.append(('26-week T-bill', tbl['y26'], f'{tbl["y26"]:.2f}%', False))
+    parts = ([(rel(float(promo['boost'])), f'the {float(promo["boost"]):.2f}% {e(promo["name"])} promo')] if promo else []) + [(rel(tb), f'the best plain savings rate ({tb:.2f}% at {e(top["name"])})')]
+    cmp = ('Pays ' + parts[0][0] + ' ' + ' and '.join(x for _, x in parts)) if len({r for r, _ in parts}) == 1 else ('Pays ' + ', '.join(f'{r} {x}' for r, x in parts))
+    per = b.get('period', ''); pshort = per
+    try:
+        import datetime as _d
+        a_, z_ = per.split(' to '); f_ = lambda s: _d.datetime.strptime(s, '%B %d, %Y').strftime('%b %-d, %Y')
+        pshort = f'{f_(a_)} – {f_(z_)}'
+    except Exception: pass
+    infl = b.get('inflationSemi')
+    why = (f'A savings rate can be cut any day. The {fx:.2f}% fixed part of an I bond never changes for its 30-year life, and the rest '
+           + (f'(now {infl:.2f}% per 6 months) ' if infl else '') + 'resets every May and November with inflation, so you keep earning above it.')
+    rules = []
+    if b.get('limit'): rules.append(f'Up to ${b["limit"]:,} a person per year, bought at TreasuryDirect')
+    if b.get('minHoldMonths'): rules.append(f'Locked for the first {b["minHoldMonths"]} months')
+    pen = b.get('penalty')
+    if pen: rules.append(f'Cash out before {pen["years"]} years and you lose the last {pen["months"]} months of interest')
+    prev = b.get('prev')
+    foot = (f'For bonds bought {e(pshort)}' + (f' · was {prev["composite"]:.2f}% ({prev["fixed"]:.2f}% fixed)' if prev else '')
+            + f' · checked {fd(b["checked"])} · <a href="{e(b["url"])}" target="_blank" rel="noopener">TreasuryDirect ↗</a>'
+            + (f' · <a href="{e(b["ratesUrl"])}" target="_blank" rel="noopener">How the rate is set ↗</a>' if b.get('ratesUrl') else ''))
+    half = amount * c / 200
+    return ('<section class="ib" id="ibond" aria-labelledby="ib-h"><h2 class="fh" id="ib-h">Locked in above <em>inflation</em></h2>'
+            + card('US Treasury Series I savings bond', f'{c:.2f}%', f'{cmp}. {money_s(amount)} earns about {money_s(half)} in the first 6 months.',
+                   unit=' for 6 months', viz=bars(items, 'Rate now, %'),
+                   catch=('<ul class="cl">' + ''.join(f'<li>{e(r)}</li>' for r in rules) + '</ul>') if rules else '',
+                   foot=foot, attrs=' data-ev="ibond"').replace('<div class="fc-catch">', f'<p class="why"><b>Why it matters:</b> {e(why)}</p><div class="fc-catch">', 1)
+            + '</section>')
+
+def money_s(x): return f'${x:,.0f}'
+def bars(items, lab): return F.bars(items, lab)
+def card(*a, **k): return F.card(*a, **k)
