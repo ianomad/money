@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-25",
+  "checkedAt": "2026-11-01",
   "pointValue": 0.01,
   "assumption": "Points and miles counted at 1¢ each (what Chase, Amex, Capital One and Bilt points are worth as cash or in the issuer's travel portal without a boost). Travel transfers can be worth more; we don't assume it. Credits and perks are not counted, because their value depends on whether you'd spend that money anyway.",
   "profile": {
@@ -40,7 +40,8 @@
       "earnText": "2% on everything (1% when you buy, 1% when you pay); 5% on hotels, cars, attractions via Citi Travel",
       "perks": "3% foreign transaction fee",
       "bonus": null,
-      "points": false
+      "points": false,
+      "verifiedAt": "2026-11-01"
     },
     {
       "id": "ac",
@@ -60,7 +61,8 @@
         "usd": 100,
         "spend": 500,
         "months": 3
-      }
+      },
+      "verifiedAt": "2026-11-01"
     },
     {
       "id": "fu",
@@ -81,7 +83,8 @@
         "usd": 200,
         "spend": 500,
         "months": 3
-      }
+      },
+      "verifiedAt": "2026-11-01"
     },
     {
       "id": "sv",
@@ -104,7 +107,8 @@
         "usd": 200,
         "spend": 500,
         "months": 3
-      }
+      },
+      "verifiedAt": "2026-11-01"
     },
     {
       "id": "bcp",
@@ -126,7 +130,8 @@
       "earnText": "6% US supermarkets (first $6,000/yr) and streaming, 3% gas and transit, 1% else",
       "perks": "",
       "bonus": null,
-      "points": false
+      "points": false,
+      "verifiedAt": "2026-11-01"
     },
     {
       "id": "ap",
@@ -167,7 +172,7 @@
         "spend": 5000,
         "months": 3
       },
-      "verifiedAt": "2026-10-26",
+      "verifiedAt": "2026-11-01",
       "note": "Grocery spending is counted at 1x, since 3x applies only to online grocery."
     },
     {
@@ -190,7 +195,8 @@
         "pts": 100000,
         "spend": 6000,
         "months": 3
-      }
+      },
+      "verifiedAt": "2026-11-01"
     },
     {
       "id": "ag",
@@ -243,7 +249,8 @@
       "earnText": "2x on everything, 10x hotels and cars, 5x flights via Capital One Travel",
       "perks": "Capital One lounges; no foreign fees; miles transfer to airlines",
       "bonus": null,
-      "points": true
+      "points": true,
+      "verifiedAt": "2026-11-01"
     },
     {
       "id": "bb",
@@ -320,7 +327,8 @@
       "note": "We count only the 1% base, since categories change each quarter",
       "perks": "Cashback Match: all cash back doubled at the end of year one (not counted)",
       "bonus": "Cashback Match in year one",
-      "points": false
+      "points": false,
+      "verifiedAt": "2026-11-01"
     },
     {
       "id": "ag2",
@@ -347,7 +355,8 @@
         "pts": 20000,
         "spend": 1000,
         "months": 3
-      }
+      },
+      "verifiedAt": "2026-11-01"
     },
     {
       "id": "so2",
@@ -395,7 +404,8 @@
       "note": "We count 1.5%; PayPal checkout spend would earn more",
       "perks": "",
       "bonus": null,
-      "points": false
+      "points": false,
+      "verifiedAt": "2026-11-01"
     },
     {
       "id": "bce",
@@ -416,7 +426,8 @@
       "earnText": "3% US supermarkets, US online retail, US gas (each on first $6,000/yr), 1% else",
       "perks": "$84 Disney streaming credit",
       "bonus": null,
-      "points": false
+      "points": false,
+      "verifiedAt": "2026-11-01"
     }
   ]
 }

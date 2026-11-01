@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-26",
+  "checkedAt": "2026-11-01",
   "note": "Bank-level deposit products, hand-verified against bank pages or named rate trackers. Rates are annual, before tax. Foreigner/non-resident access marked 'confirm' was NOT verified on the bank page; ask the bank before you travel or wire.",
   "countries": [
     {
@@ -51,7 +51,7 @@
           "usdOption": "USD up to 2.0% (36 mo)",
           "access": "Opened in the BAKAI app by existing clients; becoming a client means a branch visit with passport (confirm)",
           "source": "https://banks.kg/bank/bakai/deposits/160",
-          "verified": "2026-10-25"
+          "verified": "2026-11-01"
         },
         {
           "bank": "Aiyl Bank (ABank)",
@@ -76,7 +76,7 @@
           "usdOption": "USD 3.5% (36 mo, online)",
           "access": "Branch or internet/mobile banking once a client (confirm non-resident rules)",
           "source": "https://www.demirbank.kg/en/retail/deposits-and-investments/term-deposit",
-          "verified": "2026-10-25"
+          "verified": "2026-11-01"
         },
         {
           "bank": "FINCA Bank",
@@ -432,7 +432,7 @@
           "min": "see bank",
           "access": "Online, US residents",
           "source": "https://www.peak.bank/peak-bank/savings",
-          "verified": "2026-10-25"
+          "verified": "2026-11-01"
         }
       ],
       "insuranceLimit": {
