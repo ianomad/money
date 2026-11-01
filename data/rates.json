@@ -344,7 +344,7 @@
       "base": 1.0,
       "boost": 5.0,
       "rateLabel": "6-cycle promo · first $50k",
-      "requirements": "New Axos/UFB customers: open October 1–31. Up to 5.00% on first $49,999.99 for six statement cycles; qualifying checking activity required.",
+      "requirements": "New Axos/UFB customers: open October 1 – December 1, 2026 (extended). Up to 5.00% on first $49,999.99 for six statement cycles; qualifying checking activity required.",
       "details": "Each month: $1,500 qualifying direct deposits and $1,500 average checking balance, OR $5,000 qualifying deposits and $5,000 average checking balance, by the 25th. Savings average balance must not exceed $249,999.99 for the boost. Other qualifying savings earns 4.21% up to $249,999.99 and 3.50% above; without qualification, 1.00%. No monthly maintenance fee. The opening cycle counts toward the six-cycle promotion. Additional deposit-program coverage has separate conditions.",
       "protection": "FDIC-insured deposits at Axos Bank. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
       "effective": "2026-10-04",
@@ -359,15 +359,15 @@
           "url": "https://www.axosbank.com/personal/bank/axos-one"
         }
       ],
-      "verifiedAt": "2026-10-31",
+      "verifiedAt": "2026-11-01",
       "catches": [
-        "New customers only; the 5.00% lasts 6 statement cycles",
+        "New customers only; open by Dec 1, 2026; the 5.00% lasts 6 statement cycles (5 if you open on or after the 25th)",
         "Every month by the 25th: $1,500+ direct deposits and a $1,500 average checking balance (or $5,000 and $5,000)",
         "5.00% only on the first $49,999.99",
         "Afterwards 4.21% if you keep qualifying, 1.00% if you don't",
         "No monthly fee"
       ],
-      "catchesVerifiedAt": "2026-10-27"
+      "catchesVerifiedAt": "2026-11-01"
     },
     {
       "id": "sofi",

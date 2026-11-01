@@ -172,7 +172,7 @@
      }
     },
     {
-     "label": "New-customer promo: 5.00% on the first $49,999.99 for 6 statement cycles (open Oct 1-31)",
+     "label": "New-customer promo: 5.00% on the first $49,999.99 for 6 statement cycles (open Oct 1-Dec 1, 2026)",
      "needs": [
       "dd",
       "new"
@@ -192,7 +192,7 @@
        "split": true
       },
       "months": 6,
-      "openBy": "2026-10-31",
+      "openBy": "2026-12-01",
       "maxBal": 249999.99
      },
      "rate": {
@@ -210,7 +210,7 @@
      }
     }
    ],
-   "textHash": "b69c723ec6"
+   "textHash": "210e31c136"
   },
   "sofi": {
    "paths": [
