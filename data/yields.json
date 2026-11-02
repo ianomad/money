@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-01",
+  "checkedAt": "2026-11-02",
   "note": "Bank-level deposit products, hand-verified against bank pages or named rate trackers. Rates are annual, before tax. Foreigner/non-resident access marked 'confirm' was NOT verified on the bank page; ask the bank before you travel or wire.",
   "countries": [
     {
@@ -39,7 +39,7 @@
           "usdOption": "USD 3.0% (up to 12 mo)",
           "access": "MBANK app; residents and non-residents per the bank listing (confirm)",
           "source": "https://mbank.kg/news/mbank-zapustil-vygodnoe-predlozhenie-po-depozitam",
-          "verified": "2026-10-25"
+          "verified": "2026-11-02"
         },
         {
           "bank": "BAKAI Bank",
@@ -64,7 +64,7 @@
           "usdOption": "USD effective up to 2.01%",
           "access": "Branch (confirm non-resident rules)",
           "source": "https://banks.kg/bank/ab/deposits/99",
-          "verified": "2026-10-25"
+          "verified": "2026-11-02"
         },
         {
           "bank": "DemirBank",
@@ -89,7 +89,7 @@
           "usdOption": "USD effective up to 2.02%",
           "access": "Branch (confirm)",
           "source": "https://fincabank.kg/wp-content/uploads/sites/6/2024/07/prilozhenie_1_srochnye-depozity_obnovlen_25.05.26_kg.pdf",
-          "verified": "2026-10-25"
+          "verified": "2026-11-02"
         },
         {
           "bank": "KICB",
@@ -138,7 +138,7 @@
           "min": "100,000 UZS for full rate",
           "access": "Fully online in the app (non-resident eligibility: confirm)",
           "source": "https://moniq.uz/en/investments/deposits/avo-bank/avo-vklad",
-          "verified": "2026-10-25"
+          "verified": "2026-11-02"
         },
         {
           "bank": "ANORBANK",
@@ -193,7 +193,7 @@
           "usdOption": "USD/EUR 0.98% (12 mo)",
           "access": "Branch/app (confirm)",
           "source": "https://profinance.kz/deposits/khalyk-srochnyy",
-          "verified": "2026-10-25"
+          "verified": "2026-11-02"
         }
       ],
       "fxStart": {
@@ -223,24 +223,24 @@
           "bank": "Türk Ticaret Bankası",
           "product": "Salkım Hesap",
           "currency": "TRY",
-          "rate": 44.5,
+          "rate": 44.0,
           "rateNote": "90-day welcome rate; first 100k TRY earns no interest; 17.5% withholding",
-          "term": "32 days",
-          "min": "see bank",
+          "term": "1–90 days",
+          "min": "10,000–10,000,000 TRY",
           "access": "Needs Turkish tax number (confirm)",
           "source": "https://www.hangikredi.com/yatirim-araclari/mevduat-faiz-oranlari/turk-ticaret-bankasi",
-          "verified": "2026-10-26"
+          "verified": "2026-11-02"
         },
         {
           "bank": "Alternatifbank",
           "product": "Time deposit",
           "currency": "TRY",
-          "rate": 44.0,
+          "rate": 43.0,
           "term": "32 days",
-          "min": "100,000 TRY tier",
+          "min": "20,000–500,000 TRY (1–45 days)",
           "access": "Needs Turkish tax number (confirm)",
           "source": "https://yatirimci.ai/en/time-deposit",
-          "verified": "2026-10-25"
+          "verified": "2026-11-02"
         },
         {
           "bank": "ON Dijital",
@@ -271,7 +271,7 @@
           "min": "see bank",
           "access": "Needs BVN (confirm)",
           "source": "https://www.checkinvestng.com/fixed-deposit-rates",
-          "verified": "2026-10-25"
+          "verified": "2026-11-02"
         }
       ],
       "fxStart": {
@@ -354,7 +354,7 @@
           "min": "see bank",
           "access": "Non-residents can open (in person; confirm)",
           "source": "https://bauer-group.ge/en/knowledge/banking/georgia-deposit-rates/",
-          "verified": "2026-10-25"
+          "verified": "2026-11-02"
         },
         {
           "bank": "TBC Bank",
@@ -366,7 +366,7 @@
           "min": "see bank",
           "access": "Non-residents can open (in person; confirm)",
           "source": "https://bauer-group.ge/en/knowledge/banking/georgia-deposit-rates/",
-          "verified": "2026-10-25"
+          "verified": "2026-11-02"
         }
       ],
       "fxStart": {

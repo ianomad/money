@@ -159,7 +159,7 @@ for _n, _h in (('index.html', idx), ('abroad.html', wp), ('changes.html', cp), (
 dy, ins, cr, ec = rd('daily.html'), rd('insights.html'), rd('crypto.html'), rd('economy.html')
 dym, insm, crm, ecm = main(dy), main(ins), main(cr), main(ec)
 cy = sec(svm, 'crypto-rates').replace('<div class="rows">', '<div class="rows">', 1)
-cj = dj('crypto.json'); coins = sorted(cj['coins'], key=lambda c: c['market_cap_rank'])
+cj = dj('crypto.json'); coins = sorted([c for c in cj['coins'] if c.get('price_change_percentage_24h') is not None and c.get('current_price') is not None], key=lambda c: c['market_cap_rank'])
 def money(v): return f'${v/1e12:.2f}T' if v >= 1e12 else (f'${v/1e9:.0f}B' if v >= 1e9 else f'${v:,.0f}')
 def px(v): return f'${v:,.0f}' if v >= 100 else (f'${v:,.2f}' if v >= 1 else f'${v:.4f}')
 btc = coins[0]; tot = cj['global']['totalMarketCapUsd']
@@ -167,7 +167,7 @@ crypto_block = ('<div id="crypto">' + digest('crypto-top', 'CRYPTO / BY MARKET V
     f"Bitcoin alone is {cj['global']['btcDominance']:.0f}% of the {money(tot)} crypto market; most coins move with it.",
     ('Biggest coin', px(btc['current_price']), f"{btc['name']} ({btc['symbol'].upper()})", f"{btc['price_change_percentage_24h']:+.1f}% in 24h · worth {money(btc['market_cap'])} in total. Prices from CoinGecko."),
     ('Coin', 'Price', '24h move · total value'),
-    [(c['name'], c['symbol'].upper(), px(c['current_price']), f"{c['price_change_percentage_24h']:+.1f}% · {money(c['market_cap'])}") for c in coins])
+    [(c['name'], c['symbol'].upper(), px(c['current_price']), (f"{c['price_change_percentage_24h']:+.1f}% · " if c.get('price_change_percentage_24h') is not None else '— · ') + money(c['market_cap'])) for c in coins])
     + tuck(cy, 'Crypto & stablecoin yields (moved from Rates)').replace('<details class="tuck">', '<details class="tuck" id="crypto-yields">', 1) + '</div>')
 ej = dj('economy.json'); gv = ej['gdp']['values']; world = sum(v['value'] for v in gv.values() if v.get('value'))
 top = sorted([v for v in gv.values() if v.get('value')], key=lambda v: -v['value'])[:20]
