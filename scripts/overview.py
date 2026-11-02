@@ -155,10 +155,32 @@ def hash_redirect(world_ids, rates_ids):
             f'const W={json.dumps(sorted(world_ids))},R={json.dumps(sorted(rates_ids))};'
             'if(h==="world")location.replace("/abroad");else if(W.includes(h))location.replace("/abroad#"+h);else if(R.includes(h))location.replace("/rates#"+h)})()</script>')
 
+# ---------- coming up (date-driven, Nov 1 2026 weekly review: guides hold readers longest) ----------
+def _next_due(md, today):
+    for y in (today.year, today.year + 1):
+        d = datetime.datetime.strptime(f'{md} {y}', '%b %d %Y').date()
+        if d >= today: return d
+
+def coming_up(today):
+    """Next California property tax installment, shown in the 60 days before it. Fees from data/proptax_fees.json."""
+    j = dj('proptax_fees.json'); t = datetime.date.fromisoformat(str(today)[:10])
+    dues = sorted((_next_due(j['dueDates'][k], t), k) for k in ('first', 'second'))
+    due, which = dues[0]; left = (due - t).days
+    if left > 60: return ''
+    cs = j['counties']; hi = max(cs, key=lambda c: c['creditPct']); lo = min(c['creditPct'] for c in cs)
+    fee = AMT * hi['creditPct'] / 100; back = AMT * 0.02
+    when = 'today' if left == 0 else ('tomorrow' if left == 1 else f'in {left} days')
+    rng = f'{lo:.2f}–{hi["creditPct"]:.2f}%' if lo != hi['creditPct'] else f'{lo:.2f}%'
+    return (f'<a class="due" href="/pay-property-tax-credit-card" data-ev="due-proptax"><p class="dk">Coming up · {due:%b} {due.day}, {when}</p>'
+            f'<p class="dh">California property tax, {"first" if which == "first" else "second"} installment</p>'
+            f'<p class="dl">Paying by card costs {rng} in the {len(cs)} counties we checked. In {e(hi["county"])}, a {money(AMT)} bill means a {money(fee)} fee, more than the {money(back)} a 2% card pays back.</p>'
+            f'<p class="dc">County fees checked {fd(j["checkedAt"])} · eCheck free in all of them</p>'
+            f'<span class="pgo">When paying by card is worth it <span aria-hidden="true">→</span></span></a>')
+
 def home(world_hero, today):
     ev = all_changes()
     out = (f'<section class="fhead home-h"><h1>Your money could be doing <em>more.</em></h1><p class="sub">Your money agent for better rates, smarter spending, and opportunities worth catching.</p></section>'
-           + featured() + previews(world_hero) + changes_home(ev) + follow('home')
+           + featured() + coming_up(today) + previews(world_hero) + changes_home(ev) + follow('home')
            + f'<div class="hm"><p class="trust"><span><b>●</b> Updated {fd(today)}</span><span>General information from public data, checked by hand. Money Beast doesn’t connect to your accounts.</span></p></div>')
     assert not EXCLUDE.search(re.sub(r'<[^>]+>', ' ', out)), 'excluded name on home'
     return out, ev
