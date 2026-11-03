@@ -328,7 +328,7 @@
      }
     },
     {
-     "label": "BOOST50 promo: +0.50 point for 6 months",
+     "label": "BOOST60 promo: +0.60 point for 6 months",
      "needs": [
       "new"
      ],
@@ -337,11 +337,11 @@
        "tiers": [
         [
          4999.99,
-         0.75
+         0.85
         ],
         [
          null,
-         4.25
+         4.35
         ]
        ],
        "split": false
@@ -363,7 +363,7 @@
      }
     }
    ],
-   "textHash": "cd89a2545d"
+   "textHash": "8ecbc06507"
   },
   "varo": {
    "note": "You qualify in one month to earn the rate the next month.",
@@ -455,7 +455,7 @@
      "rate": 4.2
     }
    ],
-   "textHash": "00af658d50"
+   "textHash": "97d91663ac"
   },
   "openbank": {
    "minOpen": 500,

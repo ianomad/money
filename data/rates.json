@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-29",
-  "changeNote": "Oct 25: Openbank raised its standard rate to 4.00% (4.35% with the new-customer boost), CIT's boost is now 4.25% with code BOOST50, and SoFi Plus pays 4.70% on the first $20,000. Pibank's 4.40% is still the top plain rate. Rechecked Peak, Pibank, Newtek, Elevault, EverBank, Axos, E*TRADE, Marcus, Betterment, Happen, Varo, Robinhood, X Money: unchanged.",
+  "checkedAt": "2026-11-03",
+  "changeNote": "Nov 3: CIT's six-month boost rose to 4.35% (code BOOST60, was 4.25% with BOOST50). Pibank's 4.40% is still the top plain rate. Rechecked Newtek, Coinbase, E*TRADE, Robinhood, Peak, Varo, Happen, Openbank and Betterment: unchanged.",
   "providers": [
     {
       "id": "x-money",
@@ -164,7 +164,7 @@
         "label": "Not FDIC insured",
         "summary": "USDC is a crypto asset, not an insured bank deposit."
       },
-      "verifiedAt": "2026-10-28"
+      "verifiedAt": "2026-11-03"
     },
     {
       "id": "kraken",
@@ -224,7 +224,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Morgan Stanley Private Bank; enhanced coverage program conditions apply."
       },
-      "verifiedAt": "2026-10-29"
+      "verifiedAt": "2026-11-03"
     },
     {
       "id": "robinhood",
@@ -260,7 +260,7 @@
         "label": "FDIC · Mixed coverage",
         "summary": "Swept bank cash is eligible. Brokerage-held cash and options collateral are not FDIC insured."
       },
-      "verifiedAt": "2026-10-29"
+      "verifiedAt": "2026-11-03"
     },
     {
       "id": "aave",
@@ -270,13 +270,13 @@
       "kind": "DeFi lending · Aave v3",
       "symbol": "A",
       "color": "#7365b7",
-      "base": 3.79,
+      "base": 4.17,
       "boost": null,
       "baseLabel": "Market snapshot",
       "rateLabel": "Variable deposit APY",
-      "observedAt": "2026-11-02 14:39 UTC",
+      "observedAt": "2026-11-03 14:38 UTC",
       "requirements": "Supply USDC to the Ethereum Core / Main market. Requires a compatible wallet and ETH for network fees.",
-      "details": "Deposit APY for the Aave v3 USDC pool on Ethereum as reported by DefiLlama at 2026-11-02 14:39 UTC. This is one USDC market, not a protocol-wide rate. Rates change with how much of the pool is borrowed and can fall quickly; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity.",
+      "details": "Deposit APY for the Aave v3 USDC pool on Ethereum as reported by DefiLlama at 2026-11-03 14:38 UTC. This is one USDC market, not a protocol-wide rate. Rates change with how much of the pool is borrowed and can fall quickly; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity.",
       "protection": "No FDIC deposit insurance. Smart-contract, oracle, liquidity, and stablecoin depegging risks apply. Borrowing against supplied assets also introduces liquidation risk.",
       "effective": null,
       "fdic": {
@@ -298,7 +298,7 @@
           "url": "https://www.aave.com/docs/resources/risks"
         }
       ],
-      "verifiedAt": "2026-11-02"
+      "verifiedAt": "2026-11-03"
     },
     {
       "id": "barclays",
@@ -432,7 +432,7 @@
         }
       ],
       "baseLabel": "New accounts · below $500k",
-      "verifiedAt": "2026-10-29"
+      "verifiedAt": "2026-11-03"
     },
     {
       "id": "pibank",
@@ -489,7 +489,7 @@
         }
       ],
       "baseLabel": "Existing accounts",
-      "verifiedAt": "2026-10-27"
+      "verifiedAt": "2026-11-03"
     },
     {
       "id": "cit",
@@ -500,10 +500,10 @@
       "symbol": "C",
       "color": "#38665a",
       "base": 3.75,
-      "boost": 4.25,
-      "rateLabel": "6-month BOOST50 promo",
-      "requirements": "Maintain $5,000+ and open with promo code BOOST50: 4.25% for six months. $100 to open, no monthly fee.",
-      "details": "Base APY is 3.75% at $5,000+, or 0.25% below $5,000 (0.75% during the boost). The 0.50-point boost lasts six months from opening, then the account returns to the then-current base rate.",
+      "boost": 4.35,
+      "rateLabel": "6-month BOOST60 promo",
+      "requirements": "Maintain $5,000+ and open with promo code BOOST60: 4.35% for six months. $100 to open, no monthly fee.",
+      "details": "Base APY is 3.75% at $5,000+, or 0.25% below $5,000 (0.85% during the boost). The 0.60-point boost lasts six months from opening, then the account returns to the then-current base rate.",
       "protection": "FDIC-insured deposits at First-Citizens Bank & Trust Company. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
       "effective": null,
       "fdic": {
@@ -522,7 +522,7 @@
         }
       ],
       "baseLabel": "$5,000+ balance",
-      "verifiedAt": "2026-10-29"
+      "verifiedAt": "2026-11-03"
     },
     {
       "id": "varo",
@@ -550,7 +550,7 @@
           "url": "https://www.varomoney.com/savings-account/"
         }
       ],
-      "verifiedAt": "2026-10-29"
+      "verifiedAt": "2026-11-03"
     },
     {
       "id": "elevault",
@@ -626,7 +626,7 @@
       "baseLabel": "Standard rate",
       "rateLabel": "LevelUp · $250+/month deposits",
       "requirements": "Deposit at least $250 per statement cycle to earn 4.20% on the full balance; otherwise 3.00%. $0 to open, no minimum balance, no account fees.",
-      "details": "Variable APYs accurate as of October 6, 2026. The rate is evaluated each statement cycle based on deposits in the previous cycle; interest payments, bonuses, credits, and refunds do not count as deposits. New accounts earn the LevelUp Rate until the first evaluation, which is the third statement cycle after opening. Multiple deposits can add up to the $250. Fees may reduce earnings.",
+      "details": "Variable APYs accurate as of November 2, 2026. The rate is evaluated each statement cycle based on deposits in the previous cycle; interest payments, bonuses, credits, and refunds do not count as deposits. New accounts earn the LevelUp Rate until the first evaluation, which is the third statement cycle after opening. Multiple deposits can add up to the $250. Fees may reduce earnings.",
       "protection": "FDIC-insured deposits at Happen Bank, N.A.. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
       "effective": "2026-10-06",
       "fdic": {
@@ -640,7 +640,7 @@
           "url": "https://www.happen.com/personal-banking/savings/high-yield-savings"
         }
       ],
-      "verifiedAt": "2026-10-29"
+      "verifiedAt": "2026-11-03"
     },
     {
       "id": "openbank",
@@ -669,7 +669,7 @@
           "url": "https://www.openbank.us/banking/high-yield-savings-account"
         }
       ],
-      "verifiedAt": "2026-10-29"
+      "verifiedAt": "2026-11-03"
     },
     {
       "id": "capitalone",
@@ -860,7 +860,7 @@
       "details": "Variable APY; swept to partner banks (up to $8M joint coverage per Betterment).",
       "protection": "Pass-through FDIC insurance through partner banks; conditions apply.",
       "effective": "2026-10-13",
-      "observedAt": "2026-10-29",
+      "observedAt": "2026-11-03",
       "sources": [
         {
           "label": "Official rate page (checked Oct 29, 2026)",
@@ -872,7 +872,7 @@
         "label": "FDIC · Pass-through",
         "summary": "Betterment; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-29"
+      "verifiedAt": "2026-11-03"
     }
   ]
 }
