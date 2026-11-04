@@ -149,7 +149,7 @@
           "min": "1,000,000 UZS",
           "access": "Online in app; ANORBANK card holders only (non-resident eligibility: confirm)",
           "source": "https://bank.uz/uz/deposit/fursat",
-          "verified": "2026-10-31",
+          "verified": "2026-11-04",
           "rateNote": "bank also lists Barqaror 22% (24 mo) on its site; date of that page not confirmed"
         }
       ],
@@ -297,7 +297,7 @@
           "min": "see bank",
           "access": "Needs CUIL/CUIT and local account",
           "source": "https://bna.com.ar/home/informacionalusuariofinanciero",
-          "verified": "2026-10-31"
+          "verified": "2026-11-04"
         }
       ],
       "fxStart": {
@@ -395,7 +395,7 @@
           "min": "see bank",
           "access": "Branch (confirm)",
           "source": "https://ameriabank.am/userfiles/file/Deposit_saving_terms_for_PP_eng.pdf",
-          "verified": "2026-10-31"
+          "verified": "2026-11-04"
         },
         {
           "bank": "Ardshinbank",
@@ -406,7 +406,7 @@
           "min": "see bank",
           "access": "Branch (confirm)",
           "source": "https://ardshinbank.am/api/files/documents/Deposit-en-04-02-2026.pdf",
-          "verified": "2026-10-31"
+          "verified": "2026-11-04"
         }
       ],
       "fxStart": {
