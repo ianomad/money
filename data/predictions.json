@@ -1,6 +1,6 @@
 {
   "note": "Public predictions posted by @MoneyBeastHQ on X and graded in public. Source of truth: the grade posts linked below. Update when a call is graded; misses stay listed.",
-  "updated": "2026-11-03",
+  "updated": "2026-11-04",
   "calls": [
     {
       "made": "2026-10-12",
@@ -43,6 +43,13 @@
       "result": "hit",
       "actual": "$2.10",
       "grade": "https://x.com/MoneyBeastHQ/status/2117683251439354341"
+    },
+    {
+      "made": "2026-11-02",
+      "call": "Apple moves less than the ±4.2% options price after earnings",
+      "result": "hit",
+      "actual": "−1.9%",
+      "grade": "https://x.com/MoneyBeastHQ/status/2118045098202022195"
     }
   ]
 }
