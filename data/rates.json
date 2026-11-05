@@ -8,7 +8,7 @@
       "product": "Stored Value Account",
       "category": "cash",
       "kind": "Fintech",
-      "symbol": "𝕏",
+      "symbol": "\ud835\udd4f",
       "color": "#262923",
       "base": 4.0,
       "boost": 6.0,
@@ -33,7 +33,7 @@
       ],
       "fdic": {
         "status": "conditional",
-        "label": "FDIC · Conditional",
+        "label": "FDIC \u00b7 Conditional",
         "summary": "Pass-through coverage through partner banks; sweep program conditions apply."
       },
       "verifiedAt": "2026-11-02"
@@ -69,10 +69,10 @@
       ],
       "fdic": {
         "status": "conditional",
-        "label": "FDIC · Conditional",
+        "label": "FDIC \u00b7 Conditional",
         "summary": "Applies to cash swept to program banks, subject to program conditions."
       },
-      "verifiedAt": "2026-10-31"
+      "verifiedAt": "2026-11-05"
     },
     {
       "id": "marcus",
@@ -101,7 +101,7 @@
       ],
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Goldman Sachs Bank USA; standard coverage limits apply."
       },
       "verifiedAt": "2026-11-04"
@@ -120,7 +120,7 @@
       "requirements": "No minimum opening deposit or monthly maintenance fee.",
       "details": "Variable APY, currently the same across all balance tiers. Certain withdrawals and transfers are limited to 10 per statement cycle; consult account terms.",
       "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
-      "effective": "2026-10-29",
+      "effective": "2026-11-04",
       "sources": [
         {
           "label": "Savings rate & terms",
@@ -129,17 +129,17 @@
       ],
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Ally Bank; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-30"
+      "verifiedAt": "2026-11-05"
     },
     {
       "id": "coinbase",
       "name": "Coinbase",
       "product": "USDC Rewards",
       "category": "crypto",
-      "kind": "Stablecoin · USDC",
+      "kind": "Stablecoin \u00b7 USDC",
       "symbol": "C",
       "color": "#2453bb",
       "base": null,
@@ -171,14 +171,14 @@
       "name": "Kraken",
       "product": "USDC Rewards",
       "category": "crypto",
-      "kind": "Stablecoin · USDC",
+      "kind": "Stablecoin \u00b7 USDC",
       "symbol": "k",
       "color": "#69519c",
       "base": 2.0,
       "boost": 4.0,
-      "rateLabel": "Up to · Kraken+",
+      "rateLabel": "Up to \u00b7 Kraken+",
       "requirements": "Up to 4.00% with Kraken+; up to 2.00% without. Enable Stablecoin Rewards.",
-      "details": "USDC rewards are available to eligible customers in the US, Canada, Australia, and UK. No holding lockup or USDC rewards fee; Kraken+ subscription costs may apply. Rates are variable and advertised as “up to.”",
+      "details": "USDC rewards are available to eligible customers in the US, Canada, Australia, and UK. No holding lockup or USDC rewards fee; Kraken+ subscription costs may apply. Rates are variable and advertised as \u201cup to.\u201d",
       "protection": "Not covered by FDIC or other deposit insurance. Stablecoin depegging and platform custody risks apply.",
       "effective": "2026-10-01",
       "sources": [
@@ -192,21 +192,21 @@
         "label": "Not FDIC insured",
         "summary": "Stablecoin rewards are not covered by deposit insurance."
       },
-      "verifiedAt": "2026-10-31"
+      "verifiedAt": "2026-11-05"
     },
     {
       "id": "etrade",
       "name": "E*TRADE",
       "product": "Premium Savings Account",
       "category": "cash",
-      "kind": "Bank · Morgan Stanley Private Bank",
+      "kind": "Bank \u00b7 Morgan Stanley Private Bank",
       "symbol": "E",
       "color": "#623895",
       "base": 3.75,
       "boost": 4.25,
       "rateLabel": "6-month promotion",
       "requirements": "New Premium Savings Accounts opened by January 10, 2027. Promotional APY applies for six months.",
-      "details": "Offered by Morgan Stanley Private Bank. No minimum opening deposit or monthly account fee. Promotion applies to eligible new accounts opened September 22, 2026–January 10, 2027, on balances up to $10 million; exceeding the cap may revert the entire balance to the standard rate. Existing accounts are ineligible. After six months, the variable base APY applies. Separate cash bonuses are excluded.",
+      "details": "Offered by Morgan Stanley Private Bank. No minimum opening deposit or monthly account fee. Promotion applies to eligible new accounts opened September 22, 2026\u2013January 10, 2027, on balances up to $10 million; exceeding the cap may revert the entire balance to the standard rate. Existing accounts are ineligible. After six months, the variable base APY applies. Separate cash bonuses are excluded.",
       "protection": "FDIC-insured bank deposit with an enhanced coverage program; depositor, ownership, and program-bank aggregation limits apply.",
       "effective": null,
       "sources": [
@@ -221,7 +221,7 @@
       ],
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Morgan Stanley Private Bank; enhanced coverage program conditions apply."
       },
       "verifiedAt": "2026-11-03"
@@ -257,7 +257,7 @@
       ],
       "fdic": {
         "status": "mixed",
-        "label": "FDIC · Mixed coverage",
+        "label": "FDIC \u00b7 Mixed coverage",
         "summary": "Swept bank cash is eligible. Brokerage-held cash and options collateral are not FDIC insured."
       },
       "verifiedAt": "2026-11-03"
@@ -265,18 +265,18 @@
     {
       "id": "aave",
       "name": "Aave",
-      "product": "USDC · Ethereum (Aave v3)",
+      "product": "USDC \u00b7 Ethereum (Aave v3)",
       "category": "crypto",
-      "kind": "DeFi lending · Aave v3",
+      "kind": "DeFi lending \u00b7 Aave v3",
       "symbol": "A",
       "color": "#7365b7",
-      "base": 4.91,
+      "base": 3.96,
       "boost": null,
       "baseLabel": "Market snapshot",
       "rateLabel": "Variable deposit APY",
-      "observedAt": "2026-11-04 14:36 UTC",
+      "observedAt": "2026-11-05 14:40 UTC",
       "requirements": "Supply USDC to the Ethereum Core / Main market. Requires a compatible wallet and ETH for network fees.",
-      "details": "Deposit APY for the Aave v3 USDC pool on Ethereum as reported by DefiLlama at 2026-11-04 14:36 UTC. This is one USDC market, not a protocol-wide rate. Rates change with how much of the pool is borrowed and can fall quickly; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity.",
+      "details": "Deposit APY for the Aave v3 USDC pool on Ethereum as reported by DefiLlama at 2026-11-05 14:40 UTC. This is one USDC market, not a protocol-wide rate. Rates change with how much of the pool is borrowed and can fall quickly; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity.",
       "protection": "No FDIC deposit insurance. Smart-contract, oracle, liquidity, and stablecoin depegging risks apply. Borrowing against supplied assets also introduces liquidation risk.",
       "effective": null,
       "fdic": {
@@ -298,28 +298,28 @@
           "url": "https://www.aave.com/docs/resources/risks"
         }
       ],
-      "verifiedAt": "2026-11-04"
+      "verifiedAt": "2026-11-05"
     },
     {
       "id": "barclays",
       "name": "Barclays",
       "product": "Tiered Savings",
       "category": "cash",
-      "kind": "Bank · Barclays Bank Delaware",
+      "kind": "Bank \u00b7 Barclays Bank Delaware",
       "symbol": "B",
       "color": "#1676a5",
       "base": 3.5,
       "boost": 3.65,
       "baseLabel": "Below $250,000",
-      "rateLabel": "$250k–$1m tier",
-      "requirements": "3.50% below $250,000; 3.65% for $250,000–$1,000,000. No minimum to open or monthly maintenance fee.",
+      "rateLabel": "$250k\u2013$1m tier",
+      "requirements": "3.50% below $250,000; 3.65% for $250,000\u2013$1,000,000. No minimum to open or monthly maintenance fee.",
       "details": "Variable APY based on the tier containing your end-of-day balance. The published tiers stop at $1 million; confirm treatment of larger balances with Barclays. This is a balance-tier rate, not a temporary boost. The separate Barclays Online Savings account pays 3.20% APY as of September 11, 2026. Cash signup bonuses are excluded from this comparison.",
       "protection": "Barclays Bank Delaware is an FDIC member. The standard limit is $250,000 per depositor, per bank, per ownership category, including other deposits at the same bank. A higher APY balance tier does not increase insurance coverage; amounts above applicable limits may be uninsured.",
       "effective": "2026-10-07",
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
-        "summary": "Standard FDIC limits apply; the $250k–$1m yield tier does not increase coverage."
+        "label": "FDIC \u00b7 Bank deposit",
+        "summary": "Standard FDIC limits apply; the $250k\u2013$1m yield tier does not increase coverage."
       },
       "sources": [
         {
@@ -338,19 +338,19 @@
       "name": "Axos Bank",
       "product": "Axos ONE Savings",
       "category": "cash",
-      "kind": "Bank · Axos Bank",
+      "kind": "Bank \u00b7 Axos Bank",
       "symbol": "A",
       "color": "#38665a",
       "base": 1.0,
       "boost": 5.0,
-      "rateLabel": "6-cycle promo · first $50k",
-      "requirements": "New Axos/UFB customers: open October 1 – December 1, 2026 (extended). Up to 5.00% on first $49,999.99 for six statement cycles; qualifying checking activity required.",
-      "details": "Each month: $1,500 qualifying direct deposits and $1,500 average checking balance, OR $5,000 qualifying deposits and $5,000 average checking balance, by the 25th. Savings average balance must not exceed $249,999.99 for the boost. Other qualifying savings earns 4.21% up to $249,999.99 and 3.50% above; without qualification, 1.00%. No monthly maintenance fee. The opening cycle counts toward the six-cycle promotion. Additional deposit-program coverage has separate conditions.",
+      "rateLabel": "6-cycle promo \u00b7 first $50k",
+      "requirements": "New Axos/UFB customers: open October 1 \u2013 December 1, 2026 (extended). Up to 5.00% on first $49,999.99 for six statement cycles; qualifying checking activity required.",
+      "details": "Each month: $1,500 qualifying direct deposits and $1,500 average checking balance, OR $5,000 qualifying deposits and $5,000 average checking balance, by the 25th. Savings average balance must not exceed $249,999.99 for the boost. Other qualifying savings earns 4.21% up to $249,999.99 and 3.50% above; without qualification, 1.00%. No monthly maintenance fee. New-customer 5.00% promo (0.79-point boost on first $49,999.99 for six statement cycles) requires opening Oct 1\u2013Dec 1, 2026; the opening cycle counts toward the six. Additional deposit-program coverage has separate conditions.",
       "protection": "FDIC-insured deposits at Axos Bank. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
-      "effective": "2026-10-04",
+      "effective": "2026-11-05",
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Axos Bank; standard coverage and same-bank aggregation limits apply."
       },
       "sources": [
@@ -359,7 +359,7 @@
           "url": "https://www.axosbank.com/personal/bank/axos-one"
         }
       ],
-      "verifiedAt": "2026-11-01",
+      "verifiedAt": "2026-11-05",
       "catches": [
         "New customers only; open by Dec 1, 2026; the 5.00% lasts 6 statement cycles (5 if you open on or after the 25th)",
         "Every month by the 25th: $1,500+ direct deposits and a $1,500 average checking balance (or $5,000 and $5,000)",
@@ -372,21 +372,21 @@
     {
       "id": "sofi",
       "name": "SoFi",
-      "product": "Savings · SoFi Plus",
+      "product": "Savings \u00b7 SoFi Plus",
       "category": "cash",
-      "kind": "Bank · SoFi Bank, N.A.",
+      "kind": "Bank \u00b7 SoFi Bank, N.A.",
       "symbol": "S",
       "color": "#38665a",
       "base": 0.8,
       "boost": 4.7,
-      "rateLabel": "Plus · first $20,000",
+      "rateLabel": "Plus \u00b7 first $20,000",
       "requirements": "SoFi Plus costs $10/month. 4.70% applies to the first $20,000 in one eligible savings account; excess earns 3.30%.",
       "details": "Without Plus, eligible direct deposit or qualifying deposits earns 3.30%; otherwise 0.80%. New members can instead get a limited-time 1.10-point boost to 4.40% for up to six months with eligible direct deposit or qualifying deposits. That boost cannot stack on the 4.70% tier. Subscription fees reduce net earnings. Rates current as of Oct 20, 2026.",
       "protection": "FDIC-insured deposits at SoFi Bank, N.A.. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
       "effective": "2026-10-20",
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "SoFi Bank, N.A.; standard coverage and same-bank aggregation limits apply."
       },
       "sources": [
@@ -403,26 +403,26 @@
           "url": "https://www.sofi.com/banking/"
         }
       ],
-      "verifiedAt": "2026-10-30"
+      "verifiedAt": "2026-11-05"
     },
     {
       "id": "peak",
       "name": "Peak Bank",
       "product": "Envision High Yield Savings",
       "category": "cash",
-      "kind": "Bank · Idaho First Bank",
+      "kind": "Bank \u00b7 Idaho First Bank",
       "symbol": "P",
       "color": "#38665a",
       "base": 4.27,
       "boost": null,
-      "rateLabel": "New accounts · below $500k",
+      "rateLabel": "New accounts \u00b7 below $500k",
       "requirements": "$100 to open. New-account APY is 4.27% below $500,000; published tiers at $500,000+ earn 3.40%.",
       "details": "No monthly maintenance fee. One account per customer; opening funds have a five-business-day hold. Advertised rates are for new accounts and may differ for existing customers. Rates are variable. Higher balance tiers do not increase FDIC protection.",
       "protection": "FDIC-insured deposits at Idaho First Bank. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
       "effective": "2026-10-01",
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Idaho First Bank; standard coverage and same-bank aggregation limits apply."
       },
       "sources": [
@@ -431,7 +431,7 @@
           "url": "https://www.peak.bank/peak-bank/savings"
         }
       ],
-      "baseLabel": "New accounts · below $500k",
+      "baseLabel": "New accounts \u00b7 below $500k",
       "verifiedAt": "2026-11-03"
     },
     {
@@ -439,7 +439,7 @@
       "name": "Pibank",
       "product": "Pibank Savings",
       "category": "cash",
-      "kind": "Bank · Intercredit Bank, N.A.",
+      "kind": "Bank \u00b7 Intercredit Bank, N.A.",
       "symbol": "P",
       "color": "#38665a",
       "base": 4.4,
@@ -451,7 +451,7 @@
       "effective": "2026-10-21",
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Intercredit Bank, N.A.; standard coverage and same-bank aggregation limits apply."
       },
       "sources": [
@@ -467,7 +467,7 @@
       "name": "Newtek Bank",
       "product": "Personal High Yield Savings",
       "category": "cash",
-      "kind": "Bank · Newtek Bank, N.A.",
+      "kind": "Bank \u00b7 Newtek Bank, N.A.",
       "symbol": "N",
       "color": "#38665a",
       "base": 4.2,
@@ -479,7 +479,7 @@
       "effective": null,
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Newtek Bank, N.A.; standard coverage and same-bank aggregation limits apply."
       },
       "sources": [
@@ -496,7 +496,7 @@
       "name": "CIT Bank",
       "product": "Platinum Savings",
       "category": "cash",
-      "kind": "Bank · First-Citizens Bank & Trust Company",
+      "kind": "Bank \u00b7 First-Citizens Bank & Trust Company",
       "symbol": "C",
       "color": "#38665a",
       "base": 3.75,
@@ -508,7 +508,7 @@
       "effective": null,
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "First-Citizens Bank & Trust Company; standard coverage and same-bank aggregation limits apply."
       },
       "sources": [
@@ -529,19 +529,19 @@
       "name": "Varo Bank",
       "product": "Varo Savings",
       "category": "cash",
-      "kind": "Bank · Varo Bank, N.A.",
+      "kind": "Bank \u00b7 Varo Bank, N.A.",
       "symbol": "V",
       "color": "#38665a",
       "base": 1.0,
       "boost": 3.75,
-      "rateLabel": "Qualifying · first $5,000",
+      "rateLabel": "Qualifying \u00b7 first $5,000",
       "requirements": "Receive $1,000+ qualifying direct deposits and end the month with positive balances in all Varo accounts.",
       "details": "Qualify this month to earn 3.75% on up to $5,000 next month; other savings earns 1.00%. Requires a Varo Bank Account. No monthly savings fee or minimum balance. US adult eligibility applies.",
       "protection": "FDIC-insured deposits at Varo Bank, N.A.. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
       "effective": "2026-07-01",
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Varo Bank, N.A.; standard coverage and same-bank aggregation limits apply."
       },
       "sources": [
@@ -557,19 +557,19 @@
       "name": "Elevault",
       "product": "Elevault Portfolio",
       "category": "cash",
-      "kind": "Bank app · Uplift Bank (formerly Southern Bancorp)",
+      "kind": "Bank app \u00b7 Uplift Bank (formerly Southern Bancorp)",
       "symbol": "E",
       "color": "#38665a",
       "base": 4.34,
       "boost": null,
       "rateLabel": "Standard rate",
       "requirements": "No minimum deposit or fees. Interest is paid daily on balances up to $500,000; linked-account funding is capped at $2,500 a day.",
-      "details": "Variable APY of 4.34% (4.25% interest rate), which Elevault states is accurate as of May 5, 2026. Elevault is a product of Uplift Bank, which was Southern Bancorp until its Oct 26, 2026 rename. You must be a US resident aged 18 or older and scan a valid US driver’s license or state ID to enroll. You fund it by linking an account at another bank, and Elevault may close profiles left unfunded for 60 days. Balances above $500,000 do not earn interest. Elevault says VaultKeys (account and routing numbers it assigns to a Vault) let you move more than $2,500, with the sending bank setting the limit.",
+      "details": "Variable APY of 4.34% (4.25% interest rate), which Elevault states is accurate as of May 5, 2026. Elevault is a product of Uplift Bank, which was Southern Bancorp until its Oct 26, 2026 rename. You must be a US resident aged 18 or older and scan a valid US driver\u2019s license or state ID to enroll. You fund it by linking an account at another bank, and Elevault may close profiles left unfunded for 60 days. Balances above $500,000 do not earn interest. Elevault says VaultKeys (account and routing numbers it assigns to a Vault) let you move more than $2,500, with the sending bank setting the limit.",
       "protection": "FDIC-insured deposits at Uplift Bank (formerly Southern Bancorp Bank). The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
       "effective": "2026-05-05",
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Uplift Bank (formerly Southern Bancorp); standard coverage and same-bank aggregation limits apply."
       },
       "sources": [
@@ -589,19 +589,19 @@
       "name": "EverBank",
       "product": "Performance Savings",
       "category": "cash",
-      "kind": "Bank · EverBank, N.A.",
+      "kind": "Bank \u00b7 EverBank, N.A.",
       "symbol": "E",
       "color": "#38665a",
       "base": 4.2,
       "boost": null,
-      "rateLabel": "New accounts · all balances",
+      "rateLabel": "New accounts \u00b7 all balances",
       "requirements": "$0 to open. New-account APY of 4.20% on all balances; no monthly maintenance fee or minimum balance.",
       "details": "Variable APY for new accounts only, which EverBank states is accurate as of October 30, 2026; it may not apply to existing accounts. Interest compounds daily. The account opens only online or by phone, not at EverBank financial centers. Fees may reduce earnings.",
       "protection": "FDIC-insured deposits at EverBank, N.A.. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
       "effective": "2026-10-30",
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "EverBank, N.A.; standard coverage and same-bank aggregation limits apply."
       },
       "sources": [
@@ -618,20 +618,20 @@
       "name": "Happen Bank",
       "product": "LevelUp High-Yield Savings",
       "category": "cash",
-      "kind": "Bank · Happen Bank, N.A.",
+      "kind": "Bank \u00b7 Happen Bank, N.A.",
       "symbol": "H",
       "color": "#38665a",
       "base": 3.0,
       "boost": 4.2,
       "baseLabel": "Standard rate",
-      "rateLabel": "LevelUp · $250+/month deposits",
+      "rateLabel": "LevelUp \u00b7 $250+/month deposits",
       "requirements": "Deposit at least $250 per statement cycle to earn 4.20% on the full balance; otherwise 3.00%. $0 to open, no minimum balance, no account fees.",
       "details": "Variable APYs accurate as of November 2, 2026. The rate is evaluated each statement cycle based on deposits in the previous cycle; interest payments, bonuses, credits, and refunds do not count as deposits. New accounts earn the LevelUp Rate until the first evaluation, which is the third statement cycle after opening. Multiple deposits can add up to the $250. Fees may reduce earnings.",
       "protection": "FDIC-insured deposits at Happen Bank, N.A.. The standard $250,000 limit per depositor, bank, and ownership category aggregates other deposits at the same bank.",
       "effective": "2026-10-06",
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Happen Bank, N.A.; standard coverage and same-bank aggregation limits apply."
       },
       "sources": [
@@ -647,7 +647,7 @@
       "name": "Openbank",
       "product": "High Yield Savings",
       "category": "cash",
-      "kind": "Bank · Santander Bank, N.A.",
+      "kind": "Bank \u00b7 Santander Bank, N.A.",
       "symbol": "O",
       "color": "#38665a",
       "base": 4.0,
@@ -660,7 +660,7 @@
       "effective": null,
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Santander Bank, N.A.; Openbank and Santander deposits aggregate for coverage."
       },
       "sources": [
@@ -676,7 +676,7 @@
       "name": "Capital One",
       "product": "360 Performance Savings",
       "category": "cash",
-      "kind": "Bank · Capital One, N.A.",
+      "kind": "Bank \u00b7 Capital One, N.A.",
       "symbol": "C",
       "color": "#004977",
       "base": 3.2,
@@ -695,7 +695,7 @@
       ],
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Capital One; standard coverage limits apply."
       },
       "verifiedAt": "2026-10-30"
@@ -705,7 +705,7 @@
       "name": "American Express",
       "product": "High Yield Savings",
       "category": "cash",
-      "kind": "Bank · American Express National Bank",
+      "kind": "Bank \u00b7 American Express National Bank",
       "symbol": "A",
       "color": "#016fd0",
       "base": 3.2,
@@ -724,7 +724,7 @@
       ],
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "American Express; standard coverage limits apply."
       },
       "verifiedAt": "2026-11-02"
@@ -734,7 +734,7 @@
       "name": "Synchrony",
       "product": "High Yield Savings",
       "category": "cash",
-      "kind": "Bank · Synchrony Bank",
+      "kind": "Bank \u00b7 Synchrony Bank",
       "symbol": "S",
       "color": "#3b3b3b",
       "base": 3.75,
@@ -753,7 +753,7 @@
       ],
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Synchrony; standard coverage limits apply."
       },
       "verifiedAt": "2026-10-30"
@@ -763,7 +763,7 @@
       "name": "Citizens Access",
       "product": "Savings",
       "category": "cash",
-      "kind": "Bank · Citizens Bank, N.A.",
+      "kind": "Bank \u00b7 Citizens Bank, N.A.",
       "symbol": "C",
       "color": "#008555",
       "base": 2.8,
@@ -782,7 +782,7 @@
       ],
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Citizens Access; standard coverage limits apply."
       },
       "verifiedAt": "2026-10-30"
@@ -792,14 +792,14 @@
       "name": "Wells Fargo",
       "product": "Way2Save Savings",
       "category": "cash",
-      "kind": "Bank · Wells Fargo Bank, N.A.",
+      "kind": "Bank \u00b7 Wells Fargo Bank, N.A.",
       "symbol": "W",
       "color": "#d71e28",
       "base": 0.01,
       "boost": null,
       "rateLabel": "Standard rate",
       "requirements": "Big-bank benchmark: what most branch savings pay.",
-      "details": "Standard rate on all balances; rates can vary by location (Bay Area rates for Oct 24–30, 2026 checked).",
+      "details": "Standard rate on all balances; rates can vary by location (Bay Area rates for Oct 24\u201330, 2026 checked).",
       "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
       "effective": "2026-10-24",
       "observedAt": "2026-10-30",
@@ -811,7 +811,7 @@
       ],
       "fdic": {
         "status": "bank",
-        "label": "FDIC · Bank deposit",
+        "label": "FDIC \u00b7 Bank deposit",
         "summary": "Wells Fargo; standard coverage limits apply."
       },
       "verifiedAt": "2026-10-30"
@@ -821,7 +821,7 @@
       "name": "Chime",
       "product": "High-Yield Savings",
       "category": "cash",
-      "kind": "Fintech · The Bancorp Bank / Stride Bank",
+      "kind": "Fintech \u00b7 The Bancorp Bank / Stride Bank",
       "symbol": "C",
       "color": "#1ec677",
       "base": 1.0,
@@ -840,7 +840,7 @@
       ],
       "fdic": {
         "status": "conditional",
-        "label": "FDIC · Pass-through",
+        "label": "FDIC \u00b7 Pass-through",
         "summary": "Chime; standard coverage limits apply."
       },
       "verifiedAt": "2026-10-30"
@@ -850,7 +850,7 @@
       "name": "Betterment",
       "product": "Cash Reserve",
       "category": "cash",
-      "kind": "Cash management · partner banks",
+      "kind": "Cash management \u00b7 partner banks",
       "symbol": "B",
       "color": "#1f4dcc",
       "base": 3.5,
@@ -869,7 +869,7 @@
       ],
       "fdic": {
         "status": "conditional",
-        "label": "FDIC · Pass-through",
+        "label": "FDIC \u00b7 Pass-through",
         "summary": "Betterment; standard coverage limits apply."
       },
       "verifiedAt": "2026-11-03"

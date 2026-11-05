@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-03",
+  "checkedAt": "2026-11-05",
   "note": "Bank-level deposit products, hand-verified against bank pages or named rate trackers. Rates are annual, before tax. Foreigner/non-resident access marked 'confirm' was NOT verified on the bank page; ask the bank before you travel or wire.",
   "countries": [
     {
@@ -229,7 +229,7 @@
           "min": "10,000–10,000,000 TRY",
           "access": "Needs Turkish tax number (confirm)",
           "source": "https://www.hangikredi.com/yatirim-araclari/mevduat-faiz-oranlari/turk-ticaret-bankasi",
-          "verified": "2026-11-02"
+          "verified": "2026-11-05"
         },
         {
           "bank": "Alternatifbank",
@@ -240,7 +240,7 @@
           "min": "20,000–500,000 TRY (1–45 days)",
           "access": "Needs Turkish tax number (confirm)",
           "source": "https://yatirimci.ai/en/time-deposit",
-          "verified": "2026-11-02"
+          "verified": "2026-11-05"
         },
         {
           "bank": "ON Dijital",
@@ -251,7 +251,7 @@
           "min": "100,000 TRY tier",
           "access": "Digital (confirm)",
           "source": "https://yatirimci.ai/en/time-deposit",
-          "verified": "2026-10-25"
+          "verified": "2026-11-05"
         }
       ],
       "insuranceLimit": null
