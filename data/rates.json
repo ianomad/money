@@ -331,7 +331,7 @@
           "url": "https://banking.us.barclays/online-savings.html"
         }
       ],
-      "verifiedAt": "2026-10-30"
+      "verifiedAt": "2026-11-05"
     },
     {
       "id": "axos",
@@ -683,9 +683,9 @@
       "boost": null,
       "rateLabel": "Standard rate",
       "requirements": "No minimum, no monthly fee. Discover Online Savings now points to this account.",
-      "details": "Variable APY; same rate on all balances. Capital One lists the rate as effective as of Oct 29, 2026.",
+      "details": "Variable APY; same rate on all balances. Capital One lists the rate as effective as of Nov 5, 2026.",
       "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
-      "effective": "2026-10-29",
+      "effective": "2026-11-05",
       "observedAt": "2026-10-30",
       "sources": [
         {
@@ -698,7 +698,7 @@
         "label": "FDIC \u00b7 Bank deposit",
         "summary": "Capital One; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-30"
+      "verifiedAt": "2026-11-05"
     },
     {
       "id": "amex",
@@ -741,9 +741,9 @@
       "boost": null,
       "rateLabel": "Standard rate",
       "requirements": "No minimum deposit or balance, no monthly fee.",
-      "details": "Variable APY. Synchrony lists its APYs as accurate as of Oct 30, 2026.",
+      "details": "Variable APY. Synchrony lists its APYs as accurate as of Nov 5, 2026.",
       "protection": "FDIC-insured bank deposit, subject to standard depositor, bank, and ownership-category limits.",
-      "effective": "2026-10-30",
+      "effective": "2026-11-05",
       "observedAt": "2026-10-30",
       "sources": [
         {
@@ -756,7 +756,7 @@
         "label": "FDIC \u00b7 Bank deposit",
         "summary": "Synchrony; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-30"
+      "verifiedAt": "2026-11-05"
     },
     {
       "id": "citizens",
@@ -785,7 +785,7 @@
         "label": "FDIC \u00b7 Bank deposit",
         "summary": "Citizens Access; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-30"
+      "verifiedAt": "2026-11-05"
     },
     {
       "id": "wellsfargo",
@@ -814,7 +814,7 @@
         "label": "FDIC \u00b7 Bank deposit",
         "summary": "Wells Fargo; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-30"
+      "verifiedAt": "2026-11-05"
     },
     {
       "id": "chime",
@@ -843,7 +843,7 @@
         "label": "FDIC \u00b7 Pass-through",
         "summary": "Chime; standard coverage limits apply."
       },
-      "verifiedAt": "2026-10-30"
+      "verifiedAt": "2026-11-05"
     },
     {
       "id": "betterment",
