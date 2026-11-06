@@ -33,7 +33,7 @@ RELATED = [('/rates', 'Savings calculator', 'What a rate pays on your balance'),
            ('/best-hysa', 'No-strings savings', 'Plain rates vs the catches'),
            ('/best-nofee-cards', 'No-fee cash-back cards', 'Flat 2% vs categories'),
            ('/tbills-vs-savings-california', 'T-bills vs savings (CA)', 'After California tax'),
-           ('/pay-property-tax-credit-card', 'Property tax by card', 'County fees vs rewards')]
+           ('/pay-property-tax-credit-card', 'Property tax credit card fee', 'CA county fees vs rewards')]
 CSS = ('<style>.related{margin:var(--s6,32px) 0 0;padding-top:var(--s4,16px);border-top:1px solid var(--line)}'
        '.related ul{list-style:none;padding:0;margin:8px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}'
        '.related a{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r2,12px);background:var(--card);text-decoration:none;color:inherit;min-height:44px}'

@@ -84,7 +84,7 @@ def build(root):
             f'the fee is {_usd(fee_hi)} and you get {_usd(BILL * flat_rate / 100)} back ({_sgn(flat_net)}). '
             'It only pays when the card earns more than the fee, when the bill unlocks a sign-up bonus, or when you are in a tight spot and need a few weeks.')
     head = ('<section class="pagehead"><p class="eyebrow">PROPERTY TAX / CHECKED ' + e(checked.upper()) + '</p>'
-            '<h1>Paying property tax by credit card: <em>when the fee is worth it.</em></h1>'
+            '<h1>California property tax credit card fee: <em>when paying by card is worth it.</em></h1>'
             f'<p class="lead">{lead}</p></section>')
 
     bars = [(c['county'], c['creditPct'], _pct(c['creditPct']), '#fees') for c in counties]
@@ -101,9 +101,8 @@ def build(root):
         f'<td class="n">{_pct(c["creditPct"])}</td><td class="n">{_usd(BILL * c["creditPct"] / 100)}</td><td class="n">$0</td></tr>'
         for c in counties)
     dd = pj.get('dueDates') or {}
-    fees_s = ('<section class="digest" id="fees"><p class="eyebrow"><span class="dot"></span> WHAT EACH COUNTY CHARGES</p>'
-              f'<h2 class="takeaway">The card fee goes to the payment processor, not to a perk for you. On {_usd(BILL)} it runs '
-              f'{_usd(BILL * lo / 100)}–{_usd(BILL * hi / 100)}.</h2>'
+    fees_s = ('<section class="digest" id="fees"><p class="eyebrow"><span class="dot"></span> PROPERTY TAX CREDIT CARD FEE BY COUNTY</p>'
+              f'<h2 class="takeaway">San Francisco, Alameda, Santa Clara and LA all charge about {_pct(lo)}–{_pct(hi)}. On {_usd(BILL)} that is {_usd(BILL * lo / 100)}–{_usd(BILL * hi / 100)} — paid to the processor, not as a perk for you.</h2>'
               '<table class="ctable"><thead><tr><th>County · source</th><th style="text-align:right">Card fee</th>'
               f'<th style="text-align:right">On {_usd(BILL)}</th><th style="text-align:right">eCheck</th></tr></thead>'
               f'<tbody>{rows}</tbody></table>'
@@ -177,9 +176,22 @@ def build(root):
 
     body = ('<p class="trust"><span><b>●</b> Checked ' + e(checked) + '</span><span>County fees with sources</span>'
             '<span>No sponsored rankings</span></p>' + head + card + fees_s + c1 + c2 + c3 + pick_s + foot)
-    title = f'Pay California property tax by credit card? Fees vs rewards ({date.fromisoformat(pj["checkedAt"]).strftime("%b %Y")})'
-    desc = (f'CA counties charge {_pct(lo)}–{_pct(hi)} to pay property tax by card; eCheck is free. A 2% card loses money, '
-            f'a {_pct(rh_rate) if rh else "3%"} card or a sign-up bonus minimum can win. County-by-county math with sources.')
+    # SEO: primary query "property tax credit card fee" + CA / SF / Alameda / Santa Clara county angle
+    title = (f'California property tax credit card fee by county '
+             f'({date.fromisoformat(pj["checkedAt"]).strftime("%b %Y")})')
+    # Name the counties people search (SF, Alameda, Santa Clara) plus the honest range.
+    named = {c["county"]: c for c in counties}
+    sf = named.get("San Francisco")
+    ala = named.get("Alameda")
+    sc = named.get("Santa Clara")
+    bits = []
+    if sf: bits.append(f'SF {_pct(sf["creditPct"])}' + (f' min {_usd(sf["minFee"], True)}' if sf.get("minFee") else ''))
+    if ala: bits.append(f'Alameda {_pct(ala["creditPct"])}')
+    if sc: bits.append(f'Santa Clara {_pct(sc["creditPct"])}' + (f' min {_usd(sc["minFee"], True)}' if sc.get("minFee") else ''))
+    county_bits = '; '.join(bits) if bits else f'{_pct(lo)}–{_pct(hi)}'
+    desc = (f'Property tax credit card fee in California: {county_bits}. eCheck is free. '
+            f'A 2% card usually loses money; a {_pct(rh_rate) if rh else "3%"} card or a sign-up bonus minimum can win. '
+            'County fee table with sources.')
     return title, desc, body
 
 
