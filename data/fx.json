@@ -1,88 +1,88 @@
 {
- "fetched": "2026-11-05",
+ "fetched": "2026-11-06",
  "note": "Local currency per 1 USD. Official central-bank rate where reachable; see detail.",
  "rates": {
-  "KGS": 87.4493,
-  "UZS": 11920.716348,
-  "KZT": 452.91,
-  "TRY": 50.0489,
-  "NGN": 1347.2983,
-  "ARS": 1546.0,
-  "BRL": 5.4778,
-  "GEL": 2.5955,
-  "AMD": 360.4,
+  "KGS": 87.4478,
+  "UZS": 11973.48,
+  "KZT": 451.87,
+  "TRY": 50.0724,
+  "NGN": 1348.2416,
+  "ARS": 1545.5,
+  "BRL": 5.4621,
+  "GEL": 2.5949,
+  "AMD": 360.34,
   "USD": 1
  },
  "detail": {
   "KGS": {
-   "rate": 87.4493,
-   "date": "2026-11-06",
+   "rate": 87.4478,
+   "date": "2026-11-07",
    "source": "National Bank of the Kyrgyz Republic official",
    "url": "https://www.nbkr.kg/index1.jsp?item=1562&lang=ENG",
    "official": true
   },
+  "UZS": {
+   "rate": 11973.48,
+   "date": "2026-11-06",
+   "source": "Central Bank of Uzbekistan official",
+   "url": "https://cbu.uz/en/arkhiv-kursov-valyut/",
+   "official": true
+  },
   "KZT": {
-   "rate": 452.91,
-   "date": "2026-11-05",
+   "rate": 451.87,
+   "date": "2026-11-06",
    "source": "National Bank of Kazakhstan official",
    "url": "https://nationalbank.kz/en/exchangerates/ezhednevnye-oficialnye-rynochnye-kursy-valyut",
    "official": true
   },
   "TRY": {
-   "rate": 50.0489,
-   "date": "2026-11-05",
+   "rate": 50.0724,
+   "date": "2026-11-06",
    "source": "Central Bank of Türkiye indicative (forex selling)",
    "url": "https://www.tcmb.gov.tr/kurlar/today.xml",
    "official": true
   },
   "NGN": {
-   "rate": 1347.2983,
-   "date": "2026-11-04",
+   "rate": 1348.2416,
+   "date": "2026-11-05",
    "source": "Central Bank of Nigeria central rate",
    "url": "https://www.cbn.gov.ng/rates/ExchRateByCurrency.html",
    "official": true
   },
   "ARS": {
-   "rate": 1546.0,
-   "date": "2026-11-04",
+   "rate": 1545.5,
+   "date": "2026-11-05",
    "source": "BCRA official (Com. A 3500)",
    "url": "https://www.bcra.gob.ar/PublicacionesEstadisticas/Tipos_de_cambios.asp",
    "official": true
   },
   "BRL": {
-   "rate": 5.4778,
-   "date": "2026-11-04",
+   "rate": 5.4621,
+   "date": "2026-11-05",
    "source": "Banco Central do Brasil PTAX (sell)",
    "url": "https://www.bcb.gov.br/estabilidadefinanceira/historicocotacoes",
    "official": true
   },
   "GEL": {
-   "rate": 2.5955,
-   "date": "2026-11-06",
+   "rate": 2.5949,
+   "date": "2026-11-07",
    "source": "National Bank of Georgia official",
    "url": "https://nbg.gov.ge/en/monetary-policy/currency",
    "official": true
   },
   "AMD": {
-   "rate": 360.4,
-   "date": "2026-11-05",
+   "rate": 360.34,
+   "date": "2026-11-06",
    "source": "Central Bank of Armenia official",
    "url": "https://www.cba.am/en/SitePages/ExchangeArchive.aspx",
    "official": true
   },
   "USD": {
    "rate": 1,
-   "date": "2026-11-05",
+   "date": "2026-11-06",
    "source": "USD",
    "url": "",
    "official": true
-  },
-  "UZS": {
-   "rate": 11920.716348,
-   "date": "2026-11-05",
-   "source": "open.er-api.com (market aggregate; official source unreachable)",
-   "url": "https://open.er-api.com/v6/latest/USD",
-   "official": false
   }
  }
 }

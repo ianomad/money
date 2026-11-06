@@ -81,10 +81,10 @@ def specs():
         return dict(eyebrow='T-bills vs savings in California', big=f'{g[4]} vs {g[3]}', line=f'A {g[5].replace(" week", "-week")} T-bill keeps all {g[4]}. A {g[2]} savings account keeps {g[3]} after CA tax ({g[1]} bracket).',
                     alt=f'In California’s {g[1]} bracket a {g[4]} {g[5].replace(" week", "-week")} T-bill keeps {g[4]} while {g[2]} savings keeps {g[3]} after state tax')
     def proptax():
-        import build_article_proptax as m
-        desc = m.build(ROOT)[1]
-        g = re.search(r'CA counties charge ([\d.]+%)–([\d.]+%) to pay property tax by card', desc)
-        lo, hi = float(g[1].rstrip('%')), float(g[2].rstrip('%'))
+        import json
+        fees = json.loads((ROOT/'data'/'proptax_fees.json').read_text())
+        pcts = [c['creditPct'] for c in fees['counties']]
+        lo, hi = min(pcts), max(pcts)
         big = f'{lo:.2f}%' if lo == hi else f'{lo:.2f}–{hi:.2f}%'
         return dict(eyebrow='California property tax by card', big=big, line='card fee charged by CA counties. eCheck is free. A 2% card loses money; a bonus minimum can win.',
                     alt=f'California counties charge {lo:.2f}% to {hi:.2f}% to pay property tax by credit card; eCheck is free')
