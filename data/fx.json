@@ -1,14 +1,14 @@
 {
- "fetched": "2026-11-06",
+ "fetched": "2026-11-07",
  "note": "Local currency per 1 USD. Official central-bank rate where reachable; see detail.",
  "rates": {
   "KGS": 87.4478,
-  "UZS": 11973.48,
-  "KZT": 451.87,
+  "UZS": 11987.16,
+  "KZT": 447.14,
   "TRY": 50.0724,
-  "NGN": 1348.2416,
+  "NGN": 1346.2945,
   "ARS": 1545.5,
-  "BRL": 5.4621,
+  "BRL": 5.5013,
   "GEL": 2.5949,
   "AMD": 360.34,
   "USD": 1
@@ -16,21 +16,21 @@
  "detail": {
   "KGS": {
    "rate": 87.4478,
-   "date": "2026-11-07",
+   "date": "2026-11-08",
    "source": "National Bank of the Kyrgyz Republic official",
    "url": "https://www.nbkr.kg/index1.jsp?item=1562&lang=ENG",
    "official": true
   },
   "UZS": {
-   "rate": 11973.48,
-   "date": "2026-11-06",
+   "rate": 11987.16,
+   "date": "2026-11-07",
    "source": "Central Bank of Uzbekistan official",
    "url": "https://cbu.uz/en/arkhiv-kursov-valyut/",
    "official": true
   },
   "KZT": {
-   "rate": 451.87,
-   "date": "2026-11-06",
+   "rate": 447.14,
+   "date": "2026-11-07",
    "source": "National Bank of Kazakhstan official",
    "url": "https://nationalbank.kz/en/exchangerates/ezhednevnye-oficialnye-rynochnye-kursy-valyut",
    "official": true
@@ -43,8 +43,8 @@
    "official": true
   },
   "NGN": {
-   "rate": 1348.2416,
-   "date": "2026-11-05",
+   "rate": 1346.2945,
+   "date": "2026-11-06",
    "source": "Central Bank of Nigeria central rate",
    "url": "https://www.cbn.gov.ng/rates/ExchRateByCurrency.html",
    "official": true
@@ -57,8 +57,8 @@
    "official": true
   },
   "BRL": {
-   "rate": 5.4621,
-   "date": "2026-11-05",
+   "rate": 5.5013,
+   "date": "2026-11-06",
    "source": "Banco Central do Brasil PTAX (sell)",
    "url": "https://www.bcb.gov.br/estabilidadefinanceira/historicocotacoes",
    "official": true
@@ -79,7 +79,7 @@
   },
   "USD": {
    "rate": 1,
-   "date": "2026-11-06",
+   "date": "2026-11-07",
    "source": "USD",
    "url": "",
    "official": true

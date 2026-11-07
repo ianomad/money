@@ -84,7 +84,7 @@
     "spend": 500,
     "months": 3
    },
-   "verifiedAt": "2026-11-01"
+   "verifiedAt": "2026-11-07"
   },
   {
    "id": "sv",
@@ -108,7 +108,7 @@
     "spend": 500,
     "months": 3
    },
-   "verifiedAt": "2026-11-01"
+   "verifiedAt": "2026-11-07"
   },
   {
    "id": "bcp",
@@ -131,7 +131,7 @@
    "perks": "",
    "bonus": null,
    "points": false,
-   "verifiedAt": "2026-11-01"
+   "verifiedAt": "2026-11-07"
   },
   {
    "id": "ap",
@@ -196,7 +196,7 @@
     "spend": 6000,
     "months": 3
    },
-   "verifiedAt": "2026-11-01"
+   "verifiedAt": "2026-11-07"
   },
   {
    "id": "ag",
@@ -326,9 +326,14 @@
    "earnText": "5% in rotating quarterly categories (activate, quarterly cap), 1% else",
    "note": "We count only the 1% base, since categories change each quarter",
    "perks": "Cashback Match: all cash back doubled at the end of year one (not counted)",
-   "bonus": "Cashback Match in year one",
+   "bonus": "$200 after $500 in 3 months (applying through Discover's page), plus Cashback Match in year one",
+   "bonusTerms": {
+    "usd": 200,
+    "spend": 500,
+    "months": 3
+   },
    "points": false,
-   "verifiedAt": "2026-11-01"
+   "verifiedAt": "2026-11-07"
   },
   {
    "id": "ag2",
@@ -356,7 +361,7 @@
     "spend": 1000,
     "months": 3
    },
-   "verifiedAt": "2026-11-01"
+   "verifiedAt": "2026-11-07"
   },
   {
    "id": "so2",
@@ -405,7 +410,7 @@
    "perks": "",
    "bonus": null,
    "points": false,
-   "verifiedAt": "2026-11-01"
+   "verifiedAt": "2026-11-07"
   },
   {
    "id": "bce",
@@ -427,7 +432,7 @@
    "perks": "$84 Disney streaming credit",
    "bonus": null,
    "points": false,
-   "verifiedAt": "2026-11-01"
+   "verifiedAt": "2026-11-07"
   }
  ]
 }

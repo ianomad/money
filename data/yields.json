@@ -115,7 +115,7 @@
      "usdOption": "new rates from Oct 12, 2026",
      "access": "Branch (confirm)",
      "source": "https://vip.optimabank.kg/ru/news/ob-izmenenii-uslovij-po-srocnym-depozitam-v-dollarah-ssa-usd",
-     "verified": "2026-11-03"
+     "verified": "2026-11-07"
     }
    ],
    "insuranceLimit": {
@@ -181,7 +181,7 @@
      "min": "100,000 KZT",
      "access": "Kaspi app; needs Kazakh IIN (confirm)",
      "source": "https://guide.kaspi.kz/client/ru/cumulative_deposit/conditions/q19622",
-     "verified": "2026-11-03"
+     "verified": "2026-11-07"
     },
     {
      "bank": "Halyk Bank",
@@ -331,7 +331,7 @@
      "min": "none",
      "access": "Needs CPF (confirm)",
      "source": "https://www.patrimo.app/materiais/guia-renda-fixa-pos-selic-2026",
-     "verified": "2026-11-03"
+     "verified": "2026-11-07"
     }
    ],
    "insuranceLimit": {
