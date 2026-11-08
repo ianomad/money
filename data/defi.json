@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-11-07",
+ "checkedAt": "2026-11-08",
  "source": "https://defillama.com/yields",
  "pools": [
   {
@@ -7,20 +7,10 @@
    "project": "sky-lending",
    "chain": "Ethereum",
    "coin": "USDS",
-   "apy": 7.0,
+   "apy": 6.19,
    "apyBase": 0,
-   "tvl": 140778867,
+   "tvl": 144785494,
    "pool": "4d87430b-688a-5ac5-a593-4e31ac715d02"
-  },
-  {
-   "protocol": "Morpho",
-   "project": "morpho-blue",
-   "chain": "Robinhood Chain",
-   "coin": "USDE",
-   "apy": 5.25,
-   "apyBase": 0,
-   "tvl": 370106364,
-   "pool": "d3ed814d-9763-5436-8b25-66bdbabd36f8"
   },
   {
    "protocol": "Morpho",
@@ -29,17 +19,27 @@
    "coin": "USDE",
    "apy": 5.25,
    "apyBase": 0,
-   "tvl": 363454671,
+   "tvl": 373729859,
    "pool": "2d3b68a8-33d3-47e0-a4c0-0bafef4b01d5"
+  },
+  {
+   "protocol": "Morpho",
+   "project": "morpho-blue",
+   "chain": "Robinhood Chain",
+   "coin": "USDE",
+   "apy": 5.25,
+   "apyBase": 0,
+   "tvl": 364237378,
+   "pool": "d3ed814d-9763-5436-8b25-66bdbabd36f8"
   },
   {
    "protocol": "Maple",
    "project": "maple",
    "chain": "Ethereum",
    "coin": "USDC",
-   "apy": 5.07,
-   "apyBase": 5.07,
-   "tvl": 2434325676,
+   "apy": 5.08,
+   "apyBase": 5.08,
+   "tvl": 2426213337,
    "pool": "43641cf5-a92e-416b-bce9-27113d3c0db6"
   },
   {
@@ -47,9 +47,9 @@
    "project": "ethena-usde",
    "chain": "Ethereum",
    "coin": "SUSDE",
-   "apy": 5.01,
-   "apyBase": 5.01,
-   "tvl": 1206497784,
+   "apy": 5.02,
+   "apyBase": 5.02,
+   "tvl": 1205121688,
    "pool": "66985a81-9c51-46ca-9977-42b4fe7bc6df"
   },
   {
@@ -57,9 +57,9 @@
    "project": "maple",
    "chain": "Ethereum",
    "coin": "USDT",
-   "apy": 4.95,
-   "apyBase": 4.95,
-   "tvl": 636507305,
+   "apy": 4.88,
+   "apyBase": 4.88,
+   "tvl": 633198671,
    "pool": "8edfdf02-cdbb-43f7-bca6-954e5fe56813"
   },
   {
@@ -67,9 +67,9 @@
    "project": "maple",
    "chain": "Ethereum",
    "coin": "USDG",
-   "apy": 4.82,
-   "apyBase": 4.82,
-   "tvl": 713005221,
+   "apy": 4.86,
+   "apyBase": 4.86,
+   "tvl": 711567940,
    "pool": "4c004503-9587-46f2-a362-d23a80f4b691"
   },
   {
@@ -79,7 +79,7 @@
    "coin": "SGHO",
    "apy": 4.5,
    "apyBase": 4.5,
-   "tvl": 227707021,
+   "tvl": 229212751,
    "pool": "19d024ed-9c70-4323-9a81-fe873ea5f0e0"
   },
   {
@@ -89,7 +89,7 @@
    "coin": "USDT",
    "apy": 4,
    "apyBase": 4,
-   "tvl": 356793658,
+   "tvl": 360134333,
    "pool": "a5d67f7e-5b51-4a9d-969d-caf051a7f5a4"
   },
   {
@@ -99,18 +99,8 @@
    "coin": "SUSDS",
    "apy": 3.8,
    "apyBase": 3.8,
-   "tvl": 3943164855,
+   "tvl": 3990146100,
    "pool": "d8c4eff5-c8a9-46fc-a888-057c4c668e72"
-  },
-  {
-   "protocol": "Sky",
-   "project": "sky-lending",
-   "chain": "Arbitrum",
-   "coin": "SUSDS",
-   "apy": 3.8,
-   "apyBase": 3.8,
-   "tvl": 476321405,
-   "pool": "3637ce7b-529b-49c1-964c-710a50b2939c"
   },
   {
    "protocol": "Spark",
@@ -119,8 +109,18 @@
    "coin": "USDS",
    "apy": 3.8,
    "apyBase": 3.8,
-   "tvl": 476321405,
+   "tvl": 478851582,
    "pool": "9d499222-a01a-45bb-bbc9-f01c7923693b"
+  },
+  {
+   "protocol": "Sky",
+   "project": "sky-lending",
+   "chain": "Arbitrum",
+   "coin": "SUSDS",
+   "apy": 3.8,
+   "apyBase": 3.8,
+   "tvl": 478851582,
+   "pool": "3637ce7b-529b-49c1-964c-710a50b2939c"
   },
   {
    "protocol": "Spark",
@@ -129,7 +129,7 @@
    "coin": "USDC",
    "apy": 3.8,
    "apyBase": 3.8,
-   "tvl": 252766954,
+   "tvl": 290091680,
    "pool": "c5c74dd1-995c-4445-9d84-3e710bad7d52"
   },
   {
@@ -137,9 +137,9 @@
    "project": "aave-v3",
    "chain": "Ethereum",
    "coin": "USDT",
-   "apy": 3.79,
-   "apyBase": 3.79,
-   "tvl": 160327397,
+   "apy": 3.8,
+   "apyBase": 3.8,
+   "tvl": 155563352,
    "pool": "f981a304-bb6c-45b8-b0c5-fd2f515ad23a"
   },
   {
@@ -147,9 +147,9 @@
    "project": "aave-v3",
    "chain": "Ethereum",
    "coin": "USDC",
-   "apy": 3.22,
-   "apyBase": 3.22,
-   "tvl": 404511187,
+   "apy": 3.52,
+   "apyBase": 3.52,
+   "tvl": 273917625,
    "pool": "aa70268e-4b52-42bf-a116-608b370f9501"
   },
   {
@@ -157,9 +157,9 @@
    "project": "aave-v3",
    "chain": "Monad",
    "coin": "USDE",
-   "apy": 0.89,
+   "apy": 0.85,
    "apyBase": 0.0,
-   "tvl": 120462390,
+   "tvl": 124851134,
    "pool": "34f65227-f3f9-5c3f-9182-f6eca85ae729"
   },
   {
@@ -169,7 +169,7 @@
    "coin": "USDE",
    "apy": 0.27,
    "apyBase": 0.27,
-   "tvl": 556996605,
+   "tvl": 553572522,
    "pool": "42eaf290-24c3-4ce0-82ab-c1276444871b"
   },
   {
@@ -179,7 +179,7 @@
    "coin": "USDE",
    "apy": 0.12,
    "apyBase": 0.12,
-   "tvl": 537353423,
+   "tvl": 537339618,
    "pool": "21e1ac8a-b3aa-4576-9506-0b40137721a0"
   }
  ]

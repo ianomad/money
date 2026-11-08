@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-07",
+ "fetched": "2026-11-08",
  "note": "Local currency per 1 USD. Official central-bank rate where reachable; see detail.",
  "rates": {
   "KGS": 87.4478,
@@ -16,7 +16,7 @@
  "detail": {
   "KGS": {
    "rate": 87.4478,
-   "date": "2026-11-08",
+   "date": "2026-11-09",
    "source": "National Bank of the Kyrgyz Republic official",
    "url": "https://www.nbkr.kg/index1.jsp?item=1562&lang=ENG",
    "official": true
@@ -30,7 +30,7 @@
   },
   "KZT": {
    "rate": 447.14,
-   "date": "2026-11-07",
+   "date": "2026-11-08",
    "source": "National Bank of Kazakhstan official",
    "url": "https://nationalbank.kz/en/exchangerates/ezhednevnye-oficialnye-rynochnye-kursy-valyut",
    "official": true
@@ -79,7 +79,7 @@
   },
   "USD": {
    "rate": 1,
-   "date": "2026-11-07",
+   "date": "2026-11-08",
    "source": "USD",
    "url": "",
    "official": true

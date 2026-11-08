@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-11-06",
+ "checkedAt": "2026-11-08",
  "note": "Bank-level deposit products, hand-verified against bank pages or named rate trackers. Rates are annual, before tax. Foreigner/non-resident access marked 'confirm' was NOT verified on the bank page; ask the bank before you travel or wire.",
  "countries": [
   {
@@ -150,7 +150,7 @@
      "min": "1,000,000 UZS",
      "access": "Online in app; ANORBANK card holders only (non-resident eligibility: confirm)",
      "source": "https://bank.uz/uz/deposit/fursat",
-     "verified": "2026-11-04",
+     "verified": "2026-11-08",
      "rateNote": "bank also lists Barqaror 22% (24 mo) on its site; date of that page not confirmed"
     }
    ],
@@ -241,7 +241,7 @@
      "min": "20,000–500,000 TRY (1–45 days)",
      "access": "Needs Turkish tax number (confirm)",
      "source": "https://yatirimci.ai/en/time-deposit",
-     "verified": "2026-11-05"
+     "verified": "2026-11-08"
     },
     {
      "bank": "ON Dijital",
@@ -252,7 +252,7 @@
      "min": "100,000 TRY tier",
      "access": "Digital (confirm)",
      "source": "https://yatirimci.ai/en/time-deposit",
-     "verified": "2026-11-05"
+     "verified": "2026-11-08"
     }
    ],
    "insuranceLimit": null
@@ -298,7 +298,7 @@
      "min": "see bank",
      "access": "Needs CUIL/CUIT and local account",
      "source": "https://bna.com.ar/home/informacionalusuariofinanciero",
-     "verified": "2026-11-04"
+     "verified": "2026-11-08"
     }
    ],
    "fxStart": {
@@ -396,7 +396,7 @@
      "min": "see bank",
      "access": "Branch (confirm)",
      "source": "https://ameriabank.am/userfiles/file/Deposit_saving_terms_for_PP_eng.pdf",
-     "verified": "2026-11-04"
+     "verified": "2026-11-08"
     },
     {
      "bank": "Ardshinbank",
@@ -407,7 +407,7 @@
      "min": "see bank",
      "access": "Branch (confirm)",
      "source": "https://ardshinbank.am/api/files/documents/Deposit-en-04-02-2026.pdf",
-     "verified": "2026-11-04"
+     "verified": "2026-11-08"
     }
    ],
    "fxStart": {
