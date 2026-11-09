@@ -28,6 +28,23 @@
     gtag('event', 'card_click', { card: a.dataset.ev, page_path: window.location.pathname, transport_type: 'beacon' });
   });
 
+  // Home "what is your cash earning?" check: first interaction + CTA to the matching account.
+  let calcOnce = false;
+  function calcRoot(el) { return el && el.closest && el.closest('#home-calc'); }
+  function onCalcInteract(e) {
+    if (calcOnce || !calcRoot(e.target)) return;
+    calcOnce = true;
+    gtag('event', 'calc_interact', { page_path: window.location.pathname, transport_type: 'beacon' });
+  }
+  document.addEventListener('input', onCalcInteract, true);
+  document.addEventListener('change', onCalcInteract, true);
+  document.addEventListener('click', (e) => {
+    if (e.target.closest && e.target.closest('#home-calc .fchips button, #home-calc input')) onCalcInteract(e);
+    const a = e.target.closest && e.target.closest('a[data-calc-cta]');
+    if (!a) return;
+    gtag('event', 'calc_cta_click', { account: a.dataset.calcCta, page_path: window.location.pathname, transport_type: 'beacon' });
+  });
+
   const tag = document.createElement('script');
   tag.async = true;
   tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;

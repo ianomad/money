@@ -26,25 +26,114 @@ def savings_rows():
 
 # ---------- featured opportunity ----------
 # Nov 8 2026 weekly review: home had ~72% of views but a ~2s stay, while /rates held readers (24s).
-# The first screen now answers "where should my savings be?" as a scannable top-3 list with $/yr, and pulls into /rates.
+# The first screen answers "where should my savings be?" as a top-3 list, then a "what is your cash earning?" check.
+def _short_amt(x):
+    if x >= 1000 and abs(x / 1000 - round(x / 1000)) < 1e-9: return f'${int(round(x / 1000))}k'
+    return money(x)
+
+def _wf():
+    return next((p for p in dj('rates.json')['providers'] if p.get('id') == 'wellsfargo' and p.get('base') is not None), None)
+
+CALC_JS = r"""<script>(()=>{const root=document.getElementById("home-calc");if(!root)return;
+const d=JSON.parse(document.getElementById("hc-data").textContent);
+const balI=document.getElementById("hc-bal"),rng=document.getElementById("hc-rng"),customI=document.getElementById("hc-custom"),customW=document.getElementById("hc-custom-w");
+const err=document.getElementById("hc-err"),diffEl=document.getElementById("hc-diff"),subEl=document.getElementById("hc-sub"),lineEl=document.getElementById("hc-line"),fyrH=document.querySelector(".feat .fhd .fyr");
+let kind="avg";
+const money=n=>"$"+Math.round(n).toLocaleString("en-US");
+const short=n=>(n>=1000&&Math.abs(n/1000-Math.round(n/1000))<1e-9)?("$"+Math.round(n/1000)+"k"):money(n);
+const parseBal=()=>+String(balI.value).replace(/[^\d.]/g,"");
+const clip=n=>Math.min(100000,Math.max(1000,n));
+function yourRate(){if(kind==="avg")return d.nat;if(kind==="big")return d.big?d.big.rate:null;const raw=customI.value.trim();if(!raw)return null;const r=+raw.replace(/[^\d.]/g,"");return (r>=0&&r<=30)?r:NaN}
+function rateLabel(r){return kind==="avg"?("the US average ("+d.nat.toFixed(2)+"%)"):kind==="big"?(d.big.name+" ("+d.big.rate.toFixed(2)+"%)"):("your rate ("+r.toFixed(2)+"%)")}
+function setPressed(sel,pred){root.querySelectorAll(sel).forEach(b=>b.setAttribute("aria-pressed",pred(b)?"true":"false"))}
+function render(){
+  const b=parseBal(),r=yourRate(),okB=b>=1&&b<=1e7;
+  if(okB){if(document.activeElement!==balI)balI.value=Math.round(b).toLocaleString("en-US");if(rng&&document.activeElement!==rng)rng.value=String(clip(b));
+    document.querySelectorAll(".ftop li[data-rate]").forEach(li=>{li.querySelector(".fyr").textContent=money(b*(+li.dataset.rate)/100)});
+    if(fyrH)fyrH.textContent="On "+short(b)+"/yr";
+    setPressed(".fchips[data-for=bal] button",btn=>+btn.dataset.bal===b)}
+  setPressed(".fchips[data-for=rate] button",btn=>btn.dataset.kind===kind);
+  if(customW)customW.hidden=kind!=="custom";
+  if(!okB||r===null||Number.isNaN(r)){if(err){err.hidden=false;err.textContent=!okB?"Enter an amount between $1 and $10,000,000.":"Enter a rate between 0 and 30%.";}return}
+  if(err)err.hidden=true;
+  const yours=b*r/100,bests=b*d.best.rate/100,diff=bests-yours,yr1=d.best.yr1?" in the first year":"";
+  if(diff>0.5){diffEl.textContent=money(diff);subEl.textContent="more a year"+yr1}
+  else if(diff<-0.5){diffEl.textContent=money(-diff);subEl.textContent="less than your rate"+yr1}
+  else {diffEl.textContent=money(0);subEl.textContent="about the same a year"}
+  lineEl.textContent="";
+  lineEl.append("At ",rateLabel(r)," you'd earn ");
+  const n1=document.createElement("b");n1.textContent=money(yours);lineEl.append(n1);
+  lineEl.append(". At "+d.best.name+" ("+d.best.rate.toFixed(2)+"%) you'd earn ");
+  const n2=document.createElement("b");n2.textContent=money(bests);lineEl.append(n2,", before tax.");
+}
+function setBal(n){balI.value=Math.round(n).toLocaleString("en-US");if(rng)rng.value=String(clip(n));render()}
+root.querySelectorAll(".fchips[data-for=bal] button").forEach(b=>b.addEventListener("click",()=>setBal(+b.dataset.bal)));
+root.querySelectorAll(".fchips[data-for=rate] button").forEach(b=>b.addEventListener("click",()=>{kind=b.dataset.kind;if(kind==="custom"&&customI){customW.hidden=false;customI.focus()}render()}));
+balI.addEventListener("input",render);
+balI.addEventListener("change",()=>{const b=parseBal();if(b>=1&&b<=1e7)balI.value=Math.round(b).toLocaleString("en-US");render()});
+if(rng)rng.addEventListener("input",()=>setBal(+rng.value));
+if(customI)customI.addEventListener("input",render);
+render();
+})()</script>"""
+
 def featured():
-    D, P, tops = savings_rows(); top3 = tops[:3]; n = nat()['savings']
+    D, P, tops = savings_rows(); top3 = tops[:3]; n = nat()['savings']; wf = _wf()
     rows = ''
     for i, t in enumerate(top3):
         v = P[t['id']]; rate = t['net'] / AMT * 100
         tag = ' <small>first year</small>' if S._yr1(t) else ''
-        rows += (f'<li{' class="top"' if i == 0 else ''} aria-label="{e(v["name"])}: {rate:.2f}% APY, about {money(t["net"])} a year"><span class="fnm">{e(v["name"])}{tag}</span>'
+        rows += (f'<li{' class="top"' if i == 0 else ''} data-rate="{rate:.4f}" aria-label="{e(v["name"])}: {rate:.2f}% APY, about {money(t["net"])} a year"><span class="fnm">{e(v["name"])}{tag}</span>'
                  f'<span class="frt">{rate:.2f}%</span><span class="fyr">{money(t["net"])}</span></li>')
     conds = {S._cond(t, P) for t in top3}; ins = {S.INS[P[t['id']]['fdic']][0] for t in top3}
     dts = sorted(P[t['id']]['verifiedAt'] for t in top3 if P[t['id']]['verifiedAt'])
     chk = (f'checked {fds(dts[0])}' + (f'–{datetime.date.fromisoformat(dts[-1][:10]).day}' if dts[-1][:7] == dts[0][:7] and dts[-1] != dts[0] else (f'–{fds(dts[-1])}' if dts[-1] != dts[0] else ''))) if dts else 'check date not recorded'
     foot = ' · '.join(([conds.pop()] if len(conds) == 1 else []) + ([e(ins.pop()) + ('s' if len(top3) > 1 else '')] if len(ins) == 1 else []) + ['variable rates', chk])
+    best = top3[0]; br = best['net'] / AMT * 100; bv = P[best['id']]
+    yours0 = AMT * n / 100; best0 = best['net']; diff0 = best0 - yours0
+    payload = {'best': {'id': best['id'], 'name': bv['name'], 'rate': round(br, 4), 'yr1': bool(S._yr1(best))}, 'nat': n,
+               'big': {'name': wf['name'], 'rate': float(wf['base'])} if wf else None}
+    data = json.dumps(payload, separators=(',', ':'), ensure_ascii=False).replace('</', '<\\/')
+    big_chip = (f'<button type="button" data-kind="big" aria-pressed="false" aria-label="{e(wf["name"])}, {float(wf["base"]):.2f}% APY">Big bank ({float(wf["base"]):.2f}%)</button>' if wf else '')
+    custom = ('<label class="hc-custom" id="hc-custom-w" hidden>Your APY<span class="pctin">'
+              '<input id="hc-custom" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="0.40" aria-describedby="hc-err"><i aria-hidden="true">%</i></span></label>')
+    calc = (f'<div class="fcalc" id="home-calc"><p class="fk" id="hc-k">What is your cash earning?</p>'
+            f'<label class="hc-bal" for="hc-bal">Your savings<span class="dollar"><input id="hc-bal" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" value="{AMT:,}" aria-describedby="hc-err hc-out"></span></label>'
+            f'<input class="fsl" id="hc-rng" type="range" min="1000" max="100000" step="1000" value="{AMT}" aria-label="Adjust balance">'
+            f'<div class="fchips" data-for="bal" role="group" aria-label="Quick amounts">'
+            f'<button type="button" data-bal="1000" aria-pressed="false">$1k</button>'
+            f'<button type="button" data-bal="10000" aria-pressed="true">$10k</button>'
+            f'<button type="button" data-bal="50000" aria-pressed="false">$50k</button></div>'
+            f'<p class="flab" id="hc-rl">What your bank pays now</p>'
+            f'<div class="fchips" data-for="rate" role="group" aria-labelledby="hc-rl">{big_chip}'
+            f'<button type="button" data-kind="avg" aria-pressed="true">US average ({n:.2f}%)</button>'
+            f'<button type="button" data-kind="custom" aria-pressed="false">Custom</button></div>{custom}'
+            f'<p class="err" id="hc-err" hidden></p>'
+            f'<div class="fc-out" id="hc-out" aria-live="polite">'
+            f'<p class="fdelta"><span class="fbig" id="hc-diff">{money(diff0)}</span> <span class="fs" id="hc-sub">more a year{" in the first year" if S._yr1(best) else ""}</span></p>'
+            f'<p class="fone" id="hc-line">At the US average ({n:.2f}%) you\'d earn <b>{money(yours0)}</b>. At {e(bv["name"])} ({br:.2f}%) you\'d earn <b>{money(best0)}</b>, before tax.</p></div>'
+            f'<a class="btn pri fact" id="hc-cta" href="/rates#provider-{e(best["id"])}" data-calc-cta="{e(best["id"])}">See {e(bv["name"])} on the rates list <span aria-hidden="true">→</span></a>'
+            f'<p class="fmore"><a href="/rates#calc" data-ev="feat">See all {len(tops)} accounts <span aria-hidden="true">→</span></a></p>'
+            f'<script id="hc-data" type="application/json">{data}</script>{CALC_JS}</div>')
     return (f'<section class="feat" aria-labelledby="feat-k"><p class="fk" id="feat-k">Best savings rates right now</p>'
-            f'<p class="fhd" aria-hidden="true"><span class="fnm">Bank</span><span class="frt">APY</span><span class="fyr">On {money(AMT)[:-4]}k/yr</span></p><ol class="ftop">{rows}</ol>'
-            f'<p class="fone">The US average ({n:.2f}%) pays about <b>{money(AMT * n / 100)}</b> a year on the same {money(AMT)}, before tax.</p>'
-            f'<p class="fcond">{e(foot)}</p>'
-            f'<a class="btn pri fact" href="/rates#calc" data-ev="feat">See all {len(tops)} accounts, try your balance <span aria-hidden="true">→</span></a></section>')
+            f'<p class="fhd" aria-hidden="true"><span class="fnm">Bank</span><span class="frt">APY</span><span class="fyr">On {_short_amt(AMT)}/yr</span></p><ol class="ftop">{rows}</ol>'
+            f'<p class="fcond">{e(foot)}</p>{calc}</section>')
 
+def week_changed(ev, today):
+    """One or two real changes from the last 7 days, from the same snapshot history as /changes."""
+    t = datetime.date.fromisoformat(str(today)[:10])
+    week = [x for x in ev if (t - datetime.date.fromisoformat(x['date'][:10])).days <= 7]
+    if not week: return ''
+    picked, seen = [], set()
+    for x in week:
+        k = TOPIC[x['t']][0]
+        if k in seen: continue
+        seen.add(k); picked.append(x)
+        if len(picked) == 2: break
+    items = ''.join(f'<li><time datetime="{x["date"]}">{fds(x["date"])}</time> <a href="{TOPIC[x["t"]][1]}">{e(x["h"])}</a></li>' for x in picked)
+    return (f'<section class="fweek" aria-labelledby="fweek-h"><h2 class="fk" id="fweek-h">What changed this week</h2>'
+            f'<ul>{items}</ul><a class="more2" href="/changes">See all changes <span aria-hidden="true">→</span></a></section>')
+
+# ---------- section previews ----------
 # ---------- section previews ----------
 def pv(sec, href, big, unit, line, viz, cond, label='Explore'):
     return (f'<a class="pv" href="{href}" data-ev="pv-{sec.lower()}"><p class="pk">{sec}</p><p class="pbig">{big}<small>{unit}</small></p>'
@@ -189,7 +278,7 @@ def coming_up(today):
 def home(world_hero, today):
     ev = all_changes()
     out = (f'<section class="fhead home-h"><h1>Your money could be doing <em>more.</em></h1><p class="sub">Your money agent for better rates, smarter spending, and opportunities worth catching.</p></section>'
-           + featured() + coming_up(today) + previews(world_hero) + changes_home(ev) + follow('home')
+           + featured() + week_changed(ev, today) + coming_up(today) + previews(world_hero) + changes_home(ev) + follow('home')
            + f'<div class="hm"><p class="trust"><span><b>●</b> Updated {fd(today)}</span><span>General information from public data, checked by hand. Money Beast doesn’t connect to your accounts.</span></p></div>')
     assert not EXCLUDE.search(re.sub(r'<[^>]+>', ' ', out)), 'excluded name on home'
     return out, ev
