@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-05",
+  "checkedAt": "2026-11-09",
   "note": "Card convenience fees for paying secured property tax online, from each county tax collector's own site. eCheck is free in every county listed. Re-verified Nov 5, 2026: Alameda 2.3%, LA 2.22% min $1.49, Santa Clara 2.22% min $1.49 (page previously 403 to some crawlers), SF Property Tax 2.25% min $2.00 (sftreasurer.org/service-fee via curl; WebFetch returned 403).",
   "dueDates": {
     "first": "Dec 10",
