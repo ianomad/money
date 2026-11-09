@@ -25,16 +25,25 @@ def savings_rows():
     return D, P, [r for r in res['rows'] if r['rankable']]
 
 # ---------- featured opportunity ----------
+# Nov 8 2026 weekly review: home had ~72% of views but a ~2s stay, while /rates held readers (24s).
+# The first screen now answers "where should my savings be?" as a scannable top-3 list with $/yr, and pulls into /rates.
 def featured():
-    D, P, tops = savings_rows(); t = tops[0]; v = P[t['id']]; n = nat()['savings']
-    rate = t['net'] / AMT * 100; yr1 = S._yr1(t)
-    cond = S._cond(t, P); ins = S.INS[v['fdic']][0]
-    chk = f'checked {fd(v["verifiedAt"])}' if v['verifiedAt'] else 'check date not recorded'
-    return (f'<section class="feat" aria-labelledby="feat-k"><p class="fk" id="feat-k">Best savings rate right now</p>'
-            f'<p class="fbig">{rate:.2f}%<small>{" first year" if yr1 else " APY"}</small></p>'
-            f'<p class="fone"><b>{e(v["name"])}</b> pays {rate / n:.0f}× the US average ({n:.2f}%): about <b>{money(t["net"])}</b> a year on a {money(AMT)} example balance, before tax.</p>'
-            f'<p class="fcond">{e(cond)} · {e(ins)} · variable rate · {chk}</p>'
-            f'<a class="btn pri fact" href="/rates#calc" data-ev="feat">Compare savings, try your balance <span aria-hidden="true">→</span></a></section>')
+    D, P, tops = savings_rows(); top3 = tops[:3]; n = nat()['savings']
+    rows = ''
+    for i, t in enumerate(top3):
+        v = P[t['id']]; rate = t['net'] / AMT * 100
+        tag = ' <small>first year</small>' if S._yr1(t) else ''
+        rows += (f'<li{' class="top"' if i == 0 else ''} aria-label="{e(v["name"])}: {rate:.2f}% APY, about {money(t["net"])} a year"><span class="fnm">{e(v["name"])}{tag}</span>'
+                 f'<span class="frt">{rate:.2f}%</span><span class="fyr">{money(t["net"])}</span></li>')
+    conds = {S._cond(t, P) for t in top3}; ins = {S.INS[P[t['id']]['fdic']][0] for t in top3}
+    dts = sorted(P[t['id']]['verifiedAt'] for t in top3 if P[t['id']]['verifiedAt'])
+    chk = (f'checked {fds(dts[0])}' + (f'–{datetime.date.fromisoformat(dts[-1][:10]).day}' if dts[-1][:7] == dts[0][:7] and dts[-1] != dts[0] else (f'–{fds(dts[-1])}' if dts[-1] != dts[0] else ''))) if dts else 'check date not recorded'
+    foot = ' · '.join(([conds.pop()] if len(conds) == 1 else []) + ([e(ins.pop()) + ('s' if len(top3) > 1 else '')] if len(ins) == 1 else []) + ['variable rates', chk])
+    return (f'<section class="feat" aria-labelledby="feat-k"><p class="fk" id="feat-k">Best savings rates right now</p>'
+            f'<p class="fhd" aria-hidden="true"><span class="fnm">Bank</span><span class="frt">APY</span><span class="fyr">On {money(AMT)[:-4]}k/yr</span></p><ol class="ftop">{rows}</ol>'
+            f'<p class="fone">The US average ({n:.2f}%) pays about <b>{money(AMT * n / 100)}</b> a year on the same {money(AMT)}, before tax.</p>'
+            f'<p class="fcond">{e(foot)}</p>'
+            f'<a class="btn pri fact" href="/rates#calc" data-ev="feat">See all {len(tops)} accounts, try your balance <span aria-hidden="true">→</span></a></section>')
 
 # ---------- section previews ----------
 def pv(sec, href, big, unit, line, viz, cond, label='Explore'):
@@ -46,11 +55,11 @@ def previews(world_hero):
     plain = [r for r in tops if not any(x != 'new' for x in r['needs']) and not r['promoMonths'] and not r['fee']]
     four = [r for r in plain if r['net'] / AMT * 100 >= 4.0]
     wf = next((p for p in rj['providers'] if p['id'] == 'wellsfargo'), None)
-    items = [(e(P[r['id']]['name']), r['net'] / AMT * 100, f'{r["net"] / AMT * 100:.2f}%', True) for r in plain[1:4]]
+    items = [(e(P[r['id']]['name']), r['net'] / AMT * 100, f'{r["net"] / AMT * 100:.2f}%', True) for r in [r for r in plain if r not in tops[:3]][:3]]
     items.append(('US average', n['savings'], f'{n["savings"]:.2f}%', False))
     if wf: items.append((e(wf['name']), float(wf['base']), f'{float(wf["base"]):.2f}%', False))
     p1 = pv('Savings', '/rates', str(len(four)), ' accounts', f'pay 4% or more with no conditions. The average bank pays {n["savings"]:.2f}%' + (f'; {e(wf["name"])} pays {float(wf["base"]):.2f}%.' if wf else '.'),
-            F.bars(items, 'APY, no conditions · runners-up after the top pick'), f'FDIC bank deposits · variable rates · list checked {fd(rj["checkedAt"])}')
+            F.bars(items, 'APY, no conditions · next after the top 3'), f'FDIC bank deposits · variable rates · list checked {fd(rj["checkedAt"])}')
     d = dj('cards.json'); prof = d['profile']; pvv = d['pointValue']; sp = sum(prof.values())
     for x in d['cards']: x['val'] = pages2.card_value(x, prof, pvv)
     best = max(d['cards'], key=lambda x: x['val']); plain_c = max((x for x in d['cards'] if x['fee'] == 0), key=lambda x: x['val'])

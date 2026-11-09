@@ -21,6 +21,13 @@
     gtag('event', 'x_follow_click', { link_location: a.dataset.xFollow, page_path: window.location.pathname, transport_type: 'beacon' });
   });
 
+  // Measure clicks on home cards/links tagged data-ev (e.g. feat = top savings list -> /rates, due-proptax).
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[data-ev]');
+    if (!a) return;
+    gtag('event', 'card_click', { card: a.dataset.ev, page_path: window.location.pathname, transport_type: 'beacon' });
+  });
+
   const tag = document.createElement('script');
   tag.async = true;
   tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
