@@ -1,6 +1,6 @@
 {
-  "note": "Public predictions posted by @MoneyBeastHQ on X and graded in public. Source of truth for outcomes: /workspace/growth/predictions.md (synced here). The Prediction grader should update the matching call's result, actual, and grade after each check, and post when a call goes live. Fields on every call: id, made, ticker, event, kind (buy/sell/sit-out/number/moves-less), call, check, result (hit/miss/pending/sit-out), actual, post, grade, note. Leave note empty unless the log already states why we made the call. Misses, sit-outs, and pending calls stay listed. Never add $XYZ, Block, Cash App, Square, or Afterpay.",
-  "updated": "2026-11-07",
+  "note": "Public predictions by @MoneyBeastHQ, graded in public. Source of truth for outcomes: /workspace/growth/predictions.md (synced here). The Prediction grader updates result, actual, grade (and post when a call goes live) after each check; the site rebuilds from this file (python3 scripts/compose.py). Fields on every call: id, made, ticker, event, kind (buy/sell/sit-out/number/moves-less), call, check, result (hit/miss/pending/sit-out), actual, post, grade, note, setup (eps-vs-consensus/macro-line/implied-move/sell-into-print/priced-in/other), score (0-100 strength of setup, null if not scored), posted_on_x (true = has an X post, false = site-only call). Site-only calls (the weekly top-25 eligible earnings names, only the 1-2 strongest get posted on X) set posted_on_x false and leave post empty; if one is later posted, set posted_on_x true and fill post. Misses, sit-outs and pending calls stay listed. Never add $XYZ, Block, Cash App, Square, or Afterpay.",
+  "updated": "2026-11-09",
   "calls": [
     {
       "id": "jpm-2026-10-12",
@@ -14,7 +14,10 @@
       "actual": "$5.75",
       "post": "https://x.com/MoneyBeastHQ/status/2109512453612585263",
       "grade": "https://x.com/MoneyBeastHQ/status/2110060728266731668",
-      "note": ""
+      "note": "",
+      "setup": "eps-vs-consensus",
+      "score": null,
+      "posted_on_x": true
     },
     {
       "id": "cpi-2026-10-12",
@@ -28,7 +31,10 @@
       "actual": "3.7%",
       "post": "https://x.com/MoneyBeastHQ/status/2109512453612585263",
       "grade": "https://x.com/MoneyBeastHQ/status/2110350101369762168",
-      "note": "Consensus was 3.6–3.7%; Cleveland Fed nowcast 3.60%"
+      "note": "Consensus was 3.6–3.7%; Cleveland Fed nowcast 3.60%",
+      "setup": "macro-line",
+      "score": null,
+      "posted_on_x": true
     },
     {
       "id": "tsm-2026-10-12",
@@ -42,7 +48,10 @@
       "actual": "$4.60",
       "post": "https://x.com/MoneyBeastHQ/status/2109512453612585263",
       "grade": "https://x.com/MoneyBeastHQ/status/2110695007652827150",
-      "note": ""
+      "note": "",
+      "setup": "eps-vs-consensus",
+      "score": null,
+      "posted_on_x": true
     },
     {
       "id": "fed-2026-10-26",
@@ -56,7 +65,10 @@
       "actual": "held, 10–2 vote",
       "post": "https://x.com/MoneyBeastHQ/status/2114702993195245769",
       "grade": "https://x.com/MoneyBeastHQ/status/2115855110186451140",
-      "note": "CME FedWatch about 90% hold / 10% hike as of Oct 26"
+      "note": "CME FedWatch about 90% hold / 10% hike as of Oct 26",
+      "setup": "macro-line",
+      "score": null,
+      "posted_on_x": true
     },
     {
       "id": "msft-2026-10-26",
@@ -70,7 +82,10 @@
       "actual": "$4.89",
       "post": "https://x.com/MoneyBeastHQ/status/2114702993195245769",
       "grade": "https://x.com/MoneyBeastHQ/status/2115855110186451140",
-      "note": "Beat 8 of the last 8; company guided revenue $89.85–90.95B"
+      "note": "Beat 8 of the last 8; company guided revenue $89.85–90.95B",
+      "setup": "eps-vs-consensus",
+      "score": null,
+      "posted_on_x": true
     },
     {
       "id": "aapl-eps-2026-11-02",
@@ -84,7 +99,10 @@
       "actual": "$2.10",
       "post": "https://x.com/MoneyBeastHQ/status/2117254882260377719",
       "grade": "https://x.com/MoneyBeastHQ/status/2117683251439354341",
-      "note": "Beat 4 of the last 4 (+1.6%, +4.7%, +7.2%, +6.9%)"
+      "note": "Beat 4 of the last 4 (+1.6%, +4.7%, +7.2%, +6.9%)",
+      "setup": "eps-vs-consensus",
+      "score": null,
+      "posted_on_x": true
     },
     {
       "id": "aapl-moves-2026-11-02",
@@ -98,7 +116,10 @@
       "actual": "−1.9%",
       "post": "https://x.com/MoneyBeastHQ/status/2117254882260377719",
       "grade": "https://x.com/MoneyBeastHQ/status/2118045098202022195",
-      "note": "Last 4 reactions: −7.3%, +3.2%, +0.5%, −0.4% (3 of 4 under the implied move)"
+      "note": "Last 4 reactions: −7.3%, +3.2%, +0.5%, −0.4% (3 of 4 under the implied move)",
+      "setup": "implied-move",
+      "score": null,
+      "posted_on_x": true
     },
     {
       "id": "vst-2026-11-05",
@@ -112,7 +133,10 @@
       "actual": "Friday close $124.80 vs Thursday $112.89 (+10.6%)",
       "post": "https://x.com/MoneyBeastHQ/status/2118588251959173264",
       "grade": "https://x.com/MoneyBeastHQ/status/2119203475791724548",
-      "note": "Soft ERCOT ~$30/MWh and 2027 EBITDA guided toward the low end"
+      "note": "Soft ERCOT ~$30/MWh and 2027 EBITDA guided toward the low end",
+      "setup": "sell-into-print",
+      "score": null,
+      "posted_on_x": true
     },
     {
       "id": "mrna-2026-11-05",
@@ -126,7 +150,10 @@
       "actual": "Friday close $254.19 vs Thursday $241.46 (+5.3%)",
       "post": "https://x.com/MoneyBeastHQ/status/2118589889562198144",
       "grade": "https://x.com/MoneyBeastHQ/status/2119204308570824923",
-      "note": ""
+      "note": "",
+      "setup": "sell-into-print",
+      "score": null,
+      "posted_on_x": true
     },
     {
       "id": "chtr-2026-11-05",
@@ -140,7 +167,10 @@
       "actual": "Friday close $118.07 vs Thursday $125.86 (−6.2%)",
       "post": "https://x.com/MoneyBeastHQ/status/2118589907639611577",
       "grade": "https://x.com/MoneyBeastHQ/status/2119205149990134116",
-      "note": "Broadband bleed and a Citi price-target cut"
+      "note": "Broadband bleed and a Citi price-target cut",
+      "setup": "sell-into-print",
+      "score": null,
+      "posted_on_x": true
     },
     {
       "id": "hum-2026-11-05",
@@ -154,7 +184,10 @@
       "actual": "Friday close $433.74 vs Thursday $411.79 (no direction grade)",
       "post": "https://x.com/MoneyBeastHQ/status/2118589909967454592",
       "grade": "",
-      "note": "Stars already +15% on Oct 9"
+      "note": "Stars already +15% on Oct 9",
+      "setup": "priced-in",
+      "score": null,
+      "posted_on_x": true
     },
     {
       "id": "ceg-2026-11-05",
@@ -168,7 +201,10 @@
       "actual": "",
       "post": "",
       "grade": "",
-      "note": "Calpine/raise soft"
+      "note": "Calpine/raise soft",
+      "setup": "sell-into-print",
+      "score": null,
+      "posted_on_x": false
     },
     {
       "id": "ttwo-2026-11-05",
@@ -182,7 +218,27 @@
       "actual": "",
       "post": "",
       "grade": "",
-      "note": "GTA VI on Nov 19 is the real move"
+      "note": "GTA VI on Nov 19 is the real move",
+      "setup": "priced-in",
+      "score": null,
+      "posted_on_x": false
+    },
+    {
+      "id": "cpi-oct-2026-11-09",
+      "made": "2026-11-09",
+      "ticker": "",
+      "event": "October CPI",
+      "kind": "number",
+      "call": "October headline CPI m/m at or under 0.3% (September was 0.6%)",
+      "check": "2026-11-10",
+      "result": "pending",
+      "actual": "",
+      "post": "https://x.com/MoneyBeastHQ/status/2119790934217114110",
+      "grade": "",
+      "note": "Consensus 0.24–0.3%; Cleveland Fed nowcast 0.24%",
+      "setup": "macro-line",
+      "score": null,
+      "posted_on_x": true
     }
   ]
 }

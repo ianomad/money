@@ -151,8 +151,8 @@ _home, _ev = _ov.home(world_hero, _dt.date.today().isoformat())
 h_body = _ov.hash_redirect(_theme.WORLD_IDS, _ids((D/'rates.html').read_text()) - _theme.WORLD_IDS) + _home + _ov.HOME_JS
 idx = page('Money — better rates, smarter spending, opportunities worth catching', 'Money Beast is a money agent for better rates, smarter spending and opportunities worth catching: the best savings rate, card value, market moves and rates abroad, from public data checked by hand.', '/', 'rates', h_body)
 cp = page('Money — what changed', 'Every real change in the savings rates, cards, world deposit rates and markets Money Beast tracks, newest first, with sources.', '/changes', 'x', _ov.changes_page(_ev))
-pp = page('Money — prediction record', 'Money Beast predictions posted on X before the result and graded in public, misses included.', '/record', 'x', _ov.record_page())
-for _n, _h in (('index.html', idx), ('abroad.html', wp), ('changes.html', cp), ('record.html', pp)):
+pp = page('Money — predictions, graded in public', 'Every Money Beast market call posted on X before the result, with the grade, the actual number, and links to the original and result posts. Misses stay listed.', '/predictions', 'x', _ov.predictions_page())
+for _n, _h in (('index.html', idx), ('abroad.html', wp), ('changes.html', cp), ('predictions.html', pp)):
     (D/_n).write_text(finalize(lazyimg(_assets(_h))))
 
 # ---------- Markets ----------

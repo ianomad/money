@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 ROOT = Path(__file__).resolve().parents[1]; D = ROOT/'docs'; OUT = D/'og'; FONTS = Path(__file__).resolve().parent/'fonts'
 W, H = 1200, 630
 PAPER, INK, MUTED, LINE, GOLD, DARK, GOLD_HI = '#fbfaf6', '#17181a', '#5f6062', '#e6e2d6', '#8a6a1f', '#141414', '#f3d27a'
-PAGES = ['home', 'markets', 'cards', 'best-hysa', 'best-nofee-cards', 'tbills-vs-savings-california', 'pay-property-tax-credit-card']
+PAGES = ['home', 'markets', 'cards', 'best-hysa', 'best-nofee-cards', 'tbills-vs-savings-california', 'pay-property-tax-credit-card', 'predictions']
 
 def dj(n): return json.loads((ROOT/'data'/n).read_text())
 def pct(v): return f'{v:.2f}%'
@@ -88,6 +88,12 @@ def specs():
         big = f'{lo:.2f}%' if lo == hi else f'{lo:.2f}–{hi:.2f}%'
         return dict(eyebrow='California property tax by card', big=big, line='card fee charged by CA counties. eCheck is free. A 2% card loses money; a bonus minimum can win.',
                     alt=f'California counties charge {lo:.2f}% to {hi:.2f}% to pay property tax by credit card; eCheck is free')
+    def preds():
+        C = dj('predictions.json')['calls']
+        h = sum(c.get('result') == 'hit' for c in C); m = sum(c.get('result') == 'miss' for c in C)
+        return dict(eyebrow='Predictions, graded in public', big=f'{h} right, {m} wrong', line='Every call made before the result, with links to the posts. Misses stay listed.',
+                    alt=f'Money Beast predictions record: {h} right, {m} wrong, every call listed with links')
+    put('predictions', 'predictions.html', preds)
     put('home', 'index.html', home); put('markets', 'markets.html', markets); put('cards', 'cards.html', cards)
     put('best-hysa', 'best-hysa.html', hysa); put('best-nofee-cards', 'best-nofee-cards.html', nofee)
     put('tbills-vs-savings-california', 'tbills-vs-savings-california.html', tbills); put('pay-property-tax-credit-card', 'pay-property-tax-credit-card.html', proptax)

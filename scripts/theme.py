@@ -11,7 +11,7 @@ XSVG = '<svg class="xlogo" viewBox="0 0 24 24" width="14" height="14" aria-hidde
 CORR = 'mailto:dev@ilyusha.xyz?subject=Money%20Beast%20correction'
 NAV = [('Savings', '/rates', 'savings'), ('World', '/abroad', 'world'), ('Cards', '/cards', 'cards'), ('Markets', '/markets', 'markets'), ('Guides', '/guides', 'guides')]
 GROUPS = [
-    ('Overview', [('Home', '/'), ('Latest changes', '/changes'), ('Prediction record', '/record')]),
+    ('Overview', [('Home', '/'), ('Latest changes', '/changes'), ('Predictions', '/predictions')]),
     ('Savings & rates', [('US savings rates', '/rates'), ('Banks abroad (World)', '/abroad'), ('Best no-strings savings', '/best-hysa'), ('T-bills vs savings (California)', '/tbills-vs-savings-california')]),
     ('Cards & fees', [('Card calculator', '/cards'), ('Best no-fee cash-back cards', '/best-nofee-cards'), ('Paying property tax by card', '/pay-property-tax-credit-card')]),
     ('Markets', [('Today’s numbers', '/markets'), ('Dates to watch', '/markets#watch'), ('Crypto', '/markets#crypto'), ('World economy', '/markets#economy')]),

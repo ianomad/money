@@ -69,14 +69,12 @@ def feed(top, world_hero, amount=10000):
     return out
 
 def proof():
-    P = dj('predictions.json')['calls']; hits = sum(c['result'] == 'hit' for c in P); miss = len(P) - hits
-    lis = ''.join(f'<li class="{c["result"]}"><span class="pk" aria-label="{"Right" if c["result"] == "hit" else "Wrong"}">{"✓" if c["result"] == "hit" else "✗"}</span>'
-                  f'<span class="pc">{e(c["call"])}<small>Actual: {e(c["actual"])}</small></span>'
-                  f'<a href="{e(c["grade"])}" target="_blank" rel="noopener" aria-label="Grade post: {e(c["call"])}">Grade ↗</a></li>' for c in P)
+    P = dj('predictions.json')['calls']
+    hits = sum(c.get('result') == 'hit' for c in P); miss = sum(c.get('result') == 'miss' for c in P)
+    graded = hits + miss; pct = round(hits / graded * 100) if graded else 0
     return (f'<section class="fc proof" id="record" aria-labelledby="rec-h"><p class="fc-k" id="rec-h">Predictions, graded in public</p>'
-            f'<p class="rec"><b>{hits} right, {miss} wrong</b> so far. Misses stay on the record.</p>'
-            f'<details class="i"><summary>See all {len(P)} calls</summary><ol class="pl">{lis}</ol></details>'
-            f'<p class="xrep">Get new opportunities and calls first: <a href="{X_URL}" target="_blank" rel="noopener" data-x-follow="record">{XSVG}Follow on X</a></p></section>')
+            f'<p class="rec"><b>{hits} right, {miss} wrong</b> so far ({pct}%). Misses stay on the record.</p>'
+            f'<p class="xrep"><a href="/predictions">See every call, with notes and links <span aria-hidden="true">→</span></a></p></section>')
 
 def hero_pre(amount=10000):
     return (f'<div class="rng"><label for="sv-rng">Example balance <span class="ed">· drag or type yours</span> <output id="sv-rng-o" for="sv-rng">{money(amount)}</output></label>'

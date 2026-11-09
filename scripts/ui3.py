@@ -127,7 +127,7 @@ def finalize(h): return xfollow(_fin4(h))
 
 # ---------- Share cards (Oct 25 2026): large og:image / twitter card on every served page; images from scripts/build_og.py ----------
 SITE = 'https://getmoneybeast.com'
-OG_PAGES = {'/': 'home', '/rates': 'home', '/abroad': 'home', '/changes': 'home', '/record': 'home', '/markets': 'markets', '/cards': 'cards', '/cards.html': 'cards', '/best-hysa': 'best-hysa',
+OG_PAGES = {'/': 'home', '/rates': 'home', '/abroad': 'home', '/changes': 'home', '/predictions': 'predictions', '/markets': 'markets', '/cards': 'cards', '/cards.html': 'cards', '/best-hysa': 'best-hysa',
             '/best-nofee-cards': 'best-nofee-cards', '/tbills-vs-savings-california': 'tbills-vs-savings-california',
             '/pay-property-tax-credit-card': 'pay-property-tax-credit-card'}
 def ogtags(h):

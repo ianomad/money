@@ -17,7 +17,7 @@ PAGES = {  # path: (title, description or None to keep, breadcrumb name)
     '/abroad': ('High deposit rates abroad, in dollars | Money Beast',
                 'Deposit rates in 10 tracked countries shown in dollars, with currency risk and break-even worked out. Dates and sources on every number.', 'World'),
     '/changes': ('What changed: rates, cards and markets | Money Beast', None, 'Latest changes'),
-    '/record': ('Prediction record, graded in public | Money Beast', None, 'Prediction record'),
+    '/predictions': ('Predictions, graded in public | Money Beast', 'Every Money Beast market call posted on X before the result, with the grade, the actual number, and links to the original and result posts. Misses stay listed.', 'Predictions'),
     '/markets': ('Markets today: mortgage rates, yields, gas, stocks | Money Beast', None, 'Markets'),
     '/cards': ('Cash-back card calculator: rewards minus fees | Money Beast',
                'See what each cash-back or rewards card nets you a year after its annual fee, using your own spending. Hand-checked terms, no sponsored rankings.', 'Cards'),

@@ -1,4 +1,4 @@
-"""Overview home + /changes + /record (Oct 29 2026 product brief).
+"""Overview home + /changes + /predictions (Oct 29 2026 product brief; /predictions added Nov 8 2026).
 Every figure is read from data/*.json (or the World section markup built from it) at build time. Nothing invented.
 General information from public data: Money Beast does not see accounts, know anyone's finances, or send alerts."""
 import json, re, datetime
@@ -227,15 +227,165 @@ def changes_page(ev):
     return (f'<section class="fhead"><h1>What changed</h1><p class="sub">Every real change in the rates, cards and markets this site tracks, newest first.</p></section>'
             f'<p class="hint">{len(ev)} changes in the last 60 days. Savings, cards and world rates are diffs between daily snapshots of the hand-checked data; market moves compare the latest reading with a week earlier (FRED).</p>{lst}')
 
-# ---------- record ----------
+# ---------- predictions ----------
+KIND_LABEL = {'buy': 'Buy', 'sell': 'Sell', 'sit-out': 'Sit out', 'number': 'Number call', 'moves-less': 'Moves less'}
+KIND_PLAIN = {'number': 'number calls (eps / cpi / fed)', 'moves-less': 'moves-less calls', 'sell': 'sell calls', 'buy': 'buy calls'}
+SETUP_LABEL = {'eps-vs-consensus': 'EPS vs the consensus number', 'macro-line': 'Macro number (CPI, Fed)', 'implied-move': 'Moves less than the options price',
+               'sell-into-print': 'Sell into earnings', 'priced-in': 'Sit out: already priced in', 'other': 'Other'}
+RESULT_LABEL = {'hit': 'Hit', 'miss': 'Miss', 'pending': 'Pending', 'sit-out': 'Sit out'}
+
+def record_stats(calls=None):
+    C = calls if calls is not None else dj('predictions.json')['calls']
+    hits = sum(c.get('result') == 'hit' for c in C)
+    misses = sum(c.get('result') == 'miss' for c in C)
+    return hits, misses, hits + misses
+
+def _sorted_calls(C):
+    # Newest made-date first; live posts before unposted drafts on the same day (stable).
+    return sorted(C, key=lambda c: (c.get('made') or '', 1 if c.get('post') else 0, c.get('check') or ''), reverse=True)
+
+def home_record():
+    hits, misses, graded = record_stats()
+    pct = round(hits / graded * 100) if graded else 0
+    return (f'<section class="fc proof" id="record" aria-labelledby="rec-h"><p class="fc-k" id="rec-h">Predictions, graded in public</p>'
+            f'<p class="rec"><b>{hits} right, {misses} wrong</b> so far ({pct}%). Misses stay on the record.</p>'
+            f'<p class="xrep"><a href="/predictions">See every call, with notes and links <span aria-hidden="true">→</span></a></p></section>')
+
+def _who(c):
+    t = c.get('ticker') or ''
+    return ('$' + t) if t and not t.startswith('$') else (t or c.get('event') or '')
+
+def _short(c):
+    return c.get('ticker') or (c.get('event') or '?').split()[-1]
+
+def _call_card(c):
+    res = c.get('result') or 'pending'
+    badge = RESULT_LABEL.get(res, res.replace('-', ' ').title())
+    who = _who(c)
+    who_html = f'<span class="ptick">{e(who)}</span>' if who else ''
+    kind = KIND_LABEL.get(c.get('kind') or '', '')
+    if kind.split()[0].lower() == (c.get('call') or '').split(' ')[0].lower(): kind = ''
+    kind_html = f'<span class="pkind">{e(kind)}</span>' if kind else ''
+    note = f'<p class="pnote">{e(c["note"])}</p>' if c.get('note') else ''
+    parts = []
+    if c.get('check'): parts.append('Settles ' + fd(c['check']) if res == 'pending' else 'Checked ' + fd(c['check']))
+    if c.get('actual'): parts.append(c['actual'])
+    elif res == 'pending': parts.append('Not graded yet')
+    meta = e(' · '.join(parts))
+    tags = []
+    on_x = c.get('posted_on_x', bool(c.get('post')))
+    tags.append(f'<span class="ptag {"onx" if on_x else "site"}">{"posted on X" if on_x else "site-only"}</span>')
+    if c.get('setup') in SETUP_LABEL: tags.append(f'<span class="ptag">{e(SETUP_LABEL[c["setup"]].lower())}</span>')
+    if c.get('score') is not None: tags.append(f'<span class="ptag">score {e(str(c["score"]))}</span>')
+    links = []
+    if c.get('post'): links.append(f'<a href="{e(c["post"])}" target="_blank" rel="noopener">Original call ↗</a>')
+    if c.get('grade'): links.append(f'<a href="{e(c["grade"])}" target="_blank" rel="noopener">Result post ↗</a>')
+    link_html = f'<p class="plinks">{"".join(links)}</p>' if links else ''
+    cid = f' id="{e(c["id"])}"' if c.get('id') else ''
+    return (f'<article class="pcall {e(res)}"{cid}>'
+            f'<p class="prow"><span class="pbadge">{e(badge)}</span>{who_html}'
+            f'<time datetime="{e(c["made"])}">Called {fd(c["made"])}</time>{kind_html}</p>'
+            f'<h2>{e(c["call"])}</h2>{note}<p class="pmeta">{meta}</p><p class="ptags">{"".join(tags)}</p>{link_html}</article>')
+
+def _rec(cs):
+    h = sum(c.get('result') == 'hit' for c in cs); m = sum(c.get('result') == 'miss' for c in cs)
+    return h, m
+
+def _stat_rows(groups):
+    """groups: [(label, calls)] -> list items; only graded (hit/miss) calls count."""
+    out = []
+    for lab, cs in groups:
+        h, m = _rec(cs); n = h + m
+        if not n:
+            out.append(f'<li><span class="sl">{e(lab)}</span><span class="sv">none graded yet</span></li>'); continue
+        pct = round(h / n * 100)
+        small = ' <span class="ssm">small sample</span>' if n < 4 else ''
+        out.append(f'<li><span class="sl">{e(lab)}{small}</span><span class="sv"><b>{h}–{m}</b> · {pct}%</span>'
+                   f'<span class="sbar" role="img" aria-label="{h} right, {m} wrong"><i style="width:{pct}%"></i></span></li>')
+    return '<ul class="pstat">' + ''.join(out) + '</ul>'
+
+def _miss_bits(cs):
+    bits = []
+    for c in cs:
+        if c.get('result') != 'miss': continue
+        mt = re.search(r'\(([^()]*)\)\s*$', c.get('actual') or '')
+        bits.append(f'{_who(c)} ({mt.group(1) if mt else c.get("actual")})')
+    return ', '.join(bits)
+
+def _read(C):
+    graded = [c for c in C if c.get('result') in ('hit', 'miss')]
+    groups = []
+    for k in ('number', 'moves-less', 'sell', 'buy'):
+        cs = [c for c in graded if c.get('kind') == k]
+        if cs: groups.append((KIND_PLAIN[k], cs))
+    for k in SETUP_LABEL:
+        cs = [c for c in graded if c.get('setup') == k]
+        if cs and k != 'other': groups.append(('the “' + SETUP_LABEL[k].lower() + '” setup', cs))
+    good, bad = [], []
+    for lab, cs in groups:
+        h, m = _rec(cs); n = h + m
+        if n < 2: continue
+        line = f'{lab}: {h} right, {m} wrong ({round(h / n * 100)}%)'
+        mb = _miss_bits(cs)
+        if h / n >= 0.6: good.append(line + (f'. the misses: {mb}' if mb else ''))
+        elif h / n < 0.5: bad.append(line + (f'. the misses: {mb}' if mb else ''))
+    n = len(graded)
+    li = lambda xs, empty: ''.join(f'<li>{e(x)}</li>' for x in xs) or f'<li>{empty}</li>'
+    return (f'<section class="fc pread" id="read"><p class="fc-k">What’s working, what isn’t</p>'
+            f'<h3>Working</h3><ul>{li(good, "nothing yet with enough graded calls to say.")}</ul>'
+            f'<h3>Not working</h3><ul>{li(bad, "nothing yet with enough graded calls to say.")}</ul>'
+            f'<p class="fc-foot">Read straight from the {n} graded calls below (groups under 2 graded calls are left out). That is a small sample, so treat it as early, not proven.</p></section>')
+
+def _stats(C):
+    graded = [c for c in C if c.get('result') in ('hit', 'miss')]
+    G = lambda f: [c for c in graded if f(c)]
+    types = [(KIND_PLAIN[k].split(' (')[0].capitalize(), G(lambda c, k=k: c.get('kind') == k)) for k in ('number', 'moves-less')]
+    bs = [('Buy', G(lambda c: c.get('kind') == 'buy')), ('Sell', G(lambda c: c.get('kind') == 'sell'))]
+    setups = [(SETUP_LABEL[k], G(lambda c, k=k: c.get('setup') == k)) for k in SETUP_LABEL if k != 'other' and G(lambda c, k=k: c.get('setup') == k)]
+    src = [('Posted on X', G(lambda c: c.get('posted_on_x', bool(c.get('post'))))), ('Site-only', G(lambda c: not c.get('posted_on_x', bool(c.get('post')))))]
+    h, m = _rec(graded); n = h + m; pct = round(h / n * 100) if n else 0
+    return (f'<section class="fc pstats" id="stats"><p class="fc-k">The record</p>'
+            f'<p class="rec"><b>{h} right, {m} wrong</b> so far ({pct}%).</p>'
+            f'<p class="plegend">hit = i was right. miss = i was wrong. a sell call is a hit if the stock closed lower, a miss if it closed at or above. sit-outs are not scored.</p>'
+            f'<h3>By call type</h3>{_stat_rows(types)}<h3>Buy vs sell</h3>{_stat_rows(bs)}'
+            f'<h3>By setup</h3>{_stat_rows(setups)}<h3>Posted on X vs site-only</h3>{_stat_rows(src)}</section>')
+
+def _calendar(C):
+    import calendar
+    by = {}
+    for c in C:
+        d = c.get('check') or c.get('made')
+        if d: by.setdefault(d, []).append(c)
+    if not by: return ''
+    ds = sorted(by); first = datetime.date.fromisoformat(ds[0]); last = datetime.date.fromisoformat(ds[-1])
+    months, y, mo = [], first.year, first.month
+    while (y, mo) <= (last.year, last.month):
+        months.append((y, mo)); mo += 1
+        if mo > 12: y, mo = y + 1, 1
+    cal = calendar.Calendar(6); out = []
+    for y, mo in reversed(months):
+        cells = ''
+        for dt in cal.itermonthdates(y, mo):
+            if dt.month != mo: cells += '<li class="cd off" aria-hidden="true"></li>'; continue
+            cs = by.get(dt.isoformat(), [])
+            chips = ''.join(f'<a class="cc {e(c.get("result") or "pending")}" href="#{e(c["id"])}" title="{e(c["call"])}" aria-label="{e(_who(c))}: {e(RESULT_LABEL.get(c.get("result"), "pending").lower())}">{e(_short(c))}</a>' for c in cs)
+            cells += f'<li class="cd{" has" if cs else ""}"><span class="dn">{dt.day}</span>{chips}</li>'
+        out.append(f'<div class="cal"><h3>{datetime.date(y, mo, 1):%B %Y}</h3>'
+                   f'<ol class="cdow" aria-hidden="true">' + ''.join(f'<li>{x}</li>' for x in 'SMTWTFS') + f'</ol><ol class="cgrid">{cells}</ol></div>')
+    leg = ('<p class="cleg"><span class="cc hit">hit</span><span class="cc miss">miss</span><span class="cc sit-out">sit out</span><span class="cc pending">pending</span></p>')
+    return (f'<section class="fc pcal" id="calendar"><p class="fc-k">Calendar</p><p class="fc-foot">Each call sits on the day it settles. Tap one to jump to it below.</p>{leg}{"".join(out)}</section>')
+
+def predictions_page():
+    Pj = dj('predictions.json'); C = Pj['calls']
+    hits, misses, graded = record_stats(C)
+    cards = ''.join(_call_card(c) for c in _sorted_calls(C))
+    site_only = sum(not c.get('posted_on_x', bool(c.get('post'))) for c in C)
+    return (f'<section class="fhead"><h1>Predictions</h1><p class="sub">Calls made before the result, then graded in public. Misses stay listed. Only the strongest calls are posted on X; the rest are listed here as site-only.</p></section>'
+            + _stats(C) + _read(C) + _calendar(C)
+            + f'<section class="pall" id="calls"><h2 class="pall-h">Every call</h2><p class="fc-foot">{len(C)} calls, newest first ({site_only} site-only). Not investment advice. Updated {fd(Pj["updated"])}.</p><div class="pcalls">{cards}</div></section>' + follow('predictions'))
+
 def record_page():
-    Pj = dj('predictions.json'); C = Pj['calls']; hits = sum(c['result'] == 'hit' for c in C)
-    lis = ''.join(f'<li class="{c["result"]}"><span class="pk" aria-label="{"Right" if c["result"] == "hit" else "Wrong"}">{"✓" if c["result"] == "hit" else "✗"}</span>'
-                  f'<span class="pc">{e(c["call"])}<small>Called {fd(c["made"])} · actual: {e(c["actual"])}</small></span>'
-                  f'<a href="{e(c["grade"])}" target="_blank" rel="noopener" aria-label="Grade post: {e(c["call"])}">Grade ↗</a></li>' for c in reversed(C))
-    return (f'<section class="fhead"><h1>Prediction record</h1><p class="sub">Calls posted on X before the result, then graded in public.</p></section>'
-            f'<section class="fc proof" id="record"><p class="rec"><b>{hits} right, {len(C) - hits} wrong</b> so far. Misses stay on the record.</p><ol class="pl">{lis}</ol>'
-            f'<p class="fc-foot">Updated {fd(Pj["updated"])}. Each grade links to the post on X. Not investment advice.</p></section>' + follow('record'))
+    return predictions_page()
 
 def follow(where):
     return (f'<section class="xsec"><p>New opportunities and graded market calls are posted on X first.</p>'
@@ -278,7 +428,7 @@ def coming_up(today):
 def home(world_hero, today):
     ev = all_changes()
     out = (f'<section class="fhead home-h"><h1>Your money could be doing <em>more.</em></h1><p class="sub">Your money agent for better rates, smarter spending, and opportunities worth catching.</p></section>'
-           + featured() + week_changed(ev, today) + coming_up(today) + previews(world_hero) + changes_home(ev) + follow('home')
+           + featured() + week_changed(ev, today) + coming_up(today) + previews(world_hero) + changes_home(ev) + home_record() + follow('home')
            + f'<div class="hm"><p class="trust"><span><b>●</b> Updated {fd(today)}</span><span>General information from public data, checked by hand. Money Beast doesn’t connect to your accounts.</span></p></div>')
     assert not EXCLUDE.search(re.sub(r'<[^>]+>', ' ', out)), 'excluded name on home'
     return out, ev
