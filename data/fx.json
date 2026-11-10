@@ -3,12 +3,12 @@
  "note": "Local currency per 1 USD. Official central-bank rate where reachable; see detail.",
  "rates": {
   "KGS": 87.4498,
-  "UZS": 11994.1,
+  "UZS": 11974.02,
   "KZT": 448.98,
   "TRY": 50.1981,
-  "NGN": 1348.8413,
+  "NGN": 1350.3587,
   "ARS": 1545.5,
-  "BRL": 5.5146,
+  "BRL": 5.584,
   "GEL": 2.5936,
   "AMD": 360.43,
   "USD": 1
@@ -22,8 +22,8 @@
    "official": true
   },
   "UZS": {
-   "rate": 11994.1,
-   "date": "2026-11-10",
+   "rate": 11974.02,
+   "date": "2026-11-11",
    "source": "Central Bank of Uzbekistan official",
    "url": "https://cbu.uz/en/arkhiv-kursov-valyut/",
    "official": true
@@ -43,8 +43,8 @@
    "official": true
   },
   "NGN": {
-   "rate": 1348.8413,
-   "date": "2026-11-09",
+   "rate": 1350.3587,
+   "date": "2026-11-10",
    "source": "Central Bank of Nigeria central rate",
    "url": "https://www.cbn.gov.ng/rates/ExchRateByCurrency.html",
    "official": true
@@ -57,8 +57,8 @@
    "official": true
   },
   "BRL": {
-   "rate": 5.5146,
-   "date": "2026-11-09",
+   "rate": 5.584,
+   "date": "2026-11-10",
    "source": "Banco Central do Brasil PTAX (sell)",
    "url": "https://www.bcb.gov.br/estabilidadefinanceira/historicocotacoes",
    "official": true
