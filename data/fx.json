@@ -1,22 +1,22 @@
 {
- "fetched": "2026-11-10",
+ "fetched": "2026-11-11",
  "note": "Local currency per 1 USD. Official central-bank rate where reachable; see detail.",
  "rates": {
-  "KGS": 87.4498,
+  "KGS": 87.4496,
   "UZS": 11974.02,
-  "KZT": 448.98,
-  "TRY": 50.1981,
+  "KZT": 447.52,
+  "TRY": 50.2282,
   "NGN": 1350.3587,
   "ARS": 1545.5,
   "BRL": 5.584,
-  "GEL": 2.5936,
-  "AMD": 360.43,
+  "GEL": 2.5933,
+  "AMD": 360.48,
   "USD": 1
  },
  "detail": {
   "KGS": {
-   "rate": 87.4498,
-   "date": "2026-11-11",
+   "rate": 87.4496,
+   "date": "2026-11-12",
    "source": "National Bank of the Kyrgyz Republic official",
    "url": "https://www.nbkr.kg/index1.jsp?item=1562&lang=ENG",
    "official": true
@@ -29,15 +29,15 @@
    "official": true
   },
   "KZT": {
-   "rate": 448.98,
-   "date": "2026-11-10",
+   "rate": 447.52,
+   "date": "2026-11-11",
    "source": "National Bank of Kazakhstan official",
    "url": "https://nationalbank.kz/en/exchangerates/ezhednevnye-oficialnye-rynochnye-kursy-valyut",
    "official": true
   },
   "TRY": {
-   "rate": 50.1981,
-   "date": "2026-11-10",
+   "rate": 50.2282,
+   "date": "2026-11-11",
    "source": "Central Bank of Türkiye indicative (forex selling)",
    "url": "https://www.tcmb.gov.tr/kurlar/today.xml",
    "official": true
@@ -64,22 +64,22 @@
    "official": true
   },
   "GEL": {
-   "rate": 2.5936,
-   "date": "2026-11-11",
+   "rate": 2.5933,
+   "date": "2026-11-12",
    "source": "National Bank of Georgia official",
    "url": "https://nbg.gov.ge/en/monetary-policy/currency",
    "official": true
   },
   "AMD": {
-   "rate": 360.43,
-   "date": "2026-11-10",
+   "rate": 360.48,
+   "date": "2026-11-11",
    "source": "Central Bank of Armenia official",
    "url": "https://www.cba.am/en/SitePages/ExchangeArchive.aspx",
    "official": true
   },
   "USD": {
    "rate": 1,
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "source": "USD",
    "url": "",
    "official": true

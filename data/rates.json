@@ -270,13 +270,13 @@
       "kind": "DeFi lending · Aave v3",
       "symbol": "A",
       "color": "#7365b7",
-      "base": 3.73,
+      "base": 3.92,
       "boost": null,
       "baseLabel": "Market snapshot",
       "rateLabel": "Variable deposit APY",
-      "observedAt": "2026-11-10 14:37 UTC",
+      "observedAt": "2026-11-11 14:42 UTC",
       "requirements": "Supply USDC to the Ethereum Core / Main market. Requires a compatible wallet and ETH for network fees.",
-      "details": "Deposit APY for the Aave v3 USDC pool on Ethereum as reported by DefiLlama at 2026-11-10 14:37 UTC. This is one USDC market, not a protocol-wide rate. Rates change with how much of the pool is borrowed and can fall quickly; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity.",
+      "details": "Deposit APY for the Aave v3 USDC pool on Ethereum as reported by DefiLlama at 2026-11-11 14:42 UTC. This is one USDC market, not a protocol-wide rate. Rates change with how much of the pool is borrowed and can fall quickly; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity.",
       "protection": "No FDIC deposit insurance. Smart-contract, oracle, liquidity, and stablecoin depegging risks apply. Borrowing against supplied assets also introduces liquidation risk.",
       "effective": null,
       "fdic": {
@@ -298,7 +298,7 @@
           "url": "https://www.aave.com/docs/resources/risks"
         }
       ],
-      "verifiedAt": "2026-11-10"
+      "verifiedAt": "2026-11-11"
     },
     {
       "id": "barclays",
