@@ -1,15 +1,15 @@
 {
- "date": "2026-11-10",
- "checkedAt": "2026-11-12",
+ "date": "2026-11-12",
+ "checkedAt": "2026-11-13",
  "measure": "coupon equivalent (bond-equivalent yield), %",
  "source": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_bill_rates",
  "terms": {
-  "4 Weeks": 3.94,
+  "4 Weeks": 4.04,
   "6 Weeks": 4.08,
-  "8 Weeks": 4.1,
-  "13 Weeks": 4.22,
-  "17 Weeks": 4.29,
-  "26 Weeks": 4.41,
-  "52 Weeks": 4.54
+  "8 Weeks": 4.17,
+  "13 Weeks": 4.24,
+  "17 Weeks": 4.35,
+  "26 Weeks": 4.46,
+  "52 Weeks": 4.64
  }
 }
