@@ -1,14 +1,14 @@
 {
- "fetched": "2026-11-13",
+ "fetched": "2026-11-14",
  "note": "Local currency per 1 USD. Official central-bank rate where reachable; see detail.",
  "rates": {
   "KGS": 87.4355,
-  "UZS": 11973.44,
-  "KZT": 443.62,
+  "UZS": 12014.37,
+  "KZT": 444.3,
   "TRY": 50.283,
-  "NGN": 1355.3815,
-  "ARS": 1545.5,
-  "BRL": 5.6143,
+  "NGN": 1353.4741,
+  "ARS": 1543.5,
+  "BRL": 5.6518,
   "GEL": 2.5934,
   "AMD": 360.54,
   "USD": 1
@@ -16,21 +16,21 @@
  "detail": {
   "KGS": {
    "rate": 87.4355,
-   "date": "2026-11-14",
+   "date": "2026-11-15",
    "source": "National Bank of the Kyrgyz Republic official",
    "url": "https://www.nbkr.kg/index1.jsp?item=1562&lang=ENG",
    "official": true
   },
   "UZS": {
-   "rate": 11973.44,
-   "date": "2026-11-13",
+   "rate": 12014.37,
+   "date": "2026-11-14",
    "source": "Central Bank of Uzbekistan official",
    "url": "https://cbu.uz/en/arkhiv-kursov-valyut/",
    "official": true
   },
   "KZT": {
-   "rate": 443.62,
-   "date": "2026-11-13",
+   "rate": 444.3,
+   "date": "2026-11-14",
    "source": "National Bank of Kazakhstan official",
    "url": "https://nationalbank.kz/en/exchangerates/ezhednevnye-oficialnye-rynochnye-kursy-valyut",
    "official": true
@@ -43,22 +43,22 @@
    "official": true
   },
   "NGN": {
-   "rate": 1355.3815,
-   "date": "2026-11-12",
+   "rate": 1353.4741,
+   "date": "2026-11-13",
    "source": "Central Bank of Nigeria central rate",
    "url": "https://www.cbn.gov.ng/rates/ExchRateByCurrency.html",
    "official": true
   },
   "ARS": {
-   "rate": 1545.5,
-   "date": "2026-11-12",
+   "rate": 1543.5,
+   "date": "2026-11-13",
    "source": "BCRA official (Com. A 3500)",
    "url": "https://www.bcra.gob.ar/PublicacionesEstadisticas/Tipos_de_cambios.asp",
    "official": true
   },
   "BRL": {
-   "rate": 5.6143,
-   "date": "2026-11-12",
+   "rate": 5.6518,
+   "date": "2026-11-13",
    "source": "Banco Central do Brasil PTAX (sell)",
    "url": "https://www.bcb.gov.br/estabilidadefinanceira/historicocotacoes",
    "official": true
@@ -79,7 +79,7 @@
   },
   "USD": {
    "rate": 1,
-   "date": "2026-11-13",
+   "date": "2026-11-14",
    "source": "USD",
    "url": "",
    "official": true
