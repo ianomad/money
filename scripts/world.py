@@ -16,6 +16,12 @@ def calc(a, r, t, fx, c, us):
 def yearly_move(start, now, years): return ((start / now) ** (1 / years) - 1) * 100
 def est12(r, move): return ((1 + r / 100) * (1 + move / 100) - 1) * 100
 
+def usd12(r):
+    """≈12-month return in US dollars: headline rate for 12 months, 1% FX cost each way, currency keeps its past yearly pace. USD rows: just the rate."""
+    if r['cur'] == 'USD': return r['rate']
+    if r['move'] is None: return None
+    return (calc(10000, r['rate'], 12, r['move'], 1, 0)['end'] - 10000) / 100
+
 def fd(s): return date.fromisoformat(s[:10]).strftime('%b %-d, %Y')
 def term_months(term):
     import re
@@ -40,19 +46,22 @@ def dataset():
                      'verified': p.get('verified') or yd['checkedAt'], 'src': p.get('source'), 'fxNow': now, 'fxStart': s, 'fxTotal': tot, 'move': mv,
                      'est': est12(p['rate'], mv) if mv is not None else None, 'ins': c['insurance'],
                      'insLocal': lim, 'insUSD': (lim['amount'] / now if lim and now else None)})
+        rows[-1]['usd'] = usd12(rows[-1])
     return {'today': today, 'checkedAt': yd['checkedAt'], 'rows': rows}
 
-def pct(x, sign=False): return ('−' if x < 0 else ('+' if sign and x > 0 else '')) + f'{abs(x):.1f}%'
+def pct(x, sign=False):
+    x = round(x, 1) + 0.0  # no '−0.0%'
+    return ('−' if x < 0 else ('+' if sign and x > 0 else '')) + f'{abs(x):.1f}%'
 def row(r):
     ins = (f"{r['insLocal']['amount']:,.0f} {r['insLocal']['currency']}" + (f" (≈${r['insUSD']:,.0f})" if r['cur'] != 'USD' else '')) if r['insLocal'] else '<span class="chip warn">Limit not verified</span>'
     fxs = (f"{pct(r['fxTotal'], True)} since {fd(r['fxStart']['date'])} <small>({pct(r['move'], True)}/yr)</small>" if r['fxStart'] else ('—' if r['cur'] == 'USD' else '<span class="chip warn">No FX history</span>'))
-    est = pct(r['est'], True) if r['est'] is not None else '—'
+    est = pct(r['usd'], True) if r['usd'] is not None else '—'
     d = r.get('fxd')
     if d and r['cur'] != 'USD':
         lab = 'official' if d.get('official') else 'market rate, not official'
         fxs += f'<small>Today {fxn(r["fxNow"])} per $ · <a href="{e(d["url"])}" target="_blank" rel="noopener">{lab}</a>{" · " + fd(d["date"]) if d.get("stale") else ""}</small>'
     src = f' · <a href="{e(r["src"])}" target="_blank" rel="noopener">Source ↗</a>' if r['src'] else ''
-    return (f'<tr data-rate="{r["rate"]}" data-est="{r["est"] if r["est"] is not None else -999}"><th scope="row">{e(r["name"])}<small>{r["banks"]} bank{"s" if r["banks"] > 1 else ""} tracked</small></th>'
+    return (f'<tr data-rate="{r["rate"]}" data-usd="{r["usd"] if r["usd"] is not None else -999}"><th scope="row">{e(r["name"])}<small>{r["banks"]} bank{"s" if r["banks"] > 1 else ""} tracked</small></th>'
             f'<td data-l="Top rate we track"><b>{r["rate"]:g}%</b><small>{e(r["bank"])} · {e(r["term"])} · {r["cur"]}</small></td><td data-l="Currency vs $">{fxs}</td><td data-l="Est. 12-month USD result*"><b>{est}</b></td><td data-l="Deposit insurance">{ins}</td>'
             f'<td data-l="Checked"><small> {fd(r["verified"])}{src}</small></td></tr>')
 
@@ -60,15 +69,18 @@ def render(D, us_rate, us_name):
     R = D['rows']; by_rate = sorted(R, key=lambda r: -r['rate'])
     kg = next((r for r in R if r['featured']), None)
     top = by_rate[0]
+    rank = lambda r: (r['usd'] is None, -(r['usd'] or 0), -r['rate'])
+    by_usd = sorted(R, key=rank)
+    fr = [r for r in by_usd if r['cur'] != 'USD']; best = fr[0]; hi = max(fr, key=lambda r: r['rate'])
     feat = ''
     if kg:
         feat = (f'<p class="note"><b>Why {e(kg["name"])} gets extra detail:</b> we track {kg["banks"]} of its banks, more than any other country here. It is not the highest rate on this list. '
                 f'The {kg["cur"]} moved {pct(kg["fxTotal"], True)} against the dollar from {fd(kg["fxStart"]["date"])} (<a href="{e(kg["fxStart"]["source"])}" target="_blank" rel="noopener">{e(kg["fxStart"]["label"])}</a>) to {fd(D["today"])}; that says nothing about what it will do next.</p>')
-    opts = ''.join(f'<option value="{r["code"]}"{" selected" if r is top else ""}>{e(r["name"])} · {r["rate"]:g}% ({e(r["term"])})</option>' for r in by_rate if r['cur'] != 'USD')
-    t0 = top; c0 = calc(10000, t0['rate'], t0['months'], 0, 1, us_rate)
+    opts = ''.join(f'<option value="{r["code"]}"{" selected" if r is best else ""}>{e(r["name"])} · {r["rate"]:g}% ({e(r["term"])})</option>' for r in by_rate if r['cur'] != 'USD')
+    t0 = best; c0 = calc(10000, t0['rate'], t0['months'], 0, 1, us_rate)
     data = json.dumps({'rows': [{k: r[k] for k in ('code', 'name', 'cur', 'rate', 'months', 'move', 'term')} for r in R], 'us': us_rate}, separators=(',', ':'), ensure_ascii=False)
     js = (ROOT / 'scripts/world_calc.js').read_text() + (ROOT / 'scripts/world_ui.js').read_text()
-    table = ''.join(row(r) for r in by_rate)
+    table = ''.join(row(r) for r in by_usd)
     import feed as F
     def scen_bars(r, a=10000):
         k = calc(a, r['rate'], 12, 0, 1, us_rate); items = [('Currency steady', k['end'] - a, money_s(k['end'] - a), True)]
@@ -94,32 +106,40 @@ def render(D, us_rate, us_name):
         renew = (f'<p class="renew">Assumes this deposit ({e(r["term"])}) is renewed at {r["rate"]:g}% for 12 months. Not guaranteed.</p>'
                  if r['months'] < 12 else '')
         return F.bars(items, '<span class="tag-s">Scenarios</span>Return in US dollars over 12 months, after a 1% conversion cost each way. Not forecasts.') + renew
-    hero = F.card('Top rate abroad', f'{e(top["name"])}: {top["rate"]:g}%', f'{e(top["bank"])} · paid in {e(top["cur"])}',
-                  viz=bars3(top), catch=fxline(top) + '. Past moves don’t predict future ones.',
-                  foot=f'Checked {fd(top["verified"])} · FX {fd(D["today"])}', cls='dark',
+    beats = best['usd'] is not None and best['usd'] > us_rate
+    if beats:
+        verdict = (f'<b>Best in dollars if currencies keep their recent pace: {e(best["name"])} ≈{pct(best["usd"], True)}</b>, vs {us_rate:g}% in US savings.'
+                   + (f' The highest rate, {e(hi["name"])} {hi["rate"]:g}%, comes to ≈{pct(hi["usd"], True)}.' if hi is not best and hi['usd'] is not None else ''))
+    else:
+        verdict = f'<b>If currencies keep their recent pace, none of these beats US savings at {us_rate:g}% in dollars.</b> Closest: {e(best["name"])} ≈{pct(best["usd"], True)}.'
+    hero = F.card('Best in dollars · recent currency pace', f'{e(best["name"])}: {pct(best["usd"], True)}',
+                  f'{best["rate"]:g}% at {e(best["bank"])} · paid in {e(best["cur"])} · US savings {us_rate:g}%',
+                  viz=bars3(best), catch=fxline(best) + '. Past moves don’t predict future ones.',
+                  foot=f'{ins_s(best)} · checked {fd(best["verified"])} · FX {fd(D["today"])}', cls='dark',
                   actions='<div class="fc-act"><a class="btn pri" href="#wc-adjust" data-open="wc-adjust">Calculate</a></div>')
-    dr = []
-    for r in by_rate:
-        if r['cur'] == 'USD' or r['move'] is None: continue
-        k = calc(10000, r['rate'], 12, 0, 1, us_rate); v = (k['scen'](r['move']) - 10000) / 100
-        dr.append((f'{e(r["name"])} {r["rate"]:g}%', v, pct(v, True), False))
-    kus = calc(10000, us_rate, 12, 0, 1, us_rate); vu = (kus['usEnd'] - 10000) / 100; dr.append((f'US savings {us_rate:g}%', vu, pct(vu, True), True))
-    drag = F.card('Currency drag', 'Rate vs USD return', 'If each currency keeps moving as it has since 2023',
-                  viz=F.bars(dr, '<span class="tag-s">Scenarios</span>≈ 12-month return in US dollars, after FX costs. Not forecasts.'),
-                  catch='A high rate can still lose dollars', cls='drag')
+    def li(r):
+        v = r['usd']; return (f'<li class="{" neg" if v < 0 else ""}" data-usd="{v}" data-rate="{r["rate"]}"><span class="l">{e(r["name"])} {r["rate"]:g}%</span>'
+                              f'<span class="b"><i style="--w:{max(2, abs(v) / mx * 100):.1f}%"></i></span><b>{pct(v, True)}</b></li>')
+    dl = [r for r in fr if r['usd'] is not None]; mx = max([abs(r['usd']) for r in dl] + [us_rate]) or 1
+    drag_bars = (f'<ul class="fbars" id="wrank-list">' + ''.join(li(r) for r in dl)
+                 + f'<li class="hi" data-pin><span class="l">US savings {us_rate:g}%</span><span class="b"><i style="--w:{max(2, us_rate / mx * 100):.1f}%"></i></span><b>{pct(us_rate, True)}</b></li></ul>'
+                 + '<p class="fbars-u"><span class="tag-s">Scenarios</span>≈ 12-month return in US dollars if each currency keeps its yearly pace since its start date, after a 1% FX cost each way. Not forecasts.</p>')
+    drag = F.card('Every country, in dollars', 'Rate vs what you keep', 'If each currency keeps its recent yearly pace',
+                  viz=drag_bars, catch='A high rate can still lose dollars', cls='drag')
     swc = [F.card(e(r['name']), f'{r["rate"]:g}%', f'{e(r["bank"])} · {e(r["term"])}', viz=bars3(r),
-                  catch=fxline(r), foot=f'{ins_s(r)} · checked {fd(r["verified"])}') for r in by_rate[1:] if r['cur'] != 'USD']
-    how = (f'<p>This covers {len(R)} tracked countries, not the whole world. The highest headline rate here is {e(top["name"])} at {top["rate"]:g}% ({e(top["term"])}).</p>{feat}'
+                  catch=fxline(r), foot=f'{ins_s(r)} · checked {fd(r["verified"])}') for r in fr if r is not best]
+    how = (f'<p>This covers {len(R)} tracked countries, not the whole world. The top card ranks by what you’d keep in US dollars if each currency keeps its recent yearly pace, not by the headline rate; the highest headline rate here is {e(hi["name"])} at {hi["rate"]:g}% ({e(hi["term"])}).</p>{feat}'
            f'<p>Scenario bars: the headline rate for 12 months as simple interest, converted to local money and back with a 1% cost each way, under the currency move shown. '
            f'“Past pace” uses the average yearly move since each country’s start date. These are what-ifs, not forecasts.</p>')
-    return (f'<section class="fhead" id="world-top"><h2 class="h1like">High rates abroad, <em>currency risk.</em></h2><p class="sub">Dollar scenarios, not forecasts.</p></section>'
+    return (f'<section class="fhead" id="world-top"><h2 class="h1like">High rates abroad, <em>in dollars.</em></h2><p class="verdict">{verdict}</p>'
+            f'<p class="sub">Scenarios, not forecasts: currencies can fall fast, and deposit insurance is local and capped.</p>'
+            f'<div class="seg" role="group" aria-label="Rank countries by"><button type="button" data-wrank="usd" aria-pressed="true">Best in dollars</button><button type="button" data-wrank="rate" aria-pressed="false">Highest rate</button></div></section>'
             f'<div class="feed">{hero}{drag}</div>'
-            + f'<details class="i big" id="wc-all"><summary>All {len(R)} countries: cards and table</summary><div class="dbody">' + F.swipe(swc, 'Other countries, by headline rate', '') +
+            + f'<details class="i big" id="wc-all"><summary>All {len(R)} countries: cards and table</summary><div class="dbody">' + F.swipe(swc, 'Other countries, best in dollars first', '') +
             f'<section class="tool" id="world-compare" aria-labelledby="wc-h"><h2 id="wc-h" class="sr">Compare the {len(R)} countries</h2>'
-            f'<div class="seg" role="group" aria-label="Sort by"><button type="button" data-wsort="rate" aria-pressed="true">Headline rate</button><button type="button" data-wsort="est" aria-pressed="false">Estimated USD result</button></div>'
-            f'<p class="hint" id="wc-why">Sorted by the bank’s advertised rate in local money. Switch to see a dollar estimate that includes the currency.</p>'
+            f'<p class="hint" id="wc-why">Sorted by the dollar what-if (*). Use the toggle at the top to sort by headline rate.</p>'
             f'<div class="tw"><table class="wtable"><thead><tr><th scope="col">Country</th><th scope="col">Top rate we track</th><th scope="col">Currency vs $</th><th scope="col">Est. 12-month USD result*</th><th scope="col">Deposit insurance</th><th scope="col">Checked</th></tr></thead><tbody id="wc-body">{table}</tbody></table></div>'
-            f'<p class="assume">*A what-if, not a forecast: the headline rate for 12 months as simple interest, then converted at a rate that moved the same amount per year as it did since Oct 12, 2023. Before tax and conversion costs. Past currency moves don’t predict future ones, and a steady stretch doesn’t make a currency safe. '
+            f'<p class="assume">*A what-if, not a forecast: the headline rate for 12 months as simple interest, then converted back at a rate that moved the same amount per year as it did since the country’s start date, after a 1% conversion cost each way. Before tax. Past currency moves don’t predict future ones, and a steady stretch doesn’t make a currency safe. '
             f'Start rates from each central bank (links per country below); today’s rates from each central bank where we can reach it (otherwise a market rate, labelled in the table), {fd(D["today"])}. Insurance limits in local money with an approximate dollar value at today’s rate; deposit rates checked {fd(D["checkedAt"])}.</p></section></div></details>'
             f'<details class="i big" id="wc-adjust"><summary>Calculate</summary><div class="dbody">'
             f'<section class="tool" id="world-calc" aria-labelledby="wcalc-h"><h2 id="wcalc-h" class="sr">What would you have in dollars?</h2>'

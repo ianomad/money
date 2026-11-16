@@ -160,13 +160,13 @@ def previews(world_hero):
     p3 = pv('Markets', '/markets', f'{mk["value"]:.2f}%', ' 30-yr mortgage', f'{"Up" if mk["value"] >= mk["y1"] else "Down"} from {mk["y1"]:.2f}% a year ago: about {money(abs(dp))} {"more" if dp > 0 else "less"} a month on a $400,000 loan.',
             F.bars([('A year ago', mk['y1'], f'{mk["y1"]:.2f}%', False), ('A month ago', mk['m1'], f'{mk["m1"]:.2f}%', False), ('Now', mk['value'], f'{mk["value"]:.2f}%', True)], 'Weekly average, 30-year fixed'),
             f'National average; quotes vary with credit and down payment · Freddie Mac, week of {fd(mk["date"])}')
-    m = re.search(r'<p class="fc-big">([^<:]+): ([\d.]+)%</p><p class="fc-line">([^<]*)</p>', world_hero)
+    m = re.search(r'<p class="fc-big">([^<:]+): ([+−]?[\d.]+)%</p><p class="fc-line">([^<]*)</p>', world_hero)
     bars = re.findall(r'<li class="[^"]*"><span class="l">([^<]+)</span><span class="b"><i[^>]*></i></span><b>([^<]+)</b></li>', world_hero.split('</ul>')[0])
     cat = re.search(r'<div class="fc-catch"><span>([^<]+)</span>', world_hero); chk = re.search(r'<p class="fc-foot">([^<]+)</p>', world_hero)
-    pick = [b for b in bars if b[0] in ('Currency flat', 'Falls 30%', 'US savings')]
+    pick = [b for b in bars if b[0] in ('Currency flat', 'Falls 30%', 'US savings') or b[0].startswith('Past pace')]
     num = lambda s: float(s.replace('−', '-').replace('%', '').replace('+', ''))
-    p4 = pv('World', '/abroad', f'{m.group(2)}%', f' in {e(m.group(1))}', f'{e(m.group(3))}. High local rates beat US savings only if the currency holds up.',
-            F.bars([(e(l), num(v), e(v), l == 'Currency flat') for l, v in pick], '12-month return in US dollars · scenarios, not forecasts'),
+    p4 = pv('World', '/abroad', f'{m.group(2)}%', f' in $ · {e(m.group(1))}', f'{e(m.group(3))}. High local rates beat US savings only if the currency holds up.',
+            F.bars([(e(l), num(v), e(v), l.startswith('Past pace')) for l, v in pick], '12-month return in US dollars · scenarios, not forecasts'),
             (e(cat.group(1)) if cat else 'Paid in local currency: currency risk') + (f' · {e(chk.group(1))}' if chk else '')) if m and pick else ''
     return f'<section class="pvs" aria-labelledby="pvs-h"><h2 class="sh" id="pvs-h">Explore</h2><div class="pv-grid">{p1}{p2}{p3}{p4}</div></section>'
 

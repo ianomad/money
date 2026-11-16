@@ -1,9 +1,10 @@
 (function(){var el=document.getElementById('wc-data');if(!el)return;var D=JSON.parse(el.textContent),C={};D.rows.forEach(function(r){C[r.code]=r});
-var body=document.getElementById('wc-body'),why=document.getElementById('wc-why');
-document.querySelectorAll('#world-compare [data-wsort]').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.wsort;
-  document.querySelectorAll('#world-compare [data-wsort]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
-  [].slice.call(body.children).sort(function(a,c){return parseFloat(c.dataset[k])-parseFloat(a.dataset[k])}).forEach(function(tr){body.appendChild(tr)});
-  why.textContent=k==='est'?'Sorted by a dollar what-if: the headline rate for 12 months, with the currency moving as much per year as it did since Oct 12, 2023. Not a forecast.':'Sorted by the bank’s advertised rate in local money. Switch to see a dollar estimate that includes the currency.'})});
+var body=document.getElementById('wc-body'),why=document.getElementById('wc-why'),list=document.getElementById('wrank-list');
+function srt(p,k,sel){if(!p)return;var pin=p.querySelector('[data-pin]');[].slice.call(p.querySelectorAll(sel)).sort(function(a,c){return parseFloat(c.dataset[k])-parseFloat(a.dataset[k])}).forEach(function(x){p.appendChild(x)});if(pin)p.appendChild(pin)}
+document.querySelectorAll('[data-wrank]').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.wrank;
+  document.querySelectorAll('[data-wrank]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+  srt(list,k,'li:not([data-pin])');srt(body,k,'tr');
+  if(why)why.textContent=k==='usd'?'Sorted by the dollar what-if (*). Use the toggle at the top to sort by headline rate.':'Sorted by the bank’s advertised rate in local money. Use the toggle at the top to sort by dollars kept.'})});
 var $=function(i){return document.getElementById(i)},out=$('wc-out'),err=$('wc-err');
 function n(i){return parseFloat(String($(i).value).replace(/[$,%\s]/g,'').replace('−','-'))}
 function m(x){return (x<0?'−$':'$')+Math.abs(Math.round(x)).toLocaleString('en-US')}
