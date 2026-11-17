@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-06",
+  "checkedAt": "2026-11-17",
   "note": "Dates and times from the official BLS release schedule and the Federal Reserve FOMC calendar. Times are US Eastern.",
   "calendars": {
     "BLS": "https://www.bls.gov/schedule/2026/home.htm",

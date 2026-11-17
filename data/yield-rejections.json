@@ -1,0 +1,13 @@
+{
+ "reviewed": "2026-11-17",
+ "note": "Untracked candidates >= 4.5% from scan_new_yields.py that were checked and rejected. scan_new_yields.py skips these names so they are not re-checked daily. Re-review if the rate, cap or eligibility changes.",
+ "rejected": [
+  {"name": "Union High Yield Checking Account", "apy": 6.17, "reason": "Kasasa-style reward checking (listed by Doctor of Credit under Gateway Bank 6.17% on $25,000); debit-card and activity requirements, balance cap, regional eligibility. Bank site gives no rate in static text."},
+  {"name": "Rave Checking", "apy": 6.10, "reason": "Texas-only local reward checking: $1,500 direct deposit and 20 transactions a month, cap $35,000."},
+  {"name": "Sunward CU", "apy": 5.04, "reason": "Credit union membership; 5.04% only on balances up to $2,500 (tiny cap). sunward.org shows no rate in static text."},
+  {"name": "Badass Bank", "apy": 4.55, "reason": "Interest checking that needs 10 debit-card transactions a month; below our 6.0% top; badassbank.com returns 429 to crawlers."},
+  {"name": "FourLeaf Simple Savings", "apy": 4.5, "reason": "Credit union membership; fourleaffcu.org unreachable; below our top and not a main-ranking candidate."},
+  {"name": "FourLeaf FCU", "apy": 4.5, "reason": "Same product as FourLeaf Simple Savings."},
+  {"name": "Connexus CU", "apy": 4.5, "reason": "Reward checking, balance up to $25,000, activity requirements; credit union membership; below our top."}
+ ]
+}

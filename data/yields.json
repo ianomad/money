@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-11-08",
+ "checkedAt": "2026-11-17",
  "note": "Bank-level deposit products, hand-verified against bank pages or named rate trackers. Rates are annual, before tax. Foreigner/non-resident access marked 'confirm' was NOT verified on the bank page; ask the bank before you travel or wire.",
  "countries": [
   {
@@ -26,7 +26,7 @@
      "usdOption": "USD 2.0% (36 mo)",
      "access": "Branch (confirm non-resident rules)",
      "source": "https://capitalbank.kg/depozit-standart",
-     "verified": "2026-11-06",
+     "verified": "2026-11-17",
      "note": "Own page: 14.5% KGS at 24 and 36 mo (Kapital Standard)."
     },
     {
@@ -40,7 +40,7 @@
      "usdOption": "USD 3.0% (up to 12 mo)",
      "access": "MBANK app; residents and non-residents per the bank listing (confirm)",
      "source": "https://mbank.kg/news/mbank-zapustil-vygodnoe-predlozhenie-po-depozitam",
-     "verified": "2026-11-06"
+     "verified": "2026-11-17"
     },
     {
      "bank": "BAKAI Bank",
@@ -52,7 +52,7 @@
      "usdOption": "USD up to 2.0% (36 mo)",
      "access": "Opened in the BAKAI app by existing clients; becoming a client means a branch visit with passport (confirm)",
      "source": "https://banks.kg/bank/bakai/deposits/160",
-     "verified": "2026-11-06"
+     "verified": "2026-11-17"
     },
     {
      "bank": "Aiyl Bank (ABank)",
@@ -65,7 +65,7 @@
      "usdOption": "USD effective up to 2.01%",
      "access": "Branch (confirm non-resident rules)",
      "source": "https://banks.kg/bank/ab/deposits/99",
-     "verified": "2026-11-06"
+     "verified": "2026-11-17"
     },
     {
      "bank": "DemirBank",
@@ -77,7 +77,7 @@
      "usdOption": "USD 3.5% (36 mo, online)",
      "access": "Branch or internet/mobile banking once a client (confirm non-resident rules)",
      "source": "https://www.demirbank.kg/en/retail/deposits-and-investments/term-deposit",
-     "verified": "2026-11-06"
+     "verified": "2026-11-17"
     },
     {
      "bank": "FINCA Bank",
@@ -90,7 +90,7 @@
      "usdOption": "USD effective up to 2.02%",
      "access": "Branch (confirm)",
      "source": "https://fincabank.kg/wp-content/uploads/sites/6/2024/07/prilozhenie_1_srochnye-depozity_obnovlen_25.05.26_kg.pdf",
-     "verified": "2026-11-06"
+     "verified": "2026-11-17"
     },
     {
      "bank": "KICB",
@@ -101,9 +101,9 @@
      "min": "10,000 KGS / 100 USD (max 10M KGS / 100k USD)",
      "usdOption": "USD 3.0% (36 mo)",
      "access": "Branch (confirm)",
-     "source": "https://www.kicb.net/en/private/retail-deposits/time_dep_en/srochnyy-depozit/",
-     "verified": "2026-10-31",
-     "rateNote": "effective rate per bank table; 13.0% at 18–24 mo"
+     "source": "https://kicb.net/private/retail-deposits/time_dep_en/srochnyy-depozit/",
+     "verified": "2026-11-17",
+     "rateNote": "Anniversary promo rate: 13.5% at 36 mo, 13.0% at 18–24 mo, 12.5% at 13 mo (Oct 14–Dec 31, 2026)"
     },
     {
      "bank": "Optima Bank",
@@ -115,7 +115,7 @@
      "usdOption": "new rates from Oct 12, 2026",
      "access": "Branch (confirm)",
      "source": "https://vip.optimabank.kg/ru/news/ob-izmenenii-uslovij-po-srocnym-depozitam-v-dollarah-ssa-usd",
-     "verified": "2026-11-07"
+     "verified": "2026-11-17"
     }
    ],
    "insuranceLimit": {
@@ -139,7 +139,7 @@
      "min": "100,000 UZS for full rate",
      "access": "Fully online in the app (non-resident eligibility: confirm)",
      "source": "https://moniq.uz/en/investments/deposits/avo-bank/avo-vklad",
-     "verified": "2026-11-06"
+     "verified": "2026-11-17"
     },
     {
      "bank": "ANORBANK",
@@ -150,7 +150,7 @@
      "min": "1,000,000 UZS",
      "access": "Online in app; ANORBANK card holders only (non-resident eligibility: confirm)",
      "source": "https://bank.uz/uz/deposit/fursat",
-     "verified": "2026-11-08",
+     "verified": "2026-11-17",
      "rateNote": "bank also lists Barqaror 22% (24 mo) on its site; date of that page not confirmed"
     }
    ],
@@ -181,7 +181,7 @@
      "min": "100,000 KZT",
      "access": "Kaspi app; needs Kazakh IIN (confirm)",
      "source": "https://guide.kaspi.kz/client/ru/cumulative_deposit/conditions/q19622",
-     "verified": "2026-11-07"
+     "verified": "2026-11-17"
     },
     {
      "bank": "Halyk Bank",
@@ -194,7 +194,7 @@
      "usdOption": "USD/EUR 0.98% (12 mo)",
      "access": "Branch/app (confirm)",
      "source": "https://profinance.kz/deposits/khalyk-srochnyy",
-     "verified": "2026-11-06"
+     "verified": "2026-11-17"
     }
    ],
    "fxStart": {
@@ -229,19 +229,19 @@
      "term": "1–90 days",
      "min": "10,000–10,000,000 TRY",
      "access": "Needs Turkish tax number (confirm)",
-     "source": "https://www.hangikredi.com/yatirim-araclari/mevduat-faiz-oranlari/turk-ticaret-bankasi",
-     "verified": "2026-11-05"
+     "source": "https://www.paranyatmasin.com/bankalar/turkticaret/",
+     "verified": "2026-11-17"
     },
     {
      "bank": "Alternatifbank",
-     "product": "Time deposit",
+     "product": "VOV Hesap (welcome rate)",
      "currency": "TRY",
      "rate": 43.0,
-     "term": "32 days",
-     "min": "20,000–500,000 TRY (1–45 days)",
+     "term": "45 days (welcome rate)",
+     "min": "20,000–500,000 TRY tier (42% above 500,000)",
      "access": "Needs Turkish tax number (confirm)",
-     "source": "https://yatirimci.ai/en/time-deposit",
-     "verified": "2026-11-08"
+     "source": "https://www.paranyatmasin.com/bankalar/alternatif/",
+     "verified": "2026-11-17"
     },
     {
      "bank": "ON Dijital",
@@ -251,8 +251,9 @@
      "term": "181–365 days",
      "min": "100,000 TRY tier",
      "access": "Digital (confirm)",
-     "source": "https://yatirimci.ai/en/time-deposit",
-     "verified": "2026-11-08"
+     "source": "https://on.com.tr/on-plus-mevduat-faizi",
+     "verified": "2026-11-17",
+     "rateNote": "Needs ON Extra programme conditions; up to 41.5% per ON page"
     }
    ],
    "insuranceLimit": null
@@ -272,7 +273,7 @@
      "min": "see bank",
      "access": "Needs BVN (confirm)",
      "source": "https://www.checkinvestng.com/fixed-deposit-rates",
-     "verified": "2026-11-06"
+     "verified": "2026-11-17"
     }
    ],
    "fxStart": {
@@ -298,7 +299,7 @@
      "min": "see bank",
      "access": "Needs CUIL/CUIT and local account",
      "source": "https://bna.com.ar/home/informacionalusuariofinanciero",
-     "verified": "2026-11-08"
+     "verified": "2026-11-17"
     }
    ],
    "fxStart": {
@@ -331,7 +332,7 @@
      "min": "none",
      "access": "Needs CPF (confirm)",
      "source": "https://www.patrimo.app/materiais/guia-renda-fixa-pos-selic-2026",
-     "verified": "2026-11-07"
+     "verified": "2026-11-17"
     }
    ],
    "insuranceLimit": {
@@ -355,7 +356,7 @@
      "min": "see bank",
      "access": "Non-residents can open (in person; confirm)",
      "source": "https://bauer-group.ge/en/knowledge/banking/georgia-deposit-rates/",
-     "verified": "2026-11-06"
+     "verified": "2026-11-17"
     },
     {
      "bank": "TBC Bank",
@@ -367,7 +368,7 @@
      "min": "see bank",
      "access": "Non-residents can open (in person; confirm)",
      "source": "https://bauer-group.ge/en/knowledge/banking/georgia-deposit-rates/",
-     "verified": "2026-11-06"
+     "verified": "2026-11-17"
     }
    ],
    "fxStart": {
@@ -396,7 +397,7 @@
      "min": "see bank",
      "access": "Branch (confirm)",
      "source": "https://ameriabank.am/userfiles/file/Deposit_saving_terms_for_PP_eng.pdf",
-     "verified": "2026-11-08"
+     "verified": "2026-11-17"
     },
     {
      "bank": "Ardshinbank",
@@ -407,7 +408,7 @@
      "min": "see bank",
      "access": "Branch (confirm)",
      "source": "https://ardshinbank.am/api/files/documents/Deposit-en-04-02-2026.pdf",
-     "verified": "2026-11-08"
+     "verified": "2026-11-17"
     }
    ],
    "fxStart": {
@@ -433,7 +434,7 @@
      "min": "see bank",
      "access": "Online, US residents",
      "source": "https://www.peak.bank/peak-bank/savings",
-     "verified": "2026-11-06"
+     "verified": "2026-11-17"
     }
    ],
    "insuranceLimit": {

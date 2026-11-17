@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-11-09",
-  "changeNote": "Nov 3: CIT's six-month boost rose to 4.35% (code BOOST60, was 4.25% with BOOST50). Pibank's 4.40% is still the top plain rate. Rechecked Newtek, Coinbase, E*TRADE, Robinhood, Peak, Varo, Happen, Openbank and Betterment: unchanged.",
+  "checkedAt": "2026-11-17",
+  "changeNote": "Nov 17: re-read every provider on its own page or a named tracker (Ally, Capital One, Synchrony, Amex, Barclays, Citizens, Wells Fargo, Chime via Doctor of Credit, DepositAccounts or FinanceRadar when the page is JS-only). No rate changed. Pibank's 4.40% is still the top plain rate.",
   "providers": [
     {
       "id": "x-money",
@@ -36,7 +36,7 @@
         "label": "FDIC · Conditional",
         "summary": "Pass-through coverage through partner banks; sweep program conditions apply."
       },
-      "verifiedAt": "2026-11-06"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "wealthfront",
@@ -72,7 +72,7 @@
         "label": "FDIC · Conditional",
         "summary": "Applies to cash swept to program banks, subject to program conditions."
       },
-      "verifiedAt": "2026-11-05"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "marcus",
@@ -104,7 +104,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Goldman Sachs Bank USA; standard coverage limits apply."
       },
-      "verifiedAt": "2026-11-07"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "ally",
@@ -132,7 +132,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Ally Bank; standard coverage limits apply."
       },
-      "verifiedAt": "2026-11-05"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "coinbase",
@@ -164,7 +164,7 @@
         "label": "Not FDIC insured",
         "summary": "USDC is a crypto asset, not an insured bank deposit."
       },
-      "verifiedAt": "2026-11-06"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "kraken",
@@ -192,7 +192,7 @@
         "label": "Not FDIC insured",
         "summary": "Stablecoin rewards are not covered by deposit insurance."
       },
-      "verifiedAt": "2026-11-05"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "etrade",
@@ -224,7 +224,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Morgan Stanley Private Bank; enhanced coverage program conditions apply."
       },
-      "verifiedAt": "2026-11-06"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "robinhood",
@@ -260,7 +260,7 @@
         "label": "FDIC · Mixed coverage",
         "summary": "Swept bank cash is eligible. Brokerage-held cash and options collateral are not FDIC insured."
       },
-      "verifiedAt": "2026-11-06"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "aave",
@@ -270,13 +270,13 @@
       "kind": "DeFi lending · Aave v3",
       "symbol": "A",
       "color": "#7365b7",
-      "base": 4.39,
+      "base": 6.65,
       "boost": null,
       "baseLabel": "Market snapshot",
       "rateLabel": "Variable deposit APY",
-      "observedAt": "2026-11-16 14:34 UTC",
+      "observedAt": "2026-11-17 14:38 UTC",
       "requirements": "Supply USDC to the Ethereum Core / Main market. Requires a compatible wallet and ETH for network fees.",
-      "details": "Deposit APY for the Aave v3 USDC pool on Ethereum as reported by DefiLlama at 2026-11-16 14:34 UTC. This is one USDC market, not a protocol-wide rate. Rates change with how much of the pool is borrowed and can fall quickly; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity.",
+      "details": "Deposit APY for the Aave v3 USDC pool on Ethereum as reported by DefiLlama at 2026-11-17 14:38 UTC. This is one USDC market, not a protocol-wide rate. Rates change with how much of the pool is borrowed and can fall quickly; other assets, networks, and markets have different yields. Network fees reduce net returns. Withdrawals depend on available liquidity.",
       "protection": "No FDIC deposit insurance. Smart-contract, oracle, liquidity, and stablecoin depegging risks apply. Borrowing against supplied assets also introduces liquidation risk.",
       "effective": null,
       "fdic": {
@@ -298,7 +298,7 @@
           "url": "https://www.aave.com/docs/resources/risks"
         }
       ],
-      "verifiedAt": "2026-11-16"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "barclays",
@@ -331,7 +331,7 @@
           "url": "https://banking.us.barclays/online-savings.html"
         }
       ],
-      "verifiedAt": "2026-11-05"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "axos",
@@ -359,7 +359,7 @@
           "url": "https://www.axosbank.com/personal/bank/axos-one"
         }
       ],
-      "verifiedAt": "2026-11-05",
+      "verifiedAt": "2026-11-17",
       "catches": [
         "New customers only; open by Dec 1, 2026; the 5.00% lasts 6 statement cycles (5 if you open on or after the 25th)",
         "Every month by the 25th: $1,500+ direct deposits and a $1,500 average checking balance (or $5,000 and $5,000)",
@@ -403,7 +403,7 @@
           "url": "https://www.sofi.com/banking/"
         }
       ],
-      "verifiedAt": "2026-11-05"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "peak",
@@ -432,7 +432,7 @@
         }
       ],
       "baseLabel": "New accounts · below $500k",
-      "verifiedAt": "2026-11-06"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "pibank",
@@ -460,7 +460,7 @@
           "url": "https://www.pibank.com/pibank-savings/"
         }
       ],
-      "verifiedAt": "2026-11-07"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "newtek",
@@ -489,7 +489,7 @@
         }
       ],
       "baseLabel": "Existing accounts",
-      "verifiedAt": "2026-11-06"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "cit",
@@ -522,7 +522,7 @@
         }
       ],
       "baseLabel": "$5,000+ balance",
-      "verifiedAt": "2026-11-06"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "varo",
@@ -550,7 +550,7 @@
           "url": "https://www.varomoney.com/savings-account/"
         }
       ],
-      "verifiedAt": "2026-11-06"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "elevault",
@@ -582,7 +582,7 @@
           "url": "https://www.elevault.app/legal"
         }
       ],
-      "verifiedAt": "2026-11-07"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "everbank",
@@ -611,7 +611,7 @@
         }
       ],
       "baseLabel": "New accounts",
-      "verifiedAt": "2026-11-07"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "happen",
@@ -640,7 +640,7 @@
           "url": "https://www.happen.com/personal-banking/savings/high-yield-savings"
         }
       ],
-      "verifiedAt": "2026-11-06"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "openbank",
@@ -669,7 +669,7 @@
           "url": "https://www.openbank.us/banking/high-yield-savings-account"
         }
       ],
-      "verifiedAt": "2026-11-06"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "capitalone",
@@ -698,7 +698,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Capital One; standard coverage limits apply."
       },
-      "verifiedAt": "2026-11-05"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "amex",
@@ -727,7 +727,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "American Express; standard coverage limits apply."
       },
-      "verifiedAt": "2026-11-06"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "synchrony",
@@ -756,7 +756,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Synchrony; standard coverage limits apply."
       },
-      "verifiedAt": "2026-11-05"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "citizens",
@@ -785,7 +785,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Citizens Access; standard coverage limits apply."
       },
-      "verifiedAt": "2026-11-05"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "wellsfargo",
@@ -814,7 +814,7 @@
         "label": "FDIC · Bank deposit",
         "summary": "Wells Fargo; standard coverage limits apply."
       },
-      "verifiedAt": "2026-11-05"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "chime",
@@ -843,7 +843,7 @@
         "label": "FDIC · Pass-through",
         "summary": "Chime; standard coverage limits apply."
       },
-      "verifiedAt": "2026-11-05"
+      "verifiedAt": "2026-11-17"
     },
     {
       "id": "betterment",
@@ -872,7 +872,7 @@
         "label": "FDIC · Pass-through",
         "summary": "Betterment; standard coverage limits apply."
       },
-      "verifiedAt": "2026-11-06"
+      "verifiedAt": "2026-11-17"
     }
   ]
 }

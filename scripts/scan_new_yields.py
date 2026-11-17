@@ -18,9 +18,12 @@ try:
     s = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', get('https://www.doctorofcredit.com/high-interest-savings-to-get/'))))
     for n, a in re.findall(r"([A-Z][\w&.' ]{2,35}?) [–-] (\d\.\d{2})%", s): found.append((n.strip(), float(a), 'doctorofcredit.com'))
 except Exception as ex: print('doctorofcredit failed', ex)
+rej_f = ROOT/'data/yield-rejections.json'
+rejected = {re.sub(r'[^a-z]', '', r['name'].lower()) for r in json.loads(rej_f.read_text())['rejected']} if rej_f.exists() else set()
 cands = {}
 for n, a, src in found:
     k = re.sub(r'[^a-z]', '', n.lower())
+    if k in rejected: continue
     if a < floor or a > 12 or any(k.startswith(x) or x.startswith(k) for x in known if x): continue
     if k not in cands or cands[k]['apy'] < a: cands[k] = {'name': n, 'apy': a, 'source': src, 'beatsTop': a > top}
 out = {'checkedAt': datetime.date.today().isoformat(), 'ourTop': top, 'threshold': floor,

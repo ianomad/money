@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-11-06",
+ "checkedAt": "2026-11-17",
  "pointValue": 0.01,
  "assumption": "Points and miles counted at 1¢ each (what Chase, Amex, Capital One and Bilt points are worth as cash or in the issuer's travel portal without a boost). Travel transfers can be worth more; we don't assume it. Credits and perks are not counted, because their value depends on whether you'd spend that money anyway.",
  "profile": {
@@ -25,7 +25,8 @@
    "earnText": "3% on everything",
    "perks": "Gold also pays 3.6% on brokerage cash and a 3% IRA match",
    "bonus": null,
-   "points": false
+   "points": false,
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "dc",
@@ -41,7 +42,7 @@
    "perks": "3% foreign transaction fee",
    "bonus": null,
    "points": false,
-   "verifiedAt": "2026-11-06"
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "ac",
@@ -62,7 +63,7 @@
     "spend": 500,
     "months": 3
    },
-   "verifiedAt": "2026-11-06"
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "fu",
@@ -84,7 +85,7 @@
     "spend": 500,
     "months": 3
    },
-   "verifiedAt": "2026-11-07"
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "sv",
@@ -108,7 +109,7 @@
     "spend": 500,
     "months": 3
    },
-   "verifiedAt": "2026-11-07"
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "bcp",
@@ -131,7 +132,7 @@
    "perks": "",
    "bonus": null,
    "points": false,
-   "verifiedAt": "2026-11-07"
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "ap",
@@ -147,7 +148,8 @@
    "note": "We assume you pay with Apple Pay everywhere",
    "perks": "No fees",
    "bonus": null,
-   "points": false
+   "points": false,
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "csp",
@@ -172,7 +174,7 @@
     "spend": 5000,
     "months": 3
    },
-   "verifiedAt": "2026-11-06",
+   "verifiedAt": "2026-11-17",
    "note": "Grocery spending is counted at 1x, since 3x applies only to online grocery."
   },
   {
@@ -196,7 +198,7 @@
     "spend": 6000,
     "months": 3
    },
-   "verifiedAt": "2026-11-07"
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "ag",
@@ -218,7 +220,8 @@
    "earnText": "4x restaurants (first $50k/yr), 4x US supermarkets (first $25k/yr), 3x flights, 1x else",
    "perks": "$100 Resy, $84 Dunkin', dining and Uber Cash credits (monthly, enrollment)",
    "bonus": null,
-   "points": true
+   "points": true,
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "apl",
@@ -234,7 +237,8 @@
    "earnText": "5x flights and prepaid Amex Travel hotels, 1x else",
    "perks": "Biggest lounge network; $400 Resy, $300 lululemon, $219 CLEAR+, hotel credits up to $300 twice a year, and more",
    "bonus": null,
-   "points": true
+   "points": true,
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "vx",
@@ -250,7 +254,7 @@
    "perks": "Capital One lounges; no foreign fees; miles transfer to airlines",
    "bonus": null,
    "points": true,
-   "verifiedAt": "2026-11-06"
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "bb",
@@ -269,7 +273,8 @@
    "points": true,
    "bonusTerms": {
     "usd": 100
-   }
+   },
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "bo",
@@ -290,7 +295,8 @@
    "points": true,
    "bonusTerms": {
     "usd": 200
-   }
+   },
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "bp",
@@ -311,7 +317,8 @@
     "pts": 50000,
     "spend": 4000,
     "months": 3
-   }
+   },
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "di",
@@ -333,7 +340,7 @@
     "months": 3
    },
    "points": false,
-   "verifiedAt": "2026-11-07"
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "ag2",
@@ -361,7 +368,7 @@
     "spend": 1000,
     "months": 3
    },
-   "verifiedAt": "2026-11-07"
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "so2",
@@ -376,7 +383,8 @@
    "earnText": "2% on all eligible purchases",
    "perks": "",
    "bonus": null,
-   "points": false
+   "points": false,
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "soe",
@@ -393,7 +401,8 @@
    "earnText": "3% dining, 2% groceries, 1% else",
    "perks": "",
    "bonus": null,
-   "points": false
+   "points": false,
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "pp",
@@ -410,7 +419,7 @@
    "perks": "",
    "bonus": null,
    "points": false,
-   "verifiedAt": "2026-11-07"
+   "verifiedAt": "2026-11-17"
   },
   {
    "id": "bce",
@@ -432,7 +441,7 @@
    "perks": "$84 Disney streaming credit",
    "bonus": null,
    "points": false,
-   "verifiedAt": "2026-11-07"
+   "verifiedAt": "2026-11-17"
   }
  ]
 }
