@@ -1,6 +1,6 @@
 {
   "note": "Public predictions by @MoneyBeastHQ, graded in public. Source of truth for outcomes: /workspace/growth/predictions.md (synced here). The Prediction grader updates result, actual, grade (and post when a call goes live) after each check; the site rebuilds from this file (python3 scripts/compose.py). Fields on every call: id, made, ticker, event, kind (buy/sell/sit-out/number/moves-less), call, check, result (hit/miss/pending/sit-out), actual, post, grade, note, setup (eps-vs-consensus/macro-line/implied-move/sell-into-print/priced-in/other), score (0-100 strength of setup, null if not scored), posted_on_x (true = has an X post, false = site-only call). Site-only calls (the weekly top-25 eligible earnings names, only the 1-2 strongest get posted on X) set posted_on_x false and leave post empty; if one is later posted, set posted_on_x true and fill post. Misses, sit-outs and pending calls stay listed. Never add $XYZ, Block, Cash App, Square, or Afterpay.",
-  "updated": "2026-11-17",
+  "updated": "2026-11-18",
   "calls": [
     {
       "id": "jpm-2026-10-12",
@@ -512,6 +512,23 @@
       "prob": 0.66,
       "direction_score": 33,
       "check_time": "Wed Nov 18 regular close 4pm ET vs Tue close $159.53"
+    },
+    {
+      "id": "nvda-rev-2026-11-16",
+      "made": "2026-11-16",
+      "ticker": "NVDA",
+      "event": "",
+      "kind": "number",
+      "call": "Nvidia Q3 FY27 revenue beats $109.2B",
+      "check": "2026-11-17",
+      "result": "hit",
+      "actual": "$115.8B",
+      "post": "https://x.com/MoneyBeastHQ/status/2122329695303749771",
+      "grade": "https://x.com/MoneyBeastHQ/status/2123062092878184748",
+      "note": "Beat revenue consensus 4 of the last 4 by 3.3% to 4.5%. Actual $115.8B per NVIDIA's Nov 17 release (+6.1% vs the call); Q4 guide $130.0B ±3%.",
+      "setup": "eps-vs-consensus",
+      "score": null,
+      "posted_on_x": true
     }
   ]
 }
