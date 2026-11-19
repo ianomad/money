@@ -1,0 +1,8 @@
+{
+  "name": "money-beast",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:admin": "node --test tests/admin/*.test.js"
+  }
+}
