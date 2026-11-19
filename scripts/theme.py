@@ -21,6 +21,13 @@ SECTION = {'/': 'home', '/rates': 'savings', '/abroad': 'world', '/cards': 'card
            '/best-hysa': 'guides', '/best-nofee-cards': 'guides', '/pay-property-tax-credit-card': 'guides', '/tbills-vs-savings-california': 'guides'}
 DATA_PAGES = {'/', '/rates', '/abroad', '/changes', '/cards', '/cards.html', '/markets', '/best-hysa', '/best-nofee-cards', '/pay-property-tax-credit-card', '/tbills-vs-savings-california'}
 
+# Site-wide pause notice (Nov 2026). In-flow, not sticky, so it never covers content or the mobile bottom nav.
+PAUSE = ('<aside class="pause-banner" role="status">'
+         '<p><strong>Paused for construction.</strong> Money Beast is taking a break. '
+         'Data on this site isn’t being refreshed right now; numbers may be out of date. Back soon.</p>'
+         '</aside>')
+PAUSE_HOME = ('<p class="pause-home">This site is paused for construction, so the numbers below may be out of date.</p>')
+
 def css():
     s = (HERE / 'theme.css').read_text()
     s = re.sub(r'/\*.*?\*/', '', s, flags=re.S)
@@ -84,7 +91,14 @@ def apply(h):
     h = re.sub(r'href="/#([\w-]+)"', lambda m: f'href="/abroad{"" if m.group(1) == "world" else "#" + m.group(1)}"' if m.group(1) in WORLD_IDS else f'href="/rates#{m.group(1)}"', h)
     # 2. chrome
     h = re.sub(r'<a class="skip-link"[^>]*>.*?</a>', '', h, flags=re.S)
-    h = re.sub(r'<header\b[^>]*>.*?</header>', lambda _: header(cur), h, count=1, flags=re.S)
+    h = re.sub(r'<aside class="pause-banner"[^>]*>.*?</aside>', '', h, flags=re.S)
+    h = re.sub(r'<p class="pause-home">.*?</p>', '', h, flags=re.S)
+    h = re.sub(r'<header\b[^>]*>.*?</header>', lambda _: header(cur) + PAUSE, h, count=1, flags=re.S)
+    if path == '/' and 'class="pause-home"' not in h:
+        if re.search(r'<section class="fhead home-h">.*?</section>', h, flags=re.S):
+            h = re.sub(r'(<section class="fhead home-h">.*?</section>)', r'\1' + PAUSE_HOME, h, count=1, flags=re.S)
+        else:
+            h = re.sub(r'(<main\b[^>]*>)', r'\1' + PAUSE_HOME, h, count=1)
     fm = re.search(r'<footer\b[^>]*>.*?</footer>', h, re.S)
     if fm:
         nm = re.search(r'<p class="fine">(.*?)</p>', fm.group(0), re.S)
